@@ -1,0 +1,270 @@
+{
+  "eseguito_il": "2026-11-15T16:08:01.006892+00:00",
+  "modello_agente": "gpt-4o-mini",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 2,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 9,
+      "totale": 11
+    },
+    "ricerche_avviate": {
+      "corretti": 6,
+      "totale": 8
+    },
+    "hit_at_1": {
+      "corretti": 6,
+      "totale": 6
+    },
+    "citazioni_corrette": {
+      "corretti": 6,
+      "totale": 8
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 3,
+      "totale": 3
+    }
+  },
+  "risultati": [
+    {
+      "id": "focus-spia",
+      "veicolo": "focus",
+      "domanda": "Mi si è accesa la spia dell’olio",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "focus-olio",
+      "pagina_attesa": 80,
+      "esito": "risposta",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-olio",
+          "pagina": 80
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-olio",
+        "pagina": 80
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "passato": true,
+      "latenza_ms": 6983
+    },
+    {
+      "id": "focus-colloquiale",
+      "veicolo": "focus",
+      "domanda": "Sul quadro ho la spia rossa dell’olio accesa",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "focus-olio",
+      "pagina_attesa": 80,
+      "esito": "risposta",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-olio",
+          "pagina": 80
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-olio",
+        "pagina": 80
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "passato": true,
+      "latenza_ms": 4390
+    },
+    {
+      "id": "civic-pressione-esatta",
+      "veicolo": "civic",
+      "domanda": "Pressione olio motore bassa",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "civic-pressione",
+      "pagina_attesa": 623,
+      "esito": "risposta",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pressione",
+          "pagina": 623
+        },
+        {
+          "id": "civic-livello",
+          "pagina": 629
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pressione",
+        "pagina": 623
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "passato": true,
+      "latenza_ms": 2942
+    },
+    {
+      "id": "civic-pressione-variante",
+      "veicolo": "civic",
+      "domanda": "Il quadro segnala bassa pressione dell’olio",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "civic-pressione",
+      "pagina_attesa": 623,
+      "esito": "risposta",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pressione",
+          "pagina": 623
+        },
+        {
+          "id": "civic-livello",
+          "pagina": 629
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pressione",
+        "pagina": 623
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "passato": true,
+      "latenza_ms": 2803
+    },
+    {
+      "id": "civic-pressione-colloquiale",
+      "veicolo": "civic",
+      "domanda": "Il display dice che la pressione dell’olio è troppo bassa",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "civic-pressione",
+      "pagina_attesa": 623,
+      "esito": "chiarimento",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": false,
+      "passato": false,
+      "latenza_ms": 1376
+    },
+    {
+      "id": "civic-livello-esatto",
+      "veicolo": "civic",
+      "domanda": "Livello olio motore basso",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "civic-livello",
+      "pagina_attesa": 629,
+      "esito": "risposta",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-livello",
+          "pagina": 629
+        },
+        {
+          "id": "civic-pressione",
+          "pagina": 623
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-livello",
+        "pagina": 629
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "passato": true,
+      "latenza_ms": 3170
+    },
+    {
+      "id": "civic-livello-variante",
+      "veicolo": "civic",
+      "domanda": "È apparso un avviso di basso livello dell’olio",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "civic-livello",
+      "pagina_attesa": 629,
+      "esito": "risposta",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-livello",
+          "pagina": 629
+        },
+        {
+          "id": "civic-pressione",
+          "pagina": 623
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-livello",
+        "pagina": 629
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "passato": true,
+      "latenza_ms": 3251
+    },
+    {
+      "id": "civic-livello-colloquiale",
+      "veicolo": "civic",
+      "domanda": "Il messaggio indica che il livello dell’olio è troppo basso",
+      "esito_atteso": "risposta",
+      "fonte_attesa": "civic-livello",
+      "pagina_attesa": 629,
+      "esito": "chiarimento",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": false,
+      "passato": false,
+      "latenza_ms": 1296
+    },
+    {
+      "id": "civic-spia-ambigua",
+      "veicolo": "civic",
+      "domanda": "Mi si è accesa la spia dell’olio",
+      "esito_atteso": "chiarimento",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "esito": "chiarimento",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "passato": true,
+      "latenza_ms": 1245
+    },
+    {
+      "id": "civic-due-avvisi",
+      "veicolo": "civic",
+      "domanda": "Non ricordo se sul quadro c’era scritto pressione olio motore bassa o livello olio motore basso",
+      "esito_atteso": "chiarimento",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "esito": "chiarimento",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "passato": true,
+      "latenza_ms": 1295
+    },
+    {
+      "id": "auto-fuori-catalogo",
+      "veicolo": "jazz",
+      "domanda": "Mi si è accesa la spia dell’olio",
+      "esito_atteso": "bloccato",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "esito": "bloccato",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "passato": true,
+      "latenza_ms": 0
+    }
+  ]
+}
