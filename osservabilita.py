@@ -5,6 +5,7 @@ from opentelemetry import trace
 from prometheus_client import Counter, Histogram, start_http_server
 
 
+# Prometheus raccoglie questi contatori e l'istogramma per la dashboard Grafana.
 RICHIESTE = Counter("manuali_richieste", "Richieste per esito", ["esito"])
 LATENZA = Histogram("manuali_latenza_secondi", "Latenza end-to-end")
 STRUMENTI = Counter("manuali_tool", "Chiamate agli strumenti", ["tool"])
@@ -20,6 +21,7 @@ def avvia_osservabilita(porta: int, endpoint: str):
     provider = TracerProvider(resource=Resource.create({
         "service.name": "manuali-auto", "openinference.project.name": "manuali-auto",
     }))
+    # Le tracce delle singole richieste vanno a Phoenix tramite OTLP su HTTP.
     provider.add_span_processor(BatchSpanProcessor(OTLPSpanExporter(endpoint=endpoint)))
     trace.set_tracer_provider(provider)
     return provider
@@ -40,6 +42,7 @@ def richiesta():
         try:
             yield esito
         finally:
+            # La richiesta viene misurata anche se un errore impedisce di impostare un altro esito.
             corrente.set_attribute("esito", esito["valore"])
             RICHIESTE.labels(esito["valore"]).inc()
             LATENZA.observe(perf_counter() - inizio)

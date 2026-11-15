@@ -13,6 +13,7 @@ from indice import TOP_K
 
 
 class Caso(BaseModel):
+    # Il gold set fissa l'esito atteso prima di eseguire la prova.
     model_config = ConfigDict(extra="forbid", strict=True)
 
     id: str = Field(min_length=1)
@@ -44,10 +45,12 @@ def valuta(assistente: Assistente, percorso: Path, destinazione: Path) -> bool:
         latenza_ms = round((perf_counter() - inizio) * 1000)
         attesa = Fonte(caso.fonte_attesa, caso.pagina_attesa) if caso.fonte_attesa and caso.pagina_attesa else None
         prima = next(iter(risposta.fonti_recuperate), None)
+        # Hit@1 misura il ranking quando Qdrant è stato interrogato. La citazione valuta la risposta finale.
         hit_1 = prima == attesa if attesa is not None and risposta.ricerca_eseguita else None
         citazione_corretta = risposta.fonte_citata == attesa if attesa is not None else None
         esito_corretto = risposta.esito == caso.esito_atteso
         if attesa is None:
+            # Un chiarimento o un blocco deve anche evitare una ricerca documentale.
             passato = esito_corretto and not risposta.ricerca_eseguita
         else:
             passato = esito_corretto and citazione_corretta is True
@@ -84,6 +87,7 @@ def valuta(assistente: Assistente, percorso: Path, destinazione: Path) -> bool:
         },
         "risultati": risultati,
     }
+    # Sostituisci il report precedente solo quando il nuovo JSON è completo.
     file = NamedTemporaryFile(mode="w", encoding="utf-8", dir=destinazione.parent, delete=False)
     temporaneo = Path(file.name)
     try:

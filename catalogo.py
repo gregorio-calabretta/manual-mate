@@ -8,8 +8,10 @@ from pathlib import Path
 class Avviso:
     id: str
     titolo: str
+    # La citazione usa la pagina stampata, mentre l'estrazione usa la posizione nel PDF.
     pagina: int
     pagina_pdf: int
+    # Questi marcatori delimitano la sezione da conservare nel singolo chunk.
     inizio: str
     fine: str
     pattern: str
@@ -49,6 +51,7 @@ CATALOGO = {veicolo.id: veicolo for veicolo in (FOCUS, CIVIC)}
 
 
 def normalizza(testo: str) -> str:
+    # I pattern lavorano su parole minuscole, senza accenti e con la punteggiatura separata.
     lettere = unicodedata.normalize("NFKD", testo.casefold())
     lettere = "".join(c for c in lettere if not unicodedata.combining(c))
     return " ".join(re.findall(r"[a-z0-9]+", lettere))
@@ -75,10 +78,12 @@ def leggi_passaggi(cartella: Path, veicolo: Veicolo) -> dict[str, str]:
             testo = pdf.pages[avviso.pagina_pdf - 1].extract_text()
             prima, trovato, dopo = testo.partition(avviso.inizio)
             corpo, fine, _ = dopo.partition(avviso.fine)
+            # Titolo e marcatori aiutano a rilevare un PDF di un'edizione diversa da quella attesa.
             if not trovato or not fine or not corpo.strip() or (
                 normalizza(avviso.titolo) not in normalizza(prima + trovato)
             ):
                 raise ValueError(f"Sezione non riconosciuta nel manuale {veicolo.file}, pagina {avviso.pagina}.")
+            # Per la Focus il marcatore iniziale è il titolo, che l'indice aggiunge già al chunk.
             estratto = corpo.strip() if veicolo == FOCUS else (trovato + corpo).strip()
             passaggi[avviso.id] = estratto
     return passaggi

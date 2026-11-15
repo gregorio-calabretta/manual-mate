@@ -11,6 +11,7 @@ def main() -> int:
 
     from catalogo import CATALOGO, leggi_passaggi
 
+    # Leggi la configurazione accanto al programma anche se lo avvii da un'altra cartella.
     load_dotenv(ROOT / ".env")
     desktop = ROOT.parent / "manuali uso e manutenzione auto"
     parser = argparse.ArgumentParser(description="Consulta il manuale per gli avvisi olio motore.")
@@ -30,6 +31,7 @@ def main() -> int:
     if args.valuta and veicolo_id is not None:
         parser.error("--valuta usa i veicoli definiti in queries.json.")
 
+    # La verifica dei PDF si può eseguire prima di configurare OpenAI e avviare Docker.
     if args.verifica_manuali:
         try:
             for veicolo in CATALOGO.values():
@@ -46,7 +48,8 @@ def main() -> int:
     if not chiave:
         parser.error("Imposta OPENAI_API_KEY nella variabile d'ambiente o nel file .env.")
 
-    # S11 inizializza il provider OTel prima della prima chiamata Datapizza.
+    # Come in S11, prepara il provider OTel prima delle chiamate Datapizza.
+    # Le tracce del client omettono il testo di input e output.
     os.environ["DATAPIZZA_TRACE_CLIENT_IO"] = "false"
     os.environ.setdefault("DATAPIZZA_AGENT_LOG_LEVEL", "WARNING")
     from osservabilita import avvia_osservabilita
@@ -64,6 +67,7 @@ def main() -> int:
     from assistente import Assistente
     from indice import IndiceManuali
 
+    # L'agente sceglie i tool con il modello conversazionale. L'embedder produce i vettori per Qdrant.
     client = OpenAIClient(
         api_key=chiave, model=os.getenv("OPENAI_MODEL") or "gpt-4o-mini", timeout=30, max_retries=1,
     )
@@ -75,6 +79,7 @@ def main() -> int:
             port=int(os.getenv("QDRANT_PORT") or "16333"), timeout=5,
         )
         indice = IndiceManuali(embedder, qdrant)
+        # L'indicizzazione si avvia esplicitamente. Le domande riusano la collezione già pronta.
         if args.indicizza:
             veicoli = CATALOGO.values() if veicolo_id is None else [CATALOGO[veicolo_id]]
             for veicolo in veicoli:

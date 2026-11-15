@@ -22,6 +22,7 @@ class IndiceManuali:
         self.store = store
 
     def collezione_attiva(self, veicolo: Veicolo) -> str | None:
+        # Un alias stabile per veicolo punta alla versione dell'indice pronta per la ricerca.
         alias = f"manuali_{veicolo.id}"
         return next((
             voce.collection_name for voce in self.store.get_client().get_aliases().aliases
@@ -30,6 +31,7 @@ class IndiceManuali:
 
     def indicizza(self, cartella: Path, veicolo: Veicolo) -> int:
         passaggi = leggi_passaggi(cartella, veicolo)
+        # Qdrant conserva insieme vettore, testo originale e metadati utili per la citazione.
         documenti = [
             (f"{avviso.titolo}\n\n{passaggi[avviso.id]}", {
                 "fonte": avviso.id, "veicolo": veicolo.id, "pagina": avviso.pagina,
@@ -44,6 +46,7 @@ class IndiceManuali:
         collezione = f"{alias}_{versione}"
         client = self.store.get_client()
         aggiunti = 0
+        # Una versione completa si riusa. Se una scrittura è rimasta a metà, gli ID stabili consentono di ripeterla.
         if not client.collection_exists(collezione) or client.count(collezione, exact=True).count != len(documenti):
             vettori = self.embedder.embed([testo for testo, _ in documenti])
             chunks = [
@@ -71,6 +74,7 @@ class IndiceManuali:
 
     def cerca(self, veicolo: Veicolo, collezione: str, query: str) -> list[Chunk]:
         with span("ricerca-manuale", "RETRIEVER", veicolo=veicolo.id, collezione=collezione) as traccia:
+            # I vettori dei manuali sono già sul volume. Qui si calcola solo quello della domanda.
             vettore = self.embedder.embed(query)
             risultati = self.store.search(collezione, vettore, k=TOP_K, vector_name=VETTORE)
             traccia.set_attribute("fonti", [hit.metadata["fonte"] for hit in risultati])
