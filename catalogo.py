@@ -40,10 +40,12 @@ CIVIC = Veicolo(
     (
         Avviso("civic-pressione", "Pressione olio motore bassa", 623, 624,
                "■ Cause della visualizzazione", "23 CIVIC TYPE R JSS",
-               r"\b(?:pressione (?:dell )?olio(?: motore)? (?:bassa|basso)|bassa pressione (?:dell )?olio)\b"),
+               r"\b(?:pressione (?:dell )?olio(?: motore)? (?:e )?(?:troppo )?"
+               r"(?:bassa|basso|insufficiente|sotto il minimo)|bassa pressione (?:dell )?olio)\b"),
         Avviso("civic-livello", "Livello olio motore basso", 629, 630,
                "■ Cause della visualizzazione", "23 CIVIC TYPE R JSS",
-               r"\b(?:livello (?:dell )?olio(?: motore)? basso|basso livello (?:dell )?olio)\b"),
+               r"\b(?:livello (?:dell )?olio(?: motore)? (?:e )?(?:troppo )?"
+               r"(?:basso|insufficiente|sotto il minimo)|basso livello (?:dell )?olio)\b"),
     ),
 )
 
@@ -57,12 +59,22 @@ def normalizza(testo: str) -> str:
     return " ".join(re.findall(r"[a-z0-9]+", lettere))
 
 
-def riconosci_avviso(veicolo: Veicolo, domanda: str) -> Avviso | None:
+def riconosci_avviso(veicolo: Veicolo, domanda: str, contesto: tuple[str, ...] = ()) -> Avviso | None:
     testo = normalizza(domanda)
     # Se la domanda confronta pressione e livello, chiedi quale compare sul quadro.
     if veicolo == CIVIC and {"pressione", "livello"} <= set(testo.split()):
         return None
     corrispondenze = [avviso for avviso in veicolo.avvisi if re.search(avviso.pattern, testo)]
+    if veicolo == CIVIC and not corrispondenze and any("olio" in normalizza(turno).split() for turno in contesto):
+        # Dopo un chiarimento sull'olio, una risposta breve come «quella della pressione» basta.
+        scelta = re.fullmatch(
+            r"(?:(?:e|era|quella|quello|la|il|della|del|di|bassa|basso) )*"
+            r"(pressione|livello)(?: (?:dell olio|olio(?: motore)?))?(?: (?:bassa|basso))?",
+            testo,
+        )
+        if scelta:
+            identificativo = f"civic-{scelta[1]}"
+            return next(avviso for avviso in veicolo.avvisi if avviso.id == identificativo)
     return corrispondenze[0] if len(corrispondenze) == 1 else None
 
 

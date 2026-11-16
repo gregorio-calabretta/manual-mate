@@ -40,6 +40,18 @@ Seleziona `focus` o `civic` dopo aver verificato che l’edizione indicata sia q
 .\.venv\Scripts\python.exe -X utf8 main.py --veicolo civic --domanda 'Pressione olio motore bassa'
 ```
 
+## Interfaccia Streamlit
+
+Con la chiave configurata e i manuali già indicizzati in Qdrant, avvia l’interfaccia dalla cartella del progetto:
+
+```powershell
+.\.venv\Scripts\python.exe -m streamlit run app_streamlit.py
+```
+
+Apri [Manual Mate nel browser](http://localhost:8501). Seleziona il veicolo, controlla l’edizione del manuale e descrivi cosa succede con parole tue. Per esempio, sulla Civic puoi scrivere «Mi si è accesa la spia dell’olio» e, dopo il chiarimento, rispondere «Quella della pressione». La chat riusa i dettagli degli ultimi due chiarimenti dello stesso veicolo. Quando trova la sezione pertinente, mostra l’estratto, la pagina e l’ordine dei passaggi recuperati. Per un problema fuori copertura, come un rumore dei freni, indica che nei passaggi disponibili mancano istruzioni. L’indice attuale comprende le sezioni sugli avvisi dell’olio motore.
+
+Per inviare anche le richieste web a Phoenix e Grafana, avvia lo stack della sezione **Osservabilità** e imposta `MANUAL_MATE_OSSERVABILITA=true` in `.env` prima di avviare Streamlit. Usa un solo processo con le metriche attive alla volta, perché sia la CLI sia Streamlit le espongono sulla porta `18000`.
+
 ## Prove per la demo
 
 Le pagine nella tabella sono quelle stampate nei manuali.

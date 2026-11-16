@@ -2,17 +2,13 @@ import argparse
 import os
 from pathlib import Path
 
-
-ROOT = Path(__file__).resolve().parent
+from runtime import ROOT, carica_configurazione, crea_assistente
 
 
 def main() -> int:
-    from dotenv import load_dotenv
-
     from catalogo import CATALOGO, leggi_passaggi
 
-    # Leggi la configurazione accanto al programma anche se lo avvii da un'altra cartella.
-    load_dotenv(ROOT / ".env")
+    carica_configurazione()
     desktop = ROOT.parent / "manuali uso e manutenzione auto"
     parser = argparse.ArgumentParser(description="Consulta il manuale per gli avvisi olio motore.")
     parser.add_argument("--manuali", type=Path, default=Path(os.getenv("MANUALI_DIR") or desktop))
@@ -49,46 +45,26 @@ def main() -> int:
         parser.error("Imposta OPENAI_API_KEY nella variabile d'ambiente o nel file .env.")
 
     # Come in S11, prepara il provider OTel prima delle chiamate Datapizza.
-    # Le tracce del client omettono il testo di input e output.
-    os.environ["DATAPIZZA_TRACE_CLIENT_IO"] = "false"
-    os.environ.setdefault("DATAPIZZA_AGENT_LOG_LEVEL", "WARNING")
     from osservabilita import avvia_osservabilita
 
     provider = None
     if args.osservabilita:
         provider = avvia_osservabilita(18000, "http://localhost:16006/v1/traces")
 
-    from datapizza.clients.openai import OpenAIClient
-    from datapizza.embedders.openai import OpenAIEmbedder
-    from datapizza.vectorstores.qdrant import QdrantVectorstore
     from openai import APIError
     from qdrant_client.http.exceptions import ApiException
 
-    from assistente import Assistente
-    from indice import IndiceManuali
-
-    # L'agente sceglie i tool con il modello conversazionale. L'embedder produce i vettori per Qdrant.
-    client = OpenAIClient(
-        api_key=chiave, model=os.getenv("OPENAI_MODEL") or "gpt-4o-mini", timeout=30, max_retries=1,
-    )
-    embedder = OpenAIEmbedder(api_key=chiave, model_name="text-embedding-3-small")
-    embedder.client = client.client
     try:
-        qdrant = QdrantVectorstore(
-            host=os.getenv("QDRANT_HOST") or "127.0.0.1",
-            port=int(os.getenv("QDRANT_PORT") or "16333"), timeout=5,
-        )
-        indice = IndiceManuali(embedder, qdrant)
+        assistente = crea_assistente(chiave)
         # L'indicizzazione si avvia esplicitamente. Le domande riusano la collezione già pronta.
         if args.indicizza:
             veicoli = CATALOGO.values() if veicolo_id is None else [CATALOGO[veicolo_id]]
             for veicolo in veicoli:
-                aggiunti = indice.indicizza(args.manuali, veicolo)
+                aggiunti = assistente.indice.indicizza(args.manuali, veicolo)
                 esito = f"{aggiunti} passaggi indicizzati" if aggiunti else "indice riusato, nessun embedding dei manuali"
                 print(f"{veicolo.nome}: {esito}.")
             return 0
 
-        assistente = Assistente(indice, client)
         if args.valuta:
             from valutazione import valuta
 
@@ -106,14 +82,18 @@ def main() -> int:
             print(f"  {codice}: {veicolo.nome} ({veicolo.edizione})")
         codice = (args.veicolo or input("Quale manuale si applica alla tua auto? ")).strip().casefold()
         print("Comandi disponibili: :auto per cambiare veicolo, :esci per terminare.")
+        contesto = ()
         while True:
-            domanda = input("\nQuale avviso compare? ").strip()
+            domanda = input("\nDescrivi il problema o rispondi al chiarimento: ").strip()
             if domanda == ":esci":
                 return 0
             if domanda == ":auto":
                 codice = input("Identificativo del manuale (focus / civic): ").strip().casefold()
+                contesto = ()
             elif domanda:
-                print(f"\n{assistente.rispondi(codice, domanda).testo}")
+                risposta = assistente.rispondi(codice, domanda, contesto=contesto)
+                print(f"\n{risposta.testo}")
+                contesto = (*contesto, domanda)[-2:] if risposta.esito == "chiarimento" else ()
     except (EOFError, KeyboardInterrupt):
         return 0
     except APIError as errore:

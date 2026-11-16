@@ -62,6 +62,8 @@ class AssistenteTest(unittest.TestCase):
             ("focus", "Mi si è accesa la spia dell’olio", "focus-olio", 80),
             ("civic", "Pressione olio motore bassa", "civic-pressione", 623),
             ("civic", "Livello olio motore basso", "civic-livello", 629),
+            ("civic", "Il display dice che la pressione dell’olio è troppo bassa", "civic-pressione", 623),
+            ("civic", "Il livello dell’olio è troppo basso", "civic-livello", 629),
         ):
             with self.subTest(fonte=fonte):
                 self.azioni = iter((("cerca_manuale", {"query": domanda}), ("cita_fonte", {"fonte_id": fonte})))
@@ -76,6 +78,27 @@ class AssistenteTest(unittest.TestCase):
         self.azioni = iter((("chiedi_chiarimento", {}),))
         risposta = self.assistente.rispondi("civic", "Spia dell'olio")
         self.assertEqual(risposta.esito, "chiarimento")
+        self.assertEqual(self.chiamate, ["/v1/responses"])
+
+    def test_chiarimento_risolto_con_una_risposta_breve(self):
+        self.indice.indicizza(self.cartella, CATALOGO["civic"])
+        prima_domanda = "Mi si è accesa la spia dell’olio"
+        self.azioni = iter((("chiedi_chiarimento", {}),))
+        prima = self.assistente.rispondi("civic", prima_domanda)
+        self.assertIn("pressione", prima.testo)
+        self.assertIn("livello", prima.testo)
+        self.assertFalse(prima.ricerca_eseguita)
+
+        self.azioni = iter((("cerca_manuale", {"query": "pressione"}), ("cita_fonte", {"fonte_id": "civic-pressione"})))
+        seconda = self.assistente.rispondi("civic", "Quella della pressione", contesto=(prima_domanda,))
+        self.assertEqual(seconda.fonte_citata, Fonte("civic-pressione", 623))
+
+    def test_comunica_limite_del_libretto_per_problema_non_coperto(self):
+        self.azioni = iter((("segnala_limite", {}),))
+        risposta = self.assistente.rispondi("civic", "Quando freno sento uno stridio")
+        self.assertEqual(risposta.esito, "fonte_assente")
+        self.assertIn("Nei passaggi del libretto", risposta.testo)
+        self.assertIsNone(risposta.fonte_citata)
         self.assertEqual(self.chiamate, ["/v1/responses"])
 
     def test_veicolo_fuori_catalogo_senza_chiamate(self):
