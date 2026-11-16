@@ -9,5 +9,8 @@
   {"id": "civic-livello-colloquiale", "veicolo": "civic", "domanda": "Il messaggio indica che il livello dell’olio è troppo basso", "esito_atteso": "risposta", "fonte_attesa": "civic-livello", "pagina_attesa": 629},
   {"id": "civic-spia-ambigua", "veicolo": "civic", "domanda": "Mi si è accesa la spia dell’olio", "esito_atteso": "chiarimento"},
   {"id": "civic-due-avvisi", "veicolo": "civic", "domanda": "Non ricordo se sul quadro c’era scritto pressione olio motore bassa o livello olio motore basso", "esito_atteso": "chiarimento"},
-  {"id": "auto-fuori-catalogo", "veicolo": "jazz", "domanda": "Mi si è accesa la spia dell’olio", "esito_atteso": "bloccato"}
+  {"id": "auto-fuori-catalogo", "veicolo": "jazz", "domanda": "Mi si è accesa la spia dell’olio", "esito_atteso": "bloccato"},
+  {"id": "civic-batteria-telecomando", "veicolo": "civic", "domanda": "Che tipo di batteria serve per il telecomando della chiave?", "esito_atteso": "risposta", "pagina_attesa": 575},
+  {"id": "focus-tergiparabrezza", "veicolo": "focus", "domanda": "Come si regola l’intervallo del tergiparabrezza anteriore intermittente?", "esito_atteso": "risposta", "pagina_attesa": 59},
+  {"id": "civic-richiesta-estranea", "veicolo": "civic", "domanda": "Qual è la ricetta originale della carbonara?", "esito_atteso": "fonte_assente"}
 ]

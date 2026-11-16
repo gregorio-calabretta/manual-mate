@@ -1,6 +1,6 @@
 # Assistente per gli avvisi sul cruscotto
 
-Il prototipo consulta il manuale del veicolo selezionato per rispondere agli avvisi sull’olio. Copre la **Ford Focus (CEW)**, edizione 09/2014 per veicoli prodotti dal 08/09/2014 al 15/02/2015, e la **Honda Civic Type R** con manuale `3LT40600`. Mostra il passaggio originale applicabile e cita il numero stampato e la posizione nel PDF.
+Manual Mate cerca nel testo dei manuali di **Ford Focus (CEW)**, edizione 09/2014 per veicoli prodotti dal 08/09/2014 al 15/02/2015, e **Honda Civic Type R**, manuale `3LT40600`. Mostra il passaggio originale e cita il numero stampato, quando disponibile, e la posizione nel PDF.
 
 ## Avvio su Windows
 
@@ -32,7 +32,9 @@ docker compose -f osservabilita/compose.yaml up -d --wait qdrant
 
 Qdrant salva testo e vettori nel volume Docker `qdrant_data`. Puoi chiudere l’app o fermare lo stack con `docker compose -f osservabilita/compose.yaml down` e riavviarlo senza rifare gli embedding dei PDF. Per consultare l’indice apri la [dashboard Qdrant](http://localhost:16333/dashboard).
 
-Rilancia `--indicizza` quando cambi i passaggi, il manuale o il modello di embedding. A contenuto invariato vedrai `indice riusato, nessun embedding dei manuali`. Per aggiornare una sola auto usa, per esempio, `--indicizza --veicolo civic`. Qdrant conserva le versioni precedenti nel volume. Il nome stabile `manuali_civic` punta alla versione attiva e cambia solo quando il caricamento di quella nuova è riuscito.
+Rilancia `--indicizza` quando cambia il PDF, il modello di embedding o la configurazione dei chunk. A contenuto invariato vedrai `indice riusato, nessun embedding dei manuali`. Per aggiornare una sola auto usa, per esempio, `--indicizza --veicolo civic`. Qdrant conserva le versioni precedenti nel volume. Il nome stabile `manuali_civic` punta alla versione attiva e cambia solo quando il caricamento di quella nuova è riuscito.
+
+L’estrazione legge lo strato testuale dei PDF. L’indicizzazione segnala le eventuali pagine senza testo estraibile. Per simboli, tabelle impaginate e illustrazioni consulta la pagina originale riportata nella risposta.
 
 Seleziona `focus` o `civic` dopo aver verificato che l’edizione indicata sia quella del tuo manuale. Usa `:auto` per cambiare veicolo e `:esci` per terminare. Per provare una singola domanda:
 
@@ -48,7 +50,9 @@ Con la chiave configurata e i manuali già indicizzati in Qdrant, avvia l’inte
 .\.venv\Scripts\python.exe -m streamlit run app_streamlit.py
 ```
 
-Apri [Manual Mate nel browser](http://localhost:8501). Seleziona il veicolo, controlla l’edizione del manuale e descrivi cosa succede con parole tue. Per esempio, sulla Civic puoi scrivere «Mi si è accesa la spia dell’olio» e, dopo il chiarimento, rispondere «Quella della pressione». La chat riusa i dettagli degli ultimi due chiarimenti dello stesso veicolo. Quando trova la sezione pertinente, mostra l’estratto, la pagina e l’ordine dei passaggi recuperati. Per un problema fuori copertura, come un rumore dei freni, indica che nei passaggi disponibili mancano istruzioni. L’indice attuale comprende le sezioni sugli avvisi dell’olio motore.
+Apri [Manual Mate nel browser](http://localhost:8501) e fai subito la domanda. Se scrivi «Dove si trova la scatola dei fusibili?», la chat ti chiede di quale auto si tratta. Rispondi «Ford Focus» e riprende la domanda iniziale. Puoi anche indicare il modello nel primo messaggio. Il nome e l’edizione del libretto in uso sono visibili sopra la chat.
+
+Per passare all’altro libretto, scrivi il nome del veicolo nella conversazione. I chiarimenti tecnici appartengono all’auto a cui si riferiscono. Quando trova una fonte pertinente, la chat la mostra con la pagina. Quando i passaggi recuperati non bastano, lo dice.
 
 Per inviare anche le richieste web a Phoenix e Grafana, avvia lo stack della sezione **Osservabilità** e imposta `MANUAL_MATE_OSSERVABILITA=true` in `.env` prima di avviare Streamlit. Usa un solo processo con le metriche attive alla volta, perché sia la CLI sia Streamlit le espongono sulla porta `18000`.
 
@@ -78,7 +82,9 @@ I test usano i PDF e Qdrant locale con risposte dell’API simulate. Uno dei tes
 .\.venv\Scripts\python.exe -X utf8 main.py --valuta
 ```
 
-Il comando usa l’API OpenAI e salva `report_valutazione.json` con l’esito, le fonti recuperate in ordine, la fonte citata e la latenza di ogni caso. Il report separa la quota di ricerche avviate, `hit@1` sulle ricerche effettivamente eseguite, le citazioni esatte sul totale delle domande documentali e i controlli di chiarimento o blocco. `hit@1` misura la query inviata dal nostro agente a Qdrant, che include il titolo dell’avviso riconosciuto. Il comando restituisce codice `1` se almeno un caso fallisce e salva comunque il report della valutazione completata.
+Il comando usa l’API OpenAI e salva `report_valutazione.json` con l’esito, le fonti recuperate in ordine, la fonte citata e la latenza di ogni caso. Il report separa le ricerche avviate, `hit@1` sulle ricerche effettivamente eseguite, le citazioni esatte, i chiarimenti, i blocchi e le astensioni. La metrica `hit@1` riguarda la query effettivamente inviata a Qdrant dall’agente. Il comando restituisce codice `1` se almeno un caso fallisce e salva comunque il report della valutazione completata.
+
+I parametri di partenza in `config.py` sono `CHUNK_MAX_CHAR=1024`, `CHUNK_OVERLAP=128` e `TOP_K=5`. Modificare i primi due richiede `--indicizza`. Nelle ricerche generali completiamo il primo risultato con il testo degli altri chunk della stessa pagina. Questa operazione riusa i dati Qdrant e conserva il ranking. Per provare solo il numero di risultati, imposta `$env:RAG_TOP_K = '3'` prima di eseguire `--valuta`. Conserva il report prima di passare alla configurazione successiva, perché ogni valutazione lo sostituisce.
 
 ## Osservabilità
 
@@ -97,8 +103,8 @@ docker compose -f osservabilita/compose.yaml down
 
 ## Come funziona
 
-- `catalogo.py` estrae le sezioni selezionate dei PDF e associa a ciascuna il veicolo, l’edizione e le pagine di riferimento.
+- `catalogo.py` descrive le edizioni e mantiene i passaggi già verificati per gli avvisi dell’olio. `corpus.py` estrae il testo dei PDF pagina per pagina e usa `RecursiveSplitter` di Datapizza per creare i chunk con i riferimenti al manuale.
 - `indice.py` usa il vector store Qdrant di Datapizza. L’ingestione salva i passaggi e i relativi embedding, mentre la ricerca calcola l’embedding della query e legge testo e metadati dalla collezione attiva del veicolo.
 - `assistente.py` usa `datapizza-ai` 0.1.0 per l’agente. L’agente può chiedere un chiarimento, cercare nei documenti o selezionare una fonte recuperata.
-- Il codice pubblica l’estratto soltanto quando la fonte selezionata appartiene al manuale scelto, è stata recuperata nella richiesta e corrisponde all’avviso riconosciuto. Per il triage serve il testo esatto dell’avviso. La compatibilità del manuale dipende dalla selezione dell’utente.
+- Il codice pubblica l’estratto solo da una fonte recuperata per il veicolo e l’edizione selezionati. Per gli avvisi riconosciuti verifica anche l’identificativo della sezione già controllata. Per le altre domande verifica che le parole citate dall’agente compaiano nel passaggio originale.
 - I riferimenti del corso sono S07 per la RAG, S11 per i tool e l’osservabilità e S15 per il controllo di accesso alle fonti e la verifica dei risultati.

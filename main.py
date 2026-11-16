@@ -10,7 +10,7 @@ def main() -> int:
 
     carica_configurazione()
     desktop = ROOT.parent / "manuali uso e manutenzione auto"
-    parser = argparse.ArgumentParser(description="Consulta il manuale per gli avvisi olio motore.")
+    parser = argparse.ArgumentParser(description="Consulta il manuale d'uso del veicolo selezionato.")
     parser.add_argument("--manuali", type=Path, default=Path(os.getenv("MANUALI_DIR") or desktop))
     parser.add_argument("--veicolo", help="Identificativo del manuale: focus o civic.")
     modalita = parser.add_mutually_exclusive_group()

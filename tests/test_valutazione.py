@@ -15,6 +15,7 @@ class ValutazioneTest(unittest.TestCase):
         assistente = Mock()
         assistente.client.model_name = "agente-test"
         assistente.indice.embedder.model_name = "embedding-test"
+        assistente.indice.top_k = 5
         attesa = Fonte("civic-pressione", 623)
         altra = Fonte("civic-livello", 629)
         assistente.rispondi.side_effect = [

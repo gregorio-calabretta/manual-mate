@@ -11,7 +11,8 @@ from datapizza.embedders.openai import OpenAIEmbedder
 from datapizza.vectorstores.qdrant import QdrantVectorstore
 
 from assistente import Assistente, Fonte
-from catalogo import CATALOGO
+from catalogo import CATALOGO, leggi_passaggi
+from corpus import leggi_pagina
 from indice import IndiceManuali
 
 
@@ -32,6 +33,24 @@ class AssistenteTest(unittest.TestCase):
         self.embedder.client = client.client
         self.indice = IndiceManuali(self.embedder, QdrantVectorstore(location=":memory:"))
         self.assistente = Assistente(self.indice, client)
+        # I test usano le sezioni olio reali e un passaggio generale sintetico, così non rielaborano tutti i PDF a ogni run.
+        estrazione = patch("indice.estrai_documenti", side_effect=self.documenti_test)
+        estrazione.start()
+        self.addCleanup(estrazione.stop)
+
+    @staticmethod
+    def documenti_test(cartella, veicolo):
+        passaggi = leggi_passaggi(cartella, veicolo)
+        base = {"veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file}
+        documenti = [(f"{a.titolo}\n\n{passaggi[a.id]}", {
+            **base, "fonte": a.id, "pagina": a.pagina, "pagina_pdf": a.pagina_pdf,
+            "sezione": a.titolo, "avviso_curato": True,
+        }) for a in veicolo.avvisi]
+        if veicolo.id == "civic":
+            documenti.append(("Telecomando\n\nIl tipo di batteria indicato è CR2032.", {
+                **base, "fonte": "civic-pdf576-1", "pagina": 575, "pagina_pdf": 576, "sezione": "Telecomando",
+            }))
+        return documenti, 3, []
 
     def api_simulata(self, request):
         self.chiamate.append(request.url.path)
@@ -95,11 +114,85 @@ class AssistenteTest(unittest.TestCase):
 
     def test_comunica_limite_del_libretto_per_problema_non_coperto(self):
         self.azioni = iter((("segnala_limite", {}),))
-        risposta = self.assistente.rispondi("civic", "Quando freno sento uno stridio")
+        risposta = self.assistente.rispondi("civic", "Qual è la ricetta della carbonara?")
         self.assertEqual(risposta.esito, "fonte_assente")
-        self.assertIn("Nei passaggi del libretto", risposta.testo)
+        self.assertIn("Non ho trovato indicazioni pertinenti", risposta.testo)
         self.assertIsNone(risposta.fonte_citata)
         self.assertEqual(self.chiamate, ["/v1/responses"])
+
+    def test_domanda_libera_richiede_un_estratto_letterale(self):
+        self.indice.indicizza(self.cartella, CATALOGO["civic"])
+        domanda = "Che batteria usa la chiave?"
+        for citazione, esito in (
+            ("Il tipo di batteria indicato è CR2032.", "risposta"),
+            ("Il tipo di batteria indicato è CR2025.", "fonte_assente"),
+        ):
+            with self.subTest(citazione=citazione):
+                self.azioni = iter((("cerca_manuale", {"query": domanda}), ("cita_fonte", {
+                    "fonte_id": "civic-pdf576-1", "citazione": citazione,
+                })))
+                risposta = self.assistente.rispondi("civic", domanda)
+                self.assertEqual(risposta.esito, esito)
+                self.assertTrue(risposta.ricerca_eseguita)
+
+    def test_conserva_numerazione_stampata_e_sezione(self):
+        civic = "575SEGUE\nManutenzione\nTipo di batteria: CR2032\n23 CIVIC TYPE R JSS (KE KG)-3LT406000.book Page 575 Wednesday"
+        pagina, sezione, righe = leggi_pagina(civic, CATALOGO["civic"])
+        self.assertEqual((pagina, sezione, righe[-1]), (575, "Manutenzione", "Tipo di batteria: CR2032"))
+
+    def test_ubicazione_fusibili_usa_la_sezione_verificata(self):
+        focus = CATALOGO["focus"]
+        base = {"veicolo": focus.id, "edizione": focus.edizione, "source_file": focus.file,
+                "sezione": "Fusibili", "avviso_curato": False}
+        documenti = [
+            ("Fusibili\n\nUbicazione scatola portafusibili\nScatola dei fusibili nel vano motore", {
+                **base, "fonte": "focus-pdf207-1", "pagina": 205, "pagina_pdf": 207,
+            }),
+            ("Fusibili\n\nTabella fusibili e valori nominali", {
+                **base, "fonte": "focus-pdf208-1", "pagina": 206, "pagina_pdf": 208,
+            }),
+        ]
+        with patch("indice.estrai_documenti", return_value=(documenti, 2, [])):
+            self.indice.indicizza(self.cartella, focus)
+        self.azioni = iter((("cerca_manuale", {"query": "scatola dei fusibili"}), ("segnala_limite", {})))
+        risposta = self.assistente.rispondi("focus", "Dove si trova la scatola dei fusibili?")
+        self.assertEqual(risposta.fonte_citata, Fonte("focus-pdf207-1", 205))
+
+    def test_civic_distingue_le_due_scatole_dei_fusibili(self):
+        domanda = "Dove si trova la scatola dei fusibili nella Civic Type R?"
+        chiarimento = self.assistente.rispondi("civic", domanda)
+        self.assertEqual(chiarimento.esito, "chiarimento")
+        self.assertIn("vano motore o quella nell’abitacolo", chiarimento.testo)
+        self.assertEqual(self.chiamate, [])
+
+        civic = CATALOGO["civic"]
+        documenti = [("Fusibili\n\nScatola fusibili interna\nTesto della sezione.", {
+            "veicolo": civic.id, "edizione": civic.edizione, "source_file": civic.file,
+            "sezione": "Fusibili", "avviso_curato": False, "fonte": "civic-pdf633-1", "pagina": 632, "pagina_pdf": 633,
+        })]
+        with patch("indice.estrai_documenti", return_value=(documenti, 1, [])):
+            self.indice.indicizza(self.cartella, civic)
+        self.azioni = iter((("cerca_manuale", {"query": "fusibili abitacolo"}), ("segnala_limite", {})))
+        risposta = self.assistente.rispondi("civic", "Quella nell’abitacolo", contesto=(domanda,))
+        self.assertEqual(risposta.fonte_citata, Fonte("civic-pdf633-1", 632))
+
+    def test_completa_la_pagina_senza_ripetere_overlap(self):
+        civic = CATALOGO["civic"]
+        documenti, pagine, senza_testo = self.documenti_test(self.cartella, civic)
+        _, metadati = documenti[-1]
+        condivisa = "Procedure ordinarie sul telecomando"
+        base = {**metadati, "avviso_curato": False}
+        documenti[-1] = (f"Telecomando\n\n{condivisa}", base)
+        documenti.append((f"Telecomando\n\n{condivisa}\nTipo di batteria: CR2032", {**base, "fonte": "civic-pdf576-2"}))
+        with patch("indice.estrai_documenti", return_value=(documenti, pagine, senza_testo)):
+            self.indice.indicizza(self.cartella, civic)
+        collezione = self.indice.collezione_attiva(civic)
+        risultati = self.indice.cerca(civic, collezione, "Che batteria usa il telecomando?")
+        prima = next(hit for hit in risultati if hit.metadata["fonte"] == base["fonte"])
+        completa = self.indice.completa_pagina(collezione, prima)
+        self.assertEqual(completa.id, prima.id)
+        self.assertEqual(completa.text.count(condivisa), 1)
+        self.assertIn("Tipo di batteria: CR2032", completa.text)
 
     def test_veicolo_fuori_catalogo_senza_chiamate(self):
         risposta = self.assistente.rispondi("jazz", "Spia dell'olio")
@@ -125,7 +218,7 @@ class AssistenteTest(unittest.TestCase):
             primo_store = QdrantVectorstore(location=None, path=volume)
             primo_indice = IndiceManuali(self.embedder, primo_store)
             try:
-                self.assertEqual(primo_indice.indicizza(self.cartella, civic), 2)
+                self.assertEqual(primo_indice.indicizza(self.cartella, civic), 3)
                 collezione = primo_indice.collezione_attiva(civic)
                 self.assertIsNotNone(collezione)
             finally:
@@ -138,7 +231,7 @@ class AssistenteTest(unittest.TestCase):
                 self.assertEqual(secondo_indice.indicizza(self.cartella, civic), 0)
                 self.assertEqual(secondo_indice.collezione_attiva(civic), collezione)
                 self.assertEqual(self.input_embedding, [])
-                risultati = secondo_indice.cerca(civic, collezione, query)
+                risultati = secondo_indice.cerca(civic, collezione, query, solo_avvisi=True)
                 self.assertEqual(risultati[0].metadata["pagina"], 623)
                 self.assertEqual(self.input_embedding, [[query]])
             finally:
@@ -146,10 +239,12 @@ class AssistenteTest(unittest.TestCase):
 
     def test_nuova_versione_diventa_attiva_dopo_ingestione(self):
         focus = CATALOGO["focus"]
-        with patch("indice.leggi_passaggi", return_value={"focus-olio": "Versione iniziale"}):
+        primo, _, _ = self.documenti_test(self.cartella, focus)
+        aggiornati = [("Versione aggiornata", primo[0][1])]
+        with patch("indice.estrai_documenti", return_value=(primo, 1, [])):
             self.indice.indicizza(self.cartella, focus)
         precedente = self.indice.collezione_attiva(focus)
-        with patch("indice.leggi_passaggi", return_value={"focus-olio": "Versione aggiornata"}):
+        with patch("indice.estrai_documenti", return_value=(aggiornati, 1, [])):
             self.indice.indicizza(self.cartella, focus)
         attiva = self.indice.collezione_attiva(focus)
         self.assertNotEqual(attiva, precedente)

@@ -6,6 +6,7 @@ from qdrant_client.http.exceptions import ApiException
 
 from assistente import Risposta
 from catalogo import CATALOGO, Veicolo
+from conversazione import Conversazione
 from osservabilita import avvia_osservabilita
 from runtime import carica_configurazione, crea_assistente
 
@@ -21,9 +22,9 @@ def osservabilita_web():
     return avvia_osservabilita(18000, "http://localhost:16006/v1/traces")
 
 
-def consulta(veicolo: Veicolo, domanda: str, chiave: str, contesto: tuple[str, ...]) -> Risposta:
+def consulta(veicolo_id: str, domanda: str, chiave: str, contesto: tuple[str, ...]) -> Risposta:
     try:
-        return assistente_web(chiave).rispondi(veicolo.id, domanda, contesto=contesto)
+        return assistente_web(chiave).rispondi(veicolo_id, domanda, contesto=contesto)
     except ApiException:
         return Risposta("errore", "Qdrant non è raggiungibile. Verifica che il servizio Docker `qdrant` sia avviato.")
     except APIError:
@@ -32,7 +33,7 @@ def consulta(veicolo: Veicolo, domanda: str, chiave: str, contesto: tuple[str, .
         return Risposta("errore", "Impossibile completare la richiesta. Controlla la configurazione e riprova.")
 
 
-def mostra_risposta(risposta: Risposta, veicolo: Veicolo) -> None:
+def mostra_risposta(risposta: Risposta, veicolo: Veicolo | None) -> None:
     with st.chat_message("assistant"):
         if risposta.esito in {"errore", "indice_assente"}:
             st.error(risposta.testo)
@@ -46,10 +47,11 @@ def mostra_risposta(risposta: Risposta, veicolo: Veicolo) -> None:
             st.write(risposta.testo)
 
         if risposta.fonti_recuperate:
-            titoli = {avviso.id: avviso.titolo for avviso in veicolo.avvisi}
+            titoli = {avviso.id: avviso.titolo for avviso in veicolo.avvisi} if veicolo else {}
             with st.expander("Passaggi recuperati da Qdrant"):
                 for numero, fonte in enumerate(risposta.fonti_recuperate, 1):
-                    st.write(f"{numero}. {titoli.get(fonte.id, fonte.id)} · p. {fonte.pagina}")
+                    pagina = f"p. {fonte.pagina}" if fonte.pagina is not None else f"PDF p. {fonte.pagina_pdf}"
+                    st.write(f"{numero}. {titoli.get(fonte.id, 'Passaggio del manuale')} · {pagina}")
 
 
 def main() -> None:
@@ -58,7 +60,7 @@ def main() -> None:
     chiave = os.getenv("OPENAI_API_KEY", "").strip()
 
     st.title("Manual Mate")
-    st.write("Descrivi cosa succede alla tua auto. Se serve un dettaglio, te lo chiedo.")
+    st.write("Fai una domanda sul libretto. Se manca il modello dell’auto, te lo chiedo.")
 
     with st.sidebar:
         st.subheader("Strumenti della demo")
@@ -75,51 +77,35 @@ def main() -> None:
     if not chiave:
         st.warning("Imposta `OPENAI_API_KEY` nel file `.env` o nel terminale e riavvia Streamlit per fare domande.")
 
-    with st.container(border=True):
-        codice = st.selectbox(
-            "Veicolo", list(CATALOGO), index=None, placeholder="Seleziona marca e modello",
-            format_func=lambda voce: CATALOGO[voce].nome, key="veicolo",
-        )
-        veicolo = CATALOGO.get(codice)
-        if veicolo is not None:
-            st.caption(f"Edizione del manuale · {veicolo.edizione}")
-            st.caption("Sezioni indicizzate · avvisi sull’olio motore")
-
-    if veicolo is None:
-        st.chat_input("Seleziona prima il veicolo", disabled=True, key="senza-veicolo")
-        return
-
-    # Lo storico e il contesto dei chiarimenti restano separati per veicolo.
-    conversazioni = st.session_state.setdefault("conversazioni", {})
-    cronologia = conversazioni.setdefault(veicolo.id, [])
-    if cronologia and st.button("Nuova conversazione", key=f"azzera-{veicolo.id}"):
+    scheda_manuale = st.empty()
+    cronologia = st.session_state.setdefault("cronologia_manual_mate", [])
+    if cronologia and st.button("Nuova conversazione", key="azzera-conversazione"):
         cronologia.clear()
+        st.session_state["conversazione_manual_mate"] = Conversazione()
+    conversazione = st.session_state.setdefault("conversazione_manual_mate", Conversazione())
 
-    esempio = None
-    with st.expander("Esempi di domande"):
-        for avviso in veicolo.avvisi:
-            if st.button(avviso.titolo, key=avviso.id, disabled=not chiave):
-                esempio = avviso.titolo
-
-    for domanda, risposta in cronologia:
+    for domanda, risposta, codice in cronologia:
         with st.chat_message("user"):
             st.text(domanda)
-        mostra_risposta(risposta, veicolo)
+        mostra_risposta(risposta, CATALOGO.get(codice))
 
-    digitata = st.chat_input("Descrivi il problema o rispondi al chiarimento", key=f"domanda-{veicolo.id}", disabled=not chiave)
-    domanda = (digitata or esempio or "").strip()
+    domanda = (st.chat_input("Scrivi una domanda o un chiarimento", key="domanda", disabled=not chiave) or "").strip()
     if domanda and chiave:
-        precedenti = []
-        for turno, esito in reversed(cronologia[-2:]):
-            if esito.esito != "chiarimento":
-                break
-            precedenti.append(turno)
         with st.chat_message("user"):
             st.text(domanda)
         with st.spinner("Verifico cosa dice il libretto…"):
-            risposta = consulta(veicolo, domanda, chiave, tuple(reversed(precedenti)))
-        cronologia.append((domanda, risposta))
+            risposta = conversazione.rispondi(domanda, lambda codice, testo, contesto: consulta(codice, testo, chiave, contesto))
+        veicolo = CATALOGO.get(conversazione.veicolo_id)
+        cronologia.append((domanda, risposta, conversazione.veicolo_id))
         mostra_risposta(risposta, veicolo)
+
+    veicolo = CATALOGO.get(conversazione.veicolo_id)
+    if veicolo:
+        with scheda_manuale.container(border=True):
+            st.markdown(f"**Libretto in uso · {veicolo.nome}**")
+            st.caption(veicolo.edizione)
+    elif not cronologia:
+        scheda_manuale.caption("Prova «Dove si trova la scatola dei fusibili?»")
 
 
 if __name__ == "__main__":

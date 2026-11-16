@@ -3,6 +3,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from config import TOP_K
+
 
 ROOT = Path(__file__).resolve().parent
 
@@ -34,4 +36,4 @@ def crea_assistente(chiave: str):
         host=os.getenv("QDRANT_HOST") or "127.0.0.1",
         port=int(os.getenv("QDRANT_PORT") or "16333"), timeout=5,
     )
-    return Assistente(IndiceManuali(embedder, qdrant), client)
+    return Assistente(IndiceManuali(embedder, qdrant, top_k=int(os.getenv("RAG_TOP_K") or TOP_K)), client)
