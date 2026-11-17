@@ -1,34 +1,146 @@
 {
-  "eseguito_il": "2026-11-16T00:24:11.231380+00:00",
+  "eseguito_il": "2026-11-17T17:46:43.741999+00:00",
   "modello_agente": "gpt-4o-mini",
+  "modello_valutatore": "gpt-4o-mini",
   "modello_embedding": "text-embedding-3-small",
   "top_k": 5,
   "max_char": 1024,
   "overlap": 128,
+  "lavoratori": 4,
   "metriche": {
     "casi_passati": {
-      "corretti": 14,
-      "totale": 14
+      "corretti": 47,
+      "totale": 75
     },
     "ricerche_avviate": {
-      "corretti": 10,
-      "totale": 10
+      "corretti": 67,
+      "totale": 67
     },
     "hit_at_1": {
-      "corretti": 10,
-      "totale": 10
+      "corretti": 41,
+      "totale": 67
     },
     "citazioni_corrette": {
-      "corretti": 10,
-      "totale": 10
+      "corretti": 43,
+      "totale": 67
+    },
+    "estratti_con_evidenze": {
+      "corretti": 35,
+      "totale": 59
+    },
+    "risposte_coerenti": {
+      "corretti": 35,
+      "totale": 61
+    },
+    "gruppi_completi": {
+      "corretti": 5,
+      "totale": 24
     },
     "chiarimenti_e_blocchi": {
+      "corretti": 4,
+      "totale": 4
+    },
+    "astensioni": {
+      "corretti": 3,
+      "totale": 3
+    }
+  },
+  "gruppi": {
+    "civic-telecomando": {
+      "corretti": 2,
+      "totale": 3
+    },
+    "focus-tergiparabrezza": {
+      "corretti": 2,
+      "totale": 3
+    },
+    "focus-telecomando": {
+      "corretti": 3,
+      "totale": 4
+    },
+    "focus-fari-spegnimento": {
+      "corretti": 2,
+      "totale": 3
+    },
+    "focus-alzacristallo-chiusura": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "focus-ubicazione-fusibili": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "focus-pressione-manuale": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "focus-rotazione-pneumatici": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "civic-orologio-formati": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "civic-apertura-interna": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "civic-blocco-alzacristalli": {
+      "corretti": 1,
+      "totale": 3
+    },
+    "civic-lavaparabrezza": {
+      "corretti": 0,
+      "totale": 2
+    },
+    "civic-volante-regolazione": {
+      "corretti": 0,
+      "totale": 2
+    },
+    "civic-olio-controllo-astina": {
+      "corretti": 0,
+      "totale": 2
+    },
+    "civic-pressione-pneumatici": {
+      "corretti": 0,
+      "totale": 2
+    },
+    "civic-fusibili-vano-motore": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "civic-fusibili-abitacolo": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "audi-fusibili": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "audi-chiusura-automatica": {
+      "corretti": 0,
+      "totale": 2
+    },
+    "audi-tetto-panoramico": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "audi-presa-12v": {
       "corretti": 3,
       "totale": 3
     },
-    "astensioni": {
+    "audi-freno-parcheggio": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "audi-capacita-serbatoio": {
+      "corretti": 0,
+      "totale": 4
+    },
+    "audi-carico-tetto": {
       "corretti": 1,
-      "totale": 1
+      "totale": 2
     }
   },
   "risultati": [
@@ -39,7 +151,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "focus-olio",
       "pagina_attesa": 80,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Spia olio motore\n\nPERICOLO\nSe si illumina quando si sta\nguidando, non continuare la marcia,\nanche se il livello dell'olio è corretto.\nFar controllare il veicolo.\nSe si accende con il motore in\nfunzione o durante la marcia, sta\nad indicare un\nmalfunzionamento. Arrestare il veicolo non\nappena è sicuro farlo e spegnere il motore.\nControllare il livello dell'olio motore.\nVedere Controllo dell'olio del motore\n(pagina 229).",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -55,8 +175,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 4528
+      "latenza_ms": 9562
     },
     {
       "id": "focus-colloquiale",
@@ -65,7 +188,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "focus-olio",
       "pagina_attesa": 80,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Spia olio motore\n\nPERICOLO\nSe si illumina quando si sta\nguidando, non continuare la marcia,\nanche se il livello dell'olio è corretto.\nFar controllare il veicolo.\nSe si accende con il motore in\nfunzione o durante la marcia, sta\nad indicare un\nmalfunzionamento. Arrestare il veicolo non\nappena è sicuro farlo e spegnere il motore.\nControllare il livello dell'olio motore.\nVedere Controllo dell'olio del motore\n(pagina 229).",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -81,8 +212,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 2890
+      "latenza_ms": 9569
     },
     {
       "id": "civic-pressione-esatta",
@@ -91,7 +225,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "civic-pressione",
       "pagina_attesa": 623,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Pressione olio motore bassa\n\n■ Cause della visualizzazione del messaggio di avviso\nViene visualizzato quando la pressione dell’olio motore è bassa.\n■ Operazioni da eseguire non appena viene visualizzato il messaggio di \navviso\n1. Parcheggiare immediatamente il veicolo su una superficie piana e in un luogo \nsicuro.\n2. Se necessario, inserire le luci di emergenza.\n■ Operazioni da eseguire dopo avere parcheggiato il veicolo\n1. Arrestare il motore e lasciarlo riposare per circa tre minuti.\n2. Aprire il cofano e controllare il livello dell'olio.\nu Aggiungere olio secondo necessità.\n2 Controllo dell'olio P. 544\n3. Avviare il motore e controllare il messaggio di avviso Pressione olio motore \nbassa.\nu Il messaggio di avviso scompare: riprendere la guida del veicolo.\nu Il messaggio di avviso non scompare entro 10 secondi: \narrestare immediatamente il motore e rivolgersi a una concessionaria per \nun'eventuale riparazione.\n1Se viene visualizzato i messaggio di avviso Pressione olio \nmotore bassa.\nAVVISO\nLa guida in condizioni di bassa pressione dell'olio può \nprovocare in tempi brevissimi gravi danni meccanici al \nmotore.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -112,8 +254,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 3001
+      "latenza_ms": 9832
     },
     {
       "id": "civic-pressione-variante",
@@ -122,7 +267,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "civic-pressione",
       "pagina_attesa": 623,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Pressione olio motore bassa\n\n■ Cause della visualizzazione del messaggio di avviso\nViene visualizzato quando la pressione dell’olio motore è bassa.\n■ Operazioni da eseguire non appena viene visualizzato il messaggio di \navviso\n1. Parcheggiare immediatamente il veicolo su una superficie piana e in un luogo \nsicuro.\n2. Se necessario, inserire le luci di emergenza.\n■ Operazioni da eseguire dopo avere parcheggiato il veicolo\n1. Arrestare il motore e lasciarlo riposare per circa tre minuti.\n2. Aprire il cofano e controllare il livello dell'olio.\nu Aggiungere olio secondo necessità.\n2 Controllo dell'olio P. 544\n3. Avviare il motore e controllare il messaggio di avviso Pressione olio motore \nbassa.\nu Il messaggio di avviso scompare: riprendere la guida del veicolo.\nu Il messaggio di avviso non scompare entro 10 secondi: \narrestare immediatamente il motore e rivolgersi a una concessionaria per \nun'eventuale riparazione.\n1Se viene visualizzato i messaggio di avviso Pressione olio \nmotore bassa.\nAVVISO\nLa guida in condizioni di bassa pressione dell'olio può \nprovocare in tempi brevissimi gravi danni meccanici al \nmotore.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -143,8 +296,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 3191
+      "latenza_ms": 9686
     },
     {
       "id": "civic-pressione-colloquiale",
@@ -153,7 +309,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "civic-pressione",
       "pagina_attesa": 623,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Pressione olio motore bassa\n\n■ Cause della visualizzazione del messaggio di avviso\nViene visualizzato quando la pressione dell’olio motore è bassa.\n■ Operazioni da eseguire non appena viene visualizzato il messaggio di \navviso\n1. Parcheggiare immediatamente il veicolo su una superficie piana e in un luogo \nsicuro.\n2. Se necessario, inserire le luci di emergenza.\n■ Operazioni da eseguire dopo avere parcheggiato il veicolo\n1. Arrestare il motore e lasciarlo riposare per circa tre minuti.\n2. Aprire il cofano e controllare il livello dell'olio.\nu Aggiungere olio secondo necessità.\n2 Controllo dell'olio P. 544\n3. Avviare il motore e controllare il messaggio di avviso Pressione olio motore \nbassa.\nu Il messaggio di avviso scompare: riprendere la guida del veicolo.\nu Il messaggio di avviso non scompare entro 10 secondi: \narrestare immediatamente il motore e rivolgersi a una concessionaria per \nun'eventuale riparazione.\n1Se viene visualizzato i messaggio di avviso Pressione olio \nmotore bassa.\nAVVISO\nLa guida in condizioni di bassa pressione dell'olio può \nprovocare in tempi brevissimi gravi danni meccanici al \nmotore.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -174,8 +338,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 2975
+      "latenza_ms": 4911
     },
     {
       "id": "civic-livello-esatto",
@@ -184,7 +351,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "civic-livello",
       "pagina_attesa": 629,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Livello olio motore basso\n\n■ Cause della visualizzazione del messaggio di avviso\nViene visualizzato quando il livello dell'olio motore è basso.\n■ Operazioni da eseguire non appena viene visualizzato il messaggio di \navviso\n1. Parcheggiare immediatamente il veicolo su una superficie piana e in un luogo \nsicuro.\n2. Se necessario, inserire le luci di emergenza.\n■ Operazioni da eseguire dopo avere parcheggiato il veicolo\n1. Arrestare il motore e lasciarlo riposare per circa tre minuti.\n2. Aprire il cofano e controllare il livello dell'olio.\nu Aggiungere olio secondo necessità.\n2 Controllo dell'olio P. 544\n1Se viene visualizzata l'avviso Livello olio motore basso\nLa guida in condizioni di basso livello dell'olio può provocare \nin tempi brevissimi gravi danni meccanici al motore.\nQuesto sistema viene attivato in seguito al surriscaldamento \ndel motore. Se la temperatura esterna è estremamente \nbassa, potrebbe essere necessario guidare a lungo prima che \nil sistema rilevi il livello dell'olio motore.\nSe l'avviso ricompare, spegnere il motore e rivolgersi \nimmediatamente a una concessionaria per l'eventuale \nriparazione.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -205,8 +380,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 2896
+      "latenza_ms": 3789
     },
     {
       "id": "civic-livello-variante",
@@ -215,7 +393,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "civic-livello",
       "pagina_attesa": 629,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Livello olio motore basso\n\n■ Cause della visualizzazione del messaggio di avviso\nViene visualizzato quando il livello dell'olio motore è basso.\n■ Operazioni da eseguire non appena viene visualizzato il messaggio di \navviso\n1. Parcheggiare immediatamente il veicolo su una superficie piana e in un luogo \nsicuro.\n2. Se necessario, inserire le luci di emergenza.\n■ Operazioni da eseguire dopo avere parcheggiato il veicolo\n1. Arrestare il motore e lasciarlo riposare per circa tre minuti.\n2. Aprire il cofano e controllare il livello dell'olio.\nu Aggiungere olio secondo necessità.\n2 Controllo dell'olio P. 544\n1Se viene visualizzata l'avviso Livello olio motore basso\nLa guida in condizioni di basso livello dell'olio può provocare \nin tempi brevissimi gravi danni meccanici al motore.\nQuesto sistema viene attivato in seguito al surriscaldamento \ndel motore. Se la temperatura esterna è estremamente \nbassa, potrebbe essere necessario guidare a lungo prima che \nil sistema rilevi il livello dell'olio motore.\nSe l'avviso ricompare, spegnere il motore e rivolgersi \nimmediatamente a una concessionaria per l'eventuale \nriparazione.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -236,8 +422,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 4109
+      "latenza_ms": 4164
     },
     {
       "id": "civic-livello-colloquiale",
@@ -246,7 +435,15 @@
       "esito_atteso": "risposta",
       "fonte_attesa": "civic-livello",
       "pagina_attesa": 629,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Livello olio motore basso\n\n■ Cause della visualizzazione del messaggio di avviso\nViene visualizzato quando il livello dell'olio motore è basso.\n■ Operazioni da eseguire non appena viene visualizzato il messaggio di \navviso\n1. Parcheggiare immediatamente il veicolo su una superficie piana e in un luogo \nsicuro.\n2. Se necessario, inserire le luci di emergenza.\n■ Operazioni da eseguire dopo avere parcheggiato il veicolo\n1. Arrestare il motore e lasciarlo riposare per circa tre minuti.\n2. Aprire il cofano e controllare il livello dell'olio.\nu Aggiungere olio secondo necessità.\n2 Controllo dell'olio P. 544\n1Se viene visualizzata l'avviso Livello olio motore basso\nLa guida in condizioni di basso livello dell'olio può provocare \nin tempi brevissimi gravi danni meccanici al motore.\nQuesto sistema viene attivato in seguito al surriscaldamento \ndel motore. Se la temperatura esterna è estremamente \nbassa, potrebbe essere necessario guidare a lungo prima che \nil sistema rilevi il livello dell'olio motore.\nSe l'avviso ricompare, spegnere il motore e rivolgersi \nimmediatamente a una concessionaria per l'eventuale \nriparazione.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -267,8 +464,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 2832
+      "latenza_ms": 4268
     },
     {
       "id": "civic-spia-ambigua",
@@ -277,14 +477,25 @@
       "esito_atteso": "chiarimento",
       "fonte_attesa": null,
       "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sul quadro compare un avviso di bassa pressione dell’olio o di basso livello?",
       "ricerca_eseguita": false,
       "fonti_recuperate": [],
       "fonte_citata": null,
       "hit_at_1": null,
       "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 2748
+      "latenza_ms": 2839
     },
     {
       "id": "civic-due-avvisi",
@@ -293,14 +504,25 @@
       "esito_atteso": "chiarimento",
       "fonte_attesa": null,
       "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sul quadro compare un avviso di bassa pressione dell’olio o di basso livello?",
       "ricerca_eseguita": false,
       "fonti_recuperate": [],
       "fonte_citata": null,
       "hit_at_1": null,
       "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 2851
+      "latenza_ms": 4245
     },
     {
       "id": "auto-fuori-catalogo",
@@ -309,12 +531,23 @@
       "esito_atteso": "bloccato",
       "fonte_attesa": null,
       "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "bloccato",
+      "veicolo_usato": "jazz",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Veicolo o edizione fuori catalogo. Controlla il manuale del tuo veicolo.",
       "ricerca_eseguita": false,
       "fonti_recuperate": [],
       "fonte_citata": null,
       "hit_at_1": null,
       "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
       "latenza_ms": 0
     },
@@ -325,7 +558,17 @@
       "esito_atteso": "risposta",
       "fonte_attesa": null,
       "pagina_attesa": 575,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "CR2032"
+      ],
+      "criterio_risposta": "Indica che la pila del telecomando è una CR2032. Basta il codice corretto nel contesto del telecomando. La tensione non è richiesta.",
+      "gruppo": "civic-telecomando",
+      "turni": [],
       "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La batteria del telecomando della chiave è una CR2032.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -361,8 +604,11 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce correttamente il codice della batteria richiesta, conforme al criterio.",
       "passato": true,
-      "latenza_ms": 2963
+      "latenza_ms": 4581
     },
     {
       "id": "focus-tergiparabrezza",
@@ -371,7 +617,17 @@
       "esito_atteso": "risposta",
       "fonte_attesa": null,
       "pagina_attesa": 59,
-      "esito": "risposta",
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "manopola rotante"
+      ],
+      "criterio_risposta": "Indica di regolare il ciclo intermittente del tergiparabrezza con la manopola rotante. Vanno bene espressioni equivalenti come ruotare la rotella sulla leva.",
+      "gruppo": "focus-tergiparabrezza",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
       "ricerca_eseguita": true,
       "fonti_recuperate": [
         {
@@ -400,6 +656,63 @@
           "pagina_pdf": 66
         }
       ],
+      "fonte_citata": null,
+      "hit_at_1": true,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "manopola rotante"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 5154
+    },
+    {
+      "id": "focus-tergiparabrezza-v1",
+      "veicolo": "focus",
+      "domanda": "Posso cambiare la pausa tra una passata e l’altra dei tergicristalli davanti quando vanno a intermittenza?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 59,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "manopola rotante"
+      ],
+      "criterio_risposta": "Indica di regolare il ciclo intermittente del tergiparabrezza con la manopola rotante. Vanno bene espressioni equivalenti come ruotare la rotella sulla leva.",
+      "gruppo": "focus-tergiparabrezza",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per cambiare la pausa tra le passate dei tergicristalli a intermittenza, puoi usare la manopola rotante.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf61-2",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "focus-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "focus-pdf62-3",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "focus-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf62-2",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
       "fonte_citata": {
         "id": "focus-pdf61-2",
         "pagina": 59,
@@ -407,8 +720,70 @@
       },
       "hit_at_1": true,
       "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta soddisfa il criterio, indicando correttamente come regolare il ciclo intermittente dei tergicristalli con la manopola rotante.",
       "passato": true,
-      "latenza_ms": 4099
+      "latenza_ms": 3501
+    },
+    {
+      "id": "focus-tergiparabrezza-v2",
+      "veicolo": "focus",
+      "domanda": "In modalità intermittente cosa devo girare per far passare più o meno tempo tra le passate?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 59,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "manopola rotante"
+      ],
+      "criterio_risposta": "Indica di regolare il ciclo intermittente del tergiparabrezza con la manopola rotante. Vanno bene espressioni equivalenti come ruotare la rotella sulla leva.",
+      "gruppo": "focus-tergiparabrezza",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per regolare il tempo tra le passate del tergicristallo in modalità intermittente, devi girare la manopola rotante dopo aver portato la leva di comando verso l'alto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf61-2",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "focus-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf62-3",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "focus-pdf66-2",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf61-2",
+        "pagina": 59,
+        "pagina_pdf": 61
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce informazioni corrette e complete su come regolare il tempo tra le passate del tergicristallo in modalità intermittente, menzionando la manopola rotante e la leva di comando, come richiesto dal criterio.",
+      "passato": true,
+      "latenza_ms": 3988
     },
     {
       "id": "civic-richiesta-estranea",
@@ -417,14 +792,3504 @@
       "esito_atteso": "fonte_assente",
       "fonte_attesa": null,
       "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
       "esito": "fonte_assente",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
       "ricerca_eseguita": false,
       "fonti_recuperate": [],
       "fonte_citata": null,
       "hit_at_1": null,
       "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
       "passato": true,
-      "latenza_ms": 1428
+      "latenza_ms": 1439
+    },
+    {
+      "id": "focus-batteria-chiave",
+      "veicolo": "focus",
+      "domanda": "Ho la chiave con telecomando. Quale pila a bottone devo comprare?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [
+        37
+      ],
+      "evidenze_attese": [
+        "CR2032"
+      ],
+      "criterio_risposta": "Indica CR2032 come tipo di pila del telecomando. Il dato da 3 volt è corretto e utile, ma il codice esatto basta.",
+      "gruppo": "focus-telecomando",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La chiave del telecomando utilizza una pila a bottone con simbolo + sulla parte superiore.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf92-1",
+          "pagina": 90,
+          "pagina_pdf": 92
+        },
+        {
+          "id": "focus-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "focus-pdf38-1",
+          "pagina": 36,
+          "pagina_pdf": 38
+        },
+        {
+          "id": "focus-pdf43-2",
+          "pagina": 41,
+          "pagina_pdf": 43
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf37-1",
+        "pagina": 35,
+        "pagina_pdf": 37
+      },
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "CR2032"
+      ],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta non indica il tipo di pila specifico (CR2032) richiesto nel criterio, limitandosi a menzionare un simbolo '+' senza fornire informazioni utili sul codice esatto.",
+      "passato": false,
+      "latenza_ms": 4530
+    },
+    {
+      "id": "focus-fari-spegnimento",
+      "veicolo": "focus",
+      "domanda": "Con lo spegnimento ritardato dei fari attivato, quanto restano accesi dopo che chiudo l’ultima portiera?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 65,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "30 secondi",
+        "ultima portiera"
+      ],
+      "criterio_risposta": "Dopo la chiusura dell’ultima portiera i fari si spengono dopo 30 secondi se è attiva la funzione di spegnimento ritardato. Mezzo minuto o una conferma chiara se la domanda contiene già il dato sono equivalenti. Non confondere con il tempo a portiera aperta.",
+      "gruppo": "focus-fari-spegnimento",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "I fari restano accesi per 30 secondi dopo aver chiuso l'ultima portiera.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf67-1",
+          "pagina": 65,
+          "pagina_pdf": 67
+        },
+        {
+          "id": "focus-pdf66-2",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf67-2",
+          "pagina": 65,
+          "pagina_pdf": 67
+        },
+        {
+          "id": "focus-pdf69-1",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "focus-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf67-1",
+        "pagina": 65,
+        "pagina_pdf": 67
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che i fari restano accesi per 30 secondi dopo aver chiuso l'ultima portiera, in linea con quanto riportato nell'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 3967
+    },
+    {
+      "id": "focus-fari-spegnimento-v1",
+      "veicolo": "focus",
+      "domanda": "Ho attivato il timer dei fari. Quanto passa tra quando chiudo l’ultima porta e quando si spengono?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 65,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "30 secondi",
+        "ultima portiera"
+      ],
+      "criterio_risposta": "Dopo la chiusura dell’ultima portiera i fari si spengono dopo 30 secondi se è attiva la funzione di spegnimento ritardato. Mezzo minuto o una conferma chiara se la domanda contiene già il dato sono equivalenti. Non confondere con il tempo a portiera aperta.",
+      "gruppo": "focus-fari-spegnimento",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "I fari si spengono automaticamente dopo tre minuti aprendo una portiera o 30 secondi dopo aver chiuso l'ultima portiera.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf66-2",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf66-1",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf67-1",
+          "pagina": 65,
+          "pagina_pdf": 67
+        },
+        {
+          "id": "focus-pdf68-1",
+          "pagina": 66,
+          "pagina_pdf": 68
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf67-1",
+        "pagina": 65,
+        "pagina_pdf": 67
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce chiaramente l'informazione che i fari si spengono 30 secondi dopo la chiusura dell'ultima portiera, soddisfacendo quindi il criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 4044
+    },
+    {
+      "id": "focus-fari-spegnimento-v2",
+      "veicolo": "focus",
+      "domanda": "Con i fari a spegnimento ritardato, dopo aver chiuso tutte le portiere devo aspettare mezzo minuto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 65,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "30 secondi",
+        "ultima portiera"
+      ],
+      "criterio_risposta": "Dopo la chiusura dell’ultima portiera i fari si spengono dopo 30 secondi se è attiva la funzione di spegnimento ritardato. Mezzo minuto o una conferma chiara se la domanda contiene già il dato sono equivalenti. Non confondere con il tempo a portiera aperta.",
+      "gruppo": "focus-fari-spegnimento",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf67-1",
+          "pagina": 65,
+          "pagina_pdf": 67
+        },
+        {
+          "id": "focus-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf66-2",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "focus-pdf69-1",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "focus-pdf67-2",
+          "pagina": 65,
+          "pagina_pdf": 67
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": true,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "30 secondi",
+        "ultima portiera"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4737
+    },
+    {
+      "id": "focus-alzacristallo-chiusura",
+      "veicolo": "focus",
+      "domanda": "Per far salire il vetro con l’alzacristallo elettrico devo premere o sollevare il comando?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 71,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "sollevare il comando per chiudere il finestrino"
+      ],
+      "criterio_risposta": "Per chiudere il finestrino occorre sollevare il comando. Tirare il pulsante verso l’alto è equivalente.",
+      "gruppo": "focus-alzacristallo-chiusura",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per far salire il vetro con l’alzacristallo elettrico devi sollevare il comando.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf73-1",
+          "pagina": 71,
+          "pagina_pdf": 73
+        },
+        {
+          "id": "focus-pdf74-3",
+          "pagina": 72,
+          "pagina_pdf": 74
+        },
+        {
+          "id": "focus-pdf74-2",
+          "pagina": 72,
+          "pagina_pdf": 74
+        },
+        {
+          "id": "focus-pdf104-1",
+          "pagina": 102,
+          "pagina_pdf": 104
+        },
+        {
+          "id": "focus-pdf235-2",
+          "pagina": 233,
+          "pagina_pdf": 235
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf73-1",
+        "pagina": 71,
+        "pagina_pdf": 73
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta specifica correttamente che per chiudere il finestrino con l'alzacristallo elettrico è necessario sollevare il comando, conforme alle informazioni fornite nell'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 3937
+    },
+    {
+      "id": "focus-alzacristallo-chiusura-v1",
+      "veicolo": "focus",
+      "domanda": "Da che parte muovo il pulsante del vetro per chiudere il finestrino?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 71,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "sollevare il comando per chiudere il finestrino"
+      ],
+      "criterio_risposta": "Per chiudere il finestrino occorre sollevare il comando. Tirare il pulsante verso l’alto è equivalente.",
+      "gruppo": "focus-alzacristallo-chiusura",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per chiudere il finestrino, solleva il pulsante e mantienilo in posizione finché il finestrino non si chiude.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf75-2",
+          "pagina": 73,
+          "pagina_pdf": 75
+        },
+        {
+          "id": "focus-pdf74-2",
+          "pagina": 72,
+          "pagina_pdf": 74
+        },
+        {
+          "id": "focus-pdf74-1",
+          "pagina": 72,
+          "pagina_pdf": 74
+        },
+        {
+          "id": "focus-pdf78-2",
+          "pagina": 76,
+          "pagina_pdf": 78
+        },
+        {
+          "id": "focus-pdf75-1",
+          "pagina": 73,
+          "pagina_pdf": 75
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf74-2",
+        "pagina": 72,
+        "pagina_pdf": 74
+      },
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "sollevare il comando per chiudere il finestrino"
+      ],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta specifica che per chiudere il finestrino è necessario sollevare il pulsante, il che è equivalente a tirarlo verso l'alto, in conformità con le istruzioni del libretto.",
+      "passato": false,
+      "latenza_ms": 4429
+    },
+    {
+      "id": "focus-ubicazione-fusibili",
+      "veicolo": "focus",
+      "domanda": "Dove si trova la scatola dei fusibili? Vorrei sapere quali posizioni elenca il libretto.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 205,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "vano motore",
+        "abitacolo",
+        "bagagliaio"
+      ],
+      "criterio_risposta": "Elenca le posizioni indicate dal libretto: vano motore, abitacolo e bagagliaio. I nomi equivalenti come baule o portabagagli sono accettabili.",
+      "gruppo": "focus-ubicazione-fusibili",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Fusibili\n\nUBICAZIONE SCATOLA\nPORTAFUSIBILI\nScatola dei fusibili nel vano\nmotore\nQuesta scatola fusibili è posizionata nel\nvano motore.  Vedere Panoramica del\nvano motore (pagina 219).\nScatola portafusibili\nnell'abitacolo\n1. Premere i fermagli di fissaggio per\nsganciare il coperchio.\n2. Abbassare il coperchio della scatola\nportafusibili e tirarlo a sé.\nRimontare seguendo l'ordine inverso.\nScatola dei fusibili nel bagagliaio\nSedan\nCinque porte",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf207-1",
+          "pagina": 205,
+          "pagina_pdf": 207
+        },
+        {
+          "id": "focus-pdf212-1",
+          "pagina": 210,
+          "pagina_pdf": 212
+        },
+        {
+          "id": "focus-pdf208-1",
+          "pagina": 206,
+          "pagina_pdf": 208
+        },
+        {
+          "id": "focus-pdf191-1",
+          "pagina": 189,
+          "pagina_pdf": 191
+        },
+        {
+          "id": "focus-pdf190-2",
+          "pagina": 188,
+          "pagina_pdf": 190
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf207-1",
+        "pagina": 205,
+        "pagina_pdf": 207
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta elenca correttamente le posizioni della scatola dei fusibili secondo il libretto, includendo vano motore, abitacolo e bagagliaio.",
+      "passato": true,
+      "latenza_ms": 5044
+    },
+    {
+      "id": "focus-ubicazione-fusibili-v1",
+      "veicolo": "focus",
+      "domanda": "In quali punti dell’auto ci sono le scatole dei fusibili? Mi servono tutte le posizioni.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 205,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "vano motore",
+        "abitacolo",
+        "bagagliaio"
+      ],
+      "criterio_risposta": "Elenca le posizioni indicate dal libretto: vano motore, abitacolo e bagagliaio. I nomi equivalenti come baule o portabagagli sono accettabili.",
+      "gruppo": "focus-ubicazione-fusibili",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Fusibili\n\nCircuito protettoCapacità deifusibiliFusibile\nInterruttore serratura portiera.\nTettuccio a compasso.20AF80\nSensore volumetrico abitacolo.5AF81 Ricevitore frequenza radio.\nPompa sistema lavavetri.20AF82\nSistema di chiusura centralizzata.20AF83\nSbloccaggio portiera lato guida.20AF84\nAria condizionata.\n7,5AF85 Tettuccio a compasso.Interruttori sedili riscaldati.\nInterruttore di disattivazione airbag lato passeggero.\nModulo di comando sistema di sicurezza10AF86 Sistema di classificazione occupante.\nVolante riscaldato.15AF87\nModulo qualità tensione.25AF88\nNon utilizzato.-F89\nScatola dei fusibili nel bagagliaio",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf208-1",
+          "pagina": 206,
+          "pagina_pdf": 208
+        },
+        {
+          "id": "focus-pdf212-1",
+          "pagina": 210,
+          "pagina_pdf": 212
+        },
+        {
+          "id": "focus-pdf207-1",
+          "pagina": 205,
+          "pagina_pdf": 207
+        },
+        {
+          "id": "focus-pdf214-1",
+          "pagina": 212,
+          "pagina_pdf": 214
+        },
+        {
+          "id": "focus-pdf217-1",
+          "pagina": 215,
+          "pagina_pdf": 217
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf214-1",
+        "pagina": 212,
+        "pagina_pdf": 214
+      },
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "vano motore"
+      ],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta non elenca tutte le posizioni delle scatole dei fusibili richieste, mancano il vano motore e l'abitacolo.",
+      "passato": false,
+      "latenza_ms": 4971
+    },
+    {
+      "id": "focus-pressione-manuale",
+      "veicolo": "focus",
+      "domanda": "Ogni quanto devo controllare a freddo la pressione delle gomme, compresa la scorta?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [
+        248,
+        259
+      ],
+      "evidenze_attese": [
+        "ogni due settimane"
+      ],
+      "criterio_risposta": "Indica di controllare la pressione ogni due settimane o almeno una volta ogni due settimane. La misurazione è a freddo e vale anche per la scorta; questi dettagli sono già nella domanda e non devono essere necessariamente ripetuti.",
+      "gruppo": "focus-pressione-manuale",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf248-2",
+          "pagina": 246,
+          "pagina_pdf": 248
+        },
+        {
+          "id": "focus-pdf250-3",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf251-1",
+          "pagina": 249,
+          "pagina_pdf": 251
+        },
+        {
+          "id": "focus-pdf250-2",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf254-1",
+          "pagina": 252,
+          "pagina_pdf": 254
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "ogni due settimane"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4086
+    },
+    {
+      "id": "focus-pressione-manuale-v1",
+      "veicolo": "focus",
+      "domanda": "C’è una cadenza consigliata per misurare la pressione degli pneumatici freddi, anche quello di scorta?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [
+        248,
+        259
+      ],
+      "evidenze_attese": [
+        "ogni due settimane"
+      ],
+      "criterio_risposta": "Indica di controllare la pressione ogni due settimane o almeno una volta ogni due settimane. La misurazione è a freddo e vale anche per la scorta; questi dettagli sono già nella domanda e non devono essere necessariamente ripetuti.",
+      "gruppo": "focus-pressione-manuale",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Ogni due settimane.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf250-3",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf252-2",
+          "pagina": 250,
+          "pagina_pdf": 252
+        },
+        {
+          "id": "focus-pdf251-4",
+          "pagina": 249,
+          "pagina_pdf": 251
+        },
+        {
+          "id": "focus-pdf251-1",
+          "pagina": 249,
+          "pagina_pdf": 251
+        },
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf249-3",
+        "pagina": 247,
+        "pagina_pdf": 249
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta 'Ogni due settimane' è coerente con il criterio, in quanto indica la frequenza consigliata per il controllo della pressione degli pneumatici, incluso quello di scorta, a freddo.",
+      "passato": true,
+      "latenza_ms": 4056
+    },
+    {
+      "id": "focus-rotazione-pneumatici",
+      "veicolo": "focus",
+      "domanda": "Dopo quanti chilometri il libretto consiglia di invertire gli pneumatici anteriori con i posteriori?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "5000 e i 10000 chilometri"
+      ],
+      "criterio_risposta": "Indica un intervallo fra 5.000 e 10.000 km per invertire gli pneumatici davanti e dietro. Entrambi gli estremi devono risultare chiari.",
+      "gruppo": "focus-rotazione-pneumatici",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per garantire che i pneumatici anteriori e posteriori del veicolo si usurino in modo uniforme e durino più a lungo....",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf249-2",
+          "pagina": 247,
+          "pagina_pdf": 249
+        },
+        {
+          "id": "focus-pdf254-1",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "focus-pdf245-1",
+          "pagina": 243,
+          "pagina_pdf": 245
+        },
+        {
+          "id": "focus-pdf250-2",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf248-3",
+          "pagina": 246,
+          "pagina_pdf": 248
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf249-2",
+        "pagina": 247,
+        "pagina_pdf": 249
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta all'utente è coerente con il criterio richiesto, in quanto indica chiaramente che il libretto consiglia di invertire gli pneumatici a intervalli regolari tra 5.000 e 10.000 chilometri.",
+      "passato": true,
+      "latenza_ms": 4295
+    },
+    {
+      "id": "focus-rotazione-pneumatici-v1",
+      "veicolo": "focus",
+      "domanda": "Ogni quanti km dovrei scambiare le gomme davanti con quelle dietro?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "5000 e i 10000 chilometri"
+      ],
+      "criterio_risposta": "Indica un intervallo fra 5.000 e 10.000 km per invertire gli pneumatici davanti e dietro. Entrambi gli estremi devono risultare chiari.",
+      "gruppo": "focus-rotazione-pneumatici",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf249-2",
+          "pagina": 247,
+          "pagina_pdf": 249
+        },
+        {
+          "id": "focus-pdf254-1",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "focus-pdf248-3",
+          "pagina": 246,
+          "pagina_pdf": 248
+        },
+        {
+          "id": "focus-pdf15-1",
+          "pagina": 13,
+          "pagina_pdf": 15
+        },
+        {
+          "id": "focus-pdf144-2",
+          "pagina": 142,
+          "pagina_pdf": 144
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": true,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "5000 e i 10000 chilometri"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4415
+    },
+    {
+      "id": "focus-dato-da-officina",
+      "veicolo": "focus",
+      "domanda": "Quante ore di manodopera mi fatturerà un’officina per sostituire un alternatore? Voglio un numero garantito dal libretto.",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Spiega che non ha trovato nel libretto le ore di manodopera richieste. Non attribuisce al libretto o all’officina un numero di ore né un costo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf235-1",
+          "pagina": 233,
+          "pagina_pdf": 235
+        },
+        {
+          "id": "focus-pdf235-2",
+          "pagina": 233,
+          "pagina_pdf": 235
+        },
+        {
+          "id": "focus-pdf204-3",
+          "pagina": 202,
+          "pagina_pdf": 204
+        },
+        {
+          "id": "focus-pdf205-1",
+          "pagina": 203,
+          "pagina_pdf": 205
+        },
+        {
+          "id": "focus-pdf237-1",
+          "pagina": 235,
+          "pagina_pdf": 237
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica chiaramente che non sono state trovate informazioni nel libretto riguardo le ore di manodopera, soddisfacendo quindi il criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 2909
+    },
+    {
+      "id": "civic-orologio-formati",
+      "veicolo": "civic",
+      "domanda": "Posso scegliere tra formato a 12 e a 24 ore sul display dell’orologio?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 158,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "12 ore o 24 ore"
+      ],
+      "criterio_risposta": "Conferma che l’orologio permette di scegliere fra 12 e 24 ore. Una conferma esplicita è sufficiente se la domanda cita già entrambi i formati.",
+      "gruppo": "civic-orologio-formati",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "È possibile scegliere il formato dell'orologio.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf159-1",
+          "pagina": 158,
+          "pagina_pdf": 159
+        },
+        {
+          "id": "civic-pdf259-2",
+          "pagina": 258,
+          "pagina_pdf": 259
+        },
+        {
+          "id": "civic-pdf259-1",
+          "pagina": 258,
+          "pagina_pdf": 259
+        },
+        {
+          "id": "civic-pdf261-1",
+          "pagina": 260,
+          "pagina_pdf": 261
+        },
+        {
+          "id": "civic-pdf297-1",
+          "pagina": 296,
+          "pagina_pdf": 297
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf159-1",
+        "pagina": 158,
+        "pagina_pdf": 159
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma esplicitamente che è possibile scegliere il formato dell'orologio, in linea con la domanda e le informazioni fornite nell'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 3622
+    },
+    {
+      "id": "civic-orologio-formati-v1",
+      "veicolo": "civic",
+      "domanda": "Il display dell’ora funziona sia a 12 che a 24 ore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 158,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "12 ore o 24 ore"
+      ],
+      "criterio_risposta": "Conferma che l’orologio permette di scegliere fra 12 e 24 ore. Una conferma esplicita è sufficiente se la domanda cita già entrambi i formati.",
+      "gruppo": "civic-orologio-formati",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il formato di visualizzazione dell'ora può essere impostato su 12 o 24 ore.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf643-1",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf135-2",
+          "pagina": 134,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "civic-pdf345-2",
+          "pagina": 344,
+          "pagina_pdf": 345
+        },
+        {
+          "id": "civic-pdf133-1",
+          "pagina": 132,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "civic-pdf431-2",
+          "pagina": 430,
+          "pagina_pdf": 431
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf345-2",
+        "pagina": 344,
+        "pagina_pdf": 345
+      },
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "12 ore o 24 ore"
+      ],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma chiaramente che il formato di visualizzazione dell'ora può essere impostato su 12 o 24 ore, soddisfacendo il criterio richiesto.",
+      "passato": false,
+      "latenza_ms": 3932
+    },
+    {
+      "id": "civic-apertura-interna",
+      "veicolo": "civic",
+      "domanda": "Da dentro, come sblocco e apro una portiera anteriore usando la maniglia?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 168,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "tirare la maniglia interna della portiera anteriore"
+      ],
+      "criterio_risposta": "Indica di tirare la maniglia interna della portiera anteriore, che così si sblocca e si apre.",
+      "gruppo": "civic-apertura-interna",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per sbloccare e aprire la portiera anteriore dall'interno, tira il perno di bloccaggio all'indietro e poi tira la maniglia interna.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf169-1",
+          "pagina": 168,
+          "pagina_pdf": 169
+        },
+        {
+          "id": "civic-pdf164-2",
+          "pagina": 163,
+          "pagina_pdf": 164
+        },
+        {
+          "id": "civic-pdf173-2",
+          "pagina": 172,
+          "pagina_pdf": 173
+        },
+        {
+          "id": "civic-pdf167-1",
+          "pagina": 166,
+          "pagina_pdf": 167
+        },
+        {
+          "id": "civic-pdf165-1",
+          "pagina": 164,
+          "pagina_pdf": 165
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf169-1",
+        "pagina": 168,
+        "pagina_pdf": 169
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta soddisfa il criterio poiché indica chiaramente di tirare il perno di bloccaggio all'indietro e poi la maniglia interna per sbloccare e aprire la portiera anteriore, in linea con le istruzioni fornite nell'estratto.",
+      "passato": true,
+      "latenza_ms": 4949
+    },
+    {
+      "id": "civic-apertura-interna-v1",
+      "veicolo": "civic",
+      "domanda": "Sono seduto davanti con la portiera bloccata. Come faccio ad aprirla con la maniglia interna?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 168,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "tirare la maniglia interna della portiera anteriore"
+      ],
+      "criterio_risposta": "Indica di tirare la maniglia interna della portiera anteriore, che così si sblocca e si apre.",
+      "gruppo": "civic-apertura-interna",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per aprire la portiera anteriore, tirando la maniglia interna si sblocca e si apre con un'unica operazione.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf173-2",
+          "pagina": 172,
+          "pagina_pdf": 173
+        },
+        {
+          "id": "civic-pdf174-1",
+          "pagina": 173,
+          "pagina_pdf": 174
+        },
+        {
+          "id": "civic-pdf169-1",
+          "pagina": 168,
+          "pagina_pdf": 169
+        },
+        {
+          "id": "civic-pdf173-1",
+          "pagina": 172,
+          "pagina_pdf": 173
+        },
+        {
+          "id": "civic-pdf169-2",
+          "pagina": 168,
+          "pagina_pdf": 169
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf169-1",
+        "pagina": 168,
+        "pagina_pdf": 169
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente di tirare la maniglia interna della portiera anteriore, specificando che questo sblocca e apre la portiera, in linea con le istruzioni fornite nell'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 4038
+    },
+    {
+      "id": "civic-blocco-alzacristalli",
+      "veicolo": "civic",
+      "domanda": "Dopo aver premuto il blocco degli alzacristalli, quale finestrino posso ancora comandare?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 181,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "solo sul finestrino lato conducente"
+      ],
+      "criterio_risposta": "Indica che con il blocco attivo si può comandare solo il finestrino del conducente. Si può esprimere anche dicendo che tutti i finestrini dei passeggeri sono bloccati. Se la domanda chiede solo se il finestrino del conducente funziona ancora, una conferma chiara è sufficiente.",
+      "gruppo": "civic-blocco-alzacristalli",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Quando il pulsante di blocco è attivato, puoi comandare solo il finestrino lato conducente.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf183-1",
+          "pagina": 182,
+          "pagina_pdf": 183
+        },
+        {
+          "id": "civic-pdf183-2",
+          "pagina": 182,
+          "pagina_pdf": 183
+        },
+        {
+          "id": "civic-pdf182-1",
+          "pagina": 181,
+          "pagina_pdf": 182
+        },
+        {
+          "id": "civic-pdf20-1",
+          "pagina": 19,
+          "pagina_pdf": 20
+        },
+        {
+          "id": "civic-pdf182-3",
+          "pagina": 181,
+          "pagina_pdf": 182
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf182-1",
+        "pagina": 181,
+        "pagina_pdf": 182
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta è coerente con il criterio, poiché specifica chiaramente che, con il blocco attivato, si può comandare solo il finestrino lato conducente.",
+      "passato": true,
+      "latenza_ms": 4640
+    },
+    {
+      "id": "civic-blocco-alzacristalli-v1",
+      "veicolo": "civic",
+      "domanda": "Ho bloccato i vetri con il tasto sulla portiera. Quale vetro riesco ancora a muovere?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 181,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "solo sul finestrino lato conducente"
+      ],
+      "criterio_risposta": "Indica che con il blocco attivo si può comandare solo il finestrino del conducente. Si può esprimere anche dicendo che tutti i finestrini dei passeggeri sono bloccati. Se la domanda chiede solo se il finestrino del conducente funziona ancora, una conferma chiara è sufficiente.",
+      "gruppo": "civic-blocco-alzacristalli",
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Hai bloccato tutti i vetri o solo alcuni?",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf166-1",
+          "pagina": 165,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "civic-pdf164-1",
+          "pagina": 163,
+          "pagina_pdf": 164
+        },
+        {
+          "id": "civic-pdf180-2",
+          "pagina": 179,
+          "pagina_pdf": 180
+        },
+        {
+          "id": "civic-pdf166-2",
+          "pagina": 165,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "civic-pdf163-1",
+          "pagina": 162,
+          "pagina_pdf": 163
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "solo sul finestrino lato conducente"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 3151
+    },
+    {
+      "id": "civic-blocco-alzacristalli-v2",
+      "veicolo": "civic",
+      "domanda": "Col blocco dei finestrini attivo posso comunque aprire il vetro dalla parte del guidatore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 181,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "solo sul finestrino lato conducente"
+      ],
+      "criterio_risposta": "Indica che con il blocco attivo si può comandare solo il finestrino del conducente. Si può esprimere anche dicendo che tutti i finestrini dei passeggeri sono bloccati. Se la domanda chiede solo se il finestrino del conducente funziona ancora, una conferma chiara è sufficiente.",
+      "gruppo": "civic-blocco-alzacristalli",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf183-2",
+          "pagina": 182,
+          "pagina_pdf": 183
+        },
+        {
+          "id": "civic-pdf183-1",
+          "pagina": 182,
+          "pagina_pdf": 183
+        },
+        {
+          "id": "civic-pdf182-1",
+          "pagina": 181,
+          "pagina_pdf": 182
+        },
+        {
+          "id": "civic-pdf164-3",
+          "pagina": 163,
+          "pagina_pdf": 164
+        },
+        {
+          "id": "civic-pdf20-1",
+          "pagina": 19,
+          "pagina_pdf": 20
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "solo sul finestrino lato conducente"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 3790
+    },
+    {
+      "id": "civic-lavaparabrezza",
+      "veicolo": "civic",
+      "domanda": "In che direzione muovo la leva per spruzzare il liquido lavavetri sul parabrezza?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 194,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "tirando la leva verso di sé si aziona la spruzzatura"
+      ],
+      "criterio_risposta": "Per spruzzare il liquido sul parabrezza si tira la leva verso di sé. Una conferma che va tirata risponde anche alla domanda che offre le due direzioni.",
+      "gruppo": "civic-lavaparabrezza",
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per quale motivo vuoi spruzzare il liquido lavavetri?",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf551-1",
+          "pagina": 550,
+          "pagina_pdf": 551
+        },
+        {
+          "id": "civic-pdf583-2",
+          "pagina": 582,
+          "pagina_pdf": 583
+        },
+        {
+          "id": "civic-pdf581-2",
+          "pagina": 580,
+          "pagina_pdf": 581
+        },
+        {
+          "id": "civic-pdf581-1",
+          "pagina": 580,
+          "pagina_pdf": 581
+        },
+        {
+          "id": "civic-pdf583-1",
+          "pagina": 582,
+          "pagina_pdf": 583
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "tirando la leva verso di sé si aziona la spruzzatura"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 3698
+    },
+    {
+      "id": "civic-lavaparabrezza-v1",
+      "veicolo": "civic",
+      "domanda": "Per mandare l’acqua sul parabrezza tiro la levetta verso di me o la spingo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 194,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "tirando la leva verso di sé si aziona la spruzzatura"
+      ],
+      "criterio_risposta": "Per spruzzare il liquido sul parabrezza si tira la leva verso di sé. Una conferma che va tirata risponde anche alla domanda che offre le due direzioni.",
+      "gruppo": "civic-lavaparabrezza",
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Vuoi sapere se spruzzare acqua sul parabrezza, giusto?",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf583-3",
+          "pagina": 582,
+          "pagina_pdf": 583
+        },
+        {
+          "id": "civic-pdf584-1",
+          "pagina": 583,
+          "pagina_pdf": 584
+        },
+        {
+          "id": "civic-pdf583-1",
+          "pagina": 582,
+          "pagina_pdf": 583
+        },
+        {
+          "id": "civic-pdf583-2",
+          "pagina": 582,
+          "pagina_pdf": 583
+        },
+        {
+          "id": "civic-pdf582-1",
+          "pagina": 581,
+          "pagina_pdf": 582
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "tirando la leva verso di sé si aziona la spruzzatura"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 3953
+    },
+    {
+      "id": "civic-volante-regolazione",
+      "veicolo": "civic",
+      "domanda": "Da fermo, come si sblocca e si blocca la leva per regolare il volante?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 199,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "spingere verso il basso la leva",
+        "tirare verso l’alto la leva"
+      ],
+      "criterio_risposta": "Indica la sequenza a veicolo fermo: leva in basso per liberare il volante, regolazione, leva verso l’alto per bloccarlo. La condizione di auto ferma è già esplicita nella domanda.",
+      "gruppo": "civic-volante-regolazione",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Una volta fermo, premi la leva sotto il piantone dello sterzo per sbloccare il volante.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf200-2",
+          "pagina": 199,
+          "pagina_pdf": 200
+        },
+        {
+          "id": "civic-pdf200-1",
+          "pagina": 199,
+          "pagina_pdf": 200
+        },
+        {
+          "id": "civic-pdf166-1",
+          "pagina": 165,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "civic-pdf170-1",
+          "pagina": 169,
+          "pagina_pdf": 170
+        },
+        {
+          "id": "civic-pdf169-1",
+          "pagina": 168,
+          "pagina_pdf": 169
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf200-2",
+        "pagina": 199,
+        "pagina_pdf": 200
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta non indica la sequenza completa richiesta; manca la parte di regolazione e il blocco finale.",
+      "passato": false,
+      "latenza_ms": 5066
+    },
+    {
+      "id": "civic-volante-regolazione-v1",
+      "veicolo": "civic",
+      "domanda": "Sono parcheggiato e voglio spostare il volante. Come muovo la leva per liberarlo e poi fissarlo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 199,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "spingere verso il basso la leva",
+        "tirare verso l’alto la leva"
+      ],
+      "criterio_risposta": "Indica la sequenza a veicolo fermo: leva in basso per liberare il volante, regolazione, leva verso l’alto per bloccarlo. La condizione di auto ferma è già esplicita nella domanda.",
+      "gruppo": "civic-volante-regolazione",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf200-1",
+          "pagina": 199,
+          "pagina_pdf": 200
+        },
+        {
+          "id": "civic-pdf205-1",
+          "pagina": 204,
+          "pagina_pdf": 205
+        },
+        {
+          "id": "civic-pdf200-2",
+          "pagina": 199,
+          "pagina_pdf": 200
+        },
+        {
+          "id": "civic-pdf19-1",
+          "pagina": 18,
+          "pagina_pdf": 19
+        },
+        {
+          "id": "civic-pdf207-1",
+          "pagina": 206,
+          "pagina_pdf": 207
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": true,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "spingere verso il basso la leva",
+        "tirare verso l’alto la leva"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4562
+    },
+    {
+      "id": "civic-olio-controllo-astina",
+      "veicolo": "civic",
+      "domanda": "Come controllo il livello dell’olio con l’astina durante la manutenzione ordinaria?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 544,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "pulire l’astina",
+        "reinserire fino in fondo"
+      ],
+      "criterio_risposta": "Indica di estrarre e pulire l’astina, reinserirla fino in fondo, estrarla di nuovo e verificare che il livello sia tra minimo e massimo. Mantiene eventuali indicazioni di misura coerenti col manuale.",
+      "gruppo": "civic-olio-controllo-astina",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf643-1",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf545-1",
+          "pagina": 544,
+          "pagina_pdf": 545
+        },
+        {
+          "id": "civic-pdf544-1",
+          "pagina": 543,
+          "pagina_pdf": 544
+        },
+        {
+          "id": "civic-pdf543-1",
+          "pagina": 542,
+          "pagina_pdf": 543
+        },
+        {
+          "id": "civic-pdf547-1",
+          "pagina": 546,
+          "pagina_pdf": 547
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "pulire l’astina",
+        "reinserire fino in fondo"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4533
+    },
+    {
+      "id": "civic-olio-controllo-astina-v1",
+      "veicolo": "civic",
+      "domanda": "Qual è la sequenza per leggere correttamente il livello dell’olio con l’astina?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 544,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "pulire l’astina",
+        "reinserire fino in fondo"
+      ],
+      "criterio_risposta": "Indica di estrarre e pulire l’astina, reinserirla fino in fondo, estrarla di nuovo e verificare che il livello sia tra minimo e massimo. Mantiene eventuali indicazioni di misura coerenti col manuale.",
+      "gruppo": "civic-olio-controllo-astina",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per controllare il livello dell'olio, assicurati di utilizzare l'olio motore corretto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf643-1",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf644-1",
+          "pagina": 643,
+          "pagina_pdf": 644
+        },
+        {
+          "id": "civic-pdf363-2",
+          "pagina": 362,
+          "pagina_pdf": 363
+        },
+        {
+          "id": "civic-pdf693-2",
+          "pagina": 692,
+          "pagina_pdf": 693
+        },
+        {
+          "id": "civic-pdf543-1",
+          "pagina": 542,
+          "pagina_pdf": 543
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf543-1",
+        "pagina": 542,
+        "pagina_pdf": 543
+      },
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "pulire l’astina",
+        "reinserire fino in fondo"
+      ],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta non fornisce la sequenza corretta per leggere il livello dell'olio, come richiesto dal criterio. Si limita a menzionare la necessità di utilizzare l'olio motore corretto, ignorando le istruzioni fondamentali per la verifica del livello.",
+      "passato": false,
+      "latenza_ms": 6388
+    },
+    {
+      "id": "civic-pressione-pneumatici",
+      "veicolo": "civic",
+      "domanda": "Ogni quanto va misurata la pressione degli pneumatici? E prima di partire per un lungo viaggio?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 563,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "almeno una volta al mese",
+        "prima di un lungo viaggio"
+      ],
+      "criterio_risposta": "Indica sia la frequenza ordinaria, almeno una volta al mese, sia il controllo prima di un viaggio lungo. Formulazioni come mensilmente sono equivalenti.",
+      "gruppo": "civic-pressione-pneumatici",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Prima di un lungo viaggio, è consigliato controllare la pressione degli pneumatici almeno una volta al mese.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf565-1",
+          "pagina": 564,
+          "pagina_pdf": 565
+        },
+        {
+          "id": "civic-pdf598-1",
+          "pagina": 597,
+          "pagina_pdf": 598
+        },
+        {
+          "id": "civic-pdf564-1",
+          "pagina": 563,
+          "pagina_pdf": 564
+        },
+        {
+          "id": "civic-pdf564-2",
+          "pagina": 563,
+          "pagina_pdf": 564
+        },
+        {
+          "id": "civic-pdf564-3",
+          "pagina": 563,
+          "pagina_pdf": 564
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf564-2",
+        "pagina": 563,
+        "pagina_pdf": 564
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta fornisce solo una parte dell'informazione richiesta, ovvero il controllo prima di un lungo viaggio e la frequenza mensile, ma non menziona il controllo quotidiano, che è un requisito importante indicato nell'estratto del libretto.",
+      "passato": false,
+      "latenza_ms": 4051
+    },
+    {
+      "id": "civic-pressione-pneumatici-v1",
+      "veicolo": "civic",
+      "domanda": "Con che frequenza controllo quanto sono gonfie le gomme? Devo farlo anche prima di un viaggio lungo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 563,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "almeno una volta al mese",
+        "prima di un lungo viaggio"
+      ],
+      "criterio_risposta": "Indica sia la frequenza ordinaria, almeno una volta al mese, sia il controllo prima di un viaggio lungo. Formulazioni come mensilmente sono equivalenti.",
+      "gruppo": "civic-pressione-pneumatici",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Controllare gli pneumatici ogni giorno prima di mettersi alla guida.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf564-2",
+          "pagina": 563,
+          "pagina_pdf": 564
+        },
+        {
+          "id": "civic-pdf564-3",
+          "pagina": 563,
+          "pagina_pdf": 564
+        },
+        {
+          "id": "civic-pdf419-1",
+          "pagina": 418,
+          "pagina_pdf": 419
+        },
+        {
+          "id": "civic-pdf419-2",
+          "pagina": 418,
+          "pagina_pdf": 419
+        },
+        {
+          "id": "civic-pdf566-1",
+          "pagina": 565,
+          "pagina_pdf": 566
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf564-2",
+        "pagina": 563,
+        "pagina_pdf": 564
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta non indica la frequenza mensile per il controllo delle gomme né specifica che deve essere eseguito prima di un viaggio lungo, come richiesto dal criterio.",
+      "passato": false,
+      "latenza_ms": 3794
+    },
+    {
+      "id": "civic-fusibili-senza-posizione",
+      "veicolo": "civic",
+      "domanda": "Dove si trova la scatola dei fusibili?",
+      "esito_atteso": "chiarimento",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Intendi la scatola dei fusibili nel vano motore o quella nell’abitacolo?",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": true,
+      "latenza_ms": 1
+    },
+    {
+      "id": "civic-fusibili-vano-motore",
+      "veicolo": "civic",
+      "domanda": "Dove si trova la scatola dei fusibili nel vano motore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 630,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "accanto alla batteria"
+      ],
+      "criterio_risposta": "Indica che la scatola del vano motore si trova accanto alla batteria. Sono equivalenti vicino alla batteria e a fianco della batteria.",
+      "gruppo": "civic-fusibili-vano-motore",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "630 Situazioni di emergenza\n\n630 Situazioni di emergenza\nFusibili\nPosizioni dei fusibili\nIn presenza di dispositivi elettrici non funzionanti, impostare la modalità di alimentazione su\nVEICOLO SPENTO (BLOCCO) e verificare che non ci siano fusibili bruciati.\nSituata accanto alla batteria. Spingere le linguette per aprire la scatola.\nLe posizioni dei fusibili sono mostrate nell'immagine seguente.\nIndividuare il fusibile interessato tramite il numero fusibile riportato nell'immagine e nella tabella.\n■ Scatola fusibili vano motore\na Scatola fusibili\nb Linguetta\nc Anteriore",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf636-1",
+          "pagina": 635,
+          "pagina_pdf": 636
+        },
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        },
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        },
+        {
+          "id": "civic-pdf635-1",
+          "pagina": 634,
+          "pagina_pdf": 635
+        },
+        {
+          "id": "civic-pdf632-1",
+          "pagina": 631,
+          "pagina_pdf": 632
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf631-1",
+        "pagina": 630,
+        "pagina_pdf": 631
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica chiaramente che la scatola dei fusibili si trova accanto alla batteria, soddisfacendo il criterio stabilito.",
+      "passato": true,
+      "latenza_ms": 3573
+    },
+    {
+      "id": "civic-fusibili-vano-motore-v1",
+      "veicolo": "civic",
+      "domanda": "Aperto il cofano, dove devo cercare la scatola dei fusibili nel vano motore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 630,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "accanto alla batteria"
+      ],
+      "criterio_risposta": "Indica che la scatola del vano motore si trova accanto alla batteria. Sono equivalenti vicino alla batteria e a fianco della batteria.",
+      "gruppo": "civic-fusibili-vano-motore",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "630 Situazioni di emergenza\n\n630 Situazioni di emergenza\nFusibili\nPosizioni dei fusibili\nIn presenza di dispositivi elettrici non funzionanti, impostare la modalità di alimentazione su\nVEICOLO SPENTO (BLOCCO) e verificare che non ci siano fusibili bruciati.\nSituata accanto alla batteria. Spingere le linguette per aprire la scatola.\nLe posizioni dei fusibili sono mostrate nell'immagine seguente.\nIndividuare il fusibile interessato tramite il numero fusibile riportato nell'immagine e nella tabella.\n■ Scatola fusibili vano motore\na Scatola fusibili\nb Linguetta\nc Anteriore",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf636-1",
+          "pagina": 635,
+          "pagina_pdf": 636
+        },
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        },
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        },
+        {
+          "id": "civic-pdf635-1",
+          "pagina": 634,
+          "pagina_pdf": 635
+        },
+        {
+          "id": "civic-pdf632-1",
+          "pagina": 631,
+          "pagina_pdf": 632
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf631-1",
+        "pagina": 630,
+        "pagina_pdf": 631
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che la scatola dei fusibili si trova accanto alla batteria, soddisfacendo così il criterio.",
+      "passato": true,
+      "latenza_ms": 4067
+    },
+    {
+      "id": "civic-fusibili-abitacolo",
+      "veicolo": "civic",
+      "domanda": "Dove si trova la scatola dei fusibili nell’abitacolo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 632,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "sotto il cruscotto"
+      ],
+      "criterio_risposta": "Indica che la scatola dei fusibili dell’abitacolo è sotto il cruscotto. Plancia è equivalente se la posizione sotto è chiara.",
+      "gruppo": "civic-fusibili-abitacolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La scatola dei fusibili si trova sotto il cruscotto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        },
+        {
+          "id": "civic-pdf634-2",
+          "pagina": 633,
+          "pagina_pdf": 634
+        },
+        {
+          "id": "civic-pdf632-1",
+          "pagina": 631,
+          "pagina_pdf": 632
+        },
+        {
+          "id": "civic-pdf636-1",
+          "pagina": 635,
+          "pagina_pdf": 636
+        },
+        {
+          "id": "civic-pdf634-1",
+          "pagina": 633,
+          "pagina_pdf": 634
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf633-1",
+        "pagina": 632,
+        "pagina_pdf": 633
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che la scatola dei fusibili si trova sotto il cruscotto, in linea con quanto riportato nell'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 3733
+    },
+    {
+      "id": "civic-fusibili-abitacolo-v1",
+      "veicolo": "civic",
+      "domanda": "Dove devo guardare per trovare la scatola interna dei fusibili?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 632,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "sotto il cruscotto"
+      ],
+      "criterio_risposta": "Indica che la scatola dei fusibili dell’abitacolo è sotto il cruscotto. Plancia è equivalente se la posizione sotto è chiara.",
+      "gruppo": "civic-fusibili-abitacolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Trovi la scatola fusibili interna sotto il cruscotto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        },
+        {
+          "id": "civic-pdf632-1",
+          "pagina": 631,
+          "pagina_pdf": 632
+        },
+        {
+          "id": "civic-pdf636-1",
+          "pagina": 635,
+          "pagina_pdf": 636
+        },
+        {
+          "id": "civic-pdf634-2",
+          "pagina": 633,
+          "pagina_pdf": 634
+        },
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf633-1",
+        "pagina": 632,
+        "pagina_pdf": 633
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che la scatola dei fusibili interna si trova sotto il cruscotto, conforme al criterio.",
+      "passato": true,
+      "latenza_ms": 3346
+    },
+    {
+      "id": "audi-fusibili",
+      "veicolo": "audi",
+      "domanda": "Dove si trova la scatola dei fusibili?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 379,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "left side of the engine compartment",
+        "the fuses are located behind a cover"
+      ],
+      "criterio_risposta": "Indica in italiano entrambe le posizioni: dietro un coperchio nella zona del piantone dello sterzo e sotto un coperchio sul lato sinistro del vano motore.",
+      "gruppo": "audi-fusibili",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il libretto dell’Audi A3 8V indica due posizioni per i fusibili:\n- Nell’abitacolo, dietro un coperchio nella zona del piantone dello sterzo (fig. 296).\n- Nel vano motore, sotto un coperchio sul lato sinistro (fig. 297).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf381-1",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "audi-pdf382-1",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf383-1",
+          "pagina": 381,
+          "pagina_pdf": 383
+        },
+        {
+          "id": "audi-pdf382-3",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf382-2",
+          "pagina": 380,
+          "pagina_pdf": 382
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf381-1",
+        "pagina": 379,
+        "pagina_pdf": 381
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce entrambe le posizioni per la scatola dei fusibili in modo chiaro e conforme al criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 4085
+    },
+    {
+      "id": "audi-fusibili-v1",
+      "veicolo": "audi",
+      "domanda": "Dove trovo i fusibili, sia dentro l’auto sia sotto il cofano?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 379,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "left side of the engine compartment",
+        "the fuses are located behind a cover"
+      ],
+      "criterio_risposta": "Indica in italiano entrambe le posizioni: dietro un coperchio nella zona del piantone dello sterzo e sotto un coperchio sul lato sinistro del vano motore.",
+      "gruppo": "audi-fusibili",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf382-1",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf381-1",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "audi-pdf383-1",
+          "pagina": 381,
+          "pagina_pdf": 383
+        },
+        {
+          "id": "audi-pdf382-2",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf383-2",
+          "pagina": 381,
+          "pagina_pdf": 383
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "left side of the engine compartment",
+        "the fuses are located behind a cover"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 6542
+    },
+    {
+      "id": "audi-chiusura-automatica-velocita",
+      "veicolo": "audi",
+      "domanda": "A quale velocità si attiva la chiusura centralizzata automatica Auto Lock?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [
+        30
+      ],
+      "evidenze_attese": [
+        "9 mph",
+        "15 km/h"
+      ],
+      "criterio_risposta": "Indica in italiano la soglia di circa 15 km/h. Può indicare anche l’equivalente arrotondato di 9 mph, ma non serve riportare entrambe le unità.",
+      "gruppo": "audi-chiusura-automatica",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La chiusura centralizzata automatica si attiva a 9 mph.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf32-1",
+          "pagina": 30,
+          "pagina_pdf": 32
+        },
+        {
+          "id": "audi-pdf134-2",
+          "pagina": 132,
+          "pagina_pdf": 134
+        },
+        {
+          "id": "audi-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "audi-pdf136-3",
+          "pagina": 134,
+          "pagina_pdf": 136
+        },
+        {
+          "id": "audi-pdf128-1",
+          "pagina": 126,
+          "pagina_pdf": 128
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf36-2",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta fornisce solo l'equivalente in mph (9 mph) senza menzionare la soglia in km/h (15 km/h) richiesta nel criterio.",
+      "passato": false,
+      "latenza_ms": 3693
+    },
+    {
+      "id": "audi-tetto-panoramico",
+      "veicolo": "audi",
+      "domanda": "Come faccio a fermare l’apertura del tetto panoramico in una posizione intermedia? La mia versione ha il tetto panoramico.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 40,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "intermediate position",
+        "first level"
+      ],
+      "criterio_risposta": "Indica in italiano di tenere il comando del tetto al primo scatto o livello fino alla posizione desiderata, poi rilasciarlo.",
+      "gruppo": "audi-tetto-panoramico",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per fermare l'apertura del tetto panoramico in una posizione intermedia, basta premere o tirare l'interruttore fino a raggiungere la posizione desiderata.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf42-1",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf42-3",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf42-2",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf41-3",
+          "pagina": 39,
+          "pagina_pdf": 41
+        },
+        {
+          "id": "audi-pdf41-2",
+          "pagina": 39,
+          "pagina_pdf": 41
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf42-2",
+        "pagina": 40,
+        "pagina_pdf": 42
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta soddisfa il criterio spiegando correttamente come fermare l'apertura del tetto panoramico in una posizione intermedia, menzionando l'azione da compiere sul comando.",
+      "passato": true,
+      "latenza_ms": 4259
+    },
+    {
+      "id": "audi-tetto-panoramico-v1",
+      "veicolo": "audi",
+      "domanda": "Ho il tetto panoramico e vorrei aprirlo solo un po’. Fino a quale scatto devo muovere il comando?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 40,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "intermediate position",
+        "first level"
+      ],
+      "criterio_risposta": "Indica in italiano di tenere il comando del tetto al primo scatto o livello fino alla posizione desiderata, poi rilasciarlo.",
+      "gruppo": "audi-tetto-panoramico",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf42-1",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf42-3",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf42-2",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf41-2",
+          "pagina": 39,
+          "pagina_pdf": 41
+        },
+        {
+          "id": "audi-pdf41-3",
+          "pagina": 39,
+          "pagina_pdf": 41
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": true,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "intermediate position",
+        "first level"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4680
+    },
+    {
+      "id": "audi-presa-12v",
+      "veicolo": "audi",
+      "domanda": "Qual è la potenza massima in watt di un accessorio per la presa da 12 volt?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 62,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "120 watts"
+      ],
+      "criterio_risposta": "Indica il limite di 120 W per la presa da 12 V e, se viene chiesto del dispositivo da 150 W, chiarisce che supera il limite. Sono equivalenti 120 W e 120 watt.",
+      "gruppo": "audi-presa-12v",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La potenza massima per la presa da 12 volt è di 120 watt.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf64-1",
+          "pagina": 62,
+          "pagina_pdf": 64
+        },
+        {
+          "id": "audi-pdf45-3",
+          "pagina": 43,
+          "pagina_pdf": 45
+        },
+        {
+          "id": "audi-pdf118-3",
+          "pagina": 116,
+          "pagina_pdf": 118
+        },
+        {
+          "id": "audi-pdf43-3",
+          "pagina": 41,
+          "pagina_pdf": 43
+        },
+        {
+          "id": "audi-pdf47-1",
+          "pagina": 45,
+          "pagina_pdf": 47
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf64-1",
+        "pagina": 62,
+        "pagina_pdf": 64
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce correttamente il limite di 120 watt per la presa da 12V, come indicato nell'estratto del libretto, soddisfacendo il criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 4080
+    },
+    {
+      "id": "audi-presa-12v-v1",
+      "veicolo": "audi",
+      "domanda": "Quanti watt posso assorbire al massimo dalla presa da 12 V?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 62,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "120 watts"
+      ],
+      "criterio_risposta": "Indica il limite di 120 W per la presa da 12 V e, se viene chiesto del dispositivo da 150 W, chiarisce che supera il limite. Sono equivalenti 120 W e 120 watt.",
+      "gruppo": "audi-presa-12v",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Puoi utilizzare al massimo 120 watt dalla presa da 12 V.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf64-1",
+          "pagina": 62,
+          "pagina_pdf": 64
+        },
+        {
+          "id": "audi-pdf113-4",
+          "pagina": 111,
+          "pagina_pdf": 113
+        },
+        {
+          "id": "audi-pdf105-3",
+          "pagina": 103,
+          "pagina_pdf": 105
+        },
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        },
+        {
+          "id": "audi-pdf118-3",
+          "pagina": 116,
+          "pagina_pdf": 118
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf64-1",
+        "pagina": 62,
+        "pagina_pdf": 64
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che è possibile utilizzare al massimo 120 watt dalla presa da 12 V, conforme al limite fornito nel libretto.",
+      "passato": true,
+      "latenza_ms": 4192
+    },
+    {
+      "id": "audi-presa-12v-v2",
+      "veicolo": "audi",
+      "domanda": "Un accessorio da 150 W è entro il limite della presa da 12 V?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 62,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "120 watts"
+      ],
+      "criterio_risposta": "Indica il limite di 120 W per la presa da 12 V e, se viene chiesto del dispositivo da 150 W, chiarisce che supera il limite. Sono equivalenti 120 W e 120 watt.",
+      "gruppo": "audi-presa-12v",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il manuale specifica che l'uso della presa da 12 V non deve superare i 120 watt.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf105-3",
+          "pagina": 103,
+          "pagina_pdf": 105
+        },
+        {
+          "id": "audi-pdf64-1",
+          "pagina": 62,
+          "pagina_pdf": 64
+        },
+        {
+          "id": "audi-pdf105-2",
+          "pagina": 103,
+          "pagina_pdf": 105
+        },
+        {
+          "id": "audi-pdf107-1",
+          "pagina": 105,
+          "pagina_pdf": 107
+        },
+        {
+          "id": "audi-pdf113-4",
+          "pagina": 111,
+          "pagina_pdf": 113
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf64-1",
+        "pagina": 62,
+        "pagina_pdf": 64
+      },
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente il limite di 120 watt per la presa da 12 V, chiarendo che il dispositivo da 150 W supera tale limite, soddisfacendo quindi il criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 4258
+    },
+    {
+      "id": "audi-freno-parcheggio",
+      "veicolo": "audi",
+      "domanda": "Per inserire il freno di stazionamento elettrico bisogna premere o tirare l’interruttore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 80,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "switch to set the parking brake",
+        "LED in the switch turns on"
+      ],
+      "criterio_risposta": "Indica in italiano che per inserire il freno di stazionamento elettrico si tira l’interruttore. Il LED è un dettaglio facoltativo.",
+      "gruppo": "audi-freno-parcheggio",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per inserire il freno di stazionamento elettrico, devi tirare l'interruttore.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf82-3",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf153-1",
+          "pagina": 151,
+          "pagina_pdf": 153
+        },
+        {
+          "id": "audi-pdf82-1",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf83-4",
+          "pagina": 81,
+          "pagina_pdf": 83
+        },
+        {
+          "id": "audi-pdf82-2",
+          "pagina": 80,
+          "pagina_pdf": 82
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf82-1",
+        "pagina": 80,
+        "pagina_pdf": 82
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che per inserire il freno di stazionamento elettrico si tira l'interruttore, conformemente a quanto riportato nell'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 3826
+    },
+    {
+      "id": "audi-freno-parcheggio-v1",
+      "veicolo": "audi",
+      "domanda": "Da fermo, come metto il freno a mano elettronico con l’interruttore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 80,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "switch to set the parking brake",
+        "LED in the switch turns on"
+      ],
+      "criterio_risposta": "Indica in italiano che per inserire il freno di stazionamento elettrico si tira l’interruttore. Il LED è un dettaglio facoltativo.",
+      "gruppo": "audi-freno-parcheggio",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per attivare il freno a mano elettronico, tira l'interruttore.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf82-3",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf153-1",
+          "pagina": 151,
+          "pagina_pdf": 153
+        },
+        {
+          "id": "audi-pdf83-4",
+          "pagina": 81,
+          "pagina_pdf": 83
+        },
+        {
+          "id": "audi-pdf82-1",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf82-2",
+          "pagina": 80,
+          "pagina_pdf": 82
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf82-1",
+        "pagina": 80,
+        "pagina_pdf": 82
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta è coerente con il criterio, in quanto indica chiaramente che per attivare il freno a mano elettronico si deve tirare l'interruttore.",
+      "passato": true,
+      "latenza_ms": 3591
+    },
+    {
+      "id": "audi-carburante-trazione-anteriore",
+      "veicolo": "audi",
+      "domanda": "Quanti litri entrano nel serbatoio della A3 a trazione anteriore, versione non ibrida?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "front wheel drive",
+        "50.0 L"
+      ],
+      "criterio_risposta": "Indica 50 litri per il serbatoio della trazione anteriore non ibrida. Se cita altri allestimenti, le quantità devono restare associate alla versione corretta.",
+      "gruppo": "audi-capacita-serbatoio",
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Hai bisogno di sapere il serbatoio di quale motore specifico?",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf354-1",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf396-3",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf396-2",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf103-2",
+          "pagina": 101,
+          "pagina_pdf": 103
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "front wheel drive",
+        "50.0 L"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 5151
+    },
+    {
+      "id": "audi-carburante-quattro",
+      "veicolo": "audi",
+      "domanda": "Quanti litri entrano nel serbatoio della A3 a trazione integrale quattro?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "all wheel drive",
+        "55.0 L"
+      ],
+      "criterio_risposta": "Indica 55 litri per il serbatoio della trazione integrale quattro. Se cita altri allestimenti, le quantità devono restare associate alla versione corretta.",
+      "gruppo": "audi-capacita-serbatoio",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf396-3",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf354-1",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf103-2",
+          "pagina": 101,
+          "pagina_pdf": 103
+        },
+        {
+          "id": "audi-pdf396-2",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf30-2",
+          "pagina": null,
+          "pagina_pdf": 30
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "all wheel drive",
+        "55.0 L"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4169
+    },
+    {
+      "id": "audi-carburante-quattro-v1",
+      "veicolo": "audi",
+      "domanda": "Da quanti litri è il serbatoio se l’A3 ha le quattro ruote motrici?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "all wheel drive",
+        "55.0 L"
+      ],
+      "criterio_risposta": "Indica 55 litri per il serbatoio della trazione integrale quattro. Se cita altri allestimenti, le quantità devono restare associate alla versione corretta.",
+      "gruppo": "audi-capacita-serbatoio",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf396-3",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf354-1",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf396-2",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf30-2",
+          "pagina": null,
+          "pagina_pdf": 30
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "all wheel drive",
+        "55.0 L"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 5034
+    },
+    {
+      "id": "audi-carico-tetto",
+      "veicolo": "audi",
+      "domanda": "Quanto peso massimo posso caricare sul tetto secondo il libretto? Mi interessa il valore in kg.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "maximum permissible roof load",
+        "75 kg"
+      ],
+      "criterio_risposta": "Indica 75 kg di carico massimo sul tetto. È ammessa la presenza della misura equivalente in libbre, purché il valore in kg sia presente.",
+      "gruppo": "audi-carico-tetto",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il carico massimo consentito sul tetto è 75 kg.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        },
+        {
+          "id": "audi-pdf69-1",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "audi-pdf69-2",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "audi-pdf345-1",
+          "pagina": 343,
+          "pagina_pdf": 345
+        },
+        {
+          "id": "audi-pdf356-1",
+          "pagina": 354,
+          "pagina_pdf": 356
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf397-1",
+        "pagina": 395,
+        "pagina_pdf": 397
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che il carico massimo sul tetto è 75 kg, in linea con le informazioni fornite dal libretto.",
+      "passato": true,
+      "latenza_ms": 3686
+    },
+    {
+      "id": "audi-carico-tetto-v1",
+      "veicolo": "audi",
+      "domanda": "Qual è il limite in chili del carico sul tetto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "maximum permissible roof load",
+        "75 kg"
+      ],
+      "criterio_risposta": "Indica 75 kg di carico massimo sul tetto. È ammessa la presenza della misura equivalente in libbre, purché il valore in kg sia presente.",
+      "gruppo": "audi-carico-tetto",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf356-1",
+          "pagina": 354,
+          "pagina_pdf": 356
+        },
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        },
+        {
+          "id": "audi-pdf355-2",
+          "pagina": 353,
+          "pagina_pdf": 355
+        },
+        {
+          "id": "audi-pdf348-1",
+          "pagina": 346,
+          "pagina_pdf": 348
+        },
+        {
+          "id": "audi-pdf69-1",
+          "pagina": 67,
+          "pagina_pdf": 69
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "maximum permissible roof load",
+        "75 kg"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 3838
+    },
+    {
+      "id": "audi-richiesta-estranea",
+      "veicolo": "audi",
+      "domanda": "Quali temperature devo usare sul piatto e sull’ugello per stampare in ABS una custodia per la chiave?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf382-2",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf72-3",
+          "pagina": 70,
+          "pagina_pdf": 72
+        },
+        {
+          "id": "audi-pdf18-3",
+          "pagina": 16,
+          "pagina_pdf": 18
+        },
+        {
+          "id": "audi-pdf72-4",
+          "pagina": 70,
+          "pagina_pdf": 72
+        },
+        {
+          "id": "audi-pdf382-3",
+          "pagina": 380,
+          "pagina_pdf": 382
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": true,
+      "latenza_ms": 2999
+    },
+    {
+      "id": "focus-telecomando-batteria",
+      "veicolo": "focus",
+      "domanda": "Che batteria usa il telecomando?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [
+        37
+      ],
+      "evidenze_attese": [
+        "CR2032"
+      ],
+      "criterio_risposta": "Indica CR2032 come tipo di batteria del telecomando. Pila e batteria sono equivalenti. La tensione da 3 V è un dettaglio facoltativo.",
+      "gruppo": "focus-telecomando",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il telecomando utilizza una pila della tipologia CR2032.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf36-3",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        },
+        {
+          "id": "focus-pdf39-1",
+          "pagina": 37,
+          "pagina_pdf": 39
+        },
+        {
+          "id": "focus-pdf38-1",
+          "pagina": 36,
+          "pagina_pdf": 38
+        },
+        {
+          "id": "focus-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf36-3",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che il telecomando utilizza una pila della tipologia CR2032, soddisfacendo il criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 3534
+    },
+    {
+      "id": "focus-telecomando-pila",
+      "veicolo": "focus",
+      "domanda": "Che pila serve per il telecomando?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [
+        37
+      ],
+      "evidenze_attese": [
+        "CR2032"
+      ],
+      "criterio_risposta": "Indica CR2032 come tipo di pila del telecomando. Pila e batteria sono equivalenti. La tensione da 3 V è un dettaglio facoltativo.",
+      "gruppo": "focus-telecomando",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il telecomando utilizza una pila CR2032.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf36-3",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        },
+        {
+          "id": "focus-pdf39-1",
+          "pagina": 37,
+          "pagina_pdf": 39
+        },
+        {
+          "id": "focus-pdf38-1",
+          "pagina": 36,
+          "pagina_pdf": 38
+        },
+        {
+          "id": "focus-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf36-3",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che il telecomando utilizza una pila CR2032, conforme al criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 4676
+    },
+    {
+      "id": "focus-telecomando-si-no",
+      "veicolo": "focus",
+      "domanda": "La chiave va a batteria?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [
+        35,
+        37
+      ],
+      "evidenze_attese": [
+        "pila"
+      ],
+      "criterio_risposta": "Conferma in modo esplicito o implicito che il telecomando della chiave usa una pila. Il codice CR2032 e i 3 V sono dettagli utili ma facoltativi. Una risposta che attribuisce una pila alla chiave meccanica stessa è errata.",
+      "gruppo": "focus-telecomando",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì, la chiave è a batteria.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        },
+        {
+          "id": "focus-pdf38-1",
+          "pagina": 36,
+          "pagina_pdf": 38
+        },
+        {
+          "id": "focus-pdf39-1",
+          "pagina": 37,
+          "pagina_pdf": 39
+        },
+        {
+          "id": "focus-pdf36-3",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf92-1",
+          "pagina": 90,
+          "pagina_pdf": 92
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf36-3",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma esplicitamente che la chiave è a batteria, in linea con quanto richiesto nel criterio.",
+      "passato": true,
+      "latenza_ms": 3679
+    },
+    {
+      "id": "civic-telecomando-pila",
+      "veicolo": "civic",
+      "domanda": "Che pila serve per il telecomando?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 575,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "CR2032"
+      ],
+      "criterio_risposta": "Indica CR2032 come tipo di pila del telecomando. Pila e batteria sono equivalenti. La tensione non è richiesta.",
+      "gruppo": "civic-telecomando",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La batteria necessaria per il telecomando della Honda Civic Type R è una CR2032.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf576-1",
+          "pagina": 575,
+          "pagina_pdf": 576
+        },
+        {
+          "id": "civic-pdf577-1",
+          "pagina": 576,
+          "pagina_pdf": 577
+        },
+        {
+          "id": "civic-pdf166-3",
+          "pagina": 165,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "civic-pdf166-2",
+          "pagina": 165,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "civic-pdf161-1",
+          "pagina": 160,
+          "pagina_pdf": 161
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf576-1",
+        "pagina": 575,
+        "pagina_pdf": 576
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce correttamente il tipo di pila (CR2032) necessario per il telecomando, come richiesto dal criterio.",
+      "passato": true,
+      "latenza_ms": 3955
+    },
+    {
+      "id": "civic-telecomando-si-no",
+      "veicolo": "civic",
+      "domanda": "La chiave va a batteria?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 575,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "CR2032"
+      ],
+      "criterio_risposta": "Conferma che il telecomando della chiave usa una pila. Non è necessario specificare il codice; se lo specifica deve essere CR2032.",
+      "gruppo": "civic-telecomando",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf161-1",
+          "pagina": 160,
+          "pagina_pdf": 161
+        },
+        {
+          "id": "civic-pdf166-3",
+          "pagina": 165,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "civic-pdf573-1",
+          "pagina": 572,
+          "pagina_pdf": 573
+        },
+        {
+          "id": "civic-pdf577-1",
+          "pagina": 576,
+          "pagina_pdf": 577
+        },
+        {
+          "id": "civic-pdf160-1",
+          "pagina": 159,
+          "pagina_pdf": 160
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "CR2032"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4266
+    },
+    {
+      "id": "audi-serbatoio-confronto",
+      "veicolo": "audi",
+      "domanda": "Quanti litri tiene il serbatoio della quattro? E quello della trazione anteriore non ibrida?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "front wheel drive",
+        "50.0 L",
+        "all wheel drive",
+        "55.0 L"
+      ],
+      "criterio_risposta": "Associa entrambe le capacità in italiano: 55 litri alla quattro (trazione integrale), 50 litri alla trazione anteriore non ibrida. La risposta con le due cifre scambiate o una sola delle due capacità è errata.",
+      "gruppo": "audi-capacita-serbatoio",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf396-3",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf354-1",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf396-2",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf332-4",
+          "pagina": 330,
+          "pagina_pdf": 332
+        },
+        {
+          "id": "audi-pdf103-2",
+          "pagina": 101,
+          "pagina_pdf": 103
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "front wheel drive",
+        "50.0 L",
+        "all wheel drive",
+        "55.0 L"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 4787
+    },
+    {
+      "id": "audi-chiusura-automatica-colloquiale",
+      "veicolo": "audi",
+      "domanda": "A che velocità si chiudono da sole le portiere?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [
+        30
+      ],
+      "evidenze_attese": [
+        "9 mph",
+        "15 km/h"
+      ],
+      "criterio_risposta": "Indica in italiano che la chiusura automatica interviene attorno ai 15 km/h. Non è necessario ripetere il nome Auto Lock.",
+      "gruppo": "audi-chiusura-automatica",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda. Se hai il nome del comando o il messaggio esatto sul quadro, posso cercare quello.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf41-2",
+          "pagina": 39,
+          "pagina_pdf": 41
+        },
+        {
+          "id": "audi-pdf42-3",
+          "pagina": 40,
+          "pagina_pdf": 42
+        },
+        {
+          "id": "audi-pdf44-3",
+          "pagina": 42,
+          "pagina_pdf": 44
+        },
+        {
+          "id": "audi-pdf41-3",
+          "pagina": 39,
+          "pagina_pdf": 41
+        },
+        {
+          "id": "audi-pdf32-1",
+          "pagina": 30,
+          "pagina_pdf": 32
+        }
+      ],
+      "fonte_citata": null,
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "9 mph",
+        "15 km/h"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 3592
+    },
+    {
+      "id": "chat-presentazione",
+      "veicolo": null,
+      "domanda": "Cosa sai fare?",
+      "esito_atteso": "conversazione",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Spiega che aiuta a consultare i libretti delle auto e indica i tre modelli disponibili, Focus, Civic Type R e Audi A3 8V. Non richiede di scegliere un’auto per poter rispondere a questa domanda.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "conversazione",
+      "veicolo_usato": null,
+      "turni_eseguiti": [],
+      "risposta_visibile": "Posso aiutarti a orientarti nel libretto della tua auto. Puoi chiedermi cosa significa una spia, dove si trovano i fusibili o come usare un comando. Ti indico anche la pagina da consultare. Ho i libretti di Ford Focus (CEW), Honda Civic Type R, Audi A3 8V.",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta soddisfa il criterio spiegando l'assistenza fornita nella consultazione dei libretti delle auto e menzionando i tre modelli disponibili.",
+      "passato": true,
+      "latenza_ms": 0
+    },
+    {
+      "id": "chat-audi-riprende-domanda",
+      "veicolo": "audi",
+      "domanda": "Audi A3 8V",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 379,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "left side of the engine compartment",
+        "the fuses are located behind a cover"
+      ],
+      "criterio_risposta": "Riprende la prima domanda e indica entrambe le posizioni in italiano: piantone dello sterzo nell’abitacolo e lato sinistro del vano motore. Non chiede nuovamente che cosa vuole sapere l’utente.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Dove sono i fusibili?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Dove sono i fusibili?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Il libretto dell’Audi A3 8V indica due posizioni per i fusibili:\n- Nell’abitacolo, dietro un coperchio nella zona del piantone dello sterzo (fig. 296).\n- Nel vano motore, sotto un coperchio sul lato sinistro (fig. 297).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf381-1",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "audi-pdf382-1",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf382-3",
+          "pagina": 380,
+          "pagina_pdf": 382
+        },
+        {
+          "id": "audi-pdf383-1",
+          "pagina": 381,
+          "pagina_pdf": 383
+        },
+        {
+          "id": "audi-pdf381-2",
+          "pagina": 379,
+          "pagina_pdf": 381
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf381-1",
+        "pagina": 379,
+        "pagina_pdf": 381
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce correttamente entrambe le posizioni dei fusibili in italiano, senza porre nuovamente domande all'utente.",
+      "passato": true,
+      "latenza_ms": 3944
+    },
+    {
+      "id": "chat-civic-fusibili-interni",
+      "veicolo": "civic",
+      "domanda": "Quella interna",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 632,
+      "pagine_alternative": [],
+      "evidenze_attese": [
+        "sotto il cruscotto"
+      ],
+      "criterio_risposta": "Collega la risposta breve alla domanda precedente e indica la scatola dei fusibili interna sotto il cruscotto. Non confonde la posizione con quella nel vano motore.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Honda Civic Type R",
+          "esito_atteso": "veicolo_selezionato"
+        },
+        {
+          "messaggio": "Dove trovo la scatola dei fusibili?",
+          "esito_atteso": "chiarimento"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Honda Civic Type R",
+          "esito_atteso": "veicolo_selezionato",
+          "esito": "veicolo_selezionato",
+          "risposta_visibile": "Userò il libretto di Honda Civic Type R. Cosa vuoi sapere?",
+          "passato": true
+        },
+        {
+          "messaggio": "Dove trovo la scatola dei fusibili?",
+          "esito_atteso": "chiarimento",
+          "esito": "chiarimento",
+          "risposta_visibile": "Intendi la scatola dei fusibili nel vano motore o quella nell’abitacolo?",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "La scatola fusibili interna è situata sotto il cruscotto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        },
+        {
+          "id": "civic-pdf634-2",
+          "pagina": 633,
+          "pagina_pdf": 634
+        },
+        {
+          "id": "civic-pdf643-1",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf632-1",
+          "pagina": 631,
+          "pagina_pdf": 632
+        },
+        {
+          "id": "civic-pdf636-1",
+          "pagina": 635,
+          "pagina_pdf": 636
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf633-1",
+        "pagina": 632,
+        "pagina_pdf": 633
+      },
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta menziona correttamente che la scatola dei fusibili interna si trova sotto il cruscotto, in linea con quanto richiesto dalla domanda.",
+      "passato": true,
+      "latenza_ms": 3264
     }
   ]
 }

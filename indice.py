@@ -96,6 +96,22 @@ class IndiceManuali:
             traccia.set_attribute("fonti", [hit.metadata["fonte"] for hit in risultati])
             return risultati
 
+    def cerca_pagina(self, veicolo: Veicolo, collezione: str, pagina_pdf: int) -> Chunk | None:
+        condizioni = [models.FieldCondition(key=campo, match=models.MatchValue(value=valore))
+                      for campo, valore in {"pagina_pdf": pagina_pdf, "veicolo": veicolo.id,
+                                            "edizione": veicolo.edizione, "source_file": veicolo.file,
+                                            "avviso_curato": False}.items()]
+        with span("ricerca-pagina", "RETRIEVER", veicolo=veicolo.id, pagina_pdf=pagina_pdf):
+            punti, _ = self.store.get_client().scroll(
+                collezione, scroll_filter=models.Filter(must=condizioni), limit=1, with_vectors=False,
+            )
+            if not punti or not punti[0].payload:
+                return None
+            punto = punti[0]
+            testo = punto.payload["text"]
+            metadati = {chiave: valore for chiave, valore in punto.payload.items() if chiave != "text"}
+            return self.completa_pagina(collezione, Chunk(id=str(punto.id), text=testo, metadata=metadati))
+
     def completa_pagina(self, collezione: str, risultato: Chunk) -> Chunk:
         if risultato.metadata.get("avviso_curato"):
             return risultato

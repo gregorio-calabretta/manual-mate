@@ -10,36 +10,41 @@ def main() -> int:
 
     carica_configurazione()
     desktop = ROOT.parent / "manuali uso e manutenzione auto"
+    codici = " / ".join(CATALOGO)
     parser = argparse.ArgumentParser(description="Consulta il manuale d'uso del veicolo selezionato.")
     parser.add_argument("--manuali", type=Path, default=Path(os.getenv("MANUALI_DIR") or desktop))
-    parser.add_argument("--veicolo", help="Identificativo del manuale: focus o civic.")
+    parser.add_argument("--veicolo", help=f"Identificativo del manuale ({codici}).")
     modalita = parser.add_mutually_exclusive_group()
     modalita.add_argument("--domanda", help="Esegui una singola richiesta e termina.")
     modalita.add_argument("--verifica-manuali", action="store_true", help="Verifica i PDF localmente, senza API.")
     modalita.add_argument("--indicizza", action="store_true", help="Prepara o aggiorna l'indice Qdrant dei manuali.")
     modalita.add_argument("--valuta", action="store_true", help="Esegui queries.json e salva il report della valutazione.")
+    modalita.add_argument("--stress", action="store_true", help="Prova scenari difficili e salva un report per il TOP_K usato.")
+    parser.add_argument("--lavoratori", type=int, metavar="N", help="Numero di casi di valutazione da eseguire insieme.")
     parser.add_argument("--osservabilita", action="store_true", help="Attiva trace OTLP e metriche su porta 18000.")
     args = parser.parse_args()
 
     veicolo_id = args.veicolo.strip().casefold() if args.veicolo else None
     if args.indicizza and veicolo_id is not None and veicolo_id not in CATALOGO:
-        parser.error("Per indicizzare, scegli --veicolo focus o --veicolo civic.")
-    if args.valuta and veicolo_id is not None:
-        parser.error("--valuta usa i veicoli definiti in queries.json.")
+        parser.error(f"Per indicizzare, scegli un valore valido per --veicolo ({codici}).")
+    if (args.valuta or args.stress) and veicolo_id is not None:
+        parser.error("La valutazione usa i veicoli definiti nei casi di prova.")
+    if args.lavoratori is not None and (args.lavoratori < 1 or not (args.valuta or args.stress)):
+        parser.error("--lavoratori richiede --valuta o --stress e un intero positivo.")
 
     # La verifica dei PDF si può eseguire prima di configurare OpenAI e avviare Docker.
     if args.verifica_manuali:
         try:
             for veicolo in CATALOGO.values():
                 leggi_passaggi(args.manuali, veicolo)
+                if not veicolo.avvisi:
+                    print(f"OK | {veicolo.nome} | {veicolo.edizione}")
                 for avviso in veicolo.avvisi:
                     print(f"OK | {veicolo.nome} | {avviso.titolo} | p. {avviso.pagina} (PDF p. {avviso.pagina_pdf})")
         except (OSError, ValueError) as errore:
             parser.exit(1, f"Verifica manuali fallita: {errore}\n")
         return 0
 
-    if args.domanda and not args.veicolo:
-        parser.error("--domanda richiede --veicolo.")
     chiave = os.getenv("OPENAI_API_KEY", "").strip()
     if not chiave:
         parser.error("Imposta OPENAI_API_KEY nella variabile d'ambiente o nel file .env.")
@@ -49,7 +54,7 @@ def main() -> int:
 
     provider = None
     if args.osservabilita:
-        provider = avvia_osservabilita(18000, "http://localhost:16006/v1/traces")
+        provider = avvia_osservabilita(18000, "http://127.0.0.1:16006/v1/traces")
 
     from openai import APIError
     from qdrant_client.http.exceptions import ApiException
@@ -65,35 +70,40 @@ def main() -> int:
                 print(f"{veicolo.nome}: {esito}.")
             return 0
 
-        if args.valuta:
+        if args.valuta or args.stress:
             from valutazione import valuta
 
-            return 0 if valuta(assistente, ROOT / "queries.json", ROOT / "report_valutazione.json") else 1
+            domande = "queries_stress.json" if args.stress else "queries.json"
+            report = f"report_stress_k{assistente.indice.top_k}.json" if args.stress else "report_valutazione.json"
+            return 0 if valuta(assistente, ROOT / domande, ROOT / report,
+                               lavoratori=args.lavoratori or 1) else 1
+
+        from conversazione import Conversazione
+
+        conversazione = Conversazione(veicolo_id=veicolo_id)
+
+        def consulta(codice: str, domanda: str, contesto: tuple[str, ...]):
+            return assistente.rispondi(codice, domanda, contesto=contesto)
 
         if args.domanda:
-            risposta = assistente.rispondi(veicolo_id or "", args.domanda)
-            print(risposta.testo)
+            risposta = conversazione.rispondi(args.domanda, consulta)
+            print(risposta.testo_cli)
             if risposta.esito == "indice_assente":
                 return 1
             return 0
 
-        print("Manuali disponibili")
-        for codice, veicolo in CATALOGO.items():
-            print(f"  {codice}: {veicolo.nome} ({veicolo.edizione})")
-        codice = (args.veicolo or input("Quale manuale si applica alla tua auto? ")).strip().casefold()
-        print("Comandi disponibili: :auto per cambiare veicolo, :esci per terminare.")
-        contesto = ()
+        print("Ciao, sono Manual Mate. Cosa vuoi sapere?")
+        print("Scrivi :auto per ricominciare con un altro veicolo o :esci per terminare.")
         while True:
-            domanda = input("\nDescrivi il problema o rispondi al chiarimento: ").strip()
+            domanda = input("\nTu: ").strip()
             if domanda == ":esci":
                 return 0
             if domanda == ":auto":
-                codice = input("Identificativo del manuale (focus / civic): ").strip().casefold()
-                contesto = ()
+                conversazione = Conversazione()
+                print("Dimmi pure quale libretto vuoi consultare.")
             elif domanda:
-                risposta = assistente.rispondi(codice, domanda, contesto=contesto)
-                print(f"\n{risposta.testo}")
-                contesto = (*contesto, domanda)[-2:] if risposta.esito == "chiarimento" else ()
+                risposta = conversazione.rispondi(domanda, consulta)
+                print(f"\n{risposta.testo_cli}")
     except (EOFError, KeyboardInterrupt):
         return 0
     except APIError as errore:

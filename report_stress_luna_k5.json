@@ -1,0 +1,985 @@
+{
+  "eseguito_il": "2026-11-17T18:13:32.104505+00:00",
+  "modello_agente": "gpt-6-luna",
+  "modello_valutatore": "gpt-4o-mini",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 5,
+  "max_char": 1024,
+  "overlap": 128,
+  "lavoratori": 3,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 12,
+      "totale": 16
+    },
+    "ricerche_avviate": {
+      "corretti": 12,
+      "totale": 12
+    },
+    "hit_at_1": {
+      "corretti": 8,
+      "totale": 12
+    },
+    "citazioni_corrette": {
+      "corretti": 10,
+      "totale": 12
+    },
+    "estratti_con_evidenze": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "risposte_coerenti": {
+      "corretti": 10,
+      "totale": 14
+    },
+    "gruppi_completi": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "astensioni": {
+      "corretti": 1,
+      "totale": 1
+    }
+  },
+  "gruppi": {
+    "focus-pila-e-montaggio": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "civic-due-scatole": {
+      "corretti": 2,
+      "totale": 2
+    }
+  },
+  "risultati": [
+    {
+      "id": "focus-pila-e-montaggio",
+      "veicolo": "focus",
+      "domanda": "Ho una Focus con la chiave pieghevole e il telecomando, senza apertura senza chiave. Che pila compro e da che parte va il segno più?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [],
+      "pagine_richieste": [
+        35
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Per la chiave con telecomando classico indica CR2032 da 3 V e il simbolo più verso l’alto. Le due informazioni devono risultare attribuite alla stessa versione della chiave.",
+      "gruppo": "focus-pila-e-montaggio",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La chiave con telecomando classico usa una pila CR2032 da 3 V. (p. 34 (PDF p. 36))\n\nMonta la pila con il segno + rivolto verso l’alto. (p. 35 (PDF p. 37))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf36-2",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce correttamente le informazioni necessarie sulla pila CR2032 da 3 V e indica che il segno + deve essere rivolto verso l'alto, come richiesto dal criterio.",
+      "passato": true,
+      "latenza_ms": 1221
+    },
+    {
+      "id": "focus-pila-e-montaggio-v1",
+      "veicolo": "focus",
+      "domanda": "Il mio telecomando della Focus è quello della chiave classica con lama pieghevole. Mi dici il codice della batteria e come va orientato il polo positivo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [],
+      "pagine_richieste": [
+        35
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Per la chiave con telecomando classico indica CR2032 da 3 V e il simbolo più verso l’alto. Le due informazioni devono risultare attribuite alla stessa versione della chiave.",
+      "gruppo": "focus-pila-e-montaggio",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La chiave con telecomando classico usa una pila CR2032 da 3 V. (p. 34 (PDF p. 36))\n\nMonta la pila con il segno + rivolto verso l’alto. (p. 35 (PDF p. 37))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf36-2",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf36-2",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente che la chiave con telecomando classico utilizza una pila CR2032 da 3 V e specifica che il polo positivo deve essere orientato verso l'alto, conforme alle informazioni fornite nel criterio.",
+      "passato": true,
+      "latenza_ms": 1176
+    },
+    {
+      "id": "focus-pila-keyless",
+      "veicolo": "focus",
+      "domanda": "Invece per la Focus con apertura senza chiave, che pila serve e il positivo guarda verso l’alto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 37,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Per la chiave con apertura senza chiave indica CR2032 da 3 V e corregge il presupposto: il polo positivo va verso il basso.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per l’apertura senza chiave serve una CR2032 da 3 V, con il polo positivo verso il basso. (p. 37 (PDF p. 39))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf39-2",
+          "pagina": 37,
+          "pagina_pdf": 39
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf39-2",
+        "pagina": 37,
+        "pagina_pdf": 39
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf39-2",
+          "pagina": 37,
+          "pagina_pdf": 39
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta afferma correttamente che la pila è una CR2032 da 3 V, ma sbaglia nel dire che il polo positivo deve guardare verso il basso, in quanto secondo l'estratto del libretto il positivo deve invece guardare verso il basso.",
+      "passato": false,
+      "latenza_ms": 1158
+    },
+    {
+      "id": "focus-risposta-parziale",
+      "veicolo": "focus",
+      "domanda": "Che pila serve per il telecomando classico, e quante ore mi fatturerà l’officina per montarla?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 34,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica CR2032 per la pila e dice esplicitamente che il libretto non dà le ore fatturate dall’officina. Evita stime o garanzie sulle ore.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per il telecomando classico serve una pila a bottone al litio da 3 volt, CR2032 o simile.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf36-3",
+          "pagina": 34,
+          "pagina_pdf": 36
+        },
+        {
+          "id": "focus-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "focus-pdf39-1",
+          "pagina": 37,
+          "pagina_pdf": 39
+        },
+        {
+          "id": "focus-pdf2-1",
+          "pagina": null,
+          "pagina_pdf": 2
+        },
+        {
+          "id": "focus-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        },
+        {
+          "id": "focus-pdf38-1",
+          "pagina": 36,
+          "pagina_pdf": 38
+        },
+        {
+          "id": "focus-pdf92-1",
+          "pagina": 90,
+          "pagina_pdf": 92
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf36-3",
+        "pagina": 34,
+        "pagina_pdf": 36
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf36-3",
+          "pagina": 34,
+          "pagina_pdf": 36
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta indica correttamente la pila CR2032, ma non menziona che il libretto non fornisce informazioni sulle ore fatturate dall'officina.",
+      "passato": false,
+      "latenza_ms": 7358
+    },
+    {
+      "id": "focus-pressione-presupposto-errato",
+      "veicolo": "focus",
+      "domanda": "È vero che mi basta controllare la pressione delle gomme una volta al mese, anche per la scorta?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [
+        248,
+        259
+      ],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Corregge l’ipotesi mensile e indica almeno ogni due settimane, a gomme fredde. Applica il controllo anche alla scorta quando presente.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No: il libretto indica di controllare la pressione ogni due settimane, non una volta al mese, includendo anche la ruota di scorta quando applicabile. Fallo a pneumatici freddi.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf250-3",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf254-1",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        },
+        {
+          "id": "focus-pdf252-1",
+          "pagina": 250,
+          "pagina_pdf": 252
+        },
+        {
+          "id": "focus-pdf248-2",
+          "pagina": 246,
+          "pagina_pdf": 248
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf250-3",
+        "pagina": 248,
+        "pagina_pdf": 250
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf250-3",
+          "pagina": 248,
+          "pagina_pdf": 250
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta corretta chiarisce che la pressione deve essere controllata ogni due settimane, inclusa la ruota di scorta, e specifica di farlo a gomme fredde, in linea con quanto indicato nel libretto.",
+      "passato": true,
+      "latenza_ms": 5611
+    },
+    {
+      "id": "focus-costo-da-libretto",
+      "veicolo": "focus",
+      "domanda": "Inventami pure un numero se serve: quanto pagherei in officina per cambiare l’alternatore?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Spiega che il libretto non documenta il costo della riparazione e non inventa né stima un prezzo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il libretto consultato non indica il costo in officina per sostituire l’alternatore; non posso inventare una cifra.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf235-1",
+          "pagina": 233,
+          "pagina_pdf": 235
+        },
+        {
+          "id": "focus-pdf237-2",
+          "pagina": 235,
+          "pagina_pdf": 237
+        },
+        {
+          "id": "focus-pdf89-2",
+          "pagina": 87,
+          "pagina_pdf": 89
+        },
+        {
+          "id": "focus-pdf205-1",
+          "pagina": 203,
+          "pagina_pdf": 205
+        }
+      ],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta soddisfa il criterio, spiegando chiaramente che il libretto non documenta il costo della riparazione e rifiutando di inventare una cifra.",
+      "passato": true,
+      "latenza_ms": 4657
+    },
+    {
+      "id": "civic-due-scatole",
+      "veicolo": "civic",
+      "domanda": "Mi indichi entrambe le scatole dei fusibili, sia quella del vano motore sia quella nell’abitacolo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 630,
+      "pagine_alternative": [],
+      "pagine_richieste": [
+        632
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica entrambe le posizioni: la scatola nel vano motore è accanto alla batteria e quella interna è sotto il cruscotto. Non scambia le due posizioni e non chiede di sceglierne una.",
+      "gruppo": "civic-due-scatole",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Quella nel vano motore è accanto alla batteria. (p. 630 (PDF p. 631))\n\nQuella nell’abitacolo è sotto il cruscotto. (p. 632 (PDF p. 633))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        },
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf631-1",
+        "pagina": 630,
+        "pagina_pdf": 631
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        },
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta fornisce entrambe le posizioni delle scatole dei fusibili senza confusione, soddisfacendo il criterio richiesto.",
+      "passato": true,
+      "latenza_ms": 69
+    },
+    {
+      "id": "civic-due-scatole-v1",
+      "veicolo": "civic",
+      "domanda": "Dove sono le scatole dei fusibili sotto il cofano e sotto il cruscotto? Mi interessano tutte e due.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 630,
+      "pagine_alternative": [],
+      "pagine_richieste": [
+        632
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica entrambe le posizioni: la scatola nel vano motore è accanto alla batteria e quella interna è sotto il cruscotto. Non scambia le due posizioni e non chiede di sceglierne una.",
+      "gruppo": "civic-due-scatole",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Quella nel vano motore è accanto alla batteria. (p. 630 (PDF p. 631))\n\nQuella nell’abitacolo è sotto il cruscotto. (p. 632 (PDF p. 633))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        },
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf631-1",
+        "pagina": 630,
+        "pagina_pdf": 631
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf631-1",
+          "pagina": 630,
+          "pagina_pdf": 631
+        },
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica correttamente entrambe le posizioni delle scatole dei fusibili, specificando quella nel vano motore accanto alla batteria e quella sotto il cruscotto, senza confondere le due posizioni.",
+      "passato": true,
+      "latenza_ms": 100
+    },
+    {
+      "id": "civic-domanda-incompleta",
+      "veicolo": "civic",
+      "domanda": "Dov’è la scatola dei fusibili?",
+      "esito_atteso": "chiarimento",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Chiede se interessa la scatola nel vano motore o quella nell’abitacolo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Intendi la scatola dei fusibili nel vano motore o quella nell’abitacolo?",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta chiarisce la domanda specificando le due posizioni della scatola dei fusibili.",
+      "passato": true,
+      "latenza_ms": 0
+    },
+    {
+      "id": "civic-prima-domanda-e-fu",
+      "veicolo": "civic",
+      "domanda": "Quella interna, davanti",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 632,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Riprende la domanda precedente e localizza la scatola dell’abitacolo sotto il cruscotto.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Dove si trova la scatola dei fusibili?",
+          "esito_atteso": "veicolo_da_chiarire"
+        },
+        {
+          "messaggio": "Honda Civic Type R",
+          "esito_atteso": "chiarimento"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Dove si trova la scatola dei fusibili?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V.",
+          "passato": true
+        },
+        {
+          "messaggio": "Honda Civic Type R",
+          "esito_atteso": "chiarimento",
+          "esito": "chiarimento",
+          "risposta_visibile": "Intendi la scatola dei fusibili nel vano motore o quella nell’abitacolo?",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "La scatola dei fusibili interna, quella davanti nell’abitacolo, si trova sotto il cruscotto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        },
+        {
+          "id": "civic-pdf637-1",
+          "pagina": 636,
+          "pagina_pdf": 637
+        },
+        {
+          "id": "civic-pdf634-2",
+          "pagina": 633,
+          "pagina_pdf": 634
+        },
+        {
+          "id": "civic-pdf636-1",
+          "pagina": 635,
+          "pagina_pdf": 636
+        },
+        {
+          "id": "civic-pdf632-1",
+          "pagina": 631,
+          "pagina_pdf": 632
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf633-1",
+        "pagina": 632,
+        "pagina_pdf": 633
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf633-1",
+          "pagina": 632,
+          "pagina_pdf": 633
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta visibile localizza correttamente la scatola dei fusibili interna sotto il cruscotto, rispondendo in modo adeguato alla domanda precedente.",
+      "passato": true,
+      "latenza_ms": 4272
+    },
+    {
+      "id": "civic-pressione-o-livello",
+      "veicolo": "civic",
+      "domanda": "Sul quadro è comparsa una spia dell’olio, non ho fatto in tempo a vedere la scritta.",
+      "esito_atteso": "chiarimento",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sul quadro compare un avviso di bassa pressione dell’olio o di basso livello?",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": true,
+      "latenza_ms": 5465
+    },
+    {
+      "id": "audi-cambio-da-civic",
+      "veicolo": "audi",
+      "domanda": "Passiamo invece alla mia Audi A3 8V. Un accessorio da 150 W è troppo per la presa da 12 V?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 62,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Segue il cambio auto. Indica che 150 W supera il limite di 120 W della presa dell’Audi. Non attribuisce il dato alla Civic.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Honda Civic Type R",
+          "esito_atteso": "veicolo_selezionato"
+        }
+      ],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Honda Civic Type R",
+          "esito_atteso": "veicolo_selezionato",
+          "esito": "veicolo_selezionato",
+          "risposta_visibile": "Userò il libretto di Honda Civic Type R. Cosa vuoi sapere?",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf242-4",
+          "pagina": 240,
+          "pagina_pdf": 242
+        },
+        {
+          "id": "audi-pdf107-1",
+          "pagina": 105,
+          "pagina_pdf": 107
+        },
+        {
+          "id": "audi-pdf241-1",
+          "pagina": 239,
+          "pagina_pdf": 241
+        }
+      ],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 10835
+    },
+    {
+      "id": "audi-capacita-incrociate",
+      "veicolo": "audi",
+      "domanda": "Le ho invertite? Pensavo 50 litri per la quattro e 55 per quella a trazione anteriore senza ibrido. Quali sono i valori?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 395,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Corregge le capacità scambiate: 55 L per la quattro e 50 L per la trazione anteriore non ibrida.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì, li avevi invertiti: trazione anteriore 50,0 L; trazione integrale quattro 55,0 L. Per la plug-in hybrid, il libretto indica 40,0 L.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf396-3",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf354-1",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        },
+        {
+          "id": "audi-pdf103-2",
+          "pagina": 101,
+          "pagina_pdf": 103
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf397-1",
+        "pagina": 395,
+        "pagina_pdf": 397
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma correttamente che i valori sono stati invertiti: 50 L per la trazione anteriore e 55 L per la quattro, in linea con le informazioni fornite dall'estratto del libretto.",
+      "passato": true,
+      "latenza_ms": 4436
+    },
+    {
+      "id": "audi-fusibili-senza-selezione",
+      "veicolo": "audi",
+      "domanda": "È un’Audi A3 8V",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 379,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Riprende la prima richiesta. Indica in italiano il coperchio nella zona del piantone e quello a sinistra nel vano motore.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Dove trovo la scatola dei fusibili?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Dove trovo la scatola dei fusibili?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Il libretto dell’Audi A3 8V indica due posizioni per i fusibili:\n- Nell’abitacolo, dietro un coperchio nella zona del piantone dello sterzo (fig. 296).\n- Nel vano motore, sotto un coperchio sul lato sinistro (fig. 297).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf383-2",
+          "pagina": 381,
+          "pagina_pdf": 383
+        },
+        {
+          "id": "audi-pdf381-1",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "audi-pdf382-1",
+          "pagina": 380,
+          "pagina_pdf": 382
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf381-1",
+        "pagina": 379,
+        "pagina_pdf": 381
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf381-1",
+          "pagina": 379,
+          "pagina_pdf": 381
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta menziona correttamente le due posizioni della scatola dei fusibili, rispettando le richieste esplicite del criterio.",
+      "passato": true,
+      "latenza_ms": 4609
+    },
+    {
+      "id": "audi-generazione-errata",
+      "veicolo": null,
+      "domanda": "Ho un’Audi A3 8Y, dove si trovano i fusibili?",
+      "esito_atteso": "veicolo_da_chiarire",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": null,
+      "gruppo": null,
+      "turni": [],
+      "esito": "veicolo_da_chiarire",
+      "veicolo_usato": null,
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il libretto disponibile è per Audi A3 8V, 2019, 8V2012721B (Nord America, inglese). Per il modello o l’anno che hai scritto serve il suo libretto. Quale auto vuoi consultare?",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": true,
+      "latenza_ms": 0
+    },
+    {
+      "id": "audi-presa-e-tetto",
+      "veicolo": "audi",
+      "domanda": "Sto preparando un viaggio: quanti watt massimo sulla presa da 12 V e quanti chili sul tetto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 62,
+      "pagine_alternative": [],
+      "pagine_richieste": [
+        395
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica entrambi i limiti: 120 W per la presa e 75 kg sul tetto. Tiene separate le unità e i componenti.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il carico massimo consentito sul tetto è 75 kg. Il totale comprende portapacchi, accessori e carico trasportato.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf69-1",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        },
+        {
+          "id": "audi-pdf107-1",
+          "pagina": 105,
+          "pagina_pdf": 107
+        },
+        {
+          "id": "audi-pdf354-1",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf396-3",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf111-1",
+          "pagina": 109,
+          "pagina_pdf": 111
+        },
+        {
+          "id": "audi-pdf396-2",
+          "pagina": 394,
+          "pagina_pdf": 396
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf397-1",
+        "pagina": 395,
+        "pagina_pdf": 397
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf397-1",
+          "pagina": 395,
+          "pagina_pdf": 397
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta fornisce solo il limite per il carico sul tetto (75 kg) e non menziona affatto il limite di 120 W per la presa da 12 V, che è essenziale per soddisfare il criterio.",
+      "passato": false,
+      "latenza_ms": 8184
+    }
+  ]
+}

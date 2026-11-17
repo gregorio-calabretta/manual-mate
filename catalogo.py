@@ -24,6 +24,7 @@ class Veicolo:
     edizione: str
     file: str
     avvisi: tuple[Avviso, ...]
+    lingua: str = "italiano"
 
 
 FOCUS = Veicolo(
@@ -49,7 +50,12 @@ CIVIC = Veicolo(
     ),
 )
 
-CATALOGO = {veicolo.id: veicolo for veicolo in (FOCUS, CIVIC)}
+AUDI = Veicolo(
+    "audi", "Audi A3 8V", "2019, 8V2012721B (Nord America, inglese)",
+    "audi a3 8v 2019.pdf", (), lingua="inglese",
+)
+
+CATALOGO = {veicolo.id: veicolo for veicolo in (FOCUS, CIVIC, AUDI)}
 
 
 def normalizza(testo: str) -> str:
@@ -84,6 +90,11 @@ def leggi_passaggi(cartella: Path, veicolo: Veicolo) -> dict[str, str]:
     passaggi = {}
     with (cartella / veicolo.file).open("rb") as documento:
         pdf = PdfReader(documento)
+        if veicolo == AUDI:
+            copertina = pdf.pages[0].extract_text() or ""
+            retro = pdf.pages[-1].extract_text() or ""
+            if "2019 A3" not in copertina or "8V2012721B" not in retro or "Englisch Nordamerika" not in retro:
+                raise ValueError(f"Edizione non riconosciuta nel manuale {veicolo.file}.")
         for avviso in veicolo.avvisi:
             if avviso.pagina_pdf > len(pdf.pages):
                 raise ValueError(f"Pagina PDF assente nel manuale {veicolo.file}.")

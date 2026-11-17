@@ -28,7 +28,7 @@ def crea_assistente(chiave: str):
 
     # L'agente sceglie i tool con il modello conversazionale. L'embedder produce i vettori per Qdrant.
     client = OpenAIClient(
-        api_key=chiave, model=os.getenv("OPENAI_MODEL") or "gpt-4o-mini", timeout=30, max_retries=1,
+        api_key=chiave, model=os.getenv("OPENAI_MODEL") or "gpt-6-luna", timeout=30, max_retries=1,
     )
     embedder = OpenAIEmbedder(api_key=chiave, model_name="text-embedding-3-small")
     embedder.client = client.client

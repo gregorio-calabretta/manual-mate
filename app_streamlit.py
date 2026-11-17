@@ -19,7 +19,7 @@ def assistente_web(chiave: str):
 @st.cache_resource(show_spinner=False)
 def osservabilita_web():
     # Streamlit riesegue la pagina a ogni interazione. Porta e provider si avviano una volta per processo.
-    return avvia_osservabilita(18000, "http://localhost:16006/v1/traces")
+    return avvia_osservabilita(18000, "http://127.0.0.1:16006/v1/traces")
 
 
 def consulta(veicolo_id: str, domanda: str, chiave: str, contesto: tuple[str, ...]) -> Risposta:
@@ -40,8 +40,14 @@ def mostra_risposta(risposta: Risposta, veicolo: Veicolo | None) -> None:
         elif risposta.fonte_citata:
             titolo, _, estratto = risposta.testo.partition("\n\n")
             corpo, _, riferimento = estratto.rpartition("\n\nFonte: ")
-            st.markdown(f"**{titolo}**")
-            st.text(corpo)
+            if risposta.sintesi:
+                st.text(risposta.sintesi)
+                etichetta = "Estratti originali del manuale" if risposta.fonti_aggiuntive else "Estratto originale del manuale"
+                with st.expander(etichetta):
+                    st.text(f"{titolo}\n\n{corpo}" if risposta.fonti_aggiuntive else corpo)
+            else:
+                st.markdown(f"**{titolo}**")
+                st.text(corpo)
             st.caption(f"Fonte · {riferimento}")
         else:
             st.write(risposta.testo)
@@ -60,7 +66,7 @@ def main() -> None:
     chiave = os.getenv("OPENAI_API_KEY", "").strip()
 
     st.title("Manual Mate")
-    st.write("Fai una domanda sul libretto. Se manca il modello dell’auto, te lo chiedo.")
+    st.write("Ti aiuto a trovare le informazioni nel libretto della tua auto.")
 
     with st.sidebar:
         st.subheader("Strumenti della demo")
@@ -68,7 +74,7 @@ def main() -> None:
                     "[Metriche · Grafana](http://localhost:13000/d/manuali-auto)\n\n"
                     "[Indice · Qdrant](http://localhost:16333/dashboard)")
 
-    if os.getenv("MANUAL_MATE_OSSERVABILITA", "").casefold().strip() in {"1", "true"}:
+    if os.getenv("MANUAL_MATE_OSSERVABILITA", "true").casefold().strip() in {"1", "true"}:
         try:
             osservabilita_web()
         except OSError:
@@ -78,10 +84,8 @@ def main() -> None:
         st.warning("Imposta `OPENAI_API_KEY` nel file `.env` o nel terminale e riavvia Streamlit per fare domande.")
 
     scheda_manuale = st.empty()
+    controllo_conversazione = st.empty()
     cronologia = st.session_state.setdefault("cronologia_manual_mate", [])
-    if cronologia and st.button("Nuova conversazione", key="azzera-conversazione"):
-        cronologia.clear()
-        st.session_state["conversazione_manual_mate"] = Conversazione()
     conversazione = st.session_state.setdefault("conversazione_manual_mate", Conversazione())
 
     for domanda, risposta, codice in cronologia:
@@ -93,11 +97,16 @@ def main() -> None:
     if domanda and chiave:
         with st.chat_message("user"):
             st.text(domanda)
-        with st.spinner("Verifico cosa dice il libretto…"):
+        with st.spinner("Un momento…"):
             risposta = conversazione.rispondi(domanda, lambda codice, testo, contesto: consulta(codice, testo, chiave, contesto))
         veicolo = CATALOGO.get(conversazione.veicolo_id)
         cronologia.append((domanda, risposta, conversazione.veicolo_id))
         mostra_risposta(risposta, veicolo)
+
+    if cronologia and controllo_conversazione.button("Nuova conversazione", key="azzera-conversazione"):
+        cronologia.clear()
+        st.session_state["conversazione_manual_mate"] = Conversazione()
+        st.rerun()
 
     veicolo = CATALOGO.get(conversazione.veicolo_id)
     if veicolo:

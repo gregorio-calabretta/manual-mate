@@ -6,12 +6,24 @@ from datapizza.modules.splitters import RecursiveSplitter
 from datapizza.type import Node, NodeType
 from pypdf import PdfReader
 
-from catalogo import Veicolo, leggi_passaggi
+from catalogo import AUDI, Veicolo, leggi_passaggi
 from config import CHUNK_MAX_CHAR, CHUNK_OVERLAP
 
 
-def leggi_pagina(testo: str, veicolo: Veicolo) -> tuple[int | None, str, list[str]]:
+def leggi_pagina(testo: str, veicolo: Veicolo, posizione: int | None = None) -> tuple[int | None, str, list[str]]:
     righe = [riga.strip() for riga in testo.splitlines() if riga.strip()]
+    if veicolo == AUDI and posizione is not None:
+        # L'OCR può inserire il piè di pagina nel mezzo delle due colonne.
+        numero_atteso = posizione - 2
+        pagina = numero_atteso if 4 <= posizione <= 412 and str(numero_atteso) in righe else None
+        corpo = [riga for riga in righe if riga not in {str(pagina), "8V2012721B)"}]
+        if 398 <= posizione <= 412:
+            return pagina, "Indice analitico", corpo
+        if 4 <= posizione <= 7:
+            return pagina, "Sommario", corpo
+        if 10 <= posizione <= 397 and corpo:
+            return pagina, corpo[0], corpo[1:]
+        return pagina, "Manuale d’uso", corpo
     for i in range(len(righe) - 1, -1, -1):
         riga = righe[i]
         if veicolo.id == "focus" and "Vehicles Built From:" in riga:
@@ -47,7 +59,7 @@ def estrai_documenti(cartella: Path, veicolo: Veicolo) -> tuple[list[tuple[str, 
     with (cartella / veicolo.file).open("rb") as file:
         pdf = PdfReader(file)
         for posizione, pagina_pdf in enumerate(pdf.pages, 1):
-            pagina, sezione, righe = leggi_pagina(pagina_pdf.extract_text() or "", veicolo)
+            pagina, sezione, righe = leggi_pagina(pagina_pdf.extract_text() or "", veicolo, posizione)
             if not righe:
                 senza_testo.append(posizione)
                 continue

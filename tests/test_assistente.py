@@ -75,8 +75,8 @@ class AssistenteTest(unittest.TestCase):
         })
 
     def test_recupera_le_tre_pagine(self):
-        for veicolo in CATALOGO.values():
-            self.indice.indicizza(self.cartella, veicolo)
+        for codice in ("focus", "civic"):
+            self.indice.indicizza(self.cartella, CATALOGO[codice])
         for veicolo, domanda, fonte, pagina in (
             ("focus", "Mi si è accesa la spia dell’olio", "focus-olio", 80),
             ("civic", "Pressione olio motore bassa", "civic-pressione", 623),
@@ -116,7 +116,7 @@ class AssistenteTest(unittest.TestCase):
         self.azioni = iter((("segnala_limite", {}),))
         risposta = self.assistente.rispondi("civic", "Qual è la ricetta della carbonara?")
         self.assertEqual(risposta.esito, "fonte_assente")
-        self.assertIn("Non ho trovato indicazioni pertinenti", risposta.testo)
+        self.assertIn("Non ho trovato nel libretto", risposta.testo)
         self.assertIsNone(risposta.fonte_citata)
         self.assertEqual(self.chiamate, ["/v1/responses"])
 
@@ -130,15 +130,50 @@ class AssistenteTest(unittest.TestCase):
             with self.subTest(citazione=citazione):
                 self.azioni = iter((("cerca_manuale", {"query": domanda}), ("cita_fonte", {
                     "fonte_id": "civic-pdf576-1", "citazione": citazione,
+                    "sintesi": "Per il telecomando ti serve una pila CR2032.",
                 })))
                 risposta = self.assistente.rispondi("civic", domanda)
                 self.assertEqual(risposta.esito, esito)
                 self.assertTrue(risposta.ricerca_eseguita)
+                if esito == "risposta":
+                    self.assertIn("Per il telecomando ti serve", risposta.testo_cli)
+                    self.assertIn("p. 575", risposta.testo_cli)
+                    self.assertIn(citazione, risposta.testo)
+                else:
+                    self.assertIsNone(risposta.sintesi)
 
     def test_conserva_numerazione_stampata_e_sezione(self):
         civic = "575SEGUE\nManutenzione\nTipo di batteria: CR2032\n23 CIVIC TYPE R JSS (KE KG)-3LT406000.book Page 575 Wednesday"
         pagina, sezione, righe = leggi_pagina(civic, CATALOGO["civic"])
         self.assertEqual((pagina, sezione, righe[-1]), (575, "Manutenzione", "Tipo di batteria: CR2032"))
+
+    def test_domanda_composta_verifica_entrambi_i_passaggi(self):
+        focus = CATALOGO["focus"]
+        estratti = ("Il telecomando usa una pila a bottone CR2032.",
+                    "Montare una nuova pila con il simbolo + rivolto verso l'alto.")
+        documenti = [(f"Chiavi e telecomandi\n\n{estratto}", {
+            "veicolo": focus.id, "edizione": focus.edizione, "source_file": focus.file,
+            "fonte": f"focus-pdf{pdf}-1", "pagina": pdf - 2, "pagina_pdf": pdf,
+            "sezione": "Chiavi e telecomandi", "avviso_curato": False,
+        }) for pdf, estratto in zip((36, 37), estratti)]
+        with patch("indice.estrai_documenti", return_value=(documenti, 2, [])):
+            self.indice.indicizza(self.cartella, focus)
+
+        for fonti_id, esito in ((["focus-pdf36-1", "focus-pdf37-1"], "risposta"),
+                               (["focus-pdf36-1", "civic-pdf576-1"], "fonte_assente")):
+            with self.subTest(esito=esito):
+                self.azioni = iter((("cerca_manuale", {"query": "pila telecomando", "query_complementare": "orientamento polo"}),
+                                    ("cita_fonti", {"fonti_id": fonti_id, "citazioni": list(estratti),
+                                                   "frasi": ["Serve una CR2032.", "Metti il positivo verso l'alto."]})))
+                risposta = self.assistente.rispondi("focus", "Che pila serve e come la monto?")
+                self.assertEqual(risposta.esito, esito)
+                self.assertEqual(self.input_embedding[-2:], [["pila telecomando"], ["orientamento polo"]])
+                if esito == "risposta":
+                    self.assertEqual([fonte.pagina for fonte in risposta.fonti_citate], [34, 35])
+                    self.assertIn("Serve una CR2032. (p. 34", risposta.testo_cli)
+                    self.assertIn("Metti il positivo verso l'alto. (p. 35", risposta.testo_cli)
+                else:
+                    self.assertEqual(risposta.fonti_citate, ())
 
     def test_ubicazione_fusibili_usa_la_sezione_verificata(self):
         focus = CATALOGO["focus"]
@@ -157,6 +192,36 @@ class AssistenteTest(unittest.TestCase):
         self.azioni = iter((("cerca_manuale", {"query": "scatola dei fusibili"}), ("segnala_limite", {})))
         risposta = self.assistente.rispondi("focus", "Dove si trova la scatola dei fusibili?")
         self.assertEqual(risposta.fonte_citata, Fonte("focus-pdf207-1", 205))
+
+    def test_audi_riassume_le_due_posizioni_dei_fusibili_in_italiano(self):
+        audi = CATALOGO["audi"]
+        originale = (
+            "Fuses and bulbs\n\nThe fuses are located behind a cover in the steer-\n"
+            "ing column area or under a cover on\nthe left side of the engine compartment."
+        )
+        documenti = [(originale, {
+            "veicolo": audi.id, "edizione": audi.edizione, "source_file": audi.file,
+            "sezione": "Fuses and bulbs", "avviso_curato": False,
+            "fonte": "audi-pdf381-1", "pagina": 379, "pagina_pdf": 381,
+        })]
+        with patch("indice.estrai_documenti", return_value=(documenti, 1, [])):
+            self.indice.indicizza(self.cartella, audi)
+        self.azioni = iter((("cerca_manuale", {"query": "location of fuses"}), ("segnala_limite", {})))
+        risposta = self.assistente.rispondi("audi", "Dove si trova la scatola dei fusibili?")
+        self.assertEqual(risposta.fonte_citata, Fonte("audi-pdf381-1", 379, 381))
+        self.assertIn("piantone dello sterzo", risposta.testo_cli)
+        self.assertIn("vano motore, sotto un coperchio sul lato sinistro", risposta.testo_cli)
+        self.assertIn("p. 379 (PDF p. 381)", risposta.testo_cli)
+        self.assertNotIn("Fuses and bulbs", risposta.testo_cli)
+        self.assertIn(originale, risposta.testo)
+
+    def test_audi_legge_la_pagina_stampata_tra_le_colonne(self):
+        testo = "Fuses and bulbs\nEngine compartment\n379\nAudi recommends using original fuses."
+        pagina, sezione, righe = leggi_pagina(testo, CATALOGO["audi"], 381)
+        self.assertEqual(pagina, 379)
+        self.assertEqual(sezione, "Fuses and bulbs")
+        self.assertEqual(righe, ["Engine compartment", "Audi recommends using original fuses."])
+        self.assertIsNone(leggi_pagina(testo, CATALOGO["audi"], 382)[0])
 
     def test_civic_distingue_le_due_scatole_dei_fusibili(self):
         domanda = "Dove si trova la scatola dei fusibili nella Civic Type R?"
