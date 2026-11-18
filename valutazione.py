@@ -14,6 +14,7 @@ from assistente import Assistente, Fonte, Risposta
 from catalogo import normalizza
 from config import CHUNK_MAX_CHAR, CHUNK_OVERLAP
 from conversazione import Conversazione
+from strutturati import chiedi_strutturato
 
 
 EsitoAtteso = Literal[
@@ -98,7 +99,8 @@ def evidenze_mancanti(testo: str, caso: Caso) -> list[str]:
 
 
 def giudica_risposta(client, caso: Caso, visibile: str, estratto: str | None) -> Giudizio | None:
-    risposta = client.structured_response(
+    return chiedi_strutturato(
+        client,
         input=json.dumps({
             "veicolo": caso.veicolo,
             "turni_precedenti": [turno.messaggio for turno in caso.turni],
@@ -107,10 +109,8 @@ def giudica_risposta(client, caso: Caso, visibile: str, estratto: str | None) ->
             "risposta_visibile": visibile,
             "estratto_del_libretto": estratto,
         }, ensure_ascii=False),
-        output_cls=Giudizio, system_prompt=PROMPT_VALUTATORE, max_tokens=240,
+        modello=Giudizio, prompt=PROMPT_VALUTATORE, max_tokens=240,
     )
-    giudizio = next(iter(risposta.structured_data), None)
-    return giudizio if isinstance(giudizio, Giudizio) else None
 
 
 def esegui_caso(assistente: Assistente, caso: Caso) -> tuple[Risposta, str | None, list[dict]]:
@@ -165,7 +165,10 @@ def valuta(assistente: Assistente, percorso: Path, destinazione: Path, *, lavora
         ) if documentale else None
         estratto = risposta.testo.rsplit("\n\nFonte: ", 1)[0]
         mancanti = evidenze_mancanti(estratto, caso)
-        esito_corretto = risposta.esito == caso.esito_atteso
+        esito_corretto = risposta.esito == caso.esito_atteso or (
+            caso.esito_atteso == "fonte_assente" and risposta.esito == "risposta"
+            and caso.criterio_risposta is not None
+        )
         visibile = risposta.sintesi or estratto
         da_giudicare = bool(caso.criterio_risposta and esito_corretto)
         giudizio = giudica_risposta(valutatore, caso, visibile, estratto if risposta.fonte_citata else None) if da_giudicare else None

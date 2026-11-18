@@ -1,0 +1,1956 @@
+{
+  "eseguito_il": "2026-11-18T21:44:18.475350+00:00",
+  "modello_agente": "gpt-6-luna",
+  "modello_valutatore": "gpt-6-luna",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 10,
+  "max_char": 1024,
+  "overlap": 0,
+  "lavoratori": 3,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 16,
+      "totale": 24
+    },
+    "ricerche_avviate": {
+      "corretti": 21,
+      "totale": 21
+    },
+    "hit_at_1": {
+      "corretti": 15,
+      "totale": 21
+    },
+    "citazioni_corrette": {
+      "corretti": 20,
+      "totale": 21
+    },
+    "estratti_con_evidenze": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "risposte_coerenti": {
+      "corretti": 16,
+      "totale": 24
+    },
+    "gruppi_completi": {
+      "corretti": 1,
+      "totale": 2
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "astensioni": {
+      "corretti": 1,
+      "totale": 3
+    }
+  },
+  "gruppi": {
+    "leon-bulloni": {
+      "corretti": 2,
+      "totale": 2
+    },
+    "leon-pressione-gomme": {
+      "corretti": 1,
+      "totale": 2
+    }
+  },
+  "risultati": [
+    {
+      "id": "leon-bulloni",
+      "veicolo": "leon",
+      "domanda": "A quanti Nm vanno serrati i bulloni delle ruote della Seat Leon?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 57,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica 140 Nm per i cerchi in acciaio e in lega. Non trasferisce coppie di serraggio da altri modelli.",
+      "gruppo": "leon-bulloni",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "I bulloni delle ruote vanno serrati a 140 Nm, sia con cerchi in acciaio sia in lega leggera.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf59-2",
+          "pagina": 57,
+          "pagina_pdf": 59
+        },
+        {
+          "id": "leon-pdf377-4",
+          "pagina": 375,
+          "pagina_pdf": 377
+        },
+        {
+          "id": "leon-pdf57-4",
+          "pagina": 55,
+          "pagina_pdf": 57
+        },
+        {
+          "id": "leon-pdf58-6",
+          "pagina": 56,
+          "pagina_pdf": 58
+        },
+        {
+          "id": "leon-pdf56-2",
+          "pagina": 54,
+          "pagina_pdf": 56
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf59-2",
+        "pagina": 57,
+        "pagina_pdf": 59
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf59-2",
+          "pagina": 57,
+          "pagina_pdf": 59
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica 140 Nm sia per i cerchi in acciaio sia per quelli in lega, senza riferimenti ad altri modelli.",
+      "passato": true,
+      "latenza_ms": 13774
+    },
+    {
+      "id": "leon-bulloni-v1",
+      "veicolo": "leon",
+      "domanda": "Per la mia Leon, con i cerchi in lega, qual e la coppia delle viti delle ruote?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 57,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica 140 Nm per i cerchi in acciaio e in lega. Non trasferisce coppie di serraggio da altri modelli.",
+      "gruppo": "leon-bulloni",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per i cerchi in lega leggera, la coppia di serraggio delle viti è 140 Nm.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf59-2",
+          "pagina": 57,
+          "pagina_pdf": 59
+        },
+        {
+          "id": "leon-pdf57-4",
+          "pagina": 55,
+          "pagina_pdf": 57
+        },
+        {
+          "id": "leon-pdf377-4",
+          "pagina": 375,
+          "pagina_pdf": 377
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf59-2",
+        "pagina": 57,
+        "pagina_pdf": 59
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf59-2",
+          "pagina": 57,
+          "pagina_pdf": 59
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica 140 Nm per i cerchi in lega, senza attribuire coppie di serraggio ad altri modelli.",
+      "passato": true,
+      "latenza_ms": 14617
+    },
+    {
+      "id": "leon-fusibili-interni",
+      "veicolo": "leon",
+      "domanda": "Dove trovo la scatola dei fusibili dentro l'abitacolo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 66,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica sotto la plancia o cruscotto sul lato conducente, dietro una copertura da abbassare.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La scatola dei fusibili nell’abitacolo si trova sul cruscotto, lato del conducente, sotto la plancia. (p. 66 (PDF p. 68))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf68-6",
+          "pagina": 66,
+          "pagina_pdf": 68
+        },
+        {
+          "id": "leon-pdf69-8",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "leon-pdf71-3",
+          "pagina": 69,
+          "pagina_pdf": 71
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf68-6",
+        "pagina": 66,
+        "pagina_pdf": 68
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf68-6",
+          "pagina": 66,
+          "pagina_pdf": 68
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "Indica il lato conducente e la posizione sotto la plancia, ma non specifica che la scatola è dietro una copertura da abbassare.",
+      "passato": false,
+      "latenza_ms": 15988
+    },
+    {
+      "id": "leon-fusibili-motore",
+      "veicolo": "leon",
+      "domanda": "Come apro la scatola dei fusibili nel vano motore?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 67,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica di aprire il cofano, premere le linguette di blocco ed estrarre il coperchio verso l'alto.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Apri il cofano, premi le linguette di blocco e solleva il coperchio verso l’alto.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf69-5",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "leon-pdf68-6",
+          "pagina": 66,
+          "pagina_pdf": 68
+        },
+        {
+          "id": "leon-pdf355-2",
+          "pagina": 353,
+          "pagina_pdf": 355
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf69-5",
+        "pagina": 67,
+        "pagina_pdf": 69
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf69-5",
+          "pagina": 67,
+          "pagina_pdf": 69
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica di aprire il cofano, premere le linguette di blocco e sollevare il coperchio verso l’alto.",
+      "passato": true,
+      "latenza_ms": 11442
+    },
+    {
+      "id": "leon-fusibile-maggiore",
+      "veicolo": "leon",
+      "domanda": "Se un fusibile continua a saltare posso metterne uno con un amperaggio piu alto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 66,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Esclude un amperaggio maggiore e indica stesso amperaggio e dimensione. Invita a far controllare l'impianto se il nuovo fusibile si brucia nuovamente.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No: non usare un fusibile con amperaggio maggiore. Dopo aver eliminato la causa del problema, sostituiscilo con uno dello stesso amperaggio e della stessa dimensione. Se il nuovo fusibile si brucia dopo poco tempo, fai controllare l’impianto elettrico.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf69-7",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "leon-pdf68-5",
+          "pagina": 66,
+          "pagina_pdf": 68
+        },
+        {
+          "id": "leon-pdf71-4",
+          "pagina": 69,
+          "pagina_pdf": 71
+        },
+        {
+          "id": "leon-pdf70-3",
+          "pagina": 68,
+          "pagina_pdf": 70
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf68-5",
+        "pagina": 66,
+        "pagina_pdf": 68
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf68-5",
+          "pagina": 66,
+          "pagina_pdf": 68
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta esclude un amperaggio maggiore, indica di usare un fusibile dello stesso amperaggio e dimensione e consiglia di far controllare l’impianto se il nuovo fusibile si brucia di nuovo.",
+      "passato": true,
+      "latenza_ms": 13905
+    },
+    {
+      "id": "leon-chiave-pila",
+      "veicolo": "leon",
+      "domanda": "Che codice preciso di pila devo comprare per il telecomando?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 106,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dichiara che il passaggio non specifica un codice preciso e richiede uguale voltaggio, dimensioni e specifiche della batteria originale. Non inventa CR2032 o altri codici.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "chiarimento",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Intendi la chiave telecomando per aprire l’auto o il telecomando separato del riscaldamento autonomo?",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf181-4",
+          "pagina": 179,
+          "pagina_pdf": 181
+        },
+        {
+          "id": "leon-pdf2-4",
+          "pagina": null,
+          "pagina_pdf": 2
+        },
+        {
+          "id": "leon-pdf431-4",
+          "pagina": null,
+          "pagina_pdf": 431
+        },
+        {
+          "id": "leon-pdf399-5",
+          "pagina": 397,
+          "pagina_pdf": 399
+        },
+        {
+          "id": "leon-pdf106-4",
+          "pagina": 104,
+          "pagina_pdf": 106
+        },
+        {
+          "id": "leon-pdf182-1",
+          "pagina": 180,
+          "pagina_pdf": 182
+        },
+        {
+          "id": "leon-pdf106-5",
+          "pagina": 104,
+          "pagina_pdf": 106
+        },
+        {
+          "id": "leon-pdf110-6",
+          "pagina": 108,
+          "pagina_pdf": 110
+        }
+      ],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 16147
+    },
+    {
+      "id": "leon-chiave-sincronizza",
+      "veicolo": "leon",
+      "domanda": "La chiave non apre piu dopo che ho premuto tante volte i tasti lontano dalla macchina: come la sincronizzo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 106,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica di premere lo sblocco vicino al veicolo e aprire entro un minuto con la chiave meccanica, conservando l'ordine.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì: se si preme frequentemente il pulsante  fuori dal raggio d’azione, può essere necessario sincronizzare nuovamente la chiave. Estrai la chiave dal veicolo, premi  stando accanto al veicolo e, entro un minuto, apri il veicolo con lo spadino della chiave. La sincronizzazione è terminata; monta il coperchio se necessario.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf108-3",
+          "pagina": 106,
+          "pagina_pdf": 108
+        },
+        {
+          "id": "leon-pdf107-3",
+          "pagina": 105,
+          "pagina_pdf": 107
+        },
+        {
+          "id": "leon-pdf110-5",
+          "pagina": 108,
+          "pagina_pdf": 110
+        },
+        {
+          "id": "leon-pdf112-5",
+          "pagina": 110,
+          "pagina_pdf": 112
+        },
+        {
+          "id": "leon-pdf106-5",
+          "pagina": 104,
+          "pagina_pdf": 106
+        },
+        {
+          "id": "leon-pdf106-4",
+          "pagina": 104,
+          "pagina_pdf": 106
+        },
+        {
+          "id": "leon-pdf115-3",
+          "pagina": 113,
+          "pagina_pdf": 115
+        },
+        {
+          "id": "leon-pdf111-1",
+          "pagina": 109,
+          "pagina_pdf": 111
+        },
+        {
+          "id": "leon-pdf112-4",
+          "pagina": 110,
+          "pagina_pdf": 112
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf108-3",
+        "pagina": 106,
+        "pagina_pdf": 108
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf108-3",
+          "pagina": 106,
+          "pagina_pdf": 108
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica di premere il pulsante di sblocco accanto al veicolo e poi aprirlo entro un minuto con lo spadino, rispettando l’ordine richiesto.",
+      "passato": true,
+      "latenza_ms": 13013
+    },
+    {
+      "id": "leon-olio-rosso",
+      "veicolo": "leon",
+      "domanda": "La spia rossa della pressione olio lampeggia ma il livello e giusto: posso continuare tenendo il motore al minimo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 356,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dice di non proseguire, spegnere il motore e non lasciarlo neppure al minimo; richiedere assistenza specializzata.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No: spegni il motore; con la spia rossa della pressione dell’olio lampeggiante e il livello corretto, il motore non deve girare neppure al minimo. Fatti aiutare da personale specializzato.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf358-2",
+          "pagina": 356,
+          "pagina_pdf": 358
+        },
+        {
+          "id": "leon-pdf92-3",
+          "pagina": 90,
+          "pagina_pdf": 92
+        },
+        {
+          "id": "leon-pdf380-1",
+          "pagina": 378,
+          "pagina_pdf": 380
+        },
+        {
+          "id": "leon-pdf359-3",
+          "pagina": 357,
+          "pagina_pdf": 359
+        },
+        {
+          "id": "leon-pdf366-3",
+          "pagina": 364,
+          "pagina_pdf": 366
+        },
+        {
+          "id": "leon-pdf359-6",
+          "pagina": 357,
+          "pagina_pdf": 359
+        },
+        {
+          "id": "leon-pdf352-1",
+          "pagina": 350,
+          "pagina_pdf": 352
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf358-2",
+        "pagina": 356,
+        "pagina_pdf": 358
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf358-2",
+          "pagina": 356,
+          "pagina_pdf": 358
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta dice di spegnere il motore, non lasciarlo girare neppure al minimo e rivolgersi a personale specializzato.",
+      "passato": true,
+      "latenza_ms": 8242
+    },
+    {
+      "id": "leon-pressione-gomme",
+      "veicolo": "leon",
+      "domanda": "Dove leggo la pressione corretta delle gomme e devo controllarla a caldo o a freddo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 373,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica l'etichetta nella zona posteriore del telaio della porta anteriore sinistra, controllo a freddo e adeguamento al carico. Non inventa un valore numerico.",
+      "gruppo": "leon-pressione-gomme",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "La pressione corretta è indicata sull’adesivo nella parte posteriore del telaio della porta anteriore sinistra. (p. 373 (PDF p. 375))\n\nControllala regolarmente solo con le gomme fredde. Se occorre correggerla, fallo a pneumatici freddi. (p. 374 (PDF p. 376))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf257-2",
+          "pagina": 255,
+          "pagina_pdf": 257
+        },
+        {
+          "id": "leon-pdf381-2",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "leon-pdf376-5",
+          "pagina": 374,
+          "pagina_pdf": 376
+        },
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        },
+        {
+          "id": "leon-pdf380-3",
+          "pagina": 378,
+          "pagina_pdf": 380
+        },
+        {
+          "id": "leon-pdf54-3",
+          "pagina": 52,
+          "pagina_pdf": 54
+        },
+        {
+          "id": "leon-pdf378-4",
+          "pagina": 376,
+          "pagina_pdf": 378
+        },
+        {
+          "id": "leon-pdf322-7",
+          "pagina": 320,
+          "pagina_pdf": 322
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf375-3",
+        "pagina": 373,
+        "pagina_pdf": 375
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        },
+        {
+          "id": "leon-pdf376-5",
+          "pagina": 374,
+          "pagina_pdf": 376
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "Indica correttamente la posizione dell’etichetta e il controllo a freddo, ma omette di adeguare la pressione al carico del veicolo.",
+      "passato": false,
+      "latenza_ms": 14065
+    },
+    {
+      "id": "leon-pressione-gomme-v1",
+      "veicolo": "leon",
+      "domanda": "Sulla Seat Leon dove trovo quanti bar mettere e posso misurarli appena finito di viaggiare?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 373,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica l'etichetta nella zona posteriore del telaio della porta anteriore sinistra, controllo a freddo e adeguamento al carico. Non inventa un valore numerico.",
+      "gruppo": "leon-pressione-gomme",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "I valori della pressione degli pneumatici sono riportati sull’etichetta adesiva nella zona posteriore del telaio della porta anteriore sinistra. La pressione va adattata al carico del veicolo; se è caricato al massimo, usa il valore per il carico più elevato indicato sull’etichetta. Controllala soltanto quando gli pneumatici sono freddi: non ridurla se sono caldi.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        },
+        {
+          "id": "leon-pdf55-1",
+          "pagina": 53,
+          "pagina_pdf": 55
+        },
+        {
+          "id": "leon-pdf257-2",
+          "pagina": 255,
+          "pagina_pdf": 257
+        },
+        {
+          "id": "leon-pdf381-2",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "leon-pdf376-5",
+          "pagina": 374,
+          "pagina_pdf": 376
+        },
+        {
+          "id": "leon-pdf54-3",
+          "pagina": 52,
+          "pagina_pdf": 54
+        },
+        {
+          "id": "leon-pdf54-4",
+          "pagina": 52,
+          "pagina_pdf": 54
+        },
+        {
+          "id": "leon-pdf53-5",
+          "pagina": 51,
+          "pagina_pdf": 53
+        },
+        {
+          "id": "leon-pdf322-7",
+          "pagina": 320,
+          "pagina_pdf": 322
+        },
+        {
+          "id": "leon-pdf381-1",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "leon-pdf380-3",
+          "pagina": 378,
+          "pagina_pdf": 380
+        },
+        {
+          "id": "leon-pdf54-2",
+          "pagina": 52,
+          "pagina_pdf": 54
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf375-3",
+        "pagina": 373,
+        "pagina_pdf": 375
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica correttamente dove si trova l’etichetta, prescrive il controllo a freddo e l’adeguamento al carico, senza inventare valori numerici.",
+      "passato": true,
+      "latenza_ms": 13849
+    },
+    {
+      "id": "leon-catene",
+      "veicolo": "leon",
+      "domanda": "Ho la trazione integrale: su quali ruote monto le catene e qual e la velocita massima?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 377,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica ruote anteriori anche per la trazione integrale, massimo 50 km/h e compatibilita solo con determinate combinazioni cerchi/pneumatici.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Anche con trazione integrale, le catene vanno montate esclusivamente sulle ruote anteriori. (p. 377 (PDF p. 379))\n\nCon le catene montate, la velocità massima è 50 km/h (30 mph). (p. 377 (PDF p. 379))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf379-1",
+          "pagina": 377,
+          "pagina_pdf": 379
+        },
+        {
+          "id": "leon-pdf79-6",
+          "pagina": 77,
+          "pagina_pdf": 79
+        },
+        {
+          "id": "leon-pdf374-4",
+          "pagina": 372,
+          "pagina_pdf": 374
+        },
+        {
+          "id": "leon-pdf378-4",
+          "pagina": 376,
+          "pagina_pdf": 378
+        },
+        {
+          "id": "leon-pdf378-3",
+          "pagina": 376,
+          "pagina_pdf": 378
+        },
+        {
+          "id": "leon-pdf377-6",
+          "pagina": 375,
+          "pagina_pdf": 377
+        },
+        {
+          "id": "leon-pdf383-1",
+          "pagina": 381,
+          "pagina_pdf": 383
+        },
+        {
+          "id": "leon-pdf383-2",
+          "pagina": 381,
+          "pagina_pdf": 383
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf379-1",
+        "pagina": 377,
+        "pagina_pdf": 379
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf379-1",
+          "pagina": 377,
+          "pagina_pdf": 379
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "Indica correttamente le ruote anteriori anche con trazione integrale e il limite di 50 km/h, ma non menziona che le catene sono compatibili solo con determinate combinazioni di cerchi e pneumatici.",
+      "passato": false,
+      "latenza_ms": 11282
+    },
+    {
+      "id": "leon-lavavetri",
+      "veicolo": "leon",
+      "domanda": "Il tappo blu nel vano motore e del lavavetri? Alimenta anche il lunotto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 361,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Conferma il lavavetri e il serbatoio condiviso per parabrezza e lunotto posteriore.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì: il tappo blu è quello del serbatoio del lavavetri, che contiene liquido per il parabrezza e per il lunotto posteriore.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf363-6",
+          "pagina": 361,
+          "pagina_pdf": 363
+        },
+        {
+          "id": "leon-pdf362-5",
+          "pagina": 360,
+          "pagina_pdf": 362
+        },
+        {
+          "id": "leon-pdf405-3",
+          "pagina": 403,
+          "pagina_pdf": 405
+        },
+        {
+          "id": "leon-pdf364-3",
+          "pagina": 362,
+          "pagina_pdf": 364
+        },
+        {
+          "id": "leon-pdf120-3",
+          "pagina": 118,
+          "pagina_pdf": 120
+        },
+        {
+          "id": "leon-pdf349-3",
+          "pagina": 347,
+          "pagina_pdf": 349
+        },
+        {
+          "id": "leon-pdf343-3",
+          "pagina": 341,
+          "pagina_pdf": 343
+        },
+        {
+          "id": "leon-pdf354-4",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "leon-pdf125-7",
+          "pagina": 123,
+          "pagina_pdf": 125
+        },
+        {
+          "id": "leon-pdf361-2",
+          "pagina": 359,
+          "pagina_pdf": 361
+        },
+        {
+          "id": "leon-pdf345-4",
+          "pagina": 343,
+          "pagina_pdf": 345
+        },
+        {
+          "id": "leon-pdf361-3",
+          "pagina": 359,
+          "pagina_pdf": 361
+        },
+        {
+          "id": "leon-pdf364-2",
+          "pagina": 362,
+          "pagina_pdf": 364
+        },
+        {
+          "id": "leon-pdf350-2",
+          "pagina": 348,
+          "pagina_pdf": 350
+        },
+        {
+          "id": "leon-pdf171-3",
+          "pagina": 169,
+          "pagina_pdf": 171
+        },
+        {
+          "id": "leon-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "leon-pdf349-5",
+          "pagina": 347,
+          "pagina_pdf": 349
+        },
+        {
+          "id": "leon-pdf173-3",
+          "pagina": 171,
+          "pagina_pdf": 173
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf363-6",
+        "pagina": 361,
+        "pagina_pdf": 363
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf363-6",
+          "pagina": 361,
+          "pagina_pdf": 363
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Conferma che il tappo blu è del lavavetri e che il serbatoio serve sia il parabrezza sia il lunotto posteriore.",
+      "passato": true,
+      "latenza_ms": 7203
+    },
+    {
+      "id": "leon-freni-liquido",
+      "veicolo": "leon",
+      "domanda": "Che specifica deve avere il liquido freni e quale alternativa e ammessa se non la trovo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 361,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica VW 501 14. Se non reperibile indica liquido di alta qualita DIN ISO 4925 CLASS 4 oppure FMVSS 116 DOT 4.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il liquido dei freni deve essere nuovo e conforme allo standard VW 501 14. Se quello conforme a VW 501 14 non è reperibile, è ammesso esclusivamente un liquido dei freni di alta qualità conforme ai requisiti dello standard DIN ISO 4925 CLASS 4 oppure allo standard statunitense FMVSS 116 DOT 4. (p. 361 (PDF p. 363))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf363-2",
+          "pagina": 361,
+          "pagina_pdf": 363
+        },
+        {
+          "id": "leon-pdf362-5",
+          "pagina": 360,
+          "pagina_pdf": 362
+        },
+        {
+          "id": "leon-pdf292-4",
+          "pagina": 290,
+          "pagina_pdf": 292
+        },
+        {
+          "id": "leon-pdf390-7",
+          "pagina": 388,
+          "pagina_pdf": 390
+        },
+        {
+          "id": "leon-pdf293-6",
+          "pagina": 291,
+          "pagina_pdf": 293
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf363-2",
+        "pagina": 361,
+        "pagina_pdf": 363
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf363-2",
+          "pagina": 361,
+          "pagina_pdf": 363
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica la specifica VW 501 14 e, se non reperibile, l’alternativa di alta qualità conforme a DIN ISO 4925 CLASS 4 oppure FMVSS 116 DOT 4.",
+      "passato": true,
+      "latenza_ms": 15002
+    },
+    {
+      "id": "leon-adblue",
+      "veicolo": "leon",
+      "domanda": "Ho un diesel e un avviso di livello AdBlue basso: quanto devo rabboccare almeno e qual e la norma del prodotto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 348,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica minimo circa 5 litri dopo l'avviso e AdBlue ISO 22241-1. Non trasferisce questi dati a una versione benzina.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Rabbocca almeno circa 5 litri. Usa AdBlue® conforme alla norma ISO 22241-1 e solo prodotti originali.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf349-5",
+          "pagina": 347,
+          "pagina_pdf": 349
+        },
+        {
+          "id": "leon-pdf351-3",
+          "pagina": 349,
+          "pagina_pdf": 351
+        },
+        {
+          "id": "leon-pdf350-2",
+          "pagina": 348,
+          "pagina_pdf": 350
+        },
+        {
+          "id": "leon-pdf397-3",
+          "pagina": 395,
+          "pagina_pdf": 397
+        },
+        {
+          "id": "leon-pdf359-6",
+          "pagina": 357,
+          "pagina_pdf": 359
+        },
+        {
+          "id": "leon-pdf4-5",
+          "pagina": null,
+          "pagina_pdf": 4
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf350-2",
+        "pagina": 348,
+        "pagina_pdf": 350
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf350-2",
+          "pagina": 348,
+          "pagina_pdf": 350
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica il rabbocco minimo di circa 5 litri e la conformità alla norma ISO 22241-1, senza attribuire questi dati a una versione benzina.",
+      "passato": true,
+      "latenza_ms": 8168
+    },
+    {
+      "id": "leon-startstop",
+      "veicolo": "leon",
+      "domanda": "Compare Start/Stop disattivato, avviare il motore manualmente: cosa puo averlo causato secondo il libretto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 240,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica apertura della portiera conducente o cintura del conducente slacciata. Se tratta l'applicabilita, conserva la nota non valido per PHEV.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per i veicoli non ibridi PHEV, l’indicazione compare quando Start/Stop non può riavviare il motore. Secondo il libretto, può essere causata dall’apertura della portiera del conducente oppure dal fatto che il conducente abbia slacciato la cintura di sicurezza.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf242-3",
+          "pagina": 240,
+          "pagina_pdf": 242
+        },
+        {
+          "id": "leon-pdf235-4",
+          "pagina": 233,
+          "pagina_pdf": 235
+        },
+        {
+          "id": "leon-pdf245-1",
+          "pagina": 243,
+          "pagina_pdf": 245
+        },
+        {
+          "id": "leon-pdf236-4",
+          "pagina": 234,
+          "pagina_pdf": 236
+        },
+        {
+          "id": "leon-pdf243-1",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "leon-pdf237-3",
+          "pagina": 235,
+          "pagina_pdf": 237
+        },
+        {
+          "id": "leon-pdf244-5",
+          "pagina": 242,
+          "pagina_pdf": 244
+        },
+        {
+          "id": "leon-pdf243-3",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "leon-pdf244-4",
+          "pagina": 242,
+          "pagina_pdf": 244
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf242-3",
+        "pagina": 240,
+        "pagina_pdf": 242
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf242-3",
+          "pagina": 240,
+          "pagina_pdf": 242
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica entrambe le cause riportate nel libretto e mantiene la nota di non applicabilità ai veicoli PHEV.",
+      "passato": true,
+      "latenza_ms": 11799
+    },
+    {
+      "id": "leon-cruise",
+      "veicolo": "leon",
+      "domanda": "Da quale velocita circa posso usare il regolatore di velocita normale, non ACC?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 261,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica marcia avanti oltre circa 20 km/h, senza confondere con la gamma ACC.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il regolatore di velocità normale (GRA) è disponibile procedendo in marcia avanti oltre circa 20 km/h.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf263-1",
+          "pagina": 261,
+          "pagina_pdf": 263
+        },
+        {
+          "id": "leon-pdf277-5",
+          "pagina": 275,
+          "pagina_pdf": 277
+        },
+        {
+          "id": "leon-pdf278-1",
+          "pagina": 276,
+          "pagina_pdf": 278
+        },
+        {
+          "id": "leon-pdf265-4",
+          "pagina": 263,
+          "pagina_pdf": 265
+        },
+        {
+          "id": "leon-pdf264-6",
+          "pagina": 262,
+          "pagina_pdf": 264
+        },
+        {
+          "id": "leon-pdf262-5",
+          "pagina": 260,
+          "pagina_pdf": 262
+        },
+        {
+          "id": "leon-pdf264-1",
+          "pagina": 262,
+          "pagina_pdf": 264
+        },
+        {
+          "id": "leon-pdf265-3",
+          "pagina": 263,
+          "pagina_pdf": 265
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf263-1",
+        "pagina": 261,
+        "pagina_pdf": 263
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf263-1",
+          "pagina": 261,
+          "pagina_pdf": 263
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica correttamente che il GRA normale è disponibile in marcia avanti oltre circa 20 km/h, senza confonderlo con l’ACC.",
+      "passato": true,
+      "latenza_ms": 7972
+    },
+    {
+      "id": "leon-cassetto",
+      "veicolo": "leon",
+      "domanda": "Quanto peso posso caricare nel cassetto portaoggetti sotto il sedile e devo tenerlo chiuso mentre guido?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 164,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica massimo 1,5 kg e tenerlo chiuso durante la guida per evitare interferenze con i pedali.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il peso massimo caricabile nel cassetto è di 1,5 kg. (p. 164 (PDF p. 166))\n\nSì, va tenuto sempre chiuso mentre si guida: se resta aperto, potrebbe ostacolare il funzionamento dei pedali. (p. 164 (PDF p. 166))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf166-3",
+          "pagina": 164,
+          "pagina_pdf": 166
+        },
+        {
+          "id": "leon-pdf165-6",
+          "pagina": 163,
+          "pagina_pdf": 165
+        },
+        {
+          "id": "leon-pdf167-2",
+          "pagina": 165,
+          "pagina_pdf": 167
+        },
+        {
+          "id": "leon-pdf164-3",
+          "pagina": 162,
+          "pagina_pdf": 164
+        },
+        {
+          "id": "leon-pdf164-9",
+          "pagina": 162,
+          "pagina_pdf": 164
+        },
+        {
+          "id": "leon-pdf157-3",
+          "pagina": 155,
+          "pagina_pdf": 157
+        },
+        {
+          "id": "leon-pdf151-3",
+          "pagina": 149,
+          "pagina_pdf": 151
+        },
+        {
+          "id": "leon-pdf48-3",
+          "pagina": 46,
+          "pagina_pdf": 48
+        },
+        {
+          "id": "leon-pdf149-2",
+          "pagina": 147,
+          "pagina_pdf": 149
+        },
+        {
+          "id": "leon-pdf45-5",
+          "pagina": 43,
+          "pagina_pdf": 45
+        },
+        {
+          "id": "leon-pdf22-1",
+          "pagina": 20,
+          "pagina_pdf": 22
+        },
+        {
+          "id": "leon-pdf149-4",
+          "pagina": 147,
+          "pagina_pdf": 149
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf166-3",
+        "pagina": 164,
+        "pagina_pdf": 166
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf166-3",
+          "pagina": 164,
+          "pagina_pdf": 166
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica il limite massimo di 1,5 kg e che il cassetto va tenuto chiuso durante la guida per evitare che ostacoli i pedali.",
+      "passato": true,
+      "latenza_ms": 13024
+    },
+    {
+      "id": "leon-olio-attesa",
+      "veicolo": "leon",
+      "domanda": "Quanto devo aspettare dopo aver spento il motore per leggere l'astina dell'olio, secondo la procedura del libretto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 356,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica circa due minuti, veicolo orizzontale e motore prima brevemente al minimo a temperatura di servizio poi spento.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Dopo aver spento il motore, attendi circa 2 minuti prima di estrarre l’astina e controllare il livello dell’olio.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf358-4",
+          "pagina": 356,
+          "pagina_pdf": 358
+        },
+        {
+          "id": "leon-pdf359-3",
+          "pagina": 357,
+          "pagina_pdf": 359
+        },
+        {
+          "id": "leon-pdf360-2",
+          "pagina": 358,
+          "pagina_pdf": 360
+        },
+        {
+          "id": "leon-pdf357-3",
+          "pagina": 355,
+          "pagina_pdf": 357
+        },
+        {
+          "id": "leon-pdf237-3",
+          "pagina": 235,
+          "pagina_pdf": 237
+        },
+        {
+          "id": "leon-pdf93-1",
+          "pagina": 91,
+          "pagina_pdf": 93
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf358-4",
+        "pagina": 356,
+        "pagina_pdf": 358
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf358-4",
+          "pagina": 356,
+          "pagina_pdf": 358
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "Indica l’attesa di circa due minuti, ma non menziona che il veicolo deve essere orizzontale e che il motore va prima fatto funzionare brevemente al minimo a temperatura di servizio.",
+      "passato": false,
+      "latenza_ms": 6889
+    },
+    {
+      "id": "leon-fari-estero",
+      "veicolo": "leon",
+      "domanda": "Per una breve vacanza in un paese con guida sul lato opposto devo coprire i fari con adesivi?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 135,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica che la distribuzione dei fari rispetta le luci turistiche senza maschere adesive o regolazioni, limitatamente a una permanenza temporanea; per permanenza lunga rivolgersi a un centro tecnico.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per una breve vacanza non occorre coprire i fari con adesivi: le luci turistiche consentono di rispettare i valori specificati senza maschere adesive o modifiche alla regolazione. (p. 135 (PDF p. 137))\n\nQuesta soluzione è prevista solo per un periodo limitato; per una permanenza lunga il manuale indica di rivolgersi a un centro tecnico autorizzato per cambiare i fari. (p. 135 (PDF p. 137))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf132-3",
+          "pagina": 130,
+          "pagina_pdf": 132
+        },
+        {
+          "id": "leon-pdf137-1",
+          "pagina": 135,
+          "pagina_pdf": 137
+        },
+        {
+          "id": "leon-pdf71-5",
+          "pagina": 69,
+          "pagina_pdf": 71
+        },
+        {
+          "id": "leon-pdf135-1",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "leon-pdf133-4",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "leon-pdf143-1",
+          "pagina": 141,
+          "pagina_pdf": 143
+        },
+        {
+          "id": "leon-pdf131-1",
+          "pagina": 129,
+          "pagina_pdf": 131
+        },
+        {
+          "id": "leon-pdf142-6",
+          "pagina": 140,
+          "pagina_pdf": 142
+        },
+        {
+          "id": "leon-pdf134-3",
+          "pagina": 132,
+          "pagina_pdf": 134
+        },
+        {
+          "id": "leon-pdf286-5",
+          "pagina": 284,
+          "pagina_pdf": 286
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf137-1",
+        "pagina": 135,
+        "pagina_pdf": 137
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf137-1",
+          "pagina": 135,
+          "pagina_pdf": 137
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica che per una breve vacanza le luci turistiche rispettano i valori senza adesivi né regolazioni e che, per una permanenza lunga, occorre rivolgersi a un centro tecnico autorizzato.",
+      "passato": true,
+      "latenza_ms": 14754
+    },
+    {
+      "id": "leon-fusibili-chat",
+      "veicolo": "leon",
+      "domanda": "Seat Leon",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 66,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica sotto la plancia o cruscotto sul lato conducente, dietro una copertura da abbassare.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Dove sono i fusibili nell'abitacolo?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Dove sono i fusibili nell'abitacolo?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "I fusibili dell’abitacolo si trovano sotto la plancia, sul lato del conducente, dietro un coperchio. Lo si apre abbassandolo.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf68-6",
+          "pagina": 66,
+          "pagina_pdf": 68
+        },
+        {
+          "id": "leon-pdf69-8",
+          "pagina": 67,
+          "pagina_pdf": 69
+        },
+        {
+          "id": "leon-pdf71-3",
+          "pagina": 69,
+          "pagina_pdf": 71
+        },
+        {
+          "id": "leon-pdf70-3",
+          "pagina": 68,
+          "pagina_pdf": 70
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf68-6",
+        "pagina": 66,
+        "pagina_pdf": 68
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf68-6",
+          "pagina": 66,
+          "pagina_pdf": 68
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica che i fusibili sono sotto la plancia, sul lato del conducente, dietro una copertura da abbassare.",
+      "passato": true,
+      "latenza_ms": 7250
+    },
+    {
+      "id": "leon-pressione-chat",
+      "veicolo": "leon",
+      "domanda": "E una SEAT Leon del 2021.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 373,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica l'etichetta nella zona posteriore del telaio della porta anteriore sinistra, controllo a freddo e adeguamento al carico. Non inventa un valore numerico.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Dove trovo la pressione dei pneumatici e a che temperatura li controllo?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Dove trovo la pressione dei pneumatici e a che temperatura li controllo?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "I valori sono sull’etichetta adesiva nella parte posteriore del telaio della porta anteriore sinistra. (p. 373 (PDF p. 375))\n\nControlla la pressione regolarmente solo con gli pneumatici freddi; il libretto non indica una temperatura numerica. (p. 374 (PDF p. 376))\n\nDal libretto non posso determinare la temperatura numerica degli pneumatici.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf257-2",
+          "pagina": 255,
+          "pagina_pdf": 257
+        },
+        {
+          "id": "leon-pdf381-2",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "leon-pdf376-5",
+          "pagina": 374,
+          "pagina_pdf": 376
+        },
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        },
+        {
+          "id": "leon-pdf54-3",
+          "pagina": 52,
+          "pagina_pdf": 54
+        },
+        {
+          "id": "leon-pdf54-4",
+          "pagina": 52,
+          "pagina_pdf": 54
+        },
+        {
+          "id": "leon-pdf53-5",
+          "pagina": 51,
+          "pagina_pdf": 53
+        },
+        {
+          "id": "leon-pdf52-8",
+          "pagina": 50,
+          "pagina_pdf": 52
+        },
+        {
+          "id": "leon-pdf380-3",
+          "pagina": 378,
+          "pagina_pdf": 380
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf375-3",
+        "pagina": 373,
+        "pagina_pdf": 375
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        },
+        {
+          "id": "leon-pdf376-5",
+          "pagina": 374,
+          "pagina_pdf": 376
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "Indica correttamente la posizione dell’etichetta e il controllo a freddo, senza inventare valori numerici, ma omette di dire che la pressione va adeguata al carico.",
+      "passato": false,
+      "latenza_ms": 8934
+    },
+    {
+      "id": "leon-neg-carburante",
+      "veicolo": "leon",
+      "domanda": "Quanti litri di carburante ci sono adesso nella mia Seat Leon?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dichiara che il libretto non permette di conoscere il livello attuale, senza attribuire una capienza o una soglia al livello reale.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non posso dirti quanti litri ci sono adesso. Il libretto indica che, con l’accensione inserita, il quadro strumenti mostra il livello del carburante e l’autonomia; non riporta la quantità attuale in litri.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf90-2",
+          "pagina": 88,
+          "pagina_pdf": 90
+        },
+        {
+          "id": "leon-pdf226-2",
+          "pagina": 224,
+          "pagina_pdf": 226
+        },
+        {
+          "id": "leon-pdf91-4",
+          "pagina": 89,
+          "pagina_pdf": 91
+        },
+        {
+          "id": "leon-pdf343-2",
+          "pagina": 341,
+          "pagina_pdf": 343
+        },
+        {
+          "id": "leon-pdf343-4",
+          "pagina": 341,
+          "pagina_pdf": 343
+        },
+        {
+          "id": "leon-pdf356-1",
+          "pagina": 354,
+          "pagina_pdf": 356
+        },
+        {
+          "id": "leon-pdf79-5",
+          "pagina": 77,
+          "pagina_pdf": 79
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf90-2",
+        "pagina": 88,
+        "pagina_pdf": 90
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf90-2",
+          "pagina": 88,
+          "pagina_pdf": 90
+        }
+      ],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 14324
+    },
+    {
+      "id": "leon-neg-telefono",
+      "veicolo": "leon",
+      "domanda": "Quale telefono era collegato ieri alla mia Leon?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dichiara che il manuale non contiene la cronologia reale dei dispositivi della singola auto e non inventa un telefono.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non posso sapere quale telefono fosse collegato ieri: il libretto dice solo che i dispositivi associati restano memorizzati nell’infotainment anche quando non sono connessi.\n\nDal libretto non posso determinare quale telefono era collegato ieri.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf229-4",
+          "pagina": 227,
+          "pagina_pdf": 229
+        },
+        {
+          "id": "leon-pdf228-3",
+          "pagina": 226,
+          "pagina_pdf": 228
+        },
+        {
+          "id": "leon-pdf197-4",
+          "pagina": 195,
+          "pagina_pdf": 197
+        },
+        {
+          "id": "leon-pdf227-1",
+          "pagina": 225,
+          "pagina_pdf": 227
+        },
+        {
+          "id": "leon-pdf207-2",
+          "pagina": 205,
+          "pagina_pdf": 207
+        },
+        {
+          "id": "leon-pdf208-1",
+          "pagina": 206,
+          "pagina_pdf": 208
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf229-4",
+        "pagina": 227,
+        "pagina_pdf": 229
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf229-4",
+          "pagina": 227,
+          "pagina_pdf": 229
+        }
+      ],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 9382
+    },
+    {
+      "id": "leon-neg-costo",
+      "veicolo": "leon",
+      "domanda": "Quanto costa esattamente oggi cambiare la frizione della mia Leon nell'officina vicino a casa?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dichiara che prezzo attuale e preventivo dell'officina non sono determinabili dal libretto, senza inventare un importo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il libretto non riporta il prezzo attuale della sostituzione della frizione né le tariffe dell’officina vicino a casa.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf363-2",
+          "pagina": 361,
+          "pagina_pdf": 363
+        },
+        {
+          "id": "leon-pdf390-7",
+          "pagina": 388,
+          "pagina_pdf": 390
+        },
+        {
+          "id": "leon-pdf293-2",
+          "pagina": 291,
+          "pagina_pdf": 293
+        },
+        {
+          "id": "leon-pdf358-3",
+          "pagina": 356,
+          "pagina_pdf": 358
+        },
+        {
+          "id": "leon-pdf358-1",
+          "pagina": 356,
+          "pagina_pdf": 358
+        },
+        {
+          "id": "leon-pdf255-7",
+          "pagina": 253,
+          "pagina_pdf": 255
+        },
+        {
+          "id": "leon-pdf245-2",
+          "pagina": 243,
+          "pagina_pdf": 245
+        },
+        {
+          "id": "leon-pdf58-5",
+          "pagina": 56,
+          "pagina_pdf": 58
+        },
+        {
+          "id": "leon-pdf59-2",
+          "pagina": 57,
+          "pagina_pdf": 59
+        },
+        {
+          "id": "leon-pdf387-1",
+          "pagina": 385,
+          "pagina_pdf": 387
+        },
+        {
+          "id": "leon-pdf406-4",
+          "pagina": 404,
+          "pagina_pdf": 406
+        },
+        {
+          "id": "leon-pdf408-5",
+          "pagina": 406,
+          "pagina_pdf": 408
+        },
+        {
+          "id": "leon-pdf409-2",
+          "pagina": 407,
+          "pagina_pdf": 409
+        }
+      ],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta chiarisce che il libretto non riporta né il prezzo attuale né le tariffe dell’officina, senza inventare importi.",
+      "passato": true,
+      "latenza_ms": 8808
+    }
+  ],
+  "profilo_ingestione": {
+    "estrattore": "pdfium",
+    "strategia": "sottosezioni",
+    "collezione": "manuali_leon_completo_6843ac46547166f0bd96"
+  }
+}

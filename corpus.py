@@ -2,12 +2,9 @@ import re
 from pathlib import Path
 from textwrap import wrap
 
-from datapizza.modules.splitters import RecursiveSplitter
-from datapizza.type import Node, NodeType
-from pypdf import PdfReader
-
-from catalogo import AUDI, Veicolo, leggi_passaggi
+from catalogo import AUDI, Veicolo, leggi_passaggi, normalizza
 from config import CHUNK_MAX_CHAR, CHUNK_OVERLAP
+from estrazione import estrai_pagine
 
 
 def leggi_pagina(testo: str, veicolo: Veicolo, posizione: int | None = None) -> tuple[int | None, str, list[str]]:
@@ -40,10 +37,116 @@ def leggi_pagina(testo: str, veicolo: Veicolo, posizione: int | None = None) -> 
                 iter(corpo), "Manuale d’uso",
             )
             return pagina, sezione, [r for r in corpo if r != intestazione]
+    # Alcuni libretti riportano il numero stampato come ultima riga autonoma.
+    if righe and re.fullmatch(r"\d{1,4}", righe[-1]):
+        pagina = int(righe[-1])
+        corpo = righe[:-1]
+        sezione = corpo[0] if corpo else "Manuale d’uso"
+        return pagina, sezione, corpo[1:]
     return None, "Manuale d’uso", righe
 
 
-def estrai_documenti(cartella: Path, veicolo: Veicolo) -> tuple[list[tuple[str, dict]], int, list[int]]:
+def titolo_sottosezione(riga: str, successiva: str, precedente: str, veicolo: Veicolo) -> str | None:
+    markdown = re.fullmatch(r"#{1,6}\s+(.+)", riga)
+    if markdown:
+        return markdown[1]
+    titolo = normalizza(riga)
+    if not titolo or len(riga) > 175 or titolo in {
+        "warning", "warnings", "avvertenze", "avvertenza", "pericolo", "caution", "note", "tips", "attention", "nota",
+    }:
+        return None
+    if veicolo.id == "focus":
+        lettere = [lettera for lettera in riga if lettera.isalpha()]
+        if len(lettere) >= 4 and riga.isupper() and len(riga) <= 105 and not re.search(r"\d|[.?!:]", riga):
+            return riga
+    elif veicolo.id == "civic":
+        if riga.startswith(("■", "●")):
+            return re.sub(r"\s+1[A-Z].*$", "", riga.lstrip("■● ")).strip()
+        # Il PDF a due colonne ripete alcuni titoli dopo il numero della nota.
+        if 3 <= len(riga) <= 82 and re.match(r"^\d+[A-Z]", successiva):
+            if normalizza(re.sub(r"^\d+", "", successiva)) == titolo:
+                return riga
+    else:
+        # Nell'Audi l'OCR perde lo stile del titolo. Una riga breve prima di un nuovo blocco
+        # è più indicativa delle maiuscole, usate anche nelle normali frasi.
+        if not (1 <= len(riga.split()) <= 7 and 4 <= len(riga) <= 67 and riga[0].isupper()
+                and re.fullmatch(r"[\w /–-]+", riga)):
+            return None
+        inizio_frase = re.match(
+            r"^(?:A|An|The|If|When|To|Have|Press|Push|Pull|Hold|Apply|After|Before|Driving|"
+            r"Always|Check|Only|For|Your|This|With|See|At|In|On|Some|It|Once|Make|Do|Note|Tips|"
+            r"WARNING|CAUTION|Fig|Applies)\b", riga,
+        )
+        if inizio_frase and not re.fullmatch(r"Driving with (?:a trailer|the compact spare tire)", riga, re.I):
+            return None
+        if (successiva and (successiva[0].isupper() or successiva.startswith((">", "@", "»", "■")))
+                and (not precedente or precedente.endswith((".", "?", "!", ")", ":")) or precedente[0].isupper())):
+            return riga
+    return None
+
+
+def sottosezioni(righe: list[str], veicolo: Veicolo, titolo_iniziale: str) -> list[tuple[str, list[str]]]:
+    risultati = []
+    titolo = titolo_iniziale
+    corpo = []
+    for i, riga in enumerate(righe):
+        nuovo = titolo_sottosezione(
+            riga, righe[i + 1] if i + 1 < len(righe) else "", righe[i - 1] if i else "", veicolo,
+        )
+        if nuovo:
+            if corpo and (sum(map(len, corpo)) >= 75 or titolo != titolo_iniziale):
+                if veicolo.id == "focus" and len(corpo) <= 2 and all(t.isupper() for t in corpo):
+                    # Nei PDF Ford anche i titoli occupano più righe.
+                    nuovo = f"{titolo} {nuovo}"
+                else:
+                    risultati.append((titolo, corpo))
+                    corpo = []
+            titolo = nuovo
+        corpo.append(riga)
+    risultati.append((titolo, corpo))
+    return risultati
+
+
+def dividi_sottosezione(righe: list[str]) -> list[list[str]]:
+    gruppi = []
+    corrente = []
+    caratteri = 0
+    fine_frase = 0
+    for riga in righe:
+        for parte in wrap(riga, width=CHUNK_MAX_CHAR - 1, replace_whitespace=False) or [riga]:
+            lunghezza = len(parte) + 1
+            if corrente and caratteri + lunghezza > CHUNK_MAX_CHAR:
+                taglio = len(corrente)
+                if (fine_frase and sum(len(r) + 1 for r in corrente[:fine_frase]) >= CHUNK_MAX_CHAR / 2
+                        and sum(len(r) + 1 for r in corrente[fine_frase:]) + lunghezza <= CHUNK_MAX_CHAR):
+                    taglio = fine_frase
+                gruppi.append(corrente[:taglio])
+                rimanenti = corrente[taglio:]
+                spazio = min(CHUNK_OVERLAP, CHUNK_MAX_CHAR - lunghezza - sum(len(r) + 1 for r in rimanenti))
+                for riga_precedente in reversed(corrente[:taglio]):
+                    if len(riga_precedente) + 1 > spazio:
+                        break
+                    rimanenti.insert(0, riga_precedente)
+                    spazio -= len(riga_precedente) + 1
+                corrente = rimanenti
+                caratteri = sum(len(r) + 1 for r in corrente)
+                fine_frase = 0
+            corrente.append(parte)
+            caratteri += lunghezza
+            if parte.endswith((".", "!", "?", ":")):
+                fine_frase = len(corrente)
+    if corrente:
+        gruppi.append(corrente)
+    return gruppi
+
+
+def estrai_documenti(
+    cartella: Path, veicolo: Veicolo, *, estrattore: str | None = None, strategia: str | None = None,
+) -> tuple[list[tuple[str, dict]], int, list[int]]:
+    estrattore = estrattore or veicolo.estrattore_pdf
+    strategia = strategia or veicolo.strategia_chunk
+    if strategia not in {"sottosezioni", "pagina", "ricorsivo"}:
+        raise ValueError(f"Strategia di chunking sconosciuta: {strategia}")
     passaggi = leggi_passaggi(cartella, veicolo)
     base = {"veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file}
     # I tre passaggi già verificati restano disponibili come blocchi completi per gli avvisi dell'olio.
@@ -54,26 +157,56 @@ def estrai_documenti(cartella: Path, veicolo: Veicolo) -> tuple[list[tuple[str, 
         })
         for avviso in veicolo.avvisi
     ]
-    splitter = RecursiveSplitter(max_char=CHUNK_MAX_CHAR, overlap=CHUNK_OVERLAP)
     senza_testo = []
-    with (cartella / veicolo.file).open("rb") as file:
-        pdf = PdfReader(file)
-        for posizione, pagina_pdf in enumerate(pdf.pages, 1):
-            pagina, sezione, righe = leggi_pagina(pagina_pdf.extract_text() or "", veicolo, posizione)
-            if not righe:
-                senza_testo.append(posizione)
-                continue
-            # Ogni nodo resta dentro una pagina, così anche il passaggio a cavallo di due chunk ha una citazione precisa.
-            foglie = [Node(content=f"{parte}\n", node_type=NodeType.PARAGRAPH) for riga in righe
-                      for parte in wrap(riga, width=CHUNK_MAX_CHAR - CHUNK_OVERLAP - 1, replace_whitespace=False)]
-            if not foglie:
-                senza_testo.append(posizione)
-                continue
-            for i, chunk in enumerate(splitter.split(Node(children=foglie, node_type=NodeType.PAGE)), 1):
-                testo = "\n".join(riga.strip() for riga in chunk.text.splitlines()).strip()
-                documenti.append((f"{sezione}\n\n{testo}", {
+    sezione_precedente = titolo_precedente = None
+    pagine = 0
+    for posizione, originale, contenuto in estrai_pagine(cartella / veicolo.file, estrattore):
+        pagine = posizione
+        pagina, sezione, righe = leggi_pagina(originale, veicolo, posizione)
+        if estrattore != "pypdf":
+            righe = [riga.strip() for riga in contenuto.splitlines() if riga.strip()]
+            if righe and righe[0] == sezione:
+                righe = righe[1:]
+            if righe and pagina is not None and righe[-1] == str(pagina):
+                righe = righe[:-1]
+        if not righe:
+            senza_testo.append(posizione)
+            sezione_precedente = titolo_precedente = None
+            continue
+        esclusa = sezione.casefold().startswith(("indice", "sommario"))
+        ultimo_livello = sezione.split(" / ")[-1]
+        titolo_iniziale = ultimo_livello
+        if titolo_precedente and sezione == sezione_precedente and re.match(r"^(?:[a-zàèé]|[0-9]+\.)", righe[0]):
+            titolo_iniziale = titolo_precedente
+        blocchi = ([(titolo_iniziale, righe)] if esclusa or strategia in {"pagina", "ricorsivo"}
+                   else sottosezioni(righe, veicolo, titolo_iniziale))
+        i = 0
+        sezione_precedente = sezione
+        for titolo, corpo in blocchi:
+            titolo_precedente = titolo
+            tema = normalizza(titolo)
+            intestazione = sezione if tema in {normalizza(sezione), normalizza(ultimo_livello)} else f"{sezione} / {titolo}"
+            # Ogni fonte mantiene una singola pagina, anche se il tema continua in quella successiva.
+            if strategia == "ricorsivo" and not esclusa:
+                from datapizza.modules.splitters import RecursiveSplitter
+                from datapizza.type import Node, NodeType
+
+                # I paragrafi Docling arrivano separati da righe vuote; conserva anche le tabelle.
+                paragrafi = [parte.strip() for parte in contenuto.split("\n\n") if parte.strip()]
+                nodo = Node(node_type=NodeType.PAGE, children=[
+                    Node(node_type=NodeType.PARAGRAPH, content=parte) for parte in paragrafi
+                ])
+                splitter = RecursiveSplitter(max_char=CHUNK_MAX_CHAR, overlap=CHUNK_OVERLAP)
+                gruppi = [chunk.text.splitlines() for chunk in splitter.split(nodo)]
+            else:
+                gruppi = dividi_sottosezione(corpo)
+            for righe_chunk in gruppi:
+                i += 1
+                testo = "\n".join(righe_chunk)
+                documenti.append((f"{intestazione}\n\n{testo}", {
                     **base, "fonte": f"{veicolo.id}-pdf{posizione}-{i}", "pagina": pagina,
-                    "pagina_pdf": posizione, "sezione": sezione, "avviso_curato": False,
-                    "indice_analitico": sezione.casefold().startswith(("indice", "sommario")),
+                    "pagina_pdf": posizione, "sezione": intestazione, "avviso_curato": False,
+                    "indice_analitico": esclusa, "tema": tema,
+                    "tema_specifico": len(tema) >= 10 and (tema != normalizza(sezione) or " / " in sezione),
                 }))
-        return documenti, len(pdf.pages), senza_testo
+    return documenti, pagine, senza_testo

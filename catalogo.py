@@ -25,6 +25,11 @@ class Veicolo:
     file: str
     avvisi: tuple[Avviso, ...]
     lingua: str = "italiano"
+    pattern_nome: str = ""
+    anni_edizione: tuple[str, ...] = ()
+    pattern_modelli_diversi: str = ""
+    estrattore_pdf: str = "pypdf"
+    strategia_chunk: str = "sottosezioni"
 
 
 FOCUS = Veicolo(
@@ -33,6 +38,7 @@ FOCUS = Veicolo(
     "ITITA_CG3630_Focus_og_201409.pdf",
     (Avviso("focus-olio", "Spia olio motore", 80, 82, "Spia olio motore", "Spie motore",
             r"\bspia (?:rossa )?(?:dell )?olio(?: motore)?\b"),),
+    pattern_nome=r"(?:ford )?focus(?: cew)?", anni_edizione=("2014", "2015"),
 )
 
 CIVIC = Veicolo(
@@ -48,14 +54,25 @@ CIVIC = Veicolo(
                r"\b(?:livello (?:dell )?olio(?: motore)? (?:e )?(?:troppo )?"
                r"(?:basso|insufficiente|sotto il minimo)|basso livello (?:dell )?olio)\b"),
     ),
+    pattern_nome=r"(?:honda )?civic(?: type r)?", anni_edizione=("2023",),
+    pattern_modelli_diversi=r"\bcivic (?:non type r|type s|sport|e hev|hybrid)\b",
 )
 
 AUDI = Veicolo(
     "audi", "Audi A3 8V", "2019, 8V2012721B (Nord America, inglese)",
     "audi a3 8v 2019.pdf", (), lingua="inglese",
+    pattern_nome=r"(?:audi )?a3(?: 8 ?v)?", anni_edizione=("2019",),
+    pattern_modelli_diversi=r"\ba3 (?:8 ?[lpys]|non 8 ?v)\b",
 )
 
-CATALOGO = {veicolo.id: veicolo for veicolo in (FOCUS, CIVIC, AUDI)}
+LEON = Veicolo(
+    "leon", "SEAT Leon", "5D / Sportstourer, 5FA012750BT, ed. 11/2021",
+    "SEAT_LEON_11_21_IT.pdf", (),
+    pattern_nome=r"(?:seat )?leon(?: (?:5d|sportstourer))?", anni_edizione=("2021",),
+    estrattore_pdf="docling", strategia_chunk="ricorsivo",
+)
+
+CATALOGO = {veicolo.id: veicolo for veicolo in (FOCUS, CIVIC, AUDI, LEON)}
 
 
 def normalizza(testo: str) -> str:
@@ -63,6 +80,13 @@ def normalizza(testo: str) -> str:
     lettere = unicodedata.normalize("NFKD", testo.casefold())
     lettere = "".join(c for c in lettere if not unicodedata.combining(c))
     return " ".join(re.findall(r"[a-z0-9]+", lettere))
+
+
+def anni_del_modello(testo: str, veicolo: Veicolo) -> set[str]:
+    # Un codice come CR 2032 non è l'anno del veicolo.
+    espliciti = re.findall(r"\b(?:del|anno|my|immatricolazione) ((?:19|20)\d{2})\b", testo)
+    accanto_al_nome = re.findall(rf"\b{veicolo.pattern_nome} ((?:19|20)\d{2})\b", testo)
+    return set(espliciti + accanto_al_nome)
 
 
 def riconosci_avviso(veicolo: Veicolo, domanda: str, contesto: tuple[str, ...] = ()) -> Avviso | None:

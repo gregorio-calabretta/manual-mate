@@ -1,6 +1,6 @@
 # Assistente per gli avvisi sul cruscotto
 
-Manual Mate cerca nel testo dei manuali di **Ford Focus (CEW)**, edizione 09/2014 per veicoli prodotti dal 08/09/2014 al 15/02/2015, **Honda Civic Type R**, manuale `3LT40600`, e **Audi A3 8V** modello 2019, manuale `8V2012721B` in inglese per il Nord America. Mostra il passaggio originale e cita il numero stampato, quando disponibile, e la posizione nel PDF.
+Manual Mate cerca nel testo dei manuali di **Ford Focus (CEW)**, edizione 09/2014 per veicoli prodotti dal 08/09/2014 al 15/02/2015, **Honda Civic Type R**, manuale `3LT40600`, **Audi A3 8V** modello 2019, manuale `8V2012721B` in inglese per il Nord America, e **SEAT Leon 5D / Sportstourer**, manuale `5FA012750BT`, edizione italiana 11/2021. Mostra il passaggio originale e cita il numero stampato, quando disponibile, e la posizione nel PDF.
 
 ## Avvio su Windows
 
@@ -35,6 +35,16 @@ Qdrant salva testo e vettori nel volume Docker `qdrant_data`. Puoi chiudere l’
 Rilancia `--indicizza` quando cambia il PDF, il modello di embedding o la configurazione dei chunk. A contenuto invariato vedrai `indice riusato, nessun embedding dei manuali`. Per aggiornare una sola auto usa, per esempio, `--indicizza --veicolo civic`. Qdrant conserva le versioni precedenti nel volume. Il nome stabile `manuali_civic` punta alla versione attiva e cambia solo quando il caricamento di quella nuova è riuscito.
 
 L’estrazione legge lo strato testuale dei PDF. L’indicizzazione segnala le eventuali pagine senza testo estraibile. Per simboli, tabelle impaginate e illustrazioni consulta la pagina originale riportata nella risposta.
+
+Il catalogo definisce anche `estrattore_pdf` e `strategia_chunk` per ogni libretto. Gli estrattori disponibili sono `pypdf`, `pdfium` e `docling`; le strategie sono `sottosezioni`, `pagina` e `ricorsivo`. La Leon usa Docling e il RecursiveSplitter di Datapizza, con dimensione 1.024 caratteri e overlap 0. Cambiare questi valori richiede una nuova indicizzazione. Docling conserva il documento strutturato nella cartella locale `.cache_ingestione`, esclusa da Git. I riferimenti mantengono la pagina stampata e la posizione nel PDF.
+
+Per ripetere il confronto sperimentale della Leon, con Qdrant già avviato:
+
+```powershell
+.\.venv\Scripts\python.exe -B -X utf8 confronta_ingestione.py
+```
+
+Il confronto prepara collezioni distinte e salva `report_confronto_ingestione.json`. La preparazione di un indice è separata dalla sua attivazione nell’app. Il diario `SPERIMENTAZIONE_RAG.md` riporta i risultati e il profilo scelto.
 
 Inizia con una domanda o indica il modello dell’auto. Controlla che l’edizione indicata sia quella del tuo manuale. Usa `:auto` per iniziare una conversazione su un altro veicolo e `:esci` per terminare. Per provare una singola domanda con il manuale già selezionato:
 
@@ -88,21 +98,25 @@ Per i casi con `criterio_risposta`, una chiamata separata al modello valuta il s
 
 Il file `report_valutazione.json` registra il testo visibile, le fonti recuperate, la citazione, il giudizio sul contenuto e i risultati per gruppo di domande. Un gruppo è completo quando ogni formulazione supera la prova. La metrica `hit@1` indica quante volte la fonte attesa è il primo risultato della ricerca inviata a Qdrant. Il comando restituisce codice `1` se almeno un caso fallisce e salva comunque il report della valutazione completata. Puoi aggiungere `--lavoratori 4` per eseguire più casi insieme. Per confrontare la latenza usa lo stesso numero di lavoratori in entrambi i giri.
 
-I parametri di partenza in `config.py` sono `CHUNK_MAX_CHAR=1024`, `CHUNK_OVERLAP=128` e `TOP_K=5`. Modificare i primi due richiede `--indicizza`. Nelle ricerche generali possiamo completare le prime tre pagine distinte con gli altri chunk già in Qdrant. Per le domande composte l’agente può lanciare due ricerche e usare fino a tre fonti nella stessa risposta. Il programma associa ogni frase al suo riferimento dopo avere verificato la citazione letterale.
+I parametri di partenza in `config.py` sono `CHUNK_MAX_CHAR=1024`, `CHUNK_OVERLAP=0` e `TOP_K=10`. La suddivisione segue il profilo del libretto nel catalogo. Ogni chunk conserva il riferimento alla propria pagina PDF. Modificare il metodo di chunking o i primi due parametri richiede `--indicizza`. La ricerca generale può includere un passaggio pertinente di una pagina contigua, quando condivide la stessa sottosezione. Può inoltre completare le prime tre pagine distinte con gli altri chunk già in Qdrant. Per le domande composte l’agente può lanciare due ricerche e usare fino a tre fonti nella stessa risposta. Il programma associa ogni frase al suo riferimento dopo avere verificato la citazione letterale.
 
 Per ripetere le prove più difficili con 5 e 8 risultati per ricerca:
 
 ```powershell
 $env:RAG_TOP_K = '5'
 .\.venv\Scripts\python.exe -X utf8 main.py --stress --lavoratori 3
-$env:RAG_TOP_K = '8'
+$env:RAG_TOP_K = '10'
 .\.venv\Scripts\python.exe -X utf8 main.py --stress --lavoratori 3
 Remove-Item Env:RAG_TOP_K
 ```
 
-I risultati finiscono in `report_stress_k5.json` e `report_stress_k8.json`. I due giri usano gli stessi casi in `queries_stress.json` e riusano gli embedding. Un codice di uscita `1` indica che almeno un caso è fallito. I report registrano il modello usato. Il confronto salvato in `report_stress_luna_k5.json` usa lo stesso indice e lo stesso valutatore (`gpt-4o-mini`) del giro `report_stress_k5.json`. Confronta gli esiti delle singole domande quando scegli cosa mostrare nella demo.
+I risultati di questi comandi finiscono in `report_stress_k5.json` e `report_stress_k10.json`. I due giri usano gli stessi casi in `queries_stress.json` e riusano gli embedding. Un codice di uscita `1` indica che almeno un caso è fallito. I report registrano il modello usato. Nei report storici, il confronto salvato in `report_stress_luna_k5.json` usa lo stesso indice e lo stesso valutatore (`gpt-4o-mini`) del giro `report_stress_k5.json`.
 
 Per alcune richieste verificate, come il verso della pila delle due chiavi Focus e la posizione di entrambe le scatole dei fusibili Civic, la risposta consulta direttamente le pagine corrispondenti nell’indice e controlla che contengano i dettagli attesi. Se sulla Focus manca la versione della chiave, chiede quale sia prima di indicare l’orientamento.
+
+La [mappa di copertura](COPERTURA.md) elenca gli argomenti con almeno una prova e quelli da verificare. `--copertura` esegue il campione indipendente e salva `report_copertura.json`. Quando il primo tentativo non produce una citazione verificabile, l’agente può riesaminare i passaggi già recuperati e correggere una volta le citazioni respinte. Gli output strutturati assenti o invalidi hanno un solo tentativo aggiuntivo con più spazio. Se il libretto sostiene solo una parte della risposta, indica anche quale dato resta indeterminato. I casi che attendono un limite vengono valutati sul contenuto anche quando la risposta include una fonte documentale.
+
+La [sperimentazione del recupero](SPERIMENTAZIONE_RAG.md) raccoglie i confronti dei parametri, il passaggio alle sottosezioni e i casi ancora aperti. Le 72 domande dei due confronti sul chunking sono in [queries_chunking.json](queries_chunking.json). Il test finale ha un campione separato di [60 domande](queries_finale.json) e il relativo [report](report_finale.json).
 
 ## Osservabilità
 
@@ -121,7 +135,7 @@ docker compose -f osservabilita/compose.yaml down
 
 ## Come funziona
 
-- `catalogo.py` descrive le edizioni e mantiene i passaggi già verificati per gli avvisi dell’olio. `corpus.py` estrae il testo dei PDF pagina per pagina e usa `RecursiveSplitter` di Datapizza per creare i chunk con i riferimenti al manuale.
+- `catalogo.py` descrive le edizioni e mantiene i passaggi già verificati per gli avvisi dell’olio. `corpus.py` estrae il testo dei PDF e crea i chunk a partire dai titoli delle sottosezioni, conservando i riferimenti alla pagina.
 - `indice.py` usa il vector store Qdrant di Datapizza. L’ingestione salva i passaggi e i relativi embedding, mentre la ricerca calcola l’embedding della query e legge testo e metadati dalla collezione attiva del veicolo.
 - `assistente.py` usa `datapizza-ai` 0.1.0 per l’agente. L’agente può chiedere un chiarimento, cercare nei documenti o selezionare una fonte recuperata.
 - Il codice pubblica l’estratto solo da una fonte recuperata per il veicolo e l’edizione selezionati. Per gli avvisi riconosciuti verifica anche l’identificativo della sezione già controllata. Per le altre domande verifica che le parole citate dall’agente compaiano nel passaggio originale.

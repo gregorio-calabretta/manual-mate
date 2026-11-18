@@ -3,16 +3,17 @@ import os
 import unittest
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from unittest.mock import patch
+from unittest.mock import Mock, patch
 
 import httpx
 from datapizza.clients.openai import OpenAIClient
 from datapizza.embedders.openai import OpenAIEmbedder
+from datapizza.type import Chunk
 from datapizza.vectorstores.qdrant import QdrantVectorstore
 
-from assistente import Assistente, Fonte
+from assistente import Assistente, Fonte, PassaggioVerificabile, Riesame, VerificaSintesi, _citazione_valida
 from catalogo import CATALOGO, leggi_passaggi
-from corpus import leggi_pagina
+from corpus import dividi_sottosezione, leggi_pagina, sottosezioni
 from indice import IndiceManuali
 
 
@@ -26,6 +27,8 @@ class AssistenteTest(unittest.TestCase):
         self.chiamate = []
         self.input_embedding = []
         self.azioni = iter(())
+        self.verifica_simulata = {"omissioni_rilevanti": [], "esito": "confermata", "sintesi": ""}
+        self.verifiche = []
         http = httpx.Client(transport=httpx.MockTransport(self.api_simulata))
         self.addCleanup(http.close)
         client = OpenAIClient(api_key="test", http_client=http, max_retries=0)
@@ -64,6 +67,15 @@ class AssistenteTest(unittest.TestCase):
                 embeddings.append({"object": "embedding", "index": i, "embedding": vettore})
             return httpx.Response(200, json={"object": "list", "data": embeddings, "model": body["model"]})
 
+        if body.get("text", {}).get("format", {}).get("name") == "VerificaSintesi":
+            self.verifiche.append(body["input"])
+            return httpx.Response(200, json={
+                "id": "resp_verifica", "object": "response", "created_at": 0, "model": body["model"],
+                "status": "completed", "output": [{
+                    "type": "message", "id": "msg_verifica", "role": "assistant", "status": "completed",
+                    "content": [{"type": "output_text", "text": json.dumps(self.verifica_simulata), "annotations": []}],
+                }],
+            })
         nome, argomenti = next(self.azioni)
         chiamata = f"call_{len(self.chiamate)}"
         return httpx.Response(200, json={
@@ -120,6 +132,141 @@ class AssistenteTest(unittest.TestCase):
         self.assertIsNone(risposta.fonte_citata)
         self.assertEqual(self.chiamate, ["/v1/responses"])
 
+    def test_riesame_cita_solo_fonti_valide_e_dichiara_la_parte_mancante(self):
+        hit = Chunk(id="a", text="Audio\n\nLa funzione connes-\nsione Bluetooth è disponibile.",
+                    metadata={"fonte": "a", "pagina": 14, "pagina_pdf": 15})
+        risultato = Riesame(risposte=[PassaggioVerificabile(
+            fonte_id="a", citazione="La funzione connessione Bluetooth è disponibile.",
+            frase="La connessione Bluetooth è disponibile.",
+        )], parte_non_documentata="il prezzo della riparazione")
+        with patch.object(self.assistente.client, "structured_response", return_value=Mock(structured_data=[risultato])):
+            fonti, sintesi = self.assistente._riesamina("C'è il Bluetooth? E quanto costa ripararlo?", (), {"a": hit})
+            self.assertEqual(fonti, (hit,))
+            self.assertIn("Dal libretto non posso determinare il prezzo", sintesi)
+            risultato.risposte[0].citazione = "La funzione connessione Bluetooth è guasta."
+            self.assertIsNone(self.assistente._riesamina("C'è il Bluetooth?", (), {"a": hit}))
+
+    def test_ricerca_di_riserva_verifica_le_nuove_pagine_del_libretto_attivo(self):
+        veicolo = CATALOGO["focus"]
+        domanda = "Quanto devo stare lontano dallo sportellino con l'idropulitrice?"
+        query_agente = "pulizia esterna carrozzeria"
+        citazione = "Tenere il getto a una distanza di almeno 200 mm."
+
+        def pagina(manuale, numero, testo):
+            identificativo = f"{manuale.id}-{numero}"
+            return Chunk(id=identificativo, text=f"Lavaggio\n\n{testo}", metadata={
+                "fonte": identificativo, "pagina": numero, "pagina_pdf": numero + 2, "sezione": "Lavaggio",
+                "veicolo": manuale.id, "edizione": manuale.edizione, "source_file": manuale.file,
+            })
+
+        iniziali = [pagina(veicolo, numero, "Pulizia del rivestimento.") for numero in (241, 228, 229)]
+        corretta = pagina(veicolo, 137, citazione)
+        altro_libretto = pagina(CATALOGO["civic"], 44, citazione)
+        originale = self.assistente.client.structured_response
+        for testo_citato, esito in ((citazione, "risposta"), ("La distanza minima è di 900 mm.", "fonte_assente")):
+            with self.subTest(esito=esito):
+                self.azioni = iter((("cerca_manuale", {"query": query_agente}), ("segnala_limite", {})))
+                finale = Riesame(risposte=[PassaggioVerificabile(
+                        fonte_id="focus-137", citazione=testo_citato, frase="Mantieni almeno 20 cm.",
+                    )], parte_non_documentata="")
+                attesi = iter([Riesame(risposte=[], parte_non_documentata=""), finale]
+                              + ([finale] if esito == "fonte_assente" else []))
+
+                def strutturata(**kwargs):
+                    if kwargs["output_cls"] is Riesame:
+                        return Mock(structured_data=[next(attesi)])
+                    return originale(**kwargs)
+
+                with (
+                    patch.object(self.indice, "collezione_attiva", return_value="focus"),
+                    patch.object(self.indice, "cerca", side_effect=[iniziali, [altro_libretto, iniziali[0], corretta]]) as cerca,
+                    patch.object(self.indice, "completa_pagina", side_effect=lambda _, hit: hit),
+                    patch.object(self.assistente.client, "structured_response", side_effect=strutturata),
+                ):
+                    risposta = self.assistente.rispondi("focus", domanda)
+                self.assertEqual(risposta.esito, esito)
+                self.assertEqual([chiamata.args[2] for chiamata in cerca.call_args_list], [query_agente, domanda])
+                self.assertEqual([fonte.pagina for fonte in risposta.fonti_recuperate], [241, 228, 229, 137])
+                if esito == "risposta":
+                    self.assertEqual(risposta.fonte_citata.pagina, 137)
+                    self.assertIn("20 cm", risposta.sintesi)
+                else:
+                    self.assertIsNone(risposta.fonte_citata)
+
+    def test_riesame_ripara_una_citazione_non_consecutiva_una_sola_volta(self):
+        hit = Chunk(id="a", text=(
+            "Cruise control\n\nTo deactivate the cruise control speed:\n"
+            "> Move the lever.\n> Press the brake pedal."
+        ), metadata={"fonte": "a", "pagina": 127, "pagina_pdf": 129})
+        rifiutata = Riesame(risposte=[PassaggioVerificabile(
+            fonte_id="a", citazione="To deactivate the cruise control speed, press the brake pedal.",
+            frase="Premere il freno disattiva la velocità impostata.",
+        )], parte_non_documentata="")
+        corretta = Riesame(risposte=[PassaggioVerificabile(
+            fonte_id="a", citazione="Press the brake pedal.",
+            frase="Premere il freno disattiva la velocità impostata.",
+        )], parte_non_documentata="")
+        for secondo, passato in ((corretta, True), (rifiutata, False)):
+            with self.subTest(passato=passato):
+                with patch.object(self.assistente.client, "structured_response", side_effect=[
+                    Mock(structured_data=[rifiutata]), Mock(structured_data=[secondo]),
+                ]) as client:
+                    risultato = self.assistente._riesamina("Il freno disattiva il cruise?", (), {"a": hit})
+                self.assertEqual(client.call_count, 2)
+                feedback = json.loads(client.call_args.kwargs["input"])["citazioni_rifiutate"]
+                self.assertEqual(feedback[0]["citazione"], rifiutata.risposte[0].citazione)
+                self.assertEqual(risultato is not None, passato)
+                if passato:
+                    self.assertEqual(risultato[0], (hit,))
+
+    def test_citazione_accetta_solo_le_varianti_tipografiche_ammesse(self):
+        hit = Chunk(id="a", text=(
+            "Audi\n\nThe spare tire is intended for short-\nterm use only.\n"
+            "To bring the armrest back into the starting po-\nsition, raise it out of the top notch.\n"
+            "Always secure them at the tie-downs. Usestraps suitable for heavy objects.\n"
+            "120 W is the maximum output power. The maximum load is 75.5 kg."
+        ))
+        for citazione in (
+            "intended for short-term use only",
+            "“The spare tire is intended for short-\nterm use only.”",
+            "The spare tire is intended for short- term use only.",
+            "To bring the armrest back into the starting po- sition, raise it out of the top notch.",
+            "Use straps suitable for heavy objects.",
+            "120 W is the maximum output power.",
+        ):
+            with self.subTest(citazione=citazione):
+                self.assertTrue(_citazione_valida(hit, citazione))
+        for citazione in (
+            "The spare tire is intended for permanent use.",
+            "Always secure them at the tie-downs. The maximum load is 75.5 kg.",
+            "20 W is the maximum output power.",
+            "120 V is the maximum output power.",
+            "The maximum load is 75.",
+            "The maximum load is 75",
+        ):
+            with self.subTest(citazione=citazione):
+                self.assertFalse(_citazione_valida(hit, citazione))
+
+    def test_riesame_conserva_la_citazione_valida_quando_un_altra_fallisce(self):
+        hit = Chunk(id="a", text="Presa\n\nLa potenza massima della presa è di 120 W.",
+                    metadata={"fonte": "a", "pagina": 62, "pagina_pdf": 64})
+        risultato = Riesame(risposte=[
+            PassaggioVerificabile(
+                fonte_id="a", citazione="La potenza massima della presa è di 120 W.",
+                frase="La potenza massima è 120 W.",
+            ),
+            PassaggioVerificabile(
+                fonte_id="a", citazione="La potenza massima della presa è di 150 W.",
+                frase="Sono ammessi anche 150 W.",
+            ),
+        ], parte_non_documentata="")
+        with patch.object(self.assistente.client, "structured_response", return_value=Mock(structured_data=[risultato])):
+            fonti, sintesi = self.assistente._riesamina("Quanto regge la presa?", (), {"a": hit})
+        self.assertEqual(fonti, (hit,))
+        self.assertIn("120 W", sintesi)
+        self.assertNotIn("150 W", sintesi)
+        self.assertIn("Alcuni dettagli non sono stati verificati", sintesi)
+
     def test_domanda_libera_richiede_un_estratto_letterale(self):
         self.indice.indicizza(self.cartella, CATALOGO["civic"])
         domanda = "Che batteria usa la chiave?"
@@ -141,6 +288,78 @@ class AssistenteTest(unittest.TestCase):
                     self.assertIn(citazione, risposta.testo)
                 else:
                     self.assertIsNone(risposta.sintesi)
+
+    def test_risposta_usa_solo_la_sintesi_confermata_o_corretta(self):
+        audi = CATALOGO["audi"]
+        fonte = "audi-pdf379-1"
+        originale = "The compact spare tire is for temporary use only. Replace the damaged tire if necessary."
+        documenti = [(f"Spare tire\n\n{originale}", {
+            "veicolo": audi.id, "edizione": audi.edizione, "source_file": audi.file, "sezione": "Spare tire",
+            "fonte": fonte, "pagina": 377, "pagina_pdf": 379, "avviso_curato": False,
+        })]
+        with patch("indice.estrai_documenti", return_value=(documenti, 1, [])):
+            self.indice.indicizza(self.cartella, audi)
+        for esito, nuova in (
+            ("corretta", "Il ruotino è temporaneo. Sostituisci lo pneumatico danneggiato se necessario."),
+            ("non_verificabile", ""),
+            ("json_non_valido", ""),
+        ):
+            with self.subTest(esito=esito):
+                self.verifica_simulata = {"omissioni_rilevanti": [], "esito": esito, "sintesi": nuova}
+                self.azioni = iter((
+                    ("cerca_manuale", {"query": "compact spare tire"}),
+                    ("cita_fonte", {"fonte_id": fonte, "citazione": "for temporary use only",
+                                   "sintesi": "Il ruotino è temporaneo. Sostituisci sempre lo pneumatico."}),
+                ))
+                risposta = self.assistente.rispondi("audi", "Posso usare il ruotino per sempre?")
+                self.assertEqual(risposta.sintesi, nuova or None)
+                self.assertEqual(risposta.fonte_citata.pagina, 377)
+                self.assertIn(originale, risposta.testo)
+                self.assertNotIn("Sostituisci sempre", risposta.testo_cli)
+                self.assertIn(originale, str(self.verifiche[-1]))
+
+    def test_fonte_su_un_altro_dispositivo_non_diventa_una_risposta_documentata(self):
+        veicolo = CATALOGO["leon"]
+        citazione = "Usare una batteria dello stesso formato del telecomando."
+        documenti = [(f"Riscaldatore autonomo / Telecomando\n\n{citazione}", {
+            "veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file,
+            "fonte": "leon-pdf181-1", "pagina": 179, "pagina_pdf": 181,
+            "sezione": "Riscaldatore autonomo", "avviso_curato": False,
+        })]
+        with patch("indice.estrai_documenti", return_value=(documenti, 1, [])):
+            self.indice.indicizza(self.cartella, veicolo)
+        self.azioni = iter((
+            ("cerca_manuale", {"query": "telecomando batteria"}),
+            ("cita_fonte", {"fonte_id": "leon-pdf181-1", "citazione": citazione,
+                            "sintesi": "La chiave usa una pila dello stesso formato."}),
+        ))
+        self.verifica_simulata = {"omissioni_rilevanti": [], "esito": "fonte_non_pertinente", "sintesi": ""}
+        risposta = self.assistente.rispondi("leon", "Quale pila usa la chiave dell'auto?")
+        self.assertEqual(risposta.esito, "fonte_assente")
+        self.assertEqual(risposta.fonti_citate, ())
+        self.assertIsNone(risposta.sintesi)
+
+    def test_verifica_non_conferma_una_sintesi_con_omissioni_dichiarate(self):
+        hit = Chunk(id="a", text="Presa\n\nUsare accessori fino a 180 W e 15 A.",
+                    metadata={"fonte": "a", "pagina": 219, "pagina_pdf": 220})
+        incompleta = "La presa supporta 180 W."
+        corretta = "La presa supporta accessori fino a 180 W e 15 A."
+        for esito, sintesi, atteso in (
+            ("confermata", "", None),
+            ("corretta", corretta, corretta),
+        ):
+            with self.subTest(esito=esito):
+                verifica = VerificaSintesi(omissioni_rilevanti=["il limite di corrente di 15 A"],
+                                           esito=esito, sintesi=sintesi)
+                with patch.object(self.assistente.client, "structured_response", return_value=Mock(structured_data=[verifica])):
+                    risultato = self.assistente._verifica_sintesi("Quanto regge la presa?", (), (hit,), incompleta)
+                self.assertEqual(risultato.sintesi or None, atteso)
+
+    def test_legge_numero_stampato_come_ultima_riga_del_nuovo_manuale(self):
+        testo = "Ruote\nCatene da neve\nLa velocità massima è 50 km/h.\n377"
+        pagina, sezione, righe = leggi_pagina(testo, CATALOGO["leon"], 379)
+        self.assertEqual((pagina, sezione), (377, "Ruote"))
+        self.assertEqual(righe, ["Catene da neve", "La velocità massima è 50 km/h."])
 
     def test_conserva_numerazione_stampata_e_sezione(self):
         civic = "575SEGUE\nManutenzione\nTipo di batteria: CR2032\n23 CIVIC TYPE R JSS (KE KG)-3LT406000.book Page 575 Wednesday"
@@ -165,9 +384,14 @@ class AssistenteTest(unittest.TestCase):
                 self.azioni = iter((("cerca_manuale", {"query": "pila telecomando", "query_complementare": "orientamento polo"}),
                                     ("cita_fonti", {"fonti_id": fonti_id, "citazioni": list(estratti),
                                                    "frasi": ["Serve una CR2032.", "Metti il positivo verso l'alto."]})))
-                risposta = self.assistente.rispondi("focus", "Che pila serve e come la monto?")
+                domanda = "Che pila serve e come la monto?"
+                prima = len(self.input_embedding)
+                risposta = self.assistente.rispondi("focus", domanda)
                 self.assertEqual(risposta.esito, esito)
-                self.assertEqual(self.input_embedding[-2:], [["pila telecomando"], ["orientamento polo"]])
+                attesi = [["pila telecomando"], ["orientamento polo"]]
+                if esito == "fonte_assente":
+                    attesi.append([domanda])
+                self.assertEqual(self.input_embedding[prima:], attesi)
                 if esito == "risposta":
                     self.assertEqual([fonte.pagina for fonte in risposta.fonti_citate], [34, 35])
                     self.assertIn("Serve una CR2032. (p. 34", risposta.testo_cli)
@@ -259,6 +483,44 @@ class AssistenteTest(unittest.TestCase):
         self.assertEqual(completa.text.count(condivisa), 1)
         self.assertIn("Tipo di batteria: CR2032", completa.text)
 
+    def test_sottosezioni_separano_procedure_e_mantengono_le_righe(self):
+        righe = [
+            "■ Bloccaggio della portiera", "Spingere il perno di bloccaggio in avanti.",
+            "■ Sbloccaggio della portiera", "Tirare il perno di bloccaggio all'indietro.",
+        ]
+        blocchi = sottosezioni(righe, CATALOGO["civic"], "Portiere")
+        self.assertEqual(blocchi, [
+            ("Bloccaggio della portiera", righe[:2]), ("Sbloccaggio della portiera", righe[2:]),
+        ])
+        righe_lunghe = [("Prima fase. " * 30).strip(), ("Seconda fase. " * 34).strip(),
+                        ("Terza fase. " * 50).strip(), "Fine."]
+        chunk = dividi_sottosezione(righe_lunghe)
+        self.assertEqual([riga for gruppo in chunk for riga in gruppo], righe_lunghe)
+        self.assertTrue(all(sum(len(riga) + 1 for riga in gruppo) <= 1024 for gruppo in chunk))
+
+    def test_ricerca_aggiunge_soltanto_la_pagina_adiacente_dello_stesso_tema(self):
+        veicolo = CATALOGO["civic"]
+        tema = "tipi di attrezzi"
+        documenti = []
+        for pagina, argomento in [(99, "dotazione di riserva"), (100, tema), (101, tema), (102, tema),
+                                   (150, "altro"), (160, "altro"), (170, "altro"), (180, "altro")]:
+            documenti.append((f"Attrezzi\n\nTesto della pagina {pagina}.", {
+                "veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file,
+                "fonte": f"civic-pdf{pagina}-1", "pagina": pagina, "pagina_pdf": pagina,
+                "sezione": "Attrezzi", "tema": argomento, "tema_specifico": argomento == tema,
+                "avviso_curato": False,
+            }))
+        self.indice.top_k = 5
+        with patch("indice.estrai_documenti", return_value=(documenti, 8, [])):
+            self.indice.indicizza(self.cartella, veicolo)
+        collezione = self.indice.collezione_attiva(veicolo)
+        ordine = [100, 150, 160, 170, 180]
+        dati = {meta["pagina_pdf"]: Chunk(id=meta["fonte"], text=testo, metadata=meta) for testo, meta in documenti}
+        with patch.object(self.indice.store, "search", return_value=[dati[pagina] for pagina in ordine]):
+            risultati = self.indice.cerca(veicolo, collezione, "Dove sono gli attrezzi?")
+        self.assertEqual([hit.metadata["pagina_pdf"] for hit in risultati], [100, 150, 160, 101, 170])
+        self.assertIn("Testo della pagina 101.", risultati[3].text)
+
     def test_veicolo_fuori_catalogo_senza_chiamate(self):
         risposta = self.assistente.rispondi("jazz", "Spia dell'olio")
         self.assertEqual(risposta.esito, "bloccato")
@@ -313,8 +575,24 @@ class AssistenteTest(unittest.TestCase):
             self.indice.indicizza(self.cartella, focus)
         attiva = self.indice.collezione_attiva(focus)
         self.assertNotEqual(attiva, precedente)
-        risultati = self.indice.cerca(focus, attiva, "Spia olio motore")
+        risultati = self.indice.cerca(focus, attiva, "Spia olio motore", solo_avvisi=True)
         self.assertIn("Versione aggiornata", risultati[0].text)
+
+    def test_preparazione_sperimentale_non_cambia_alias_e_rifiuta_indici_incompleti(self):
+        veicolo = CATALOGO["focus"]
+        primo, _, _ = self.documenti_test(self.cartella, veicolo)
+        with patch("indice.estrai_documenti", return_value=(primo, 1, [])):
+            self.indice.indicizza(self.cartella, veicolo)
+        attiva = self.indice.collezione_attiva(veicolo)
+        aggiornato = [("Sezione\n\nTesto alternativo.", primo[0][1])]
+        with patch("indice.estrai_documenti", return_value=(aggiornato, 1, [])):
+            alternativa, _ = self.indice.prepara(self.cartella, veicolo)
+        self.assertNotEqual(alternativa, attiva)
+        self.assertEqual(self.indice.collezione_attiva(veicolo), attiva)
+        self.indice.store.get_client().delete_collection(alternativa)
+        with self.assertRaises(ValueError):
+            self.indice.attiva(veicolo, alternativa)
+        self.assertEqual(self.indice.collezione_attiva(veicolo), attiva)
 
 
 if __name__ == "__main__":

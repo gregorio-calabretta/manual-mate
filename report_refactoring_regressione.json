@@ -1,0 +1,1152 @@
+{
+  "eseguito_il": "2026-11-18T21:46:18.158843+00:00",
+  "modello_agente": "gpt-6-luna",
+  "modello_valutatore": "gpt-6-luna",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 10,
+  "max_char": 1024,
+  "overlap": 0,
+  "lavoratori": 3,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 9,
+      "totale": 12
+    },
+    "ricerche_avviate": {
+      "corretti": 9,
+      "totale": 9
+    },
+    "hit_at_1": {
+      "corretti": 7,
+      "totale": 9
+    },
+    "citazioni_corrette": {
+      "corretti": 9,
+      "totale": 9
+    },
+    "estratti_con_evidenze": {
+      "corretti": 5,
+      "totale": 5
+    },
+    "risposte_coerenti": {
+      "corretti": 9,
+      "totale": 12
+    },
+    "gruppi_completi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "astensioni": {
+      "corretti": 0,
+      "totale": 3
+    }
+  },
+  "gruppi": {},
+  "risultati": [
+    {
+      "id": "finale-civic-benzina",
+      "veicolo": "civic",
+      "domanda": "Per la Civic Type R, 95 ottani con E10 è compatibile? E quale numero consiglia per le prestazioni?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 513,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "pari o superiore a 98"
+      ],
+      "criterio_risposta": "Indica 95 o più per benzina/gasohol fino a E10 secondo EN 228 e 98 o più per ottimizzare le prestazioni.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì. È compatibile benzina super verde/gasohol fino a E10, cioè 90% benzina e 10% etanolo, con numero di ottano pari o superiore a 95, conforme alla norma EN 228. (p. 513 (PDF p. 514))\n\nPer ottimizzare le prestazioni del motore, il manuale consiglia un numero di ottano pari o superiore a 98. (p. 513 (PDF p. 514))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf514-1",
+          "pagina": 513,
+          "pagina_pdf": 514
+        },
+        {
+          "id": "civic-pdf643-5",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf515-3",
+          "pagina": 514,
+          "pagina_pdf": 515
+        },
+        {
+          "id": "civic-pdf28-1",
+          "pagina": 27,
+          "pagina_pdf": 28
+        },
+        {
+          "id": "civic-pdf543-4",
+          "pagina": 542,
+          "pagina_pdf": 543
+        },
+        {
+          "id": "civic-pdf34-3",
+          "pagina": 33,
+          "pagina_pdf": 34
+        },
+        {
+          "id": "civic-pdf545-2",
+          "pagina": 544,
+          "pagina_pdf": 545
+        },
+        {
+          "id": "civic-pdf544-1",
+          "pagina": 543,
+          "pagina_pdf": 544
+        },
+        {
+          "id": "civic-pdf699-1",
+          "pagina": 698,
+          "pagina_pdf": 699
+        },
+        {
+          "id": "civic-pdf15-5",
+          "pagina": 14,
+          "pagina_pdf": 15
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf514-1",
+        "pagina": 513,
+        "pagina_pdf": 514
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf514-1",
+          "pagina": 513,
+          "pagina_pdf": 514
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica la compatibilità con benzina/gasohol fino a E10 con almeno 95 ottani secondo EN 228 e consiglia almeno 98 ottani per ottimizzare le prestazioni.",
+      "passato": true,
+      "latenza_ms": 18431,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-audi-kickdown",
+      "veicolo": "audi",
+      "domanda": "Sul cambio automatico, che cosa fa la trasmissione se premo l’acceleratore oltre il punto di resistenza?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 87,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "kick-down enables maximum acceleration"
+      ],
+      "criterio_risposta": "Identifica il kick-down e dice che il cambio scala in funzione di velocità e giri per ottenere la massima accelerazione.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il kick-down consente la massima accelerazione: premendo l’acceleratore oltre il punto di resistenza, il cambio automatico scala a una marcia più bassa in base alla velocità del veicolo e al regime motore, poi passa alla marcia successiva più alta una volta raggiunto il regime massimo consentito. Nei modelli RS in modalità Tiptronic, invece, il cambio non scala automaticamente: se occorre accelerare, bisogna cambiare manualmente.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf89-2",
+          "pagina": 87,
+          "pagina_pdf": 89
+        },
+        {
+          "id": "audi-pdf163-6",
+          "pagina": 161,
+          "pagina_pdf": 163
+        },
+        {
+          "id": "audi-pdf136-1",
+          "pagina": 134,
+          "pagina_pdf": 136
+        },
+        {
+          "id": "audi-pdf80-4",
+          "pagina": 78,
+          "pagina_pdf": 80
+        },
+        {
+          "id": "audi-pdf161-2",
+          "pagina": 159,
+          "pagina_pdf": 161
+        },
+        {
+          "id": "audi-pdf99-4",
+          "pagina": 97,
+          "pagina_pdf": 99
+        },
+        {
+          "id": "audi-pdf135-5",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf99-3",
+          "pagina": 97,
+          "pagina_pdf": 99
+        },
+        {
+          "id": "audi-pdf84-3",
+          "pagina": 82,
+          "pagina_pdf": 84
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf89-2",
+        "pagina": 87,
+        "pagina_pdf": 89
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf89-2",
+          "pagina": 87,
+          "pagina_pdf": 89
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Identifica il kick-down e spiega che il cambio scala in base alla velocità e al regime motore per ottenere la massima accelerazione.",
+      "passato": true,
+      "latenza_ms": 15352,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-audi-vin-chat",
+      "veicolo": "audi",
+      "domanda": "È una Audi A3 8V.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 394,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "vehicle infor-"
+      ],
+      "criterio_risposta": "Riprende la domanda e indica il menu MMI del VIN: Vehicle, Service & checks, Vehicle information, anche se indica vie alternative.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Posso leggere il numero di telaio dal sistema dell’auto? In quale menu?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Posso leggere il numero di telaio dal sistema dell’auto? In quale menu?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Sì: il VIN si legge nell’MMI seguendo MENU > Vehicle > tasto di controllo sinistro > Service & checks > Vehicle information.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf261-1",
+          "pagina": 259,
+          "pagina_pdf": 261
+        },
+        {
+          "id": "audi-pdf396-5",
+          "pagina": 394,
+          "pagina_pdf": 396
+        },
+        {
+          "id": "audi-pdf168-2",
+          "pagina": 166,
+          "pagina_pdf": 168
+        },
+        {
+          "id": "audi-pdf207-6",
+          "pagina": 205,
+          "pagina_pdf": 207
+        },
+        {
+          "id": "audi-pdf167-1",
+          "pagina": 165,
+          "pagina_pdf": 167
+        },
+        {
+          "id": "audi-pdf170-1",
+          "pagina": 168,
+          "pagina_pdf": 170
+        },
+        {
+          "id": "audi-pdf255-8",
+          "pagina": 253,
+          "pagina_pdf": 255
+        },
+        {
+          "id": "audi-pdf172-2",
+          "pagina": 170,
+          "pagina_pdf": 172
+        },
+        {
+          "id": "audi-pdf167-2",
+          "pagina": 165,
+          "pagina_pdf": 167
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf396-5",
+        "pagina": 394,
+        "pagina_pdf": 396
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf396-5",
+          "pagina": 394,
+          "pagina_pdf": 396
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica il percorso MMI richiesto per trovare il VIN: Vehicle > Service & checks > Vehicle information.",
+      "passato": true,
+      "latenza_ms": 11340,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-focus-frizione-chat",
+      "veicolo": "focus",
+      "domanda": "È una Ford Focus con cambio manuale.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 232,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "hanno in comune lo stesso serbatoio liquido"
+      ],
+      "criterio_risposta": "Riprende la domanda e indica che freni e frizione condividono lo stesso serbatoio.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "La frizione usa lo stesso serbatoio del liquido freni?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [
+        {
+          "messaggio": "La frizione usa lo stesso serbatoio del liquido freni?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Sì: freni e frizione condividono lo stesso serbatoio del liquido.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf234-2",
+          "pagina": 232,
+          "pagina_pdf": 234
+        },
+        {
+          "id": "focus-pdf233-3",
+          "pagina": 231,
+          "pagina_pdf": 233
+        },
+        {
+          "id": "focus-pdf228-1",
+          "pagina": 226,
+          "pagina_pdf": 228
+        },
+        {
+          "id": "focus-pdf227-1",
+          "pagina": 225,
+          "pagina_pdf": 227
+        },
+        {
+          "id": "focus-pdf280-1",
+          "pagina": 278,
+          "pagina_pdf": 280
+        },
+        {
+          "id": "focus-pdf276-1",
+          "pagina": 274,
+          "pagina_pdf": 276
+        },
+        {
+          "id": "focus-pdf221-1",
+          "pagina": 219,
+          "pagina_pdf": 221
+        },
+        {
+          "id": "focus-pdf138-3",
+          "pagina": 136,
+          "pagina_pdf": 138
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf234-2",
+        "pagina": 232,
+        "pagina_pdf": 234
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf234-2",
+          "pagina": 232,
+          "pagina_pdf": 234
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta riprende la domanda e afferma correttamente che freni e frizione condividono lo stesso serbatoio del liquido.",
+      "passato": true,
+      "latenza_ms": 7943,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-focus-getto-sportello",
+      "veicolo": "focus",
+      "domanda": "Se lavo con un getto ad alta pressione, a che distanza minima dallo sportello carburante dice di stare?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 137,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "200 mm"
+      ],
+      "criterio_risposta": "Indica almeno 200 mm, o circa 20 cm, e getto solo per un breve periodo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Stai ad almeno 200 mm (8 poll.) dallo sportellino e indirizza il getto solo per un breve periodo.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf139-1",
+          "pagina": 137,
+          "pagina_pdf": 139
+        },
+        {
+          "id": "focus-pdf243-1",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "focus-pdf234-4",
+          "pagina": 232,
+          "pagina_pdf": 234
+        },
+        {
+          "id": "focus-pdf138-1",
+          "pagina": 136,
+          "pagina_pdf": 138
+        },
+        {
+          "id": "focus-pdf134-1",
+          "pagina": 132,
+          "pagina_pdf": 134
+        },
+        {
+          "id": "focus-pdf137-2",
+          "pagina": 135,
+          "pagina_pdf": 137
+        },
+        {
+          "id": "focus-pdf137-3",
+          "pagina": 135,
+          "pagina_pdf": 137
+        },
+        {
+          "id": "focus-pdf230-1",
+          "pagina": 228,
+          "pagina_pdf": 230
+        },
+        {
+          "id": "focus-pdf248-1",
+          "pagina": 246,
+          "pagina_pdf": 248
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf139-1",
+        "pagina": 137,
+        "pagina_pdf": 139
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf139-1",
+          "pagina": 137,
+          "pagina_pdf": 139
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica la distanza minima di 200 mm e specifica che il getto va orientato sullo sportellino solo per un breve periodo.",
+      "passato": true,
+      "latenza_ms": 6291,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-civic-neg-benzina-residua",
+      "veicolo": "civic",
+      "domanda": "Puoi leggere dal libretto quanti litri di benzina ci sono adesso nella mia Civic?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Distingue il carburante presente in quel momento dalla capienza o dal funzionamento del livello e non inventa un valore attuale.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No: il libretto non indica quanti litri ci sono adesso nel serbatoio. Dice che l’indicatore del livello carburante, visualizzato quando la modalità di alimentazione è su ACCENSIONE, mostra la quantità di carburante rimasta; il valore indicato può però differire dalla quantità effettiva.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf129-3",
+          "pagina": 128,
+          "pagina_pdf": 129
+        },
+        {
+          "id": "civic-pdf105-4",
+          "pagina": 104,
+          "pagina_pdf": 105
+        },
+        {
+          "id": "civic-pdf142-3",
+          "pagina": 141,
+          "pagina_pdf": 142
+        },
+        {
+          "id": "civic-pdf141-2",
+          "pagina": 140,
+          "pagina_pdf": 141
+        },
+        {
+          "id": "civic-pdf371-2",
+          "pagina": 370,
+          "pagina_pdf": 371
+        },
+        {
+          "id": "civic-pdf517-3",
+          "pagina": 516,
+          "pagina_pdf": 517
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf129-3",
+        "pagina": 128,
+        "pagina_pdf": 129
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf129-3",
+          "pagina": 128,
+          "pagina_pdf": 129
+        }
+      ],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 16317,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-audi-neg-ultimo-telefono",
+      "veicolo": "audi",
+      "domanda": "Sai quale smartphone è stato collegato per ultimo alla mia Audi A3 senza accedere all’MMI?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Spiega che il libretto non contiene la cronologia dei dispositivi della vettura. Può spiegare come consultare il menu se ha una fonte, senza inventare marca o modello.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non posso sapere quale smartphone sia stato collegato per ultimo alla tua Audi A3 sulla base di questi estratti. Il manuale dice che i dispositivi Bluetooth già associati si collegano automaticamente all’MMI quando il Bluetooth è attivo, si trovano nel raggio d’azione e l’accensione è inserita; tra questi, l’ultimo dispositivo connesso ha la priorità. L’estratto non spiega come identificarlo senza accedere all’MMI.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf191-4",
+          "pagina": 189,
+          "pagina_pdf": 191
+        },
+        {
+          "id": "audi-pdf192-1",
+          "pagina": 190,
+          "pagina_pdf": 192
+        },
+        {
+          "id": "audi-pdf258-2",
+          "pagina": 256,
+          "pagina_pdf": 258
+        },
+        {
+          "id": "audi-pdf257-1",
+          "pagina": 255,
+          "pagina_pdf": 257
+        },
+        {
+          "id": "audi-pdf203-1",
+          "pagina": 201,
+          "pagina_pdf": 203
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf191-4",
+        "pagina": 189,
+        "pagina_pdf": 191
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf191-4",
+          "pagina": 189,
+          "pagina_pdf": 191
+        }
+      ],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 15605,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "finale-focus-neg-chiavi-reali",
+      "veicolo": "focus",
+      "domanda": "Quante chiavi codificate attive ha in questo momento la mia Ford Focus, compresa quella eventualmente persa?",
+      "esito_atteso": "fonte_assente",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dice che il libretto non permette di conoscere il numero effettivo di chiavi codificate su quell’auto. Non inventa un numero.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Il manuale non indica quante chiavi codificate siano attive ora nella tua Focus. Dopo aver programmato una MyKey e con l’accensione inserita, il display informazioni può mostrare quante chiavi amministratore e quante MyKey sono programmate per il veicolo. In caso di smarrimento, il manuale indica di far cancellare e ricodificare tutte le chiavi restanti; non specifica se la chiave eventualmente persa sia ancora codificata nel tuo veicolo.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf44-1",
+          "pagina": 42,
+          "pagina_pdf": 44
+        },
+        {
+          "id": "focus-pdf51-1",
+          "pagina": 49,
+          "pagina_pdf": 51
+        },
+        {
+          "id": "focus-pdf39-3",
+          "pagina": 37,
+          "pagina_pdf": 39
+        },
+        {
+          "id": "focus-pdf38-1",
+          "pagina": 36,
+          "pagina_pdf": 38
+        },
+        {
+          "id": "focus-pdf49-2",
+          "pagina": 47,
+          "pagina_pdf": 49
+        },
+        {
+          "id": "focus-pdf40-1",
+          "pagina": 38,
+          "pagina_pdf": 40
+        },
+        {
+          "id": "focus-pdf49-1",
+          "pagina": 47,
+          "pagina_pdf": 49
+        },
+        {
+          "id": "focus-pdf43-1",
+          "pagina": 41,
+          "pagina_pdf": 43
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf40-1",
+        "pagina": 38,
+        "pagina_pdf": 40
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf40-1",
+          "pagina": 38,
+          "pagina_pdf": 40
+        },
+        {
+          "id": "focus-pdf51-1",
+          "pagina": 49,
+          "pagina_pdf": 51
+        }
+      ],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 31118,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "regressione-leon-fr",
+      "veicolo": "leon",
+      "domanda": "Seat Leon FR 1.5 eTSI DSG del 2021",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 373,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Riprende la domanda, indica l'etichetta della porta anteriore sinistra e il controllo a freddo.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Dove leggo la pressione delle gomme e devo controllarle a freddo?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "leon",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Dove leggo la pressione delle gomme e devo controllarle a freddo?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "La pressione si legge sull’etichetta nella parte posteriore del telaio della porta anteriore sinistra. Sì, va controllata soltanto con gli pneumatici freddi.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        },
+        {
+          "id": "leon-pdf381-2",
+          "pagina": 379,
+          "pagina_pdf": 381
+        },
+        {
+          "id": "leon-pdf376-6",
+          "pagina": 374,
+          "pagina_pdf": 376
+        },
+        {
+          "id": "leon-pdf378-4",
+          "pagina": 376,
+          "pagina_pdf": 378
+        },
+        {
+          "id": "leon-pdf377-2",
+          "pagina": 375,
+          "pagina_pdf": 377
+        },
+        {
+          "id": "leon-pdf380-2",
+          "pagina": 378,
+          "pagina_pdf": 380
+        },
+        {
+          "id": "leon-pdf322-7",
+          "pagina": 320,
+          "pagina_pdf": 322
+        },
+        {
+          "id": "leon-pdf53-2",
+          "pagina": 51,
+          "pagina_pdf": 53
+        },
+        {
+          "id": "leon-pdf379-3",
+          "pagina": 377,
+          "pagina_pdf": 379
+        },
+        {
+          "id": "leon-pdf52-6",
+          "pagina": 50,
+          "pagina_pdf": 52
+        },
+        {
+          "id": "leon-pdf378-1",
+          "pagina": 376,
+          "pagina_pdf": 378
+        }
+      ],
+      "fonte_citata": {
+        "id": "leon-pdf375-3",
+        "pagina": 373,
+        "pagina_pdf": 375
+      },
+      "fonti_citate": [
+        {
+          "id": "leon-pdf375-3",
+          "pagina": 373,
+          "pagina_pdf": 375
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Risponde alla domanda indicando l’etichetta sul telaio della porta anteriore sinistra e conferma che la pressione va controllata a freddo.",
+      "passato": true,
+      "latenza_ms": 9219,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "regressione-audi-sportback",
+      "veicolo": "audi",
+      "domanda": "Audi A3 8V Sportback 1.6 TDI del 2019",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 60,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Mantiene la domanda e indica di sollevare oltre l'ultima tacca e ripiegare in basso.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Come riabbasso il bracciolo centrale anteriore?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Come riabbasso il bracciolo centrale anteriore?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Per riportare il bracciolo alla posizione iniziale, sollevalo oltre l’ultima tacca e poi ripiegalo verso il basso.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "audi-pdf60-6",
+          "pagina": 58,
+          "pagina_pdf": 60
+        },
+        {
+          "id": "audi-pdf61-4",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf63-2",
+          "pagina": 61,
+          "pagina_pdf": 63
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf62-1",
+        "pagina": 60,
+        "pagina_pdf": 62
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Risponde alla richiesta sul bracciolo e indica di sollevarlo oltre l’ultima tacca e ripiegarlo verso il basso.",
+      "passato": true,
+      "latenza_ms": 6767,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "regressione-focus-titanium",
+      "veicolo": "focus",
+      "domanda": "Ford Focus Titanium con cambio manuale",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 232,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Mantiene il tema e dice che il serbatoio alimenta sia il lavacristallo sia il lavalunotto.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Il liquido del lunotto ha un serbatoio separato?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Il liquido del lunotto ha un serbatoio separato?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "No: il serbatoio è condiviso dal lavacristallo e dal lavalunotto, quindi non è separato.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf234-3",
+          "pagina": 232,
+          "pagina_pdf": 234
+        },
+        {
+          "id": "focus-pdf104-2",
+          "pagina": 102,
+          "pagina_pdf": 104
+        },
+        {
+          "id": "focus-pdf11-1",
+          "pagina": 9,
+          "pagina_pdf": 11
+        },
+        {
+          "id": "focus-pdf243-3",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "focus-pdf228-1",
+          "pagina": 226,
+          "pagina_pdf": 228
+        },
+        {
+          "id": "focus-pdf221-1",
+          "pagina": 219,
+          "pagina_pdf": 221
+        },
+        {
+          "id": "focus-pdf230-1",
+          "pagina": 228,
+          "pagina_pdf": 230
+        },
+        {
+          "id": "focus-pdf222-1",
+          "pagina": 220,
+          "pagina_pdf": 222
+        },
+        {
+          "id": "focus-pdf229-1",
+          "pagina": 227,
+          "pagina_pdf": 229
+        },
+        {
+          "id": "focus-pdf243-2",
+          "pagina": 241,
+          "pagina_pdf": 243
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf234-3",
+        "pagina": 232,
+        "pagina_pdf": 234
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf234-3",
+          "pagina": 232,
+          "pagina_pdf": 234
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Mantiene il tema e afferma che il serbatoio è condiviso da lavacristallo e lavalunotto.",
+      "passato": true,
+      "latenza_ms": 6969,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    },
+    {
+      "id": "regressione-civic-gt",
+      "veicolo": "civic",
+      "domanda": "Honda Civic Type R GT del 2023",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 549,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Mantiene la domanda, indica DOT 3 o DOT 4 e l'incompatibilita di DOT 5.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Il liquido freni puo essere DOT 5? Quale tipo indica?",
+          "esito_atteso": "veicolo_da_chiarire"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Il liquido freni puo essere DOT 5? Quale tipo indica?",
+          "esito_atteso": "veicolo_da_chiarire",
+          "esito": "veicolo_da_chiarire",
+          "risposta_visibile": "Di quale auto si tratta? Ho questi libretti: Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "No. Il DOT 5 non è compatibile con l’impianto frenante del veicolo e può causare danni rilevanti. (p. 549 (PDF p. 550))\n\nIl manuale indica liquido freni DOT 3 o DOT 4. (p. 549 (PDF p. 550))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf644-2",
+          "pagina": 643,
+          "pagina_pdf": 644
+        },
+        {
+          "id": "civic-pdf550-1",
+          "pagina": 549,
+          "pagina_pdf": 550
+        },
+        {
+          "id": "civic-pdf30-2",
+          "pagina": 29,
+          "pagina_pdf": 30
+        },
+        {
+          "id": "civic-pdf34-3",
+          "pagina": 33,
+          "pagina_pdf": 34
+        },
+        {
+          "id": "civic-pdf643-5",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf494-2",
+          "pagina": 493,
+          "pagina_pdf": 494
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf550-1",
+        "pagina": 549,
+        "pagina_pdf": 550
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf550-1",
+          "pagina": 549,
+          "pagina_pdf": 550
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Risponde alla domanda indicando DOT 3 o DOT 4 e specifica che DOT 5 è incompatibile con l’impianto frenante.",
+      "passato": true,
+      "latenza_ms": 14996,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Criterio soddisfatto nella risposta visibile, compresi i limiti sui dati attuali."
+      }
+    }
+  ],
+  "sintesi_revisionata": {
+    "complete": 12,
+    "parziali": 0,
+    "fallite": 0
+  }
+}

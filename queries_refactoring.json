@@ -1,0 +1,146 @@
+[
+  {
+    "id": "finale-civic-benzina",
+    "veicolo": "civic",
+    "domanda": "Per la Civic Type R, 95 ottani con E10 è compatibile? E quale numero consiglia per le prestazioni?",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 513,
+    "evidenze_attese": [
+      "pari o superiore a 98"
+    ],
+    "criterio_risposta": "Indica 95 o più per benzina/gasohol fino a E10 secondo EN 228 e 98 o più per ottimizzare le prestazioni."
+  },
+  {
+    "id": "finale-audi-kickdown",
+    "veicolo": "audi",
+    "domanda": "Sul cambio automatico, che cosa fa la trasmissione se premo l’acceleratore oltre il punto di resistenza?",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 87,
+    "evidenze_attese": [
+      "kick-down enables maximum acceleration"
+    ],
+    "criterio_risposta": "Identifica il kick-down e dice che il cambio scala in funzione di velocità e giri per ottenere la massima accelerazione."
+  },
+  {
+    "id": "finale-audi-vin-chat",
+    "veicolo": "audi",
+    "domanda": "È una Audi A3 8V.",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 394,
+    "evidenze_attese": [
+      "vehicle infor-"
+    ],
+    "criterio_risposta": "Riprende la domanda e indica il menu MMI del VIN: Vehicle, Service & checks, Vehicle information, anche se indica vie alternative.",
+    "turni": [
+      {
+        "messaggio": "Posso leggere il numero di telaio dal sistema dell’auto? In quale menu?",
+        "esito_atteso": "veicolo_da_chiarire"
+      }
+    ]
+  },
+  {
+    "id": "finale-focus-frizione-chat",
+    "veicolo": "focus",
+    "domanda": "È una Ford Focus con cambio manuale.",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 232,
+    "evidenze_attese": [
+      "hanno in comune lo stesso serbatoio liquido"
+    ],
+    "criterio_risposta": "Riprende la domanda e indica che freni e frizione condividono lo stesso serbatoio.",
+    "turni": [
+      {
+        "messaggio": "La frizione usa lo stesso serbatoio del liquido freni?",
+        "esito_atteso": "veicolo_da_chiarire"
+      }
+    ]
+  },
+  {
+    "id": "finale-focus-getto-sportello",
+    "veicolo": "focus",
+    "domanda": "Se lavo con un getto ad alta pressione, a che distanza minima dallo sportello carburante dice di stare?",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 137,
+    "evidenze_attese": [
+      "200 mm"
+    ],
+    "criterio_risposta": "Indica almeno 200 mm, o circa 20 cm, e getto solo per un breve periodo."
+  },
+  {
+    "id": "finale-civic-neg-benzina-residua",
+    "veicolo": "civic",
+    "domanda": "Puoi leggere dal libretto quanti litri di benzina ci sono adesso nella mia Civic?",
+    "esito_atteso": "fonte_assente",
+    "criterio_risposta": "Distingue il carburante presente in quel momento dalla capienza o dal funzionamento del livello e non inventa un valore attuale."
+  },
+  {
+    "id": "finale-audi-neg-ultimo-telefono",
+    "veicolo": "audi",
+    "domanda": "Sai quale smartphone è stato collegato per ultimo alla mia Audi A3 senza accedere all’MMI?",
+    "esito_atteso": "fonte_assente",
+    "criterio_risposta": "Spiega che il libretto non contiene la cronologia dei dispositivi della vettura. Può spiegare come consultare il menu se ha una fonte, senza inventare marca o modello."
+  },
+  {
+    "id": "finale-focus-neg-chiavi-reali",
+    "veicolo": "focus",
+    "domanda": "Quante chiavi codificate attive ha in questo momento la mia Ford Focus, compresa quella eventualmente persa?",
+    "esito_atteso": "fonte_assente",
+    "criterio_risposta": "Dice che il libretto non permette di conoscere il numero effettivo di chiavi codificate su quell’auto. Non inventa un numero."
+  },
+  {
+    "id": "regressione-leon-fr",
+    "veicolo": "leon",
+    "domanda": "Seat Leon FR 1.5 eTSI DSG del 2021",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 373,
+    "criterio_risposta": "Riprende la domanda, indica l'etichetta della porta anteriore sinistra e il controllo a freddo.",
+    "turni": [
+      {
+        "messaggio": "Dove leggo la pressione delle gomme e devo controllarle a freddo?",
+        "esito_atteso": "veicolo_da_chiarire"
+      }
+    ]
+  },
+  {
+    "id": "regressione-audi-sportback",
+    "veicolo": "audi",
+    "domanda": "Audi A3 8V Sportback 1.6 TDI del 2019",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 60,
+    "criterio_risposta": "Mantiene la domanda e indica di sollevare oltre l'ultima tacca e ripiegare in basso.",
+    "turni": [
+      {
+        "messaggio": "Come riabbasso il bracciolo centrale anteriore?",
+        "esito_atteso": "veicolo_da_chiarire"
+      }
+    ]
+  },
+  {
+    "id": "regressione-focus-titanium",
+    "veicolo": "focus",
+    "domanda": "Ford Focus Titanium con cambio manuale",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 232,
+    "criterio_risposta": "Mantiene il tema e dice che il serbatoio alimenta sia il lavacristallo sia il lavalunotto.",
+    "turni": [
+      {
+        "messaggio": "Il liquido del lunotto ha un serbatoio separato?",
+        "esito_atteso": "veicolo_da_chiarire"
+      }
+    ]
+  },
+  {
+    "id": "regressione-civic-gt",
+    "veicolo": "civic",
+    "domanda": "Honda Civic Type R GT del 2023",
+    "esito_atteso": "risposta",
+    "pagina_attesa": 549,
+    "criterio_risposta": "Mantiene la domanda, indica DOT 3 o DOT 4 e l'incompatibilita di DOT 5.",
+    "turni": [
+      {
+        "messaggio": "Il liquido freni puo essere DOT 5? Quale tipo indica?",
+        "esito_atteso": "veicolo_da_chiarire"
+      }
+    ]
+  }
+]

@@ -17,6 +17,34 @@ from valutazione import Caso, Giudizio, corrisponde, esegui_caso, evidenze_manca
 
 
 class ValutazioneTest(unittest.TestCase):
+    def test_un_limite_documentato_viene_giudicato_anche_se_l_esito_e_risposta(self):
+        assistente = Mock()
+        assistente.client.model_name = "modello-test"
+        assistente.indice.embedder.model_name = "embedding-test"
+        assistente.indice.top_k = 10
+        assistente.rispondi.side_effect = [
+            Risposta("risposta", "Il libretto non contiene il livello attuale del serbatoio."),
+            Risposta("risposta", "Nel serbatoio ci sono attualmente 42 litri."),
+        ]
+        assistente.client.structured_response.side_effect = [
+            Mock(structured_data=[Giudizio(coerente=True, motivo="Dichiara il limite senza inventare il dato.")]),
+            Mock(structured_data=[Giudizio(coerente=False, motivo="Inventa il livello attuale.")]),
+        ]
+        casi = [{
+            "id": id, "veicolo": "civic", "domanda": "Quanti litri ci sono adesso?",
+            "esito_atteso": "fonte_assente",
+            "criterio_risposta": "Dichiara che il livello attuale non si determina dal libretto e non inventa valori.",
+        } for id in ("limite-corretto", "dato-inventato")]
+        with TemporaryDirectory() as cartella:
+            queries = Path(cartella) / "queries.json"
+            report = Path(cartella) / "report.json"
+            queries.write_text(json.dumps(casi), encoding="utf-8")
+            with redirect_stdout(StringIO()):
+                valuta(assistente, queries, report)
+            dati = json.loads(report.read_text(encoding="utf-8"))
+        self.assertEqual([r["passato"] for r in dati["risultati"]], [True, False])
+        self.assertTrue(all(r["esito"] == "risposta" for r in dati["risultati"]))
+
     def test_distingue_ranking_citazione_e_ricerca_saltata(self):
         assistente = Mock()
         assistente.client.model_name = "agente-test"
@@ -116,12 +144,14 @@ class ValutazioneTest(unittest.TestCase):
         self.assertEqual(assistente.rispondi.call_args_list, [call("audi", "Dove sono i fusibili?", contesto=())])
         self.assertTrue(turni[0]["passato"])
 
-    def test_le_evidenze_del_benchmark_sono_nelle_pagine_dei_tre_pdf(self):
+    def test_le_evidenze_del_benchmark_sono_nelle_pagine_dei_pdf(self):
         progetto = Path(__file__).resolve().parents[1]
         cartella = Path(os.getenv("MANUALI_DIR") or (progetto.parent / "manuali uso e manutenzione auto"))
         casi = TypeAdapter(list[Caso]).validate_json((progetto / "queries.json").read_text(encoding="utf-8"))
+        casi += TypeAdapter(list[Caso]).validate_json((progetto / "queries_copertura.json").read_text(encoding="utf-8"))
         scarti_pdf = {"focus": 2, "civic": 1, "audi": 2}
-        for codice, veicolo in CATALOGO.items():
+        for codice in sorted({caso.veicolo for caso in casi if caso.esito_atteso == "risposta"}):
+            veicolo = CATALOGO[codice]
             casi_con_evidenze = [caso for caso in casi if caso.veicolo == codice and caso.evidenze_attese]
             self.assertTrue(casi_con_evidenze, codice)
             with (cartella / veicolo.file).open("rb") as file:

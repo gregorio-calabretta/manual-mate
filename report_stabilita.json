@@ -1,0 +1,2225 @@
+{
+  "eseguito_il": "2026-11-18T18:01:20.382034+00:00",
+  "modello_agente": "gpt-6-luna",
+  "modello_valutatore": "gpt-6-luna",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 10,
+  "max_char": 1024,
+  "overlap": 0,
+  "lavoratori": 3,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 21,
+      "totale": 24
+    },
+    "ricerche_avviate": {
+      "corretti": 24,
+      "totale": 24
+    },
+    "hit_at_1": {
+      "corretti": 10,
+      "totale": 24
+    },
+    "citazioni_corrette": {
+      "corretti": 21,
+      "totale": 24
+    },
+    "estratti_con_evidenze": {
+      "corretti": 13,
+      "totale": 15
+    },
+    "risposte_coerenti": {
+      "corretti": 21,
+      "totale": 24
+    },
+    "gruppi_completi": {
+      "corretti": 1,
+      "totale": 3
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "astensioni": {
+      "corretti": 0,
+      "totale": 0
+    }
+  },
+  "gruppi": {
+    "stabilita-finale-audi-velocita-pioggia": {
+      "corretti": 4,
+      "totale": 5
+    },
+    "stabilita-finale-audi-bracciolo": {
+      "corretti": 5,
+      "totale": 5
+    },
+    "stabilita-finale-audi-cruise-freno": {
+      "corretti": 4,
+      "totale": 5
+    }
+  },
+  "risultati": [
+    {
+      "id": "stabilita-finale-audi-velocita-pioggia",
+      "veicolo": "audi",
+      "domanda": "Con sensore pioggia e leva su intermittenza a che velocità circa si attivano i tergi quando piove?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 54,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "2 mph (4 km/h)"
+      ],
+      "criterio_risposta": "Indica oltre circa 4 km/h oppure circa 2 mph, per veicoli con sensore pioggia.",
+      "gruppo": "stabilita-finale-audi-velocita-pioggia",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì: con il sensore pioggia attivo, i tergi si attivano quando piove superati circa 2 mph (4 km/h).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf31-4",
+          "pagina": 29,
+          "pagina_pdf": 31
+        },
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        },
+        {
+          "id": "audi-pdf138-3",
+          "pagina": 136,
+          "pagina_pdf": 138
+        },
+        {
+          "id": "audi-pdf137-5",
+          "pagina": 135,
+          "pagina_pdf": 137
+        },
+        {
+          "id": "audi-pdf254-3",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "audi-pdf146-2",
+          "pagina": 144,
+          "pagina_pdf": 146
+        },
+        {
+          "id": "audi-pdf144-5",
+          "pagina": 142,
+          "pagina_pdf": 144
+        },
+        {
+          "id": "audi-pdf139-4",
+          "pagina": 137,
+          "pagina_pdf": 139
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf56-4",
+        "pagina": 54,
+        "pagina_pdf": 56
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica che i tergi si attivano con la pioggia oltre circa 2 mph (4 km/h), come richiesto dal criterio.",
+      "passato": true,
+      "latenza_ms": 8201,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-velocita-pioggia-v1",
+      "veicolo": "audi",
+      "domanda": "Ho il sensore pioggia e il comando su intermittente: sopra quanti km/h partono i tergicristalli?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 54,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "2 mph (4 km/h)"
+      ],
+      "criterio_risposta": "Indica oltre circa 4 km/h oppure circa 2 mph, per veicoli con sensore pioggia.",
+      "gruppo": "stabilita-finale-audi-velocita-pioggia",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Con il sensore pioggia attivo, i tergicristalli partono quando piove e la velocità supera circa 4 km/h (2 mph).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf31-4",
+          "pagina": 29,
+          "pagina_pdf": 31
+        },
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        },
+        {
+          "id": "audi-pdf254-3",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf144-5",
+          "pagina": 142,
+          "pagina_pdf": 144
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf56-4",
+        "pagina": 54,
+        "pagina_pdf": 56
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica correttamente che, con il sensore pioggia, i tergicristalli si attivano oltre circa 4 km/h (2 mph).",
+      "passato": true,
+      "latenza_ms": 10887,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-velocita-pioggia-v2",
+      "veicolo": "audi",
+      "domanda": "In automatico con sensore pioggia, la soglia per far partire i tergi quando piove e circa 4 o 40 km/h?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 54,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "2 mph (4 km/h)"
+      ],
+      "criterio_risposta": "Indica oltre circa 4 km/h oppure circa 2 mph, per veicoli con sensore pioggia.",
+      "gruppo": "stabilita-finale-audi-velocita-pioggia",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf31-4",
+          "pagina": 29,
+          "pagina_pdf": 31
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf136-3",
+          "pagina": 134,
+          "pagina_pdf": 136
+        },
+        {
+          "id": "audi-pdf137-5",
+          "pagina": 135,
+          "pagina_pdf": 137
+        },
+        {
+          "id": "audi-pdf149-1",
+          "pagina": 147,
+          "pagina_pdf": 149
+        },
+        {
+          "id": "audi-pdf144-5",
+          "pagina": 142,
+          "pagina_pdf": 144
+        },
+        {
+          "id": "audi-pdf148-4",
+          "pagina": 146,
+          "pagina_pdf": 148
+        },
+        {
+          "id": "audi-pdf354-2",
+          "pagina": 352,
+          "pagina_pdf": 354
+        },
+        {
+          "id": "audi-pdf139-4",
+          "pagina": 137,
+          "pagina_pdf": 139
+        },
+        {
+          "id": "audi-pdf50-5",
+          "pagina": 48,
+          "pagina_pdf": 50
+        },
+        {
+          "id": "audi-pdf154-6",
+          "pagina": 152,
+          "pagina_pdf": 154
+        },
+        {
+          "id": "audi-pdf153-4",
+          "pagina": 151,
+          "pagina_pdf": 153
+        },
+        {
+          "id": "audi-pdf155-1",
+          "pagina": 153,
+          "pagina_pdf": 155
+        }
+      ],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "2 mph (4 km/h)"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 16778,
+      "revisione_manuale": {
+        "esito": "fallita",
+        "motivo": "La pagina 54 non compare tra le fonti recuperate."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-velocita-pioggia-v3",
+      "veicolo": "audi",
+      "domanda": "Con l'intermittenza inserita sulla A3 dotata di sensore pioggia, che velocita devo superare perche i tergi si mettano in moto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 54,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "2 mph (4 km/h)"
+      ],
+      "criterio_risposta": "Indica oltre circa 4 km/h oppure circa 2 mph, per veicoli con sensore pioggia.",
+      "gruppo": "stabilita-finale-audi-velocita-pioggia",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "I tergi si attivano quando piove e la velocità supera circa 2 mph (4 km/h).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf31-4",
+          "pagina": 29,
+          "pagina_pdf": 31
+        },
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf137-5",
+          "pagina": 135,
+          "pagina_pdf": 137
+        },
+        {
+          "id": "audi-pdf254-3",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "audi-pdf44-2",
+          "pagina": 42,
+          "pagina_pdf": 44
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf56-4",
+        "pagina": 54,
+        "pagina_pdf": 56
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica la soglia corretta di circa 2 mph (4 km/h) per l’attivazione dei tergi con sensore pioggia.",
+      "passato": true,
+      "latenza_ms": 7538,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-velocita-pioggia-v4",
+      "veicolo": "audi",
+      "domanda": "Con sensore pioggia, a quale velocita circa cominciano a funzionare i tergi impostati su intermittenza?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 54,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "2 mph (4 km/h)"
+      ],
+      "criterio_risposta": "Indica oltre circa 4 km/h oppure circa 2 mph, per veicoli con sensore pioggia.",
+      "gruppo": "stabilita-finale-audi-velocita-pioggia",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Con il sensore pioggia, i tergi si attivano quando piove e la velocità supera circa 2 mph (4 km/h).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf31-4",
+          "pagina": 29,
+          "pagina_pdf": 31
+        },
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        },
+        {
+          "id": "audi-pdf254-3",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "audi-pdf138-3",
+          "pagina": 136,
+          "pagina_pdf": 138
+        },
+        {
+          "id": "audi-pdf134-4",
+          "pagina": 132,
+          "pagina_pdf": 134
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf151-4",
+          "pagina": 149,
+          "pagina_pdf": 151
+        },
+        {
+          "id": "audi-pdf144-5",
+          "pagina": 142,
+          "pagina_pdf": 144
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf56-4",
+        "pagina": 54,
+        "pagina_pdf": 56
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf56-4",
+          "pagina": 54,
+          "pagina_pdf": 56
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica che i tergi con sensore pioggia si attivano oltre circa 2 mph (4 km/h), come richiesto.",
+      "passato": true,
+      "latenza_ms": 7379,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-bracciolo",
+      "veicolo": "audi",
+      "domanda": "Come faccio tornare giù il bracciolo centrale anteriore dopo averlo alzato a scatti?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 60,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "raise it out of the top notch"
+      ],
+      "criterio_risposta": "Indica di alzarlo oltre l’ultima tacca e ripiegarlo in basso.",
+      "gruppo": "stabilita-finale-audi-bracciolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per riportare il bracciolo alla posizione iniziale, sollevalo oltre l’ultimo scatto in alto e poi ripiegalo verso il basso.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf268-2",
+          "pagina": 266,
+          "pagina_pdf": 268
+        },
+        {
+          "id": "audi-pdf47-3",
+          "pagina": 45,
+          "pagina_pdf": 47
+        },
+        {
+          "id": "audi-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf61-4",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf11-4",
+          "pagina": null,
+          "pagina_pdf": 11
+        },
+        {
+          "id": "audi-pdf391-4",
+          "pagina": 389,
+          "pagina_pdf": 391
+        },
+        {
+          "id": "audi-pdf60-5",
+          "pagina": 58,
+          "pagina_pdf": 60
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf62-1",
+        "pagina": 60,
+        "pagina_pdf": 62
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica di sollevare il bracciolo oltre l’ultimo scatto e poi ripiegarlo verso il basso.",
+      "passato": true,
+      "latenza_ms": 6720,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-bracciolo-v1",
+      "veicolo": "audi",
+      "domanda": "Il bracciolo davanti e rimasto sollevato: come lo riporto alla posizione iniziale?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 60,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "raise it out of the top notch"
+      ],
+      "criterio_risposta": "Indica di alzarlo oltre l’ultima tacca e ripiegarlo in basso.",
+      "gruppo": "stabilita-finale-audi-bracciolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sollevato il bracciolo oltre l’ultima tacca, poi ripiegalo verso il basso: torna alla posizione iniziale.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "audi-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf60-5",
+          "pagina": 58,
+          "pagina_pdf": 60
+        },
+        {
+          "id": "audi-pdf254-1",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf322-1",
+          "pagina": 320,
+          "pagina_pdf": 322
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf62-1",
+        "pagina": 60,
+        "pagina_pdf": 62
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica di sollevare il bracciolo oltre l’ultima tacca e poi ripiegarlo verso il basso, come richiesto dal criterio.",
+      "passato": true,
+      "latenza_ms": 7492,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-bracciolo-v2",
+      "veicolo": "audi",
+      "domanda": "Per abbassare il bracciolo centrale anteriore devo prima sollevarlo ancora?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 60,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "raise it out of the top notch"
+      ],
+      "criterio_risposta": "Indica di alzarlo oltre l’ultima tacca e ripiegarlo in basso.",
+      "gruppo": "stabilita-finale-audi-bracciolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì. Per riportare il bracciolo alla posizione iniziale, sollevalo oltre l’ultimo scatto e poi ripiegalo verso il basso.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "audi-pdf61-4",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf60-6",
+          "pagina": 58,
+          "pagina_pdf": 60
+        },
+        {
+          "id": "audi-pdf61-6",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf413-1",
+          "pagina": null,
+          "pagina_pdf": 413
+        },
+        {
+          "id": "audi-pdf322-1",
+          "pagina": 320,
+          "pagina_pdf": 322
+        },
+        {
+          "id": "audi-pdf193-1",
+          "pagina": 191,
+          "pagina_pdf": 193
+        },
+        {
+          "id": "audi-pdf391-4",
+          "pagina": 389,
+          "pagina_pdf": 391
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf62-1",
+        "pagina": 60,
+        "pagina_pdf": 62
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica correttamente di sollevare il bracciolo oltre l’ultimo scatto e poi ripiegarlo verso il basso.",
+      "passato": true,
+      "latenza_ms": 9288,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-bracciolo-v3",
+      "veicolo": "audi",
+      "domanda": "Ho alzato il poggiabraccio anteriore a scatti e ora lo voglio giu: cosa dice di fare il libretto?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 60,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "raise it out of the top notch"
+      ],
+      "criterio_risposta": "Indica di alzarlo oltre l’ultima tacca e ripiegarlo in basso.",
+      "gruppo": "stabilita-finale-audi-bracciolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per abbassarlo, sollevalo oltre l’ultimo scatto e poi ripiegalo verso il basso, fino alla posizione iniziale.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "audi-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf60-5",
+          "pagina": 58,
+          "pagina_pdf": 60
+        },
+        {
+          "id": "audi-pdf61-4",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf60-6",
+          "pagina": 58,
+          "pagina_pdf": 60
+        },
+        {
+          "id": "audi-pdf391-4",
+          "pagina": 389,
+          "pagina_pdf": 391
+        },
+        {
+          "id": "audi-pdf413-1",
+          "pagina": null,
+          "pagina_pdf": 413
+        },
+        {
+          "id": "audi-pdf268-2",
+          "pagina": 266,
+          "pagina_pdf": 268
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf62-1",
+        "pagina": 60,
+        "pagina_pdf": 62
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica di sollevare il poggiabraccio oltre l’ultima tacca e poi ripiegarlo verso il basso, come richiesto dal criterio.",
+      "passato": true,
+      "latenza_ms": 7816,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-bracciolo-v4",
+      "veicolo": "audi",
+      "domanda": "Come si sblocca verso il basso il bracciolo fra i due sedili anteriori?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 60,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "raise it out of the top notch"
+      ],
+      "criterio_risposta": "Indica di alzarlo oltre l’ultima tacca e ripiegarlo in basso.",
+      "gruppo": "stabilita-finale-audi-bracciolo",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per abbassarlo, sollevalo oltre la posizione più alta e poi ripiegalo verso il basso; il manuale non indica un pulsante di sblocco.\n\nDal libretto non posso determinare un pulsante o comando specifico per sbloccare il bracciolo.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "audi-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        },
+        {
+          "id": "audi-pdf61-6",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf268-2",
+          "pagina": 266,
+          "pagina_pdf": 268
+        },
+        {
+          "id": "audi-pdf413-1",
+          "pagina": null,
+          "pagina_pdf": 413
+        },
+        {
+          "id": "audi-pdf68-4",
+          "pagina": 66,
+          "pagina_pdf": 68
+        },
+        {
+          "id": "audi-pdf322-1",
+          "pagina": 320,
+          "pagina_pdf": 322
+        },
+        {
+          "id": "audi-pdf47-3",
+          "pagina": 45,
+          "pagina_pdf": 47
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf62-1",
+        "pagina": 60,
+        "pagina_pdf": 62
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf62-1",
+          "pagina": 60,
+          "pagina_pdf": 62
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica correttamente di alzare il bracciolo oltre la tacca più alta e ripiegarlo verso il basso.",
+      "passato": true,
+      "latenza_ms": 9174,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-cruise-freno",
+      "veicolo": "audi",
+      "domanda": "Se premo il freno, posso disattivare la velocità del cruise control in uso sull’Audi?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 127,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "press the brake pedal"
+      ],
+      "criterio_risposta": "Conferma che premere il freno disattiva temporaneamente la velocità di crociera in uso.",
+      "gruppo": "stabilita-finale-audi-cruise-freno",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì. Se il cruise control è acceso e attivato, premere il pedale del freno disattiva la velocità impostata; questa viene memorizzata e può essere ripresa. (p. 127 (PDF p. 129))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        },
+        {
+          "id": "audi-pdf133-4",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "audi-pdf27-4",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf134-4",
+          "pagina": 132,
+          "pagina_pdf": 134
+        },
+        {
+          "id": "audi-pdf135-5",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf135-3",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf129-4",
+        "pagina": 127,
+        "pagina_pdf": 129
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma che premere il freno disattiva la velocità di crociera attiva, che viene memorizzata e può essere ripresa.",
+      "passato": true,
+      "latenza_ms": 12517,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-cruise-freno-v1",
+      "veicolo": "audi",
+      "domanda": "Il cruise sta mantenendo la velocita: toccando il pedale del freno lo interrompo?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 127,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "press the brake pedal"
+      ],
+      "criterio_risposta": "Conferma che premere il freno disattiva temporaneamente la velocità di crociera in uso.",
+      "gruppo": "stabilita-finale-audi-cruise-freno",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì. Premendo il freno disattivi il cruise; la velocità impostata resta memorizzata e puoi riprenderla in seguito.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        },
+        {
+          "id": "audi-pdf27-4",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf133-4",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "audi-pdf135-3",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf82-1",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf135-5",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf136-2",
+          "pagina": 134,
+          "pagina_pdf": 136
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf129-4",
+        "pagina": 127,
+        "pagina_pdf": 129
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Conferma che premendo il freno il cruise si disattiva e che la velocità impostata resta memorizzata per poterla riprendere.",
+      "passato": true,
+      "latenza_ms": 13305,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-cruise-freno-v2",
+      "veicolo": "audi",
+      "domanda": "Per sospendere il regolatore di velocita della A3 posso semplicemente frenare?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 127,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "press the brake pedal"
+      ],
+      "criterio_risposta": "Conferma che premere il freno disattiva temporaneamente la velocità di crociera in uso.",
+      "gruppo": "stabilita-finale-audi-cruise-freno",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì: premendo il pedale del freno disattivi la velocità impostata; il regolatore conserva la velocità memorizzata, che puoi riprendere in seguito.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf135-3",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        },
+        {
+          "id": "audi-pdf149-1",
+          "pagina": 147,
+          "pagina_pdf": 149
+        },
+        {
+          "id": "audi-pdf136-2",
+          "pagina": 134,
+          "pagina_pdf": 136
+        },
+        {
+          "id": "audi-pdf27-4",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf27-1",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf82-1",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf133-4",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "audi-pdf133-1",
+          "pagina": 131,
+          "pagina_pdf": 133
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf129-4",
+        "pagina": 127,
+        "pagina_pdf": 129
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Conferma che premere il freno disattiva il regolatore attivo e specifica che la velocità resta memorizzata e può essere ripresa.",
+      "passato": true,
+      "latenza_ms": 7561,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-cruise-freno-v3",
+      "veicolo": "audi",
+      "domanda": "Quando il cruise control e attivo, premere il freno disattiva la velocita impostata?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 127,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "press the brake pedal"
+      ],
+      "criterio_risposta": "Conferma che premere il freno disattiva temporaneamente la velocità di crociera in uso.",
+      "gruppo": "stabilita-finale-audi-cruise-freno",
+      "turni": [],
+      "esito": "fonte_assente",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Non ho trovato nel libretto un passaggio che risponda alla tua domanda.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        },
+        {
+          "id": "audi-pdf135-3",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf133-4",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "audi-pdf134-4",
+          "pagina": 132,
+          "pagina_pdf": 134
+        },
+        {
+          "id": "audi-pdf27-4",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf131-5",
+          "pagina": 129,
+          "pagina_pdf": 131
+        },
+        {
+          "id": "audi-pdf27-1",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf136-7",
+          "pagina": 134,
+          "pagina_pdf": 136
+        },
+        {
+          "id": "audi-pdf128-4",
+          "pagina": 126,
+          "pagina_pdf": 128
+        }
+      ],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": true,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [
+        "press the brake pedal"
+      ],
+      "risposta_coerente": null,
+      "motivo_giudizio": null,
+      "passato": false,
+      "latenza_ms": 13646,
+      "revisione_manuale": {
+        "esito": "fallita",
+        "motivo": "La pagina 127 e presente tra le fonti recuperate ma non viene prodotta una risposta documentata."
+      }
+    },
+    {
+      "id": "stabilita-finale-audi-cruise-freno-v4",
+      "veicolo": "audi",
+      "domanda": "Se sto andando col regolatore di velocita acceso e attivo e freno, smette temporaneamente di regolare?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 127,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [
+        "press the brake pedal"
+      ],
+      "criterio_risposta": "Conferma che premere il freno disattiva temporaneamente la velocità di crociera in uso.",
+      "gruppo": "stabilita-finale-audi-cruise-freno",
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì. Premendo il pedale del freno, disattivi la regolazione del cruise control. La velocità impostata viene memorizzata e puoi riprenderla.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf135-3",
+          "pagina": 133,
+          "pagina_pdf": 135
+        },
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        },
+        {
+          "id": "audi-pdf132-3",
+          "pagina": 130,
+          "pagina_pdf": 132
+        },
+        {
+          "id": "audi-pdf133-1",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "audi-pdf149-1",
+          "pagina": 147,
+          "pagina_pdf": 149
+        },
+        {
+          "id": "audi-pdf133-4",
+          "pagina": 131,
+          "pagina_pdf": 133
+        },
+        {
+          "id": "audi-pdf136-7",
+          "pagina": 134,
+          "pagina_pdf": 136
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf133-3",
+          "pagina": 131,
+          "pagina_pdf": 133
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf129-4",
+        "pagina": 127,
+        "pagina_pdf": 129
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf129-4",
+          "pagina": 127,
+          "pagina_pdf": 129
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma che premere il freno disattiva la regolazione della velocità e che la velocità impostata resta memorizzata per poterla riprendere.",
+      "passato": true,
+      "latenza_ms": 23788,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-lavavetri-vuoto",
+      "veicolo": "focus",
+      "domanda": "Posso azionare il lavaparabrezza se ho finito completamente il liquido?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 61,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dice di non azionare i lavavetri con il serbatoio vuoto e che la pompa potrebbe surriscaldarsi.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No: il manuale dice di non azionare i lavavetri quando il serbatoio è vuoto, perché ciò potrebbe causare il surriscaldamento della pompa.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf222-1",
+          "pagina": 220,
+          "pagina_pdf": 222
+        },
+        {
+          "id": "focus-pdf234-3",
+          "pagina": 232,
+          "pagina_pdf": 234
+        },
+        {
+          "id": "focus-pdf221-1",
+          "pagina": 219,
+          "pagina_pdf": 221
+        },
+        {
+          "id": "focus-pdf63-2",
+          "pagina": 61,
+          "pagina_pdf": 63
+        },
+        {
+          "id": "focus-pdf225-1",
+          "pagina": 223,
+          "pagina_pdf": 225
+        },
+        {
+          "id": "focus-pdf64-1",
+          "pagina": 62,
+          "pagina_pdf": 64
+        },
+        {
+          "id": "focus-pdf61-1",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "focus-pdf224-1",
+          "pagina": 222,
+          "pagina_pdf": 224
+        },
+        {
+          "id": "focus-pdf248-1",
+          "pagina": 246,
+          "pagina_pdf": 248
+        },
+        {
+          "id": "focus-pdf274-1",
+          "pagina": 272,
+          "pagina_pdf": 274
+        },
+        {
+          "id": "focus-pdf62-2",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "focus-pdf227-1",
+          "pagina": 225,
+          "pagina_pdf": 227
+        },
+        {
+          "id": "focus-pdf243-1",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "focus-pdf139-1",
+          "pagina": 137,
+          "pagina_pdf": 139
+        },
+        {
+          "id": "focus-pdf229-1",
+          "pagina": 227,
+          "pagina_pdf": 229
+        },
+        {
+          "id": "focus-pdf243-3",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "focus-pdf235-1",
+          "pagina": 233,
+          "pagina_pdf": 235
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf63-2",
+        "pagina": 61,
+        "pagina_pdf": 63
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf63-2",
+          "pagina": 61,
+          "pagina_pdf": 63
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta sconsiglia di azionare i lavavetri con il serbatoio vuoto e indica correttamente il rischio di surriscaldamento della pompa.",
+      "passato": true,
+      "latenza_ms": 11680,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-orario-riscaldatore",
+      "veicolo": "focus",
+      "domanda": "Nella programmazione del riscaldatore di parcheggio imposto quando deve accendersi oppure quando voglio trovare la macchina pronta?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 104,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Distingue l'orario in cui il veicolo deve essere caldo e pronto a partire dall'orario di attivazione del riscaldatore.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Imposti l’ora in cui vuoi trovare l’auto riscaldata e pronta a partire, non l’ora in cui il riscaldatore deve accendersi.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf106-1",
+          "pagina": 104,
+          "pagina_pdf": 106
+        },
+        {
+          "id": "focus-pdf108-1",
+          "pagina": 106,
+          "pagina_pdf": 108
+        },
+        {
+          "id": "focus-pdf107-2",
+          "pagina": 105,
+          "pagina_pdf": 107
+        },
+        {
+          "id": "focus-pdf99-1",
+          "pagina": 97,
+          "pagina_pdf": 99
+        },
+        {
+          "id": "focus-pdf105-4",
+          "pagina": 103,
+          "pagina_pdf": 105
+        },
+        {
+          "id": "focus-pdf101-2",
+          "pagina": 99,
+          "pagina_pdf": 101
+        },
+        {
+          "id": "focus-pdf100-2",
+          "pagina": 98,
+          "pagina_pdf": 100
+        },
+        {
+          "id": "focus-pdf132-1",
+          "pagina": 130,
+          "pagina_pdf": 132
+        },
+        {
+          "id": "focus-pdf109-1",
+          "pagina": 107,
+          "pagina_pdf": 109
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf106-1",
+        "pagina": 104,
+        "pagina_pdf": 106
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf106-1",
+          "pagina": 104,
+          "pagina_pdf": 106
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta distingue chiaramente l’ora in cui l’auto deve essere riscaldata e pronta da quella in cui si attiva il riscaldatore.",
+      "passato": true,
+      "latenza_ms": 7024,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-alogena-vetro",
+      "veicolo": "focus",
+      "domanda": "Sto sostituendo una lampadina alogena dei fari. Posso afferrarla dal vetro? E se lo tocco per sbaglio?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 235,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica di afferrarla dalla base in plastica senza toccare il vetro e, in caso di contatto accidentale, pulirla con alcol isopropilico.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No: afferrala solo dalla base in plastica, perché l’olio della mano può farla rompere quando accendi i fari. Se tocchi accidentalmente il vetro, puliscila con alcol isopropilico.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf237-2",
+          "pagina": 235,
+          "pagina_pdf": 237
+        },
+        {
+          "id": "focus-pdf239-1",
+          "pagina": 237,
+          "pagina_pdf": 239
+        },
+        {
+          "id": "focus-pdf241-2",
+          "pagina": 239,
+          "pagina_pdf": 241
+        },
+        {
+          "id": "focus-pdf238-1",
+          "pagina": 236,
+          "pagina_pdf": 238
+        },
+        {
+          "id": "focus-pdf240-1",
+          "pagina": 238,
+          "pagina_pdf": 240
+        },
+        {
+          "id": "focus-pdf62-2",
+          "pagina": 60,
+          "pagina_pdf": 62
+        },
+        {
+          "id": "focus-pdf243-2",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "focus-pdf243-3",
+          "pagina": 241,
+          "pagina_pdf": 243
+        },
+        {
+          "id": "focus-pdf68-1",
+          "pagina": 66,
+          "pagina_pdf": 68
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf237-2",
+        "pagina": 235,
+        "pagina_pdf": 237
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf237-2",
+          "pagina": 235,
+          "pagina_pdf": 237
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta indica di afferrare la lampadina dalla base in plastica senza toccare il vetro e di pulirla con alcol isopropilico in caso di contatto accidentale.",
+      "passato": true,
+      "latenza_ms": 8607,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-sedile-altezza",
+      "veicolo": "civic",
+      "domanda": "Come alzo o abbasso il sedile del guidatore della Civic?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 204,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica di tirare verso l'alto o spingere verso il basso la leva per alzare o abbassare il sedile. Mantiene l'associazione corretta.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per regolare l’altezza del sedile del guidatore, tira la leva verso l’alto per alzarlo oppure spingila verso il basso per abbassarlo.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf205-1",
+          "pagina": 204,
+          "pagina_pdf": 205
+        },
+        {
+          "id": "civic-pdf643-2",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf204-1",
+          "pagina": 203,
+          "pagina_pdf": 204
+        },
+        {
+          "id": "civic-pdf206-2",
+          "pagina": 205,
+          "pagina_pdf": 206
+        },
+        {
+          "id": "civic-pdf206-1",
+          "pagina": 205,
+          "pagina_pdf": 206
+        },
+        {
+          "id": "civic-pdf207-1",
+          "pagina": 206,
+          "pagina_pdf": 207
+        },
+        {
+          "id": "civic-pdf48-1",
+          "pagina": 47,
+          "pagina_pdf": 48
+        },
+        {
+          "id": "civic-pdf200-1",
+          "pagina": 199,
+          "pagina_pdf": 200
+        },
+        {
+          "id": "civic-pdf374-2",
+          "pagina": 373,
+          "pagina_pdf": 374
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf205-1",
+        "pagina": 204,
+        "pagina_pdf": 205
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf205-1",
+          "pagina": 204,
+          "pagina_pdf": 205
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica correttamente di tirare la leva verso l’alto per alzare il sedile e spingerla verso il basso per abbassarlo.",
+      "passato": true,
+      "latenza_ms": 7436,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-copertura-pesi",
+      "veicolo": "civic",
+      "domanda": "Posso appoggiare una borsa sulla copertura del bagagliaio della Civic?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 217,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Dice di non posizionare oggetti o pesi sulla copertura del bagagliaio per evitare danni.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "No. Se la tua Civic è dotata della copertura bagagliaio, non appoggiarvi la borsa né alcun altro oggetto o peso, per evitare danni. La copertura non è disponibile su tutti i modelli.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf218-3",
+          "pagina": 217,
+          "pagina_pdf": 218
+        },
+        {
+          "id": "civic-pdf219-2",
+          "pagina": 218,
+          "pagina_pdf": 219
+        },
+        {
+          "id": "civic-pdf217-1",
+          "pagina": 216,
+          "pagina_pdf": 217
+        },
+        {
+          "id": "civic-pdf644-9",
+          "pagina": 643,
+          "pagina_pdf": 644
+        },
+        {
+          "id": "civic-pdf643-2",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf376-1",
+          "pagina": 375,
+          "pagina_pdf": 376
+        },
+        {
+          "id": "civic-pdf65-3",
+          "pagina": 64,
+          "pagina_pdf": 65
+        },
+        {
+          "id": "civic-pdf216-1",
+          "pagina": 215,
+          "pagina_pdf": 216
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf218-3",
+        "pagina": 217,
+        "pagina_pdf": 218
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf218-3",
+          "pagina": 217,
+          "pagina_pdf": 218
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta dice di non appoggiare borse, oggetti o pesi sulla copertura per evitare danni.",
+      "passato": true,
+      "latenza_ms": 11732,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-batteria-cavi",
+      "veicolo": "civic",
+      "domanda": "Per caricare la batteria quale cavo devo scollegare per primo, e quando va ricollegato?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 570,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica di scollegare entrambi i cavi. Il negativo va scollegato per primo e ricollegato per ultimo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "civic",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per caricare la batteria, scollega entrambi i cavi per prevenire danni al sistema elettrico: scollega per primo il cavo negativo (−) e ricollegalo per ultimo.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "civic-pdf643-2",
+          "pagina": 642,
+          "pagina_pdf": 643
+        },
+        {
+          "id": "civic-pdf573-1",
+          "pagina": 572,
+          "pagina_pdf": 573
+        },
+        {
+          "id": "civic-pdf571-1",
+          "pagina": 570,
+          "pagina_pdf": 571
+        },
+        {
+          "id": "civic-pdf572-1",
+          "pagina": 571,
+          "pagina_pdf": 572
+        },
+        {
+          "id": "civic-pdf619-1",
+          "pagina": 618,
+          "pagina_pdf": 619
+        },
+        {
+          "id": "civic-pdf574-1",
+          "pagina": 573,
+          "pagina_pdf": 574
+        },
+        {
+          "id": "civic-pdf387-2",
+          "pagina": 386,
+          "pagina_pdf": 387
+        },
+        {
+          "id": "civic-pdf621-1",
+          "pagina": 620,
+          "pagina_pdf": 621
+        }
+      ],
+      "fonte_citata": {
+        "id": "civic-pdf571-1",
+        "pagina": 570,
+        "pagina_pdf": 571
+      },
+      "fonti_citate": [
+        {
+          "id": "civic-pdf571-1",
+          "pagina": 570,
+          "pagina_pdf": 571
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica di scollegare entrambi i cavi, scollegando per primo il negativo e ricollegandolo per ultimo.",
+      "passato": true,
+      "latenza_ms": 7727,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-sedile-segno-rosso",
+      "veicolo": "audi",
+      "domanda": "Ho rialzato lo schienale posteriore: da cosa capisco se e agganciato bene?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 66,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica l'aggancio sicuro e che il segno rosso sul perno non deve piu essere visibile.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Controlla tirando in avanti lo schienale: deve restare bloccato. Inoltre, il manuale dice che deve essere agganciato saldamente per proteggere chi siede al centro con la cintura.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf68-2",
+          "pagina": 66,
+          "pagina_pdf": 68
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        },
+        {
+          "id": "audi-pdf61-6",
+          "pagina": 59,
+          "pagina_pdf": 61
+        },
+        {
+          "id": "audi-pdf37-1",
+          "pagina": 35,
+          "pagina_pdf": 37
+        },
+        {
+          "id": "audi-pdf322-1",
+          "pagina": 320,
+          "pagina_pdf": 322
+        },
+        {
+          "id": "audi-pdf268-2",
+          "pagina": 266,
+          "pagina_pdf": 268
+        },
+        {
+          "id": "audi-pdf293-1",
+          "pagina": 291,
+          "pagina_pdf": 293
+        },
+        {
+          "id": "audi-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        },
+        {
+          "id": "audi-pdf40-3",
+          "pagina": null,
+          "pagina_pdf": 40
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf66-3",
+        "pagina": 64,
+        "pagina_pdf": 66
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf66-3",
+          "pagina": 64,
+          "pagina_pdf": 66
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": false,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "La risposta indica correttamente di tirare lo schienale in avanti e verificare che resti bloccato, ma omette che il segno rosso sul perno non deve più essere visibile.",
+      "passato": false,
+      "latenza_ms": 8788,
+      "revisione_manuale": {
+        "esito": "parziale",
+        "motivo": "Fornisce il controllo per trazione sostenuto dalla pagina 64, ma omette il segno rosso di pagina 66 richiesto dal criterio fissato prima del test."
+      }
+    },
+    {
+      "id": "stabilita-nuova-sbrina-temperatura",
+      "veicolo": "audi",
+      "domanda": "Per sbrinare il parabrezza, che temperatura consiglia di impostare il libretto della A3?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 70,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Indica 22 gradi Celsius o 72 Fahrenheit o piu per lo sbrinamento. Non scambia la soglia per un limite massimo.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per sbrinare il parabrezza, imposta la temperatura ad almeno 22 °C (72 °F).",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf72-2",
+          "pagina": 70,
+          "pagina_pdf": 72
+        },
+        {
+          "id": "audi-pdf70-5",
+          "pagina": 68,
+          "pagina_pdf": 70
+        },
+        {
+          "id": "audi-pdf71-4",
+          "pagina": 69,
+          "pagina_pdf": 71
+        },
+        {
+          "id": "audi-pdf210-2",
+          "pagina": 208,
+          "pagina_pdf": 210
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf72-2",
+        "pagina": 70,
+        "pagina_pdf": 72
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf72-2",
+          "pagina": 70,
+          "pagina_pdf": 72
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica di impostare almeno 22 °C (72 °F), rispettando la soglia minima per lo sbrinamento.",
+      "passato": true,
+      "latenza_ms": 6404,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    },
+    {
+      "id": "stabilita-nuova-freno-porta",
+      "veicolo": "audi",
+      "domanda": "Per il rilascio automatico del freno di stazionamento quando riparto, la portiera del guidatore deve essere chiusa?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 80,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Conferma che la portiera del guidatore deve essere chiusa per il rilascio automatico in partenza.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "audi",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Sì. Per il rilascio automatico del freno di stazionamento, il requisito è che la portiera del guidatore sia chiusa.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "audi-pdf27-4",
+          "pagina": 25,
+          "pagina_pdf": 27
+        },
+        {
+          "id": "audi-pdf82-2",
+          "pagina": 80,
+          "pagina_pdf": 82
+        },
+        {
+          "id": "audi-pdf414-1",
+          "pagina": null,
+          "pagina_pdf": 414
+        },
+        {
+          "id": "audi-pdf83-3",
+          "pagina": 81,
+          "pagina_pdf": 83
+        },
+        {
+          "id": "audi-pdf26-6",
+          "pagina": 24,
+          "pagina_pdf": 26
+        },
+        {
+          "id": "audi-pdf159-3",
+          "pagina": 157,
+          "pagina_pdf": 159
+        },
+        {
+          "id": "audi-pdf83-1",
+          "pagina": 81,
+          "pagina_pdf": 83
+        },
+        {
+          "id": "audi-pdf87-2",
+          "pagina": null,
+          "pagina_pdf": 87
+        },
+        {
+          "id": "audi-pdf1-1",
+          "pagina": null,
+          "pagina_pdf": 1
+        }
+      ],
+      "fonte_citata": {
+        "id": "audi-pdf82-2",
+        "pagina": 80,
+        "pagina_pdf": 82
+      },
+      "fonti_citate": [
+        {
+          "id": "audi-pdf82-2",
+          "pagina": 80,
+          "pagina_pdf": 82
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "La risposta conferma correttamente che la portiera del guidatore deve essere chiusa per il rilascio automatico del freno in partenza.",
+      "passato": true,
+      "latenza_ms": 5847,
+      "revisione_manuale": {
+        "esito": "completa",
+        "motivo": "Risposta visibile letta e confrontata con il criterio e la pagina di riferimento."
+      }
+    }
+  ],
+  "sintesi_revisionata": {
+    "complete": 21,
+    "parziali": 1,
+    "fallite": 2,
+    "casi_audi_con_varianti": {
+      "pioggia": "4/5",
+      "bracciolo": "5/5",
+      "cruise_control": "4/5"
+    },
+    "domande_aggiuntive": {
+      "focus": "3/3 complete",
+      "civic": "3/3 complete",
+      "audi": "2/3 complete e una parziale"
+    },
+    "limiti": "Campione mirato di stabilita e nove domande aggiuntive. Il risultato non sostituisce quello da 60 domande e non misura la copertura dei manuali."
+  }
+}

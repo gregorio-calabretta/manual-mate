@@ -20,6 +20,7 @@ def main() -> int:
     modalita.add_argument("--indicizza", action="store_true", help="Prepara o aggiorna l'indice Qdrant dei manuali.")
     modalita.add_argument("--valuta", action="store_true", help="Esegui queries.json e salva il report della valutazione.")
     modalita.add_argument("--stress", action="store_true", help="Prova scenari difficili e salva un report per il TOP_K usato.")
+    modalita.add_argument("--copertura", action="store_true", help="Prova il campione indipendente di argomenti operativi.")
     parser.add_argument("--lavoratori", type=int, metavar="N", help="Numero di casi di valutazione da eseguire insieme.")
     parser.add_argument("--osservabilita", action="store_true", help="Attiva trace OTLP e metriche su porta 18000.")
     args = parser.parse_args()
@@ -27,10 +28,11 @@ def main() -> int:
     veicolo_id = args.veicolo.strip().casefold() if args.veicolo else None
     if args.indicizza and veicolo_id is not None and veicolo_id not in CATALOGO:
         parser.error(f"Per indicizzare, scegli un valore valido per --veicolo ({codici}).")
-    if (args.valuta or args.stress) and veicolo_id is not None:
+    valutazione = args.valuta or args.stress or args.copertura
+    if valutazione and veicolo_id is not None:
         parser.error("La valutazione usa i veicoli definiti nei casi di prova.")
-    if args.lavoratori is not None and (args.lavoratori < 1 or not (args.valuta or args.stress)):
-        parser.error("--lavoratori richiede --valuta o --stress e un intero positivo.")
+    if args.lavoratori is not None and (args.lavoratori < 1 or not valutazione):
+        parser.error("--lavoratori richiede una modalità di valutazione e un intero positivo.")
 
     # La verifica dei PDF si può eseguire prima di configurare OpenAI e avviare Docker.
     if args.verifica_manuali:
@@ -70,11 +72,15 @@ def main() -> int:
                 print(f"{veicolo.nome}: {esito}.")
             return 0
 
-        if args.valuta or args.stress:
+        if valutazione:
             from valutazione import valuta
 
-            domande = "queries_stress.json" if args.stress else "queries.json"
-            report = f"report_stress_k{assistente.indice.top_k}.json" if args.stress else "report_valutazione.json"
+            if args.copertura:
+                domande, report = "queries_copertura.json", "report_copertura.json"
+            elif args.stress:
+                domande, report = "queries_stress.json", f"report_stress_k{assistente.indice.top_k}.json"
+            else:
+                domande, report = "queries.json", "report_valutazione.json"
             return 0 if valuta(assistente, ROOT / domande, ROOT / report,
                                lavoratori=args.lavoratori or 1) else 1
 

@@ -98,6 +98,51 @@ class StreamlitTest(unittest.TestCase):
             self.assertEqual(assistente.rispondi.call_count, 2)
             self.assertFalse(app.exception)
 
+    def test_nuovo_manuale_leon_riprende_la_domanda_dalla_chat(self):
+        assistente = Mock()
+        assistente.rispondi.return_value = Risposta("fonte_assente", "Nessuna fonte")
+        domanda = "Dove sono i fusibili?"
+        with (
+            patch.dict(os.environ, {"OPENAI_API_KEY": "test-leon", "MANUAL_MATE_OSSERVABILITA": "false"}),
+            patch("runtime.crea_assistente", return_value=assistente),
+        ):
+            app = AppTest.from_file(str(APP), default_timeout=10).run()
+            app.chat_input[0].set_value(domanda).run()
+            app.chat_input[0].set_value("SEAT Leon").run()
+            assistente.rispondi.assert_called_once_with("leon", domanda, contesto=())
+            self.assertFalse(app.exception)
+
+    def test_modello_con_dettagli_riprende_la_domanda_in_attesa(self):
+        assistente = Mock()
+        assistente.rispondi.return_value = Risposta("fonte_assente", "Nessuna fonte")
+        domanda = "La frizione usa lo stesso serbatoio dei freni?"
+        modello = "È una Ford Focus con cambio manuale."
+        with (
+            patch.dict(os.environ, {"OPENAI_API_KEY": "test-dettagli", "MANUAL_MATE_OSSERVABILITA": "false"}),
+            patch("runtime.crea_assistente", return_value=assistente),
+        ):
+            app = AppTest.from_file(str(APP)).run()
+            app.chat_input[0].set_value(domanda).run()
+            app.chat_input[0].set_value(modello).run()
+            assistente.rispondi.assert_called_once_with("focus", domanda, contesto=(modello,))
+
+            seguito = "Quello nel vano motore"
+            app.chat_input[0].set_value(seguito).run()
+            assistente.rispondi.assert_called_with("focus", seguito, contesto=(domanda, modello))
+
+    def test_domanda_nuova_con_modello_sostituisce_quella_in_attesa(self):
+        assistente = Mock()
+        assistente.rispondi.return_value = Risposta("fonte_assente", "Nessuna fonte")
+        domanda = "Ford Focus con cambio manuale, dove sono i fusibili?"
+        with (
+            patch.dict(os.environ, {"OPENAI_API_KEY": "test-nuova-domanda", "MANUAL_MATE_OSSERVABILITA": "false"}),
+            patch("runtime.crea_assistente", return_value=assistente),
+        ):
+            app = AppTest.from_file(str(APP)).run()
+            app.chat_input[0].set_value("La frizione usa lo stesso serbatoio dei freni?").run()
+            app.chat_input[0].set_value(domanda).run()
+            assistente.rispondi.assert_called_once_with("focus", domanda, contesto=())
+
     def test_follow_up_riceve_il_contesto_dello_stesso_veicolo(self):
         assistente = Mock()
         assistente.rispondi.side_effect = [Risposta("chiarimento", "Pressione o livello?"), Risposta("fonte_assente", "Nessuna fonte")]
@@ -113,6 +158,42 @@ class StreamlitTest(unittest.TestCase):
             assistente.rispondi.assert_called_with(
                 "civic", "Quella della pressione", contesto=("Spia dell'olio sulla Honda Civic Type R",),
             )
+
+    def test_una_ricerca_a_vuoto_non_interrompe_il_chiarimento(self):
+        assistente = Mock()
+        assistente.rispondi.side_effect = [
+            Risposta("chiarimento", "Quale sistema audio hai?"),
+            Risposta("fonte_assente", "Nessuna fonte"),
+            Risposta("fonte_assente", "Nessuna fonte"),
+            Risposta("fonte_assente", "Nessuna fonte"),
+            Risposta("fonte_assente", "Nessuna fonte"),
+            Risposta("risposta", "Informazione documentata"),
+        ]
+        with (
+            patch.dict(os.environ, {"OPENAI_API_KEY": "test-ripresa", "MANUAL_MATE_OSSERVABILITA": "false"}),
+            patch("runtime.crea_assistente", return_value=assistente),
+        ):
+            app = AppTest.from_file(str(APP), default_timeout=10).run()
+            iniziale = "Come collego il telefono alla Ford Focus?"
+            dettagli = ("Ho il SYNC 2", "Uso un telefono Android", "Il Bluetooth è attivo", "Sono fermo", "Non compare nessun PIN")
+            for messaggio in (iniziale, *dettagli):
+                app.chat_input[0].set_value(messaggio).run()
+            assistente.rispondi.assert_called_with("focus", dettagli[-1], contesto=(iniziale, *dettagli[-4:-1]))
+            self.assertFalse(app.exception)
+
+    def test_nuova_domanda_dopo_una_ricerca_a_vuoto_azzera_i_dettagli(self):
+        assistente = Mock()
+        assistente.rispondi.return_value = Risposta("fonte_assente", "Nessuna fonte")
+        with (
+            patch.dict(os.environ, {"OPENAI_API_KEY": "test-nuovo-tema", "MANUAL_MATE_OSSERVABILITA": "false"}),
+            patch("runtime.crea_assistente", return_value=assistente),
+        ):
+            app = AppTest.from_file(str(APP), default_timeout=10).run()
+            app.chat_input[0].set_value("Perché non si accende il display dell'Audi A3 8V?").run()
+            domanda = "Altra domanda: dove si trova il triangolo?"
+            app.chat_input[0].set_value(domanda).run()
+            assistente.rispondi.assert_called_with("audi", domanda, contesto=())
+            self.assertFalse(app.exception)
 
     def test_cambio_auto_non_riusa_chiarimenti_del_manuale_precedente(self):
         assistente = Mock()

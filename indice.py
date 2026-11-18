@@ -24,6 +24,7 @@ class IndiceManuali:
         self.embedder = embedder
         self.store = store
         self.top_k = top_k
+        self._preparati: dict[str, int] = {}
 
     def collezione_attiva(self, veicolo: Veicolo) -> str | None:
         collezione = self._risolvi_alias(veicolo)
@@ -37,7 +38,21 @@ class IndiceManuali:
         ), None)
 
     def indicizza(self, cartella: Path, veicolo: Veicolo) -> int:
-        documenti, pagine, senza_testo = estrai_documenti(cartella, veicolo)
+        collezione, aggiunti = self.prepara(cartella, veicolo)
+        self.attiva(veicolo, collezione)
+        return aggiunti
+
+    def prepara(
+        self, cartella: Path, veicolo: Veicolo, *, estrattore: str | None = None, strategia: str | None = None,
+    ) -> tuple[str, int]:
+        estrattore = estrattore or veicolo.estrattore_pdf
+        strategia = strategia or veicolo.strategia_chunk
+        if estrattore == veicolo.estrattore_pdf and strategia == veicolo.strategia_chunk:
+            documenti, pagine, senza_testo = estrai_documenti(cartella, veicolo)
+        else:
+            documenti, pagine, senza_testo = estrai_documenti(
+                cartella, veicolo, estrattore=estrattore, strategia=strategia,
+            )
         # Testi, metadati e modello identificano una versione precisa dell'indice.
         firma = json.dumps([VETTORE, self.embedder.model_name, CHUNK_MAX_CHAR, CHUNK_OVERLAP, documenti], ensure_ascii=False)
         versione = hashlib.sha256(firma.encode("utf-8")).hexdigest()[:20]
@@ -73,6 +88,18 @@ class IndiceManuali:
             if client.count(collezione, exact=True).count != len(documenti):
                 raise ValueError(f"Indice incompleto per {veicolo.nome}.")
 
+        self._preparati[collezione] = len(documenti)
+        return collezione, aggiunti
+
+    def attiva(self, veicolo: Veicolo, collezione: str) -> None:
+        alias = f"manuali_{veicolo.id}"
+        if not collezione.startswith(f"manuali_{veicolo.id}_completo_"):
+            raise ValueError("La collezione non appartiene al manuale selezionato.")
+        client = self.store.get_client()
+        attesi = self._preparati.get(collezione)
+        if (attesi is None or not client.collection_exists(collezione)
+                or client.count(collezione, exact=True).count != attesi or attesi == 0):
+            raise ValueError("Prepara e verifica la collezione completa prima di attivarla.")
         attiva = self._risolvi_alias(veicolo)
         if attiva != collezione:
             # L'alias cambia solo quando tutti i passaggi della nuova versione sono pronti.
@@ -83,18 +110,52 @@ class IndiceManuali:
                 collection_name=collezione, alias_name=alias,
             )))
             client.update_collection_aliases(operazioni)
-        return aggiunti
 
     def cerca(self, veicolo: Veicolo, collezione: str, query: str, *, solo_avvisi: bool = False) -> list[Chunk]:
         with span("ricerca-manuale", "RETRIEVER", veicolo=veicolo.id, collezione=collezione) as traccia:
             # I vettori dei manuali sono già sul volume. Qui si calcola solo quello della domanda.
             vettore = self.embedder.embed(query)
-            campo = "avviso_curato" if solo_avvisi else "indice_analitico"
-            condizione = models.FieldCondition(key=campo, match=models.MatchValue(value=True))
-            filtro = models.Filter(must=[condizione]) if solo_avvisi else models.Filter(must_not=[condizione])
+            avviso = models.FieldCondition(key="avviso_curato", match=models.MatchValue(value=True))
+            indice = models.FieldCondition(key="indice_analitico", match=models.MatchValue(value=True))
+            filtro = models.Filter(must=[avviso]) if solo_avvisi else models.Filter(must_not=[indice, avviso])
             risultati = self.store.search(collezione, vettore, k=self.top_k, vector_name=VETTORE, query_filter=filtro)
+            if not solo_avvisi and self.top_k >= 4:
+                risultati = self._aggiungi_pagina_contigua(collezione, vettore, risultati, filtro)
             traccia.set_attribute("fonti", [hit.metadata["fonte"] for hit in risultati])
             return risultati
+
+    def _aggiungi_pagina_contigua(
+        self, collezione: str, vettore: list[float], risultati: list[Chunk], filtro: models.Filter,
+    ) -> list[Chunk]:
+        pagine = {hit.metadata["pagina_pdf"] for hit in risultati}
+        for hit in risultati[:2]:
+            meta = hit.metadata
+            if not meta.get("tema_specifico"):
+                continue
+            pagina = meta["pagina_pdf"]
+            confinanti = [vicina for vicina in (pagina - 1, pagina + 1) if vicina > 0]
+            if all(vicina in pagine for vicina in confinanti):
+                continue
+            continuita = models.Filter(
+                must=[
+                    models.FieldCondition(key="tema", match=models.MatchValue(value=meta["tema"])),
+                    models.FieldCondition(key="pagina_pdf", match=models.MatchAny(any=confinanti)),
+                ],
+                must_not=filtro.must_not,
+            )
+            punti = self.store.get_client().query_points(
+                collezione, query=vettore, using=VETTORE, query_filter=continuita,
+                limit=2, score_threshold=0.30, with_payload=True,
+            ).points
+            punto = next((candidato for candidato in punti
+                          if candidato.payload and candidato.payload["pagina_pdf"] not in pagine), None)
+            if punto:
+                payload = punto.payload
+                fonte = Chunk(id=str(punto.id), text=payload["text"],
+                              metadata={chiave: valore for chiave, valore in payload.items() if chiave != "text"})
+                # Una sola fonte in più dello stesso tema, dopo i tre risultati migliori ed entro k.
+                return [*risultati[:3], fonte, *risultati[3:self.top_k - 1]]
+        return risultati
 
     def cerca_pagina(self, veicolo: Veicolo, collezione: str, pagina_pdf: int) -> Chunk | None:
         condizioni = [models.FieldCondition(key=campo, match=models.MatchValue(value=valore))
