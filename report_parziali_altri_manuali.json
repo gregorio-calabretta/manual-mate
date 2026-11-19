@@ -1,0 +1,230 @@
+{
+  "data": "2026-11-19T13:21:38.006178+00:00",
+  "casi": [
+    {
+      "caso": "telecomando_civic",
+      "turni": [
+        {
+          "domanda": "Il telecomando della Honda Civic Type R non funziona: il libretto indica qualche controllo da fare?",
+          "esito": "risposta",
+          "testo": "Prova il telecomando lontano da apparecchiature che trasmettono forti onde radio o da dispositivi vicini come computer portatili, telefoni cellulari e dispositivi wireless; evita anche che un oggetto metallico lo tocchi o lo copra, perché il funzionamento può diventare instabile o essere disabilitato. (p. 161, PDF p. 162)\n\nPer il bloccaggio e lo sbloccaggio, verifica che la modalità di alimentazione sia su VEICOLO SPENTO. Non è possibile bloccare le portiere se una è aperta; inoltre, se il telecomando è dentro il veicolo, il blocco è impedito e viene emesso un segnale acustico. (p. 165, PDF p. 166)\n\nControlla anche la distanza operativa e la spia LED: se la distanza necessaria per usare il telecomando varia, è probabile che la batteria sia scarica; se il LED non si accende quando premi un pulsante, la batteria è completamente scarica. (p. 165, PDF p. 166)\n\nSe le chiavi non funzionano correttamente, il libretto indica di farle controllare da una concessionaria. Segnala che un danno ai circuiti può impedire il funzionamento del telecomando, ma i passaggi consultati non permettono di stabilire la causa del guasto. (p. 159, PDF p. 160)",
+          "fonti": [
+            {
+              "id": "civic-pdf160-2",
+              "pagina": 159,
+              "pagina_pdf": 160
+            },
+            {
+              "id": "civic-pdf162-2",
+              "pagina": 161,
+              "pagina_pdf": 162
+            },
+            {
+              "id": "civic-pdf161-1",
+              "pagina": 160,
+              "pagina_pdf": 161
+            },
+            {
+              "id": "civic-pdf166-4",
+              "pagina": 165,
+              "pagina_pdf": 166
+            },
+            {
+              "id": "civic-pdf577-1",
+              "pagina": 576,
+              "pagina_pdf": 577
+            },
+            {
+              "id": "civic-pdf307-1",
+              "pagina": 306,
+              "pagina_pdf": 307
+            },
+            {
+              "id": "civic-pdf167-1",
+              "pagina": 166,
+              "pagina_pdf": 167
+            },
+            {
+              "id": "civic-pdf576-2",
+              "pagina": 575,
+              "pagina_pdf": 576
+            },
+            {
+              "id": "civic-pdf576-1",
+              "pagina": 575,
+              "pagina_pdf": 576
+            },
+            {
+              "id": "civic-pdf176-1",
+              "pagina": 175,
+              "pagina_pdf": 176
+            },
+            {
+              "id": "civic-pdf181-1",
+              "pagina": 180,
+              "pagina_pdf": 181
+            },
+            {
+              "id": "civic-pdf186-4",
+              "pagina": 185,
+              "pagina_pdf": 186
+            },
+            {
+              "id": "civic-pdf223-1",
+              "pagina": 222,
+              "pagina_pdf": 223
+            },
+            {
+              "id": "civic-pdf164-3",
+              "pagina": 163,
+              "pagina_pdf": 164
+            },
+            {
+              "id": "civic-pdf249-4",
+              "pagina": 248,
+              "pagina_pdf": 249
+            },
+            {
+              "id": "civic-pdf615-2",
+              "pagina": 614,
+              "pagina_pdf": 615
+            },
+            {
+              "id": "civic-pdf174-2",
+              "pagina": 173,
+              "pagina_pdf": 174
+            },
+            {
+              "id": "civic-pdf249-2",
+              "pagina": 248,
+              "pagina_pdf": 249
+            },
+            {
+              "id": "civic-pdf176-3",
+              "pagina": 175,
+              "pagina_pdf": 176
+            }
+          ],
+          "secondi": 22.08,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Il telecomando della Honda Civic Type R non funziona: il libretto indica qualche controllo da fare?",
+                "turni_precedenti": [],
+                "sintesi": "Prova il telecomando lontano da dispositivi che trasmettono onde radio (come cellulari o computer) e da oggetti metallici, che possono disturbare il segnale. (p. 161 (PDF p. 162))\n\nControlla anche la portata e la spia (LED, cioè la piccola luce sul telecomando): se la portata è diventata più breve, la batteria potrebbe essere scarica; se la spia non si accende premendo un pulsante, la batteria è completamente scarica. (p. 165 (PDF p. 166))\n\nSe continua a non funzionare, il libretto raccomanda di far controllare le chiavi da una concessionaria; cita anche possibili danni ai circuiti, ma non stabilisce la causa del guasto. (p. 159 (PDF p. 160))",
+                "estratti": [
+                  {
+                    "id": "civic-pdf162-2",
+                    "riferimento": "p. 161 (PDF p. 162)",
+                    "testo": "Bloccaggio e sbloccaggio delle portiere / Potenza del segnale del telecomando bassa\n\nComandi\nPotenza del segnale del telecomando bassa\nIl veicolo trasmette onde radio per individuare il telecomando per avviare il motore, bloccare e\nsbloccare tutte le portiere, il portellone e lo sportello bocchettone di rifornimento carburante.\nNei seguenti casi,l'avviamento del motore, il bloccaggio/sbloccaggio delle portiere, del\nportellone e dello sportello del bocchettone di rifornimento carburante potrebbero essere\ndisabilitati o il funzionamento potrebbe essere instabile:\n• Trasmissione di forti onde radio da apparecchiature vicine.\n• Il telecomando è vicino ad apparecchiature per la telecomunicazione, computer portatili,\ntelefoni cellulari o dispositivi wireless.\n• Un oggetto metallico tocca o copre il telecomando.\n1Potenza del segnale del telecomando bassa\nLa comunicazione tra il telecomando e il veicolo scarica la\nbatteria del telecomando.\nLa durata della batteria è di circa due anni, ma varia in base\nall'uso.\nLa batteria perde parte della carica ogni volta che il\ntelecomando riceve forti onde radio. Evitare di collocarla in\nprossimità di apparecchiature elettriche quali televisori e\ncomputer.\nÈ possibile ridurre consumo della batteria disattivando la\nricezione di onde radio. Quando si tengono premuti\ncontemporaneamente i pulsanti di bloccaggio e sbloccaggio\nper circa tre secondi, il LED lampeggiano due volte e la\nricezione di onde radio si disattiva.\nSe si preme una volta uno dei pulsanti del telecomando, la\nricezione di onde radio viene riattivata."
+                  },
+                  {
+                    "id": "civic-pdf166-4",
+                    "riferimento": "p. 165 (PDF p. 166)",
+                    "testo": "Bloccaggio e sbloccaggio delle portiere / Bloccaggio/sbloccaggio delle portiere dall'esterno / Utilizzo del telecomando\n\nComandi\n■ Bloccaggio delle portiere e del portellone\nPremere il pulsante di blocco.\nu Alcune luci esterne lampeggiano tre volte,\ntutte le portiere, il portellone e lo sportello\nbocchettone di rifornimento carburante si\nbloccano e il sistema antifurto si inserisce.\nu La funzione di superbloccaggio è attivata.\n■ Sbloccaggio delle portiere e del portellone\nPremere il pulsante di sblocco.\nUna volta:\nu Alcune luci esterne lampeggiano una volta e\nla portiera del conducente e lo sportello del\nbocchettone di rifornimento carburante si\nsbloccano.\nDue volte:\nu Vengono sbloccate le portiere rimanenti e il\nportellone.\n■ Utilizzo del telecomando 1Utilizzo del telecomando\nSe la portiera o il portellone non vengono aperti entro\n30 secondi dallo sbloccaggio del veicolo con il telecomando,\nle portiere si ribloccano automaticamente.\nÈ possibile bloccare o sbloccare le portiere tramite il\ntelecomando solo quando la modalità di alimentazione\nè su VEICOLO SPENTO.\nNon è possibile bloccare alcuna portiera e viene emesso un\nsegnale acustico quando il telecomando si trova all'interno\ndel veicolo. Se si desidera bloccare una portiera mentre il\ntelecomando si trova ancora nel veicolo, eseguire una delle\nseguenti operazioni per quattro volte:\n• Premere il pulsante di blocco sul telecomando.\n• Ruotare la chiave nel cilindro per bloccarla.\n• Toccare il sensore di blocco portiera sulla maniglia della\nportiera o premere il pulsante di blocco sul portellone.\nIl telecomando utilizza segnali a bassa potenza, pertanto la\ngamma operativa potrebbe variare in base all'area circostante.\nNon è possibile bloccare il veicolo con il telecomando se una\nportiera è aperta.\nSe la distanza richiesta per il funzionamento del telecomando\nvaria, è probabile che il livello batteria sia basso.\nSe il LED non si accende quando si preme un pulsante, la\nbatteria è completamente scarica.\n2 Sostituzione della batteria del\ntelecomando P. 575\nVersione con guida a destra\na Pulsante di blocco\nb Pulsante di sblocco\nVersione con guida a destra"
+                  },
+                  {
+                    "id": "civic-pdf160-2",
+                    "riferimento": "p. 159 (PDF p. 160)",
+                    "testo": "Comandi\n\nComandi\nBloccaggio e sbloccaggio delle portiere\nChiave\nQuesto veicolo viene fornito con la chiave seguente:\nUtilizzare le chiavi per avviare e arrestare il motore e\nper bloccare e sbloccare tutte le portiere, il\nportellone e lo sportello bocchettone di\nrifornimento carburante.\n1Chiave\nTutte le chiavi sono dotate di un sistema immobilizzatore. Il\nsistema immobilizzatore protegge il veicolo da eventuali furti.\n2 Sistema immobilizzatore P. 174\nPer evitare danni alle chiavi, attenersi alle istruzioni seguenti:\n• Non lasciare le chiavi alla luce diretta del sole o in luoghi in\ncui sono presenti temperature o umidità elevate.\n• Non fare cadere le chiavi o non appoggiarvi sopra degli\noggetti pesanti.\n• Tenere le chiavi lontano da liquidi, polvere e sabbia.\n• Smontare le chiavi esclusivamente per sostituire la batteria.\nSe i circuiti delle chiavi sono danneggiati, potrebbe non\nessere possibile avviare il motore o il telecomando potrebbe\nnon funzionare.\nSe le chiavi non funzionano correttamente, farle controllare\nda una concessionaria.\nComando a distanza"
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "Il telecomando può bloccare o sbloccare le portiere solo quando la modalità di alimentazione è su VEICOLO SPENTO.",
+                  "Non è possibile bloccare le portiere se una è aperta; se il telecomando è dentro il veicolo, il blocco è impedito e viene emesso un segnale acustico."
+                ],
+                "esito": "corretta",
+                "sintesi": "Prova il telecomando lontano da apparecchiature che trasmettono forti onde radio o da dispositivi vicini come computer portatili, telefoni cellulari e dispositivi wireless; evita anche che un oggetto metallico lo tocchi o lo copra, perché il funzionamento può diventare instabile o essere disabilitato. (p. 161, PDF p. 162)\n\nPer il bloccaggio e lo sbloccaggio, verifica che la modalità di alimentazione sia su VEICOLO SPENTO. Non è possibile bloccare le portiere se una è aperta; inoltre, se il telecomando è dentro il veicolo, il blocco è impedito e viene emesso un segnale acustico. (p. 165, PDF p. 166)\n\nControlla anche la distanza operativa e la spia LED: se la distanza necessaria per usare il telecomando varia, è probabile che la batteria sia scarica; se il LED non si accende quando premi un pulsante, la batteria è completamente scarica. (p. 165, PDF p. 166)\n\nSe le chiavi non funzionano correttamente, il libretto indica di farle controllare da una concessionaria. Segnala che un danno ai circuiti può impedire il funzionamento del telecomando, ma i passaggi consultati non permettono di stabilire la causa del guasto. (p. 159, PDF p. 160)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caso": "lavavetri_leon",
+      "turni": [
+        {
+          "domanda": "Nella SEAT Leon il lavaparabrezza anteriore non spruzza liquido. Cosa posso controllare secondo il libretto?",
+          "esito": "risposta",
+          "testo": "Controlla che nel serbatoio del tergicristalli, situato nel vano motore, ci sia liquido a sufficienza e rabbocca se necessario (p. 361, PDF p. 363). Usa un prodotto lavacristalli raccomandato da SEAT e non mescolare i detergenti raccomandati con altri detergenti: la flocculazione potrebbe ostruire i diffusori. In inverno, verifica che la miscela abbia una protezione antigelo sufficiente, perché il liquido può congelare sul parabrezza (p. 362, PDF p. 364).\n\nNei passaggi consultati non è descritta una procedura per diagnosticare la causa precisa del mancato spruzzo o per verificare e disostruire i diffusori.",
+          "fonti": [
+            {
+              "id": "leon-pdf363-3",
+              "pagina": 361,
+              "pagina_pdf": 363
+            },
+            {
+              "id": "leon-pdf139-3",
+              "pagina": 137,
+              "pagina_pdf": 139
+            },
+            {
+              "id": "leon-pdf364-2",
+              "pagina": 362,
+              "pagina_pdf": 364
+            },
+            {
+              "id": "leon-pdf61-2",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "leon-pdf60-1",
+              "pagina": 58,
+              "pagina_pdf": 60
+            },
+            {
+              "id": "leon-pdf60-2",
+              "pagina": 58,
+              "pagina_pdf": 60
+            },
+            {
+              "id": "leon-pdf142-2",
+              "pagina": 140,
+              "pagina_pdf": 142
+            },
+            {
+              "id": "leon-pdf142-1",
+              "pagina": 140,
+              "pagina_pdf": 142
+            }
+          ],
+          "secondi": 24.87,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Nella SEAT Leon il lavaparabrezza anteriore non spruzza liquido. Cosa posso controllare secondo il libretto?",
+                "turni_precedenti": [],
+                "sintesi": "Controlla il livello nel serbatoio del tergicristalli, nel vano motore, e rabbocca se necessario. (p. 361 (PDF p. 363))\n\nSe il liquido è stato mescolato con detergenti diversi, i diffusori potrebbero ostruirsi; in inverno il libretto avverte anche che una protezione antigelo insufficiente può far congelare il liquido. (p. 362 (PDF p. 364))\n\nInformazione non ricavata dai passaggi consultati: Il libretto consultato non indica una procedura specifica per diagnosticare perché il lavacristalli anteriore non spruzza né per verificare o disostruire i diffusori.",
+                "estratti": [
+                  {
+                    "id": "leon-pdf363-3",
+                    "riferimento": "p. 361 (PDF p. 363)",
+                    "testo": "Controlli e rabbocchi periodici\n\nnell'impianto dei freni vi sia una perdita. Farsi aiutare da personale specializzato. Una spia nel display del quadro strumenti controlla il livello del liquido dei freni ››› pag. 94. Su vetture con volante a destra esso si trova sul lato opposto rispetto a quello del vano motore. ## Sostituzione del liquido dei freni Per il cambio del liquido dei freni si consiglia di rivolgersi ad un Service Center. ## ATTENZIONE Se il livello del liquido dei freni è basso o non è adatto o è vecchio, l'impianto frenante potrebbe rompersi o la potenza di frenatura potrebbe ridursi. Far revisionare periodicamente l'impianto dei freni e il livello del liquido dei freni! Se si sottopongono i freni a un grande sforzo quando il liquido dei freni è vecchio, si possono formare bolle di vapore. Queste bolle possono ridurre la potenza di frenata, aumentare considerevolmente lo spazio di frenata o anche rompere completamente l'impianto frenante.\nAssicurarsi di utilizzare il liquido dei freni adeguato. Utilizzare esclusivamente un liquido dei freni conforme allo standard VW 501 14. Il liquido dei freni conforme allo standard VW 501 14 è acquistabile presso qualsiasi concessionario SEAT o Service Center ## Controlli e rabbocchi periodici SEAT. Se non è reperibile, utilizzare esclusivamente un liquido dei freni di alta qualità conforme ai requisiti dello standard DIN ISO 4925 CLASS 4 o dello standard statunitense FMVSS 116 DOT 4. Il liquido dei freni deve essere nuovo. Conservare il liquido dei freni esclusivamente nel recipiente originale, ben chiuso e fuori dalla portata dei bambini: rischio di intossicazione! ## AVVISO Il liquido dei freni è abrasivo, per cui non deve entrare in contatto con la vernice del veicolo. ## Per il rispetto dell'ambiente Il liquido dei freni contamina l'ambiente. Raccogliere i liquidi sparsi e smaltirli in modo professionale. ## Serbatoio tergicristalli ## Controllare e rabboccare il livello del serbatoio del tergicristalli\nFig. 238 Nel vano motore: tappo blu sul serbatoio del lavavetri. Il serbatoio del tergicristalli è situato nel vano motore ››› pag. 354. Verificare regolarmente il livello del serbatoio del tergicristalli e rabboccare se necessario. Il serbatoio del tergicristalli contiene detergente liquido per il parabrezza e il lunotto posteriore. Aprire il cofano del vano motore ⇓ ››› pag. 351. Il serbatoio del tergicristalli è individuabile mediante il simbolo ψ sul tappo. Verificare che il liquido tergicristalli presente nel serbatoio sia sufficiente. »"
+                  },
+                  {
+                    "id": "leon-pdf364-2",
+                    "riferimento": "p. 362 (PDF p. 364)",
+                    "testo": "Consigli e assistenza\n\n## Consigli e assistenza Non è sufficiente dell'acqua pulita per deter- gere a fondo i cristalli. Si consiglia quindi di aggiungere sempre all'acqua del detergente per vetri. ## Tergicristalli consigliati Per le stagioni più calde si raccomanda l'u- so di G 052 184 A1 estivi per vetri chiari. Pro- porzioni di miscelazione nel serbatoio dell'ac- qua di pulizia: 1:100 (1 parte di concentrato ogni 100 parti di acqua). Per tutto l'anno, G 052 164 A2 per vetri chiari. Proporzione approssimativa di misce- lazione in inverno, fino a -18°C (0°F): 1:2 (1 parte di concentrato ogni 2 parti di acqua); altrimenti, una proporzione di miscelazione di 1:4 nel serbatoio dell'acqua di pulizia. La capacità del serbatoio del detergente per vetri è in ››› pag. 403. AVVISO Se l'acqua del lavacristalli non contiene una quantità sufficiente di antigelo, può congelarsi sul parabrezza e sul lunotto, li- mitando la visibilità anteriore e posteriore. In inverno, utilizzare il tergicristalli solo con una quantità sufficiente di protezione antigelo.\nL'impianto tergicristalli non deve essere azionato a temperature molto basse, a me- no che non si scaldi prima il parabrezza servendosi dell'impianto di aerazione. La protezione antigelo potrebbe congelare sul parabrezza limitando la visibilità. AVVISO Non mescolare mai liquido antigelo o altri additivi simili non adeguati con il liquido tergicristalli. Potrebbe crearsi uno strato untuoso sul vetro, compromettendo la visi- bilità. Utilizzare una miscela di acqua e di un prodotto lavacristalli raccomandato da SEAT. Se necessario, aggiungere al liquido del serbatoio tergicristalli un antigelo adegua- to. ## AVVISO ● Non mescolare mai i detergenti racco- mandati da SEAT con altri detergenti. Po- trebbe verificarsi una flocculazione dei componenti e i diffusori potrebbero ostruir- si. ● Prima di rabboccare un liquido, assicu- rarsi di avere scelto quello giusto. Un errore infatti, oltre a provocare anomalie nel fun- zionamento, potrebbe creare seri danni al motore! ● La mancanza di liquido tergicristalli cau-\nsa una perdita di visibilità nel parabrezza. ## Batteria da 12 volt ## Informazioni generali La batteria si trova nel vano motore ››› pag. 354 o nel bagagliaio (veicoli ibridi PHEV) ››› pag. 365, e non necessita presso- ché di manutenzione. Essa viene controllata nell'ambito degli intervalli di manutenzione. Ciò nonostante, controllare la pulizia e la coppia di serraggio dei morsetti, soprattutto nei periodi estivi e invernali. Tutti gli interventi sulla batteria richiedono co- noscenze tecniche specifiche. Si prega di ri- volgersi ad un Service Center SEAT o ad un'officina specializzata per problemi riguar- danti la batteria: rischio di bruciature e di esplosione della batteria! Non aprire la batteria! Non cercare di cam- biare i livelli all'interno della batteria. Potreb- be fuoriuscire del gas, con il conseguente pe- ricolo di esplosioni. ## Indicazioni di avvertimento per batterie ∨ Indossare occhiali protettivi. ∧ L'elettrolita della batteria è fortemente corro- sivo. Indossare guanti e occhiali protettivi. In\ncaso di schizzi di acido, sciacquare con ab- bondante acqua. ¬ Sono proibiti: il fuoco, le scintille, la luce non schermata e il fumo."
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "I passaggi raccomandano di usare un prodotto lavacristalli indicato da SEAT e avvertono di non mescolare i detergenti raccomandati da SEAT con altri detergenti, perché la flocculazione può ostruire i diffusori."
+                ],
+                "esito": "corretta",
+                "sintesi": "Controlla che nel serbatoio del tergicristalli, situato nel vano motore, ci sia liquido a sufficienza e rabbocca se necessario (p. 361, PDF p. 363). Usa un prodotto lavacristalli raccomandato da SEAT e non mescolare i detergenti raccomandati con altri detergenti: la flocculazione potrebbe ostruire i diffusori. In inverno, verifica che la miscela abbia una protezione antigelo sufficiente, perché il liquido può congelare sul parabrezza (p. 362, PDF p. 364).\n\nNei passaggi consultati non è descritta una procedura per diagnosticare la causa precisa del mancato spruzzo o per verificare e disostruire i diffusori."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

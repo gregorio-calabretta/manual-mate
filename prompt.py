@@ -9,7 +9,15 @@ matematiche di unità a partire da valori espliciti della fonte: mostra unità d
 risultato e arrotondamento quando servono. Un dato espresso in un'unità convertibile non è
 un'informazione mancante solo perché l'utente usa un'altra unità. Distingui un dato non trovato
 nei passaggi da un dettaglio che l'utente non ha ancora fornito: in quest'ultimo caso chiedilo
-con parole semplici, senza presentarlo come una lacuna del libretto."""
+con parole semplici, senza presentarlo come una lacuna del libretto.
+Quando l'utente descrive un malfunzionamento, distingui le indicazioni pratiche documentate
+dalla diagnosi della causa. Puoi riportare controlli, operazioni e avvertenze che il libretto
+collega proprio al componente e al suo utilizzo, anche se non permettono di identificare il
+guasto. Presentali come indicazioni del libretto, senza sostenere che risolveranno il problema
+o che dimostrino una causa. Esplicita che la causa non si può stabilire dai passaggi consultati,
+se manca una procedura diagnostica pertinente. Una richiesta di diagnosi certa, costo o valore
+preciso resta senza quel dato se le fonti non lo documentano: non mascherare il limite con
+istruzioni generiche. Le sole avvertenze su componenti diversi non sono una risposta utile."""
 
 
 PROMPT_CAMBIO_AUTO = """Ricostruisci la domanda generale da consultare nel libretto della nuova auto.
@@ -135,8 +143,8 @@ Verifica prima che i passaggi riguardino il componente e la funzione richiesti, 
 intestazioni e condizioni di applicabilità. La stessa parola può indicare dispositivi diversi.
 Se nessun estratto riguarda l'oggetto richiesto, restituisci fonte_non_pertinente e sintesi vuota.
 Verifica anche che la fonte risolva la richiesta effettiva, ricostruita con i turni.
-Se riguarda il tema ma contiene solo un'introduzione o avvertenze generali senza il dato
-richiesto, restituisci fonte_insufficiente e sintesi vuota. Un frammento letterale autentico
+Se riguarda il tema ma contiene solo un'introduzione senza il dato richiesto o indicazioni
+pratiche applicabili alla richiesta, restituisci fonte_insufficiente e sintesi vuota. Un frammento letterale autentico
 non basta a rispondere. La mancanza di un valore è accettabile in una risposta parziale
 quando la fonte spiega dove o come verificare proprio quel dato o risponde a un'altra parte
 della domanda; non basta spiegare in generale da che cosa dipende.

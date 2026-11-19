@@ -1,0 +1,766 @@
+{
+  "data": "2026-11-19T13:22:27.984792+00:00",
+  "casi": [
+    {
+      "caso": "lavavetri",
+      "turni": [
+        {
+          "domanda": "non esce acqua dallo spruzzino della mia ford focus",
+          "esito": "chiarimento",
+          "testo": "Intendi lo spruzzino del parabrezza anteriore o quello del lunotto posteriore?",
+          "fonti": [],
+          "secondi": 3.42,
+          "controlli": []
+        },
+        {
+          "domanda": "parabrezza anteriore",
+          "esito": "risposta",
+          "testo": "Se non esce acqua dallo spruzzino anteriore, il manuale avverte di non azionare i lavavetri quando il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. Il serbatoio alimenta sia il lavacristallo anteriore sia quello posteriore. Per il rabbocco, usare solo liquido conforme alle specifiche Ford e una miscela di liquido lavavetri e acqua; per la diluizione, seguire le istruzioni del prodotto. Dai passaggi consultati non si può stabilire la causa del mancato spruzzo.",
+          "fonti": [
+            {
+              "id": "focus-pdf62-2",
+              "pagina": 60,
+              "pagina_pdf": 62
+            },
+            {
+              "id": "focus-pdf234-3",
+              "pagina": 232,
+              "pagina_pdf": 234
+            },
+            {
+              "id": "focus-pdf61-3",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "focus-pdf63-2",
+              "pagina": 61,
+              "pagina_pdf": 63
+            },
+            {
+              "id": "focus-pdf232-3",
+              "pagina": 230,
+              "pagina_pdf": 232
+            },
+            {
+              "id": "focus-pdf63-1",
+              "pagina": 61,
+              "pagina_pdf": 63
+            },
+            {
+              "id": "focus-pdf230-1",
+              "pagina": 228,
+              "pagina_pdf": 230
+            },
+            {
+              "id": "focus-pdf233-4",
+              "pagina": 231,
+              "pagina_pdf": 233
+            },
+            {
+              "id": "focus-pdf104-2",
+              "pagina": 102,
+              "pagina_pdf": 104
+            },
+            {
+              "id": "focus-pdf243-3",
+              "pagina": 241,
+              "pagina_pdf": 243
+            },
+            {
+              "id": "focus-pdf105-2",
+              "pagina": 103,
+              "pagina_pdf": 105
+            },
+            {
+              "id": "focus-pdf228-1",
+              "pagina": 226,
+              "pagina_pdf": 228
+            },
+            {
+              "id": "focus-pdf243-1",
+              "pagina": 241,
+              "pagina_pdf": 243
+            },
+            {
+              "id": "focus-pdf233-3",
+              "pagina": 231,
+              "pagina_pdf": 233
+            },
+            {
+              "id": "focus-pdf64-1",
+              "pagina": 62,
+              "pagina_pdf": 64
+            }
+          ],
+          "secondi": 19.43,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "parabrezza anteriore",
+                "turni_precedenti": [
+                  "non esce acqua dallo spruzzino della mia ford focus",
+                  "Chiarimento precedente dell'assistente: Intendi lo spruzzino del parabrezza anteriore o quello del lunotto posteriore?"
+                ],
+                "sintesi": "Se non esce acqua dallo spruzzino anteriore, evita di azionare ripetutamente il lavavetri se il serbatoio è vuoto: la pompa potrebbe surriscaldarsi. (p. 61 (PDF p. 63))\n\nIl serbatoio alimenta sia il lavacristallo anteriore sia quello posteriore; per il rabbocco il manuale indica una miscela di liquido lavavetri e acqua. Dai passaggi consultati non si può stabilire la causa del mancato spruzzo. (p. 232 (PDF p. 234))\n\nInformazione non ricavata dai passaggi consultati: la causa del mancato spruzzo dal lavaparabrezza.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf63-2",
+                    "riferimento": "p. 61 (PDF p. 63)",
+                    "testo": "Lava/tergicristalli / SISTEMA LAVAPARABREZZA\n\nNota: Pulire il parabrezza e le spazzole non\nappena iniziano a lasciare strisce o sporcizia.\nSe il problema persiste, sostituire le\nspazzole.  Vedere Sostituzione delle\nspazzole tergicristallo (pagina 233).\nSISTEMA LAVAPARABREZZA\nNota: Non azionare i lavavetri quando il\nserbatoio lavavetri è vuoto. Ciò potrebbe\ncausare il surriscaldamento della pompa\ndel lavavetri.\nTirare leggermente la leva verso di sé per\nazionare i lavavetri e spruzzare il\nparabrezza. Quando la leva viene rilasciata,\nil tergicristallo si attiva per un breve periodo\ndi tempo.\nTERGILUNOTTO E\nLAVALUNOTTO\nTergilunotto\nNota: Disattivare il tergilunotto e\nl'accensione prima dell'ingresso\nnell'autolavaggio.\nTergitura ad intermittenza.A\nTergitura a bassa velocità.B\nSpento.C\nPremere il tasto sulla sommità per attivare\nla tergitura intermittente. Premere\nnuovamente il tasto sulla sommità per\nattivare la tergitura lenta. Agire sul fondo\ndel pulsante per disattivare il tergilunotto.\nAttivando i tergicristallo ed inserendo la\nretromarcia (R) si attiva automaticamente\nil tergilunotto a ciclo intermittente.\nLavalunotto\nPer attivare il lavalunotto spostare in\navanti la leva.  Rilasciando la leva, il tergi\ncontinua a funzionare per un breve periodo\ndi tempo."
+                  },
+                  {
+                    "id": "focus-pdf234-3",
+                    "riferimento": "p. 232 (PDF p. 234)",
+                    "testo": "Manutenzione / CONTROLLO DEL LIQUIDO LAVAVETRI\n\nUsare solo liquido conforme alle specifiche\nFord.\nVedere Specifiche tecniche (pagina 265).\nCONTROLLO DEL LIQUIDO\nDELLA FRIZIONE - CAMBIO\nMANUALE\nI sistemi frenante e della frizione hanno in\ncomune lo stesso serbatoio liquido.\nVedere Controllo del liquido dei freni\n(pagina 231).\nCONTROLLO DEL LIQUIDO\nLAVAVETRI\nNota: Il serbatoio alimenta i sistemi\nlavacristallo e lavalunotto.\nQuando si effettua il rabbocco, utilizzare\nuna miscela di liquido lavavetri e acqua per\nevitare congelamenti alle basse\ntemperature e migliorare così la capacità\ndi pulizia.\nPer informazioni circa la diluizione del\nliquido, fare riferimento alle istruzioni del\nprodotto.\nSCARICO DEL PUNTO DI\nRACCOLTA DEL FILTRO\nCARBURANTE\nPERICOLO\nNon smaltire il carburante tra i rifiuti\ndomestici o nel sistema fognario\npubblico. Rivolgersi ad un impianto\ndi smaltimento autorizzato."
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "Il manuale dice di non azionare i lavavetri quando il serbatoio è vuoto, non soltanto di evitare azionamenti ripetuti.",
+                  "Indica di usare solo liquido conforme alle specifiche Ford."
+                ],
+                "esito": "corretta",
+                "sintesi": "Se non esce acqua dallo spruzzino anteriore, il manuale avverte di non azionare i lavavetri quando il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. Il serbatoio alimenta sia il lavacristallo anteriore sia quello posteriore. Per il rabbocco, usare solo liquido conforme alle specifiche Ford e una miscela di liquido lavavetri e acqua; per la diluizione, seguire le istruzioni del prodotto. Dai passaggi consultati non si può stabilire la causa del mancato spruzzo."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caso": "lavavetri_variante",
+      "turni": [
+        {
+          "domanda": "Sulla Ford Focus il lavaparabrezza non spruzza: cosa posso controllare secondo il libretto?",
+          "esito": "risposta",
+          "testo": "Controlla che nel serbatoio ci sia liquido: il libretto avverte di non azionare i lavavetri quando il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. Per azionarli, tira leggermente la leva verso di te.\n\nPer la pompa del sistema lavavetri, il libretto indica il fusibile F82 da 20 A. Puoi controllare il fusibile pertinente: un fusibile intervenuto si riconosce dal filamento interno rotto. Se sostituisci F82, usa un fusibile da 20 A; il libretto avverte di sostituire sempre un fusibile con uno dell’amperaggio specificato.\n\nNei passaggi consultati non è riportata una procedura per controllare o pulire gli ugelli né per determinare la causa del mancato spruzzo.",
+          "fonti": [
+            {
+              "id": "focus-pdf234-3",
+              "pagina": 232,
+              "pagina_pdf": 234
+            },
+            {
+              "id": "focus-pdf63-1",
+              "pagina": 61,
+              "pagina_pdf": 63
+            },
+            {
+              "id": "focus-pdf217-1",
+              "pagina": 215,
+              "pagina_pdf": 217
+            },
+            {
+              "id": "focus-pdf104-2",
+              "pagina": 102,
+              "pagina_pdf": 104
+            },
+            {
+              "id": "focus-pdf212-1",
+              "pagina": 210,
+              "pagina_pdf": 212
+            },
+            {
+              "id": "focus-pdf62-2",
+              "pagina": 60,
+              "pagina_pdf": 62
+            },
+            {
+              "id": "focus-pdf61-1",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "focus-pdf64-1",
+              "pagina": 62,
+              "pagina_pdf": 64
+            },
+            {
+              "id": "focus-pdf105-2",
+              "pagina": 103,
+              "pagina_pdf": 105
+            },
+            {
+              "id": "focus-pdf99-1",
+              "pagina": 97,
+              "pagina_pdf": 99
+            },
+            {
+              "id": "focus-pdf214-1",
+              "pagina": 212,
+              "pagina_pdf": 214
+            },
+            {
+              "id": "focus-pdf61-3",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "focus-pdf105-1",
+              "pagina": 103,
+              "pagina_pdf": 105
+            },
+            {
+              "id": "focus-pdf209-1",
+              "pagina": 207,
+              "pagina_pdf": 209
+            },
+            {
+              "id": "focus-pdf210-1",
+              "pagina": 208,
+              "pagina_pdf": 210
+            },
+            {
+              "id": "focus-pdf243-3",
+              "pagina": 241,
+              "pagina_pdf": 243
+            },
+            {
+              "id": "focus-pdf11-1",
+              "pagina": 9,
+              "pagina_pdf": 11
+            },
+            {
+              "id": "focus-pdf62-3",
+              "pagina": 60,
+              "pagina_pdf": 62
+            }
+          ],
+          "secondi": 42.12,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Sulla Ford Focus il lavaparabrezza non spruzza: cosa posso controllare secondo il libretto?",
+                "turni_precedenti": [],
+                "sintesi": "Controlla che nel serbatoio ci sia liquido; se è vuoto, non azionare il lavavetri, perché la pompa potrebbe surriscaldarsi. (p. 61 (PDF p. 63))\n\nPer la pompa del lavavetri, il libretto indica il fusibile F82, con capacità di 20 A. Puoi controllare il fusibile pertinente. (p. 212 (PDF p. 214))\n\nSe sostituisci un fusibile, usa un ricambio con l’amperaggio specificato dal libretto. (p. 215 (PDF p. 217))\n\nInformazione non ricavata dai passaggi consultati: Una procedura per controllare o pulire gli ugelli e per stabilire la causa del mancato spruzzo.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf63-1",
+                    "riferimento": "p. 61 (PDF p. 63)",
+                    "testo": "Lava/tergicristalli\n\nNota: Pulire il parabrezza e le spazzole non\nappena iniziano a lasciare strisce o sporcizia.\nSe il problema persiste, sostituire le\nspazzole.  Vedere Sostituzione delle\nspazzole tergicristallo (pagina 233).\nSISTEMA LAVAPARABREZZA\nNota: Non azionare i lavavetri quando il\nserbatoio lavavetri è vuoto. Ciò potrebbe\ncausare il surriscaldamento della pompa\ndel lavavetri.\nTirare leggermente la leva verso di sé per\nazionare i lavavetri e spruzzare il\nparabrezza. Quando la leva viene rilasciata,\nil tergicristallo si attiva per un breve periodo\ndi tempo.\nTERGILUNOTTO E\nLAVALUNOTTO\nTergilunotto\nNota: Disattivare il tergilunotto e\nl'accensione prima dell'ingresso\nnell'autolavaggio.\nTergitura ad intermittenza.A\nTergitura a bassa velocità.B\nSpento.C\nPremere il tasto sulla sommità per attivare\nla tergitura intermittente. Premere\nnuovamente il tasto sulla sommità per\nattivare la tergitura lenta. Agire sul fondo\ndel pulsante per disattivare il tergilunotto.\nAttivando i tergicristallo ed inserendo la\nretromarcia (R) si attiva automaticamente\nil tergilunotto a ciclo intermittente.\nLavalunotto\nPer attivare il lavalunotto spostare in\navanti la leva.  Rilasciando la leva, il tergi\ncontinua a funzionare per un breve periodo\ndi tempo."
+                  },
+                  {
+                    "id": "focus-pdf214-1",
+                    "riferimento": "p. 212 (PDF p. 214)",
+                    "testo": "Fusibili\n\nCircuito protettoCapacità deifusibiliFusibile\nInterruttore serratura portiera.\nTettuccio a compasso.20AF80\nSensore volumetrico abitacolo.5AF81 Ricevitore frequenza radio.\nPompa sistema lavavetri.20AF82\nSistema di chiusura centralizzata.20AF83\nSbloccaggio portiera lato guida.20AF84\nAria condizionata.\n7,5AF85 Tettuccio a compasso.Interruttori sedili riscaldati.\nInterruttore di disattivazione airbag lato passeggero.\nModulo di comando sistema di sicurezza10AF86 Sistema di classificazione occupante.\nVolante riscaldato.15AF87\nModulo qualità tensione.25AF88\nNon utilizzato.-F89\nScatola dei fusibili nel bagagliaio"
+                  },
+                  {
+                    "id": "focus-pdf217-1",
+                    "riferimento": "p. 215 (PDF p. 217)",
+                    "testo": "Fusibili\n\nCircuito protettoCapacità deifusibiliFusibile\nRetrovisori esterni riscaldati.7,5 A*F45\nNon utilizzato.-F46\n*\nMinifusibili\n**\nFusibili a cartuccia\nCircuiti inseritiRelé\nCommutatore di avviamento.R1\nLunotto termico.R2\nTergilunotto.R3\nNon utilizzato.R4\nAvvisatore acustico sistema allarme antifurtoR5\nPresa accessori ritardata.R6\nCAMBIO DI UN FUSIBILE\nFusibile/i\nPERICOLO\nSostituire sempre un fusibile con un\naltro avente l'amperaggio\nspecificato. L'impiego di un fusibile\ncon amperaggio maggiore può causare\ndanni ai fili e innescare un incendio.\nSe i componenti elettrici del veicolo non\nfunzionano, è possibile che un fusibile sia\nintervenuto. I fusibili intervenuti si\ndistinguono per via del filamento interno\nrotto. Prima di sostituire eventuali\ncomponenti elettrici, controllare sempre i\nfusibili ad essi relativi."
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "Il libretto spiega come azionare il lavaparabrezza: tirare leggermente la leva verso di sé.",
+                  "Indica che un fusibile intervenuto si riconosce dal filamento interno rotto."
+                ],
+                "esito": "corretta",
+                "sintesi": "Controlla che nel serbatoio ci sia liquido: il libretto avverte di non azionare i lavavetri quando il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. Per azionarli, tira leggermente la leva verso di te.\n\nPer la pompa del sistema lavavetri, il libretto indica il fusibile F82 da 20 A. Puoi controllare il fusibile pertinente: un fusibile intervenuto si riconosce dal filamento interno rotto. Se sostituisci F82, usa un fusibile da 20 A; il libretto avverte di sostituire sempre un fusibile con uno dell’amperaggio specificato.\n\nNei passaggi consultati non è riportata una procedura per controllare o pulire gli ugelli né per determinare la causa del mancato spruzzo."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caso": "diagnosi_esatta",
+      "turni": [
+        {
+          "domanda": "Nella Ford Focus non esce liquido dal lavaparabrezza anteriore. Puoi dirmi con certezza quale pezzo si e rotto?",
+          "esito": "risposta",
+          "testo": "Il libretto include il controllo del livello del liquido lavavetri tra i controlli da effettuare durante il rifornimento di carburante. I passaggi consultati non permettono però di stabilire con certezza quale componente si sia guastato o quale sia la causa del mancato spruzzo.",
+          "fonti": [
+            {
+              "id": "focus-pdf234-3",
+              "pagina": 232,
+              "pagina_pdf": 234
+            },
+            {
+              "id": "focus-pdf11-1",
+              "pagina": 9,
+              "pagina_pdf": 11
+            },
+            {
+              "id": "focus-pdf233-4",
+              "pagina": 231,
+              "pagina_pdf": 233
+            },
+            {
+              "id": "focus-pdf62-2",
+              "pagina": 60,
+              "pagina_pdf": 62
+            },
+            {
+              "id": "focus-pdf63-1",
+              "pagina": 61,
+              "pagina_pdf": 63
+            },
+            {
+              "id": "focus-pdf104-2",
+              "pagina": 102,
+              "pagina_pdf": 104
+            },
+            {
+              "id": "focus-pdf64-1",
+              "pagina": 62,
+              "pagina_pdf": 64
+            },
+            {
+              "id": "focus-pdf219-2",
+              "pagina": 217,
+              "pagina_pdf": 219
+            },
+            {
+              "id": "focus-pdf61-1",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "focus-pdf230-1",
+              "pagina": 228,
+              "pagina_pdf": 230
+            }
+          ],
+          "secondi": 29.97,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Nella Ford Focus non esce liquido dal lavaparabrezza anteriore. Puoi dirmi con certezza quale pezzo si e rotto?",
+                "turni_precedenti": [],
+                "sintesi": "No: da questo sintomo il libretto non permette di stabilire con certezza quale pezzo sia guasto. Indica solo che il serbatoio alimenta sia il lavacristallo sia il lavalunotto; non individua la causa del mancato spruzzo anteriore.\n\nInformazione non ricavata dai passaggi consultati: quale componente si è guastato e la diagnosi certa della causa.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf234-3",
+                    "riferimento": "p. 232 (PDF p. 234)",
+                    "testo": "Manutenzione / CONTROLLO DEL LIQUIDO LAVAVETRI\n\nUsare solo liquido conforme alle specifiche\nFord.\nVedere Specifiche tecniche (pagina 265).\nCONTROLLO DEL LIQUIDO\nDELLA FRIZIONE - CAMBIO\nMANUALE\nI sistemi frenante e della frizione hanno in\ncomune lo stesso serbatoio liquido.\nVedere Controllo del liquido dei freni\n(pagina 231).\nCONTROLLO DEL LIQUIDO\nLAVAVETRI\nNota: Il serbatoio alimenta i sistemi\nlavacristallo e lavalunotto.\nQuando si effettua il rabbocco, utilizzare\nuna miscela di liquido lavavetri e acqua per\nevitare congelamenti alle basse\ntemperature e migliorare così la capacità\ndi pulizia.\nPer informazioni circa la diluizione del\nliquido, fare riferimento alle istruzioni del\nprodotto.\nSCARICO DEL PUNTO DI\nRACCOLTA DEL FILTRO\nCARBURANTE\nPERICOLO\nNon smaltire il carburante tra i rifiuti\ndomestici o nel sistema fognario\npubblico. Rivolgersi ad un impianto\ndi smaltimento autorizzato."
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [],
+                "esito": "fonte_insufficiente",
+                "sintesi": ""
+              }
+            },
+            {
+              "schema": "Riesame",
+              "input": {
+                "domanda": "Nella Ford Focus non esce liquido dal lavaparabrezza anteriore. Puoi dirmi con certezza quale pezzo si e rotto?",
+                "turni_precedenti": [],
+                "passaggi": [
+                  {
+                    "id": "focus-pdf11-1",
+                    "testo": "Introduzione\n\nMantenere il livello corretto di\nliquido\nConsultare le istruzioni operative\nSistema di sicurezza degli\noccupanti\nSistema di parcheggio a\nultrasuoni\nFreno di stazionamento\nLiquido per servosterzo\nAlzacristalli elettrici\nanteriori/posteriori\nInterdizione alzacristalli elettrici\nSpia di avaria motore\nAirbag laterale\nProteggere gli occhi\nControllo stabilità\nLava/tergiparabrezza\nREGISTRAZIONE DEI DATI\nMolteplici componenti elettronici del\nveicolo contengono moduli di registrazione\ndati che memorizzano provvisoriamente o\npermanentemente dati tecnici sulle\ncondizioni del veicolo, eventi ed errori.\nIn genere, si tratta di informazioni tecniche\nche documentano le condizioni di parti,\nmoduli, sistemi o condizioni ambientali:\n• Condizioni di esercizio di componenti\ndel sistema (ad es. livelli di\nrifornimento).\n• Messaggi di stato sul veicolo e i singoli\ncomponenti (ad es. numero\ngiri/velocità di rotazione del\npneumatico, decelerazione,\naccelerazione laterale).\n• Malfunzionamenti e difetti riscontrati\nin componenti di sistemi importanti (ad\nes. sistema luci e sistema frenante).\n• Reazioni del veicolo in particolari\nsituazioni di guida (ad es. gonfiaggio di\nun airbag, attivazione del sistema di\nregolazione stabilità).\n• Condizioni ambientali (ad es.\ntemperatura).\nQuesti dati sono esclusivamente tecnici e\naiutano sia ad identificare e correggere\nerrori, sia ad ottimizzare le funzioni del\nveicolo. Non permettono di creare profili\ndi spostamento, indicanti i tratti percorsi.\nSe si fa uso di servizi (ad esempio\nriparazioni, procedure di assistenza,\ninterventi in garanzia, certificazione di\nqualità), il personale della rete di\nassistenza (produttori inclusi) può leggere\nle informazioni tecniche contenute nei\nmoduli di registrazione eventi ed errori,\nutilizzando speciali servizi diagnostici. Se\nnecessario, le saranno fornite ulteriori\ninformazioni. Dopo la correzione di un\nerrore, i rispettivi dati vengono eliminati dal\nmodulo di registrazione, o sovrascritti."
+                  },
+                  {
+                    "id": "focus-pdf233-4",
+                    "testo": "Manutenzione / CONTROLLO DEL LIQUIDO DEI FRENI\n\nAVVERTENZE\nNon smontare il tappo del\nbocchettone di rifornimento quando\nil motore è caldo. Attendere che il\nmotore di raffreddi.\nIl liquido di raffreddamento non\ndiluito è infiammabile e potrebbe\nincediarsi se viene versato sui gas di\nscarico caldi.\nNota: In caso di emergenza, si può\naggiungere dell'acqua al sistema di\nraffreddamento per poter raggiungere una\nstazione di servizio. Fare controllare il\nsistema da una Concessionaria autorizzata,\nil prima possibile.\nNota: L'uso prolungato di una maggiore\ndiluizione del liquido di raffreddamento può\ncausare danni al motore dovuti a corrosione,\nsurriscaldamento o congelamento.\nNota: Non rabboccare il liquido di\nraffreddamento oltre il riferimento MAX.\n1. Rimuovere il tappo di rifornimento.\nMentre si svita il tappo la pressione\nfuoriesce lentamente.\n2. Rabboccare con una miscela 50/50 di\nliquido di raffreddamento e acqua\nusando un liquido che soddisfi le\nspecifiche Ford.  Vedere Specifiche\ntecniche (pagina 270).\n3. Reinserire il tappo di rifornimento.\nRuotarlo fino a quando non si avverte\nuna forte resistenza.\nCONTROLLO DEL LIQUIDO DEI\nFRENI\nAVVERTENZE\nNon utilizzare fluidi diversi dal liquido\nfreni consigliato perché potrebbero\nridurre l'efficienza dei freni. L'uso del\nliquido sbagliato potrebbe causare la\nperdita di controllo del veicolo con\nincidenti gravi, che potrebbero risultare\nanche fatali.\nUsare esclusivamente liquido freni\ncontenuto in un recipiente sigillato.\nLe contaminazioni causate da\nsporco, acqua, prodotti a base di petrolio\no altri materiali possono causare danni al\nsistema frenante o possibili anomalie.\nL’inosservanza di questa avvertenza\npotrebbe provocare la perdita di controllo\ndel veicolo con lesioni personali gravi\nanche mortali.\nEvitare il contatto del liquido con la\npelle o gli occhi. Sciacquare\nimmediatamente la parte colpita se\nciò dovesse accadere e consultare subito\nun medico.\nI livello del liquido compreso tra le\ntacche MAX e MIN è quello richiesto\nper il normale funzionamento e non\nè necessario alcun rabbocco. Se il livello\ndel liquido non rientra nei normali limiti di\nfunzionamento, si potrebbero\ncompromettere le prestazioni del sistema.\nFare controllare la vettura\nimmediatamente."
+                  },
+                  {
+                    "id": "focus-pdf62-2",
+                    "testo": "Lava/tergicristalli\n\nNota: Controllare il funzionamento dei\ntergicristalli sul display informazioni.  Vedere\nInformazioni generali (pagina 83).  La\nfunzione tergicristalli automatici è attiva\nsolo quando si seleziona l'opzione menu sul\ndisplay informazioni e si sposta la leva\ntergicristalli in alto sulla prima posizione. La\nfunzione tergicristalli automatici rimane\nquindi attiva sul menu display informazioni\nfinché si passa alla modalità tergicristalli\nintermittente.\nNota: Inserendo le luci autolamp insieme\nai tergicristalli automatici, gli anabbaglianti\nsi accenderanno in automatico quando il\nsensore pioggia attiva ininterrottamente i\ntergicristalli.  Vedere Illuminazione\nautomatica (pagina 64).\nMantenere la parte esterna del parabrezza\npulita.  Il sensore pioggia è molto sensibile\ne può provocare l'intervento dei tergi in\npresenza di sporcizia o insetti e\nappannamento del vetro."
+                  },
+                  {
+                    "id": "focus-pdf63-1",
+                    "testo": "Lava/tergicristalli\n\nNota: Pulire il parabrezza e le spazzole non\nappena iniziano a lasciare strisce o sporcizia.\nSe il problema persiste, sostituire le\nspazzole.  Vedere Sostituzione delle\nspazzole tergicristallo (pagina 233)."
+                  },
+                  {
+                    "id": "focus-pdf104-2",
+                    "testo": "Sistema di climatizzazione / CRISTALLI E RETROVISORI TERMICI\n\nCRISTALLI E RETROVISORI\nTERMICI\nLunotto termico\nPremere il tasto per eliminare\ndal vetro il velo di ghiaccio e\nnebbia. Dopo qualche istante,\nsi disattiverà automaticamente. Prima di\nattivare il riscaldamento del\nparabrezza/lunotto, verificare che il motore\nsia in funzione.\nNota: Non utilizzare lame per rasoi o altri\noggetti affilati per pulire l'interno del lunotto\no per asportare le decalcomanie. Ciò\npotrebbe danneggiare le resistenze termiche\ne tale danno non sarebbe coperto dalla\ngaranzia.\nRetrovisori esterni riscaldati (se in\ndotazione)\nLa funzione si inserisce\nautomaticamente quando viene\nattivato il lunotto termico."
+                  },
+                  {
+                    "id": "focus-pdf64-1",
+                    "testo": "Lava/tergicristalli / SISTEMA LAVAFARI\n\nSISTEMA LAVAFARI\nQuando i fari sono accesi, i lavafari entrano\nin funzione insieme al sistema\nlavaparabrezza.\nNota: I lavafari non entrano in funzione ogni\nvolta che viene azionato il sistema\nlavaparabrezza. Questo per evitare di\nsvuotare rapidamente il serbatoio del liquido\nlavavetri."
+                  },
+                  {
+                    "id": "focus-pdf219-2",
+                    "testo": "Manutenzione / INFORMAZIONI GENERALI\n\nControllare che i tappi del\nbocchettone di rifornimento\ncarburante siano fissati in modo\nsicuro dopo aver eseguito i controlli di\nmanutenzione.\nControlli giornalieri\n• Luci esterne.\n• Luci abitacolo.\n• Spie e indicatori.\nControllo durante il rifornimento\ndi carburante\n• Livello olio motore.  Vedere Controllo\ndell'olio del motore (pagina 229).\n• Livello liquido freni.  Vedere Controllo\ndel liquido dei freni (pagina 231).\n• Livello liquido lavavetri.  Vedere\nControllo del liquido lavavetri\n(pagina 232).\n• Pressione dei pneumatici (a basse\ntemperature).  Vedere Pressioni\npneumatico (pagina 259).\n• Condizione dei pneumatici.  Vedere\nRuote e pneumatici (pagina 243).\nControlli mensili\n• Livello liquido di raffreddamento\nmotore (motore freddo).  Vedere\nControllo del liquido di\nraffreddamento del motore (pagina\n230).\n• Tenuta tubi, flessibili e serbatoi.\n• Funzionamento dell'aria condizionata.\n• Funzionamento del freno di\nstazionamento.\n• Funzionamento dell'avvisatore\nacustico."
+                  },
+                  {
+                    "id": "focus-pdf61-1",
+                    "testo": "Lava/tergicristalli / TERGIPARABREZZA\n\nTERGIPARABREZZA\nNota: Prima di attivare il tergicristallo,\nsbrinare completamente il parabrezza.\nNota: Disattivare sempre il tergicristallo e\nspegnere il motore del veicolo prima\ndell'ingresso nell'autolavaggio.\nNota:  Pulire il parabrezza e le spazzole se\nlasciano strisce o macchie.  Vedere\nChecking the Wiper Blades (pagina 233).\nSe il problema persiste, sostituire le\nspazzole.  Vedere Changing the Wiper\nBlades (pagina 233).\nNota: Non azionare il tergicristallo se il\nparabrezza è asciutto. Ciò potrebbe graffiare\nil vetro, danneggiare le spazzole o bruciare\nil motorino del tergicristallo. Utilizzare\nsempre il sistema lavaparabrezza prima di\ntergere il parabrezza asciutto.\nTergitura ad impulso singolo.A\nTergitura ad intermittenza.B\nTergitura normale.C\nTergitura ad alta velocità.D\nNota: Per l'arresto, portare il comando in\nposizione O contrassegnata sulla leva di\ncomando tergicristallo."
+                  },
+                  {
+                    "id": "focus-pdf230-1",
+                    "testo": "Manutenzione\n\nTappo bocchettone di rifornimento olio motore\n1\n:  Vedere Controllo dell'olio\ndel motore (pagina 229).\nH\nFinestra di controllo serbatoio lavavetri\n*\n:  Vedere Controllo del liquido\nlavavetri (pagina 232).\nI\n*\nI tappi di rifornimento carburante e l'astina di livello per olio motore sono colorati per\nfacilitarne l'identificazione."
+                  }
+                ],
+                "citazioni_rifiutate": []
+              },
+              "output": {
+                "risposte": [
+                  {
+                    "fonte_id": "focus-pdf219-2",
+                    "citazione": "Livello liquido lavavetri. Vedere Controllo del liquido lavavetri (pagina 232).",
+                    "frase": "Il libretto indica di controllare il livello del liquido lavavetri, ma i passaggi forniti non permettono di stabilire con certezza quale componente si sia guastato."
+                  }
+                ],
+                "parte_non_documentata": "La causa del mancato spruzzo e il pezzo eventualmente rotto non si possono determinare dai passaggi consultati."
+              }
+            },
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Nella Ford Focus non esce liquido dal lavaparabrezza anteriore. Puoi dirmi con certezza quale pezzo si e rotto?",
+                "turni_precedenti": [],
+                "sintesi": "Il libretto indica di controllare il livello del liquido lavavetri, ma i passaggi forniti non permettono di stabilire con certezza quale componente si sia guastato. (p. 217 (PDF p. 219))\n\nInformazione non ricavata dai passaggi consultati: La causa del mancato spruzzo e il pezzo eventualmente rotto non si possono determinare dai passaggi consultati.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf219-2",
+                    "riferimento": "p. 217 (PDF p. 219)",
+                    "testo": "Manutenzione / INFORMAZIONI GENERALI\n\nINFORMAZIONI GENERALI\nPer preservarne l'idoneità alla circolazione\nstradale e il valore di rivendita, è necessario\nsottopporre il veicolo a manutenzione\nregolare. Una vasta rete di Riparatori\nautorizzati Ford di comprovata\ncompetenza professionale è a disposizione\nper qualsiasi intervento di assistenza. I\nriparatori autorizzati sono i più qualificati\nper intervenire in modo corretto e adeguato\nsul veicolo e dispongono di un'ampia\ngamma di attrezzi speciali.\nOltre alla manutenzione periodica, si\nconsiglia di eseguire i seguenti controlli.\nAVVERTENZE\nDisinserire l'accensione prima di\ntoccare o di tentare qualsiasi tipo di\nregistrazione.\nNon toccare i componenti del\nsistema di accensione elettronico\ndopo aver inserito l'accensione o\nquando il motore è in funzione. Il sistema\nfunziona ad alta tensione.\nTenere le mani e gli indumenti\nlontano dalla ventola di\nraffreddamento del motore. In talune\ncondizioni, la ventola potrebbe continuare\na funzionare per alcuni minuti dopo lo\nspegnimento del motore.\nControllare che i tappi del\nbocchettone di rifornimento\ncarburante siano fissati in modo\nsicuro dopo aver eseguito i controlli di\nmanutenzione.\nControlli giornalieri\n• Luci esterne.\n• Luci abitacolo.\n• Spie e indicatori.\nControllo durante il rifornimento\ndi carburante\n• Livello olio motore.  Vedere Controllo\ndell'olio del motore (pagina 229).\n• Livello liquido freni.  Vedere Controllo\ndel liquido dei freni (pagina 231).\n• Livello liquido lavavetri.  Vedere\nControllo del liquido lavavetri\n(pagina 232).\n• Pressione dei pneumatici (a basse\ntemperature).  Vedere Pressioni\npneumatico (pagina 259).\n• Condizione dei pneumatici.  Vedere\nRuote e pneumatici (pagina 243).\nControlli mensili\n• Livello liquido di raffreddamento\nmotore (motore freddo).  Vedere\nControllo del liquido di\nraffreddamento del motore (pagina\n230).\n• Tenuta tubi, flessibili e serbatoi.\n• Funzionamento dell'aria condizionata.\n• Funzionamento del freno di\nstazionamento.\n• Funzionamento dell'avvisatore\nacustico.\n• Serraggio dei dadi ruota.  Vedere\nPressioni pneumatico (pagina 259).\nAPERTURA E CHIUSURA DEL\nCOFANO\nAprire il cofano\n1. Tirare la leva di apertura cofano."
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "Il controllo del livello del liquido lavavetri è indicato tra i controlli da effettuare durante il rifornimento di carburante."
+                ],
+                "esito": "corretta",
+                "sintesi": "Il libretto include il controllo del livello del liquido lavavetri tra i controlli da effettuare durante il rifornimento di carburante. I passaggi consultati non permettono però di stabilire con certezza quale componente si sia guastato o quale sia la causa del mancato spruzzo."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caso": "colore_spia",
+      "turni": [
+        {
+          "domanda": "Nella Ford Focus la spia degli pneumatici a ferro di cavallo con punto esclamativo e rossa: cosa significa e cosa devo fare?",
+          "esito": "risposta",
+          "testo": "Nei passaggi consultati il colore rosso non è specificato. Se la spia è fissa, indica uno o più pneumatici parzialmente sgonfi: fermati appena possibile senza mettere a rischio la sicurezza, controlla ogni pneumatico per eventuali forature e ripara quelli danneggiati se necessario; gonfia poi tutti gli pneumatici alla pressione prescritta, riportata anche sull’etichetta sul bordo della porta lato guida o sul montante centrale. Dopo il gonfiaggio, esegui il reset del sistema di monitoraggio.\n\nSe la spia è inizialmente fissa e poi lampeggia, il sistema segnala un’anomalia. Se resta accesa nonostante la pressione sia corretta e non sia montata la ruota di scorta, il libretto indica che il sistema ha rilevato un guasto da riparare; se la spia resta accesa o continua ad accendersi, rivolgiti appena possibile a una concessionaria autorizzata.",
+          "fonti": [
+            {
+              "id": "focus-pdf96-2",
+              "pagina": 94,
+              "pagina_pdf": 96
+            },
+            {
+              "id": "focus-pdf251-2",
+              "pagina": 249,
+              "pagina_pdf": 251
+            },
+            {
+              "id": "focus-pdf254-1",
+              "pagina": 252,
+              "pagina_pdf": 254
+            },
+            {
+              "id": "focus-pdf253-2",
+              "pagina": 251,
+              "pagina_pdf": 253
+            },
+            {
+              "id": "focus-pdf253-1",
+              "pagina": 251,
+              "pagina_pdf": 253
+            },
+            {
+              "id": "focus-pdf248-3",
+              "pagina": 246,
+              "pagina_pdf": 248
+            },
+            {
+              "id": "focus-pdf250-4",
+              "pagina": 248,
+              "pagina_pdf": 250
+            },
+            {
+              "id": "focus-pdf252-1",
+              "pagina": 250,
+              "pagina_pdf": 252
+            },
+            {
+              "id": "focus-pdf81-2",
+              "pagina": 79,
+              "pagina_pdf": 81
+            },
+            {
+              "id": "focus-pdf252-2",
+              "pagina": 250,
+              "pagina_pdf": 252
+            }
+          ],
+          "secondi": 42.62,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Nella Ford Focus la spia degli pneumatici a ferro di cavallo con punto esclamativo e rossa: cosa significa e cosa devo fare?",
+                "turni_precedenti": [],
+                "sintesi": "Se la spia resta fissa, indica pressione insufficiente: fermati appena puoi farlo in sicurezza, controlla gli pneumatici e gonfiali alla pressione prescritta, indicata anche sull’etichetta sul bordo della portiera lato guida o sul montante centrale. (p. 249 (PDF p. 251))\n\nDopo aver regolato le pressioni, esegui il reset del sistema di monitoraggio. (p. 251 (PDF p. 253))\n\nSe la spia continua a rimanere accesa o si riaccende, il libretto raccomanda di rivolgersi a una concessionaria autorizzata. (p. 94 (PDF p. 96))\n\nInformazione non ricavata dai passaggi consultati: Il colore rosso della spia, che non è specificato nei passaggi consultati.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf251-2",
+                    "riferimento": "p. 249 (PDF p. 251)",
+                    "testo": "Ruote e pneumatici\n\nI pneumatici vanno gonfiati alla corretta\npressione.\nVedere Ruote e pneumatici (pagina 243).\nI valori di pressione dei pneumatici sono\nanche indicati sulla targhetta dei dati di\npressione dei pneumatici (posta sul bordo\ndella porta lato guida o sul montante\ncentrale).\nIl veicolo è dotato di sistema di\nmonitoraggio pressione pneumatici in\nfunzione di assistenza al guidatore.\nQuando uno o più pneumatici sono\nparzialmente sgonfi, si accende una spia.\nSe la spia pressione pneumatici\ninsufficiente si illumina, arrestare il veicolo\nnon appena ciò sia possibile senza mettere\na repentaglio la sicurezza, controllare i\npneumatici e gonfiarli alla pressione\nprescritta.\nL'uso del veicolo con i pneumatici\nparzialmente sgonfi può:\n• Provocare il surriscaldamento dei\npneumatici.\n• Favorire le anomalie dei pneumatici.\n• Ridurre l'economicità di consumo del\ncarburante.\n• Ridurre la durata utile dei pneumatici.\n• Influire negativamente sulla\nmanovrabilità del veicolo e la capacità\ndi arresto.\nIl sistema non sostituisce la corretta\nmanutenzione dei pneumatici.\nLa corretta pressione dei pneumatici deve\nessere sempre mantenuta, anche se\nl'eventuale bassa pressione non ha\nprovocato l'accensione dell'apposita spia.\nIl sistema di monitoraggio pressione\npneumatici è dotato di una spia di\nsegnalazione guasti che indica eventuali\nmalfunzionamenti del sistema. La spia di\nguasto e quella di bassa pressione\npneumatici hanno una funzione\ncombinata. Quando il sistema rileva\nun'anomalia, la spia di segnalazione\nlampeggia per un minuto circa, quindi resta\naccesa. Questa sequenza viene ripetuta\nogni volta che si inserisce l'accensione\nfinché non si elimina il guasto. Il sistema\nha rilevato un'anomalia che necessita di\nintervento.\nQuando la spia segnalazione guasti si\naccende, il sistema può non essere in grado\ndi rilevare o segnalare la condizione di\npressione pneumatici insufficiente. Un\nguasto può verificarsi per una varietà di\nmotivi, tra cui il montaggio di una ruota o\ndi un pneumatico sostitutivo che impedisce\nil corretto funzionamento del sistema.\nDopo aver sostituito uno o più pneumatici\no ruote del veicolo, controllare sempre la\nspia di segnalazione guasti del sistema di\nmonitoraggio pressione pneumatici.\nAccertarsi che le ruote o i pneumatici\nsostitutivi non impediscano il corretto\nfunzionamento del sistema. Vedere Guida\ncon ruota di scorta montata in questa\nsezione.\nInfluenza della temperatura sulla\npressione dei pneumatici\nNelle normali condizioni di guida i valori di\npressione dei pneumatici possono salire\nfino a 0,3 bar rispetto alla situazione di\npartenza a freddo.\nSe il veicolo resta fermo durante la notte\ne la temperatura scende notevolmente\nrispetto a quella diurna, la pressione dei\npneumatici può diminuire anche di 0,2 bar\nin corrispondenza di un calo di 31°F (17°C)\ndella temperatura ambiente. Il sistema\nrileva che questa pressione si è ridotta\nsignificativamente rispetto alla pressione\ndi gonfiaggio corretta e comanda\nl'accensione della spia."
+                  },
+                  {
+                    "id": "focus-pdf253-1",
+                    "riferimento": "p. 251 (PDF p. 253)",
+                    "testo": "Ruote e pneumatici\n\nSpie sistema\nOperazioneDenominazioneSpia\n1. Assicurarsi che la pressione dei\npneumatici sia quella prescritta.\nVedere Ruote e pneumatici (pagina\n243). Le pressioni dei pneumatici sono\nriportate anche sull'apposita\netichetta (applicata sul bordo della\nportiera lato guida o sul montante\ncentrale).\n2. Dopo avere gonfiato i pneumatici alla\npressione prescritta, bisogna eseguire\nla procedura di reset del sistema di\nmonitoraggio pressione pneumatici.\nVedereProcedura di ripristino del\nsistema di monitoraggio pres-\nsione pneumatici in questa sezione.\nPneumatico/i parzial-\nmente sgonfi\nSpia fissa\nRiparare la ruota e il pneumatico\ndanneggiato e montare nuovamente il\ncomplessivo ruota e pneumatico riparato\nsul veicolo per ripristinare il corretto\nfunzionamento del sistema.\nUso del pneumatico di\nscorta\nSe la spia rimane accesa anche con i\npneumatici sono correttamente gonfiati\ne la ruota di scorta non è montata, il\nsistema ha individuato un guasto che\nrichiede di essere riparato.\nAnomalia del sistema di\nmonitoraggio pressione\npneumatici\nRiparare la ruota e il pneumatico\ndanneggiato e montare nuovamente il\ncomplessivo ruota e pneumatico riparato\nsul veicolo per ripristinare il corretto\nfunzionamento del sistema.\nUso del pneumatico di\nscorta\nInizialmente spia\nfissa seguita da una\nspia lampeggiante\nSe la spia rimane accesa anche con i\npneumatici sono correttamente gonfiati\ne la ruota di scorta non è montata, il\nsistema ha individuato un guasto che\nrichiede di essere riparato.\nAnomalia del sistema di\nmonitoraggio pressione\npneumatici\nSe la spia di segnalazione è accesa:\n1. Controllare ogni pneumatico per\nverificare che non ve ne sia uno forato.\n2. Se uno o più pneumatici sono forati,\nripararli come richiesto.\n3. Controllare la pressione dei pneumatici\ne gonfiarli tutti alla pressione prescritta."
+                  },
+                  {
+                    "id": "focus-pdf96-2",
+                    "riferimento": "p. 94 (PDF p. 96)",
+                    "testo": "Display informazioni\n\nCambio.\nOperazioneMessaggio\nRivolgersi ad una concessionaria autorizzata.Trasmissione guasta Riparare\nsubito\nIl cambio si sta surriscaldando e occorre farlo raffred-\ndare. Arrestare il veicolo il prima possibile in sicurezza.\nSurriscaldamento trasmissione\nArrestare l'auto\nLa trasmissione si sta surriscaldando. Arrestarsi per\nlasciarla raffreddare o accelerare.\nSurriscaldamento trasmissione\nArrestare l'auto\nAppare per ricordare di inserire la marcia folle.Trasmissione non in modalità\nPark Selezionare P\nAppare per richiedere all'operatore di inserire il freno\ncome richiesto dal cambio.\nPremere freno per sblocc. leva\ndel cambio\nAppare quando la leva del cambio viene sbloccata ed\nè possibile selezionare le marce.\nLeva del cambio sbloccata\nSistema di monitoraggio pressione pneumatici\nOperazioneMessaggio\nAppare quando la pressione di uno o più pneumatici\ndel veicolo è bassa.  Vedere Sistema di monitoraggio\npressione pneumatici (pagina 248).\nVerificare pressione pneumatici\nAppare quando è presente un malfunzionamento del\nsistema di monitoraggio pressione pneumatici. Se la\nspia rimane accesa o continua ad accendersi, rivolgersi\nad una concessionaria autorizzata.  Vedere Sistema\ndi monitoraggio pressione pneumatici (pagina 248).\nControllo pneum. guasto Ripa-\nrare\nViene visualizzato quando un sensore pressione\npneumatici è guasto o si sta utilizzando la ruota di\nscorta. Per ulteriori informazioni sul funzionamento\ndel sistema in tali condizioni, vedere  Vedere Sistema\ndi monitoraggio pressione pneumatici (pagina 248).\n. Se la spia rimane accesa o continua ad accendersi,\nrivolgersi appena possibile ad una concessionaria\nautorizzata.\nSensori pneum. non rilevati Cfr.\nmanuale"
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "La spia fissa segnala pneumatici parzialmente sgonfi, mentre la sequenza spia inizialmente fissa e poi lampeggiante indica un’anomalia del sistema.",
+                  "Il libretto indica di controllare ogni pneumatico per eventuali forature e di ripararlo se necessario, prima di gonfiare tutti gli pneumatici alla pressione prescritta.",
+                  "Il ricorso alla concessionaria va collegato all’anomalia del sistema: il libretto lo raccomanda se la spia resta accesa o continua ad accendersi."
+                ],
+                "esito": "corretta",
+                "sintesi": "Nei passaggi consultati il colore rosso non è specificato. Se la spia è fissa, indica uno o più pneumatici parzialmente sgonfi: fermati appena possibile senza mettere a rischio la sicurezza, controlla ogni pneumatico per eventuali forature e ripara quelli danneggiati se necessario; gonfia poi tutti gli pneumatici alla pressione prescritta, riportata anche sull’etichetta sul bordo della porta lato guida o sul montante centrale. Dopo il gonfiaggio, esegui il reset del sistema di monitoraggio.\n\nSe la spia è inizialmente fissa e poi lampeggia, il sistema segnala un’anomalia. Se resta accesa nonostante la pressione sia corretta e non sia montata la ruota di scorta, il libretto indica che il sistema ha rilevato un guasto da riparare; se la spia resta accesa o continua ad accendersi, rivolgiti appena possibile a una concessionaria autorizzata."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caso": "dato_assente",
+      "turni": [
+        {
+          "domanda": "Quanto costa sostituire la pompa lavaparabrezza della Ford Focus?",
+          "esito": "fonte_assente",
+          "testo": "Nei passaggi consultati non è indicato il costo della sostituzione della pompa lavaparabrezza.",
+          "fonti": [
+            {
+              "id": "focus-pdf63-2",
+              "pagina": 61,
+              "pagina_pdf": 63
+            },
+            {
+              "id": "focus-pdf235-4",
+              "pagina": 233,
+              "pagina_pdf": 235
+            },
+            {
+              "id": "focus-pdf234-3",
+              "pagina": 232,
+              "pagina_pdf": 234
+            },
+            {
+              "id": "focus-pdf61-1",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "focus-pdf64-1",
+              "pagina": 62,
+              "pagina_pdf": 64
+            },
+            {
+              "id": "focus-pdf236-2",
+              "pagina": 234,
+              "pagina_pdf": 236
+            },
+            {
+              "id": "focus-pdf15-1",
+              "pagina": 13,
+              "pagina_pdf": 15
+            },
+            {
+              "id": "focus-pdf245-3",
+              "pagina": 243,
+              "pagina_pdf": 245
+            },
+            {
+              "id": "focus-pdf1-1",
+              "pagina": null,
+              "pagina_pdf": 1
+            },
+            {
+              "id": "focus-pdf12-2",
+              "pagina": 10,
+              "pagina_pdf": 12
+            },
+            {
+              "id": "focus-pdf221-1",
+              "pagina": 219,
+              "pagina_pdf": 221
+            }
+          ],
+          "secondi": 13.14,
+          "controlli": [
+            {
+              "schema": "Riesame",
+              "input": {
+                "domanda": "Quanto costa sostituire la pompa lavaparabrezza della Ford Focus?",
+                "turni_precedenti": [],
+                "passaggi": [
+                  {
+                    "id": "focus-pdf63-2",
+                    "testo": "Lava/tergicristalli / SISTEMA LAVAPARABREZZA\n\nNota: Pulire il parabrezza e le spazzole non\nappena iniziano a lasciare strisce o sporcizia.\nSe il problema persiste, sostituire le\nspazzole.  Vedere Sostituzione delle\nspazzole tergicristallo (pagina 233).\nSISTEMA LAVAPARABREZZA\nNota: Non azionare i lavavetri quando il\nserbatoio lavavetri è vuoto. Ciò potrebbe\ncausare il surriscaldamento della pompa\ndel lavavetri.\nTirare leggermente la leva verso di sé per\nazionare i lavavetri e spruzzare il\nparabrezza. Quando la leva viene rilasciata,\nil tergicristallo si attiva per un breve periodo\ndi tempo.\nTERGILUNOTTO E\nLAVALUNOTTO\nTergilunotto\nNota: Disattivare il tergilunotto e\nl'accensione prima dell'ingresso\nnell'autolavaggio.\nTergitura ad intermittenza.A\nTergitura a bassa velocità.B\nSpento.C\nPremere il tasto sulla sommità per attivare\nla tergitura intermittente. Premere\nnuovamente il tasto sulla sommità per\nattivare la tergitura lenta. Agire sul fondo\ndel pulsante per disattivare il tergilunotto.\nAttivando i tergicristallo ed inserendo la\nretromarcia (R) si attiva automaticamente\nil tergilunotto a ciclo intermittente.\nLavalunotto\nPer attivare il lavalunotto spostare in\navanti la leva.  Rilasciando la leva, il tergi\ncontinua a funzionare per un breve periodo\ndi tempo."
+                  },
+                  {
+                    "id": "focus-pdf235-4",
+                    "testo": "Manutenzione / SOSTITUZIONE DELLE SPAZZOLE TERGICRISTALLO\n\n1. Rimuovere lo schermo paraspruzzi del\nvano motore per accedere al tubo di\nscarico per acqua contenuta\nnell'apposito separatore del filtro\ncarburante. Posizionare l'estremità del\ntubo di scarico in un apposito\ncontenitore.\n2. Smontare lo schermo superiore del\nfiltro carburante.\n3. Svitare il tappo di scarico di uno o due\ngiri e scaricare l'acqua.\n4. Serrare il tappo di scarico fino a quando\nsi avverte una forte resistenza.\n5. Riposizionare lo scudo superiore del\nfiltro carburante e lo schermo\nparaspruzzi del vano motore.\nAll'accensione del motore, la\nspia acqua nel carburante si\nspegne dopo qualche istante.\nSOSTITUZIONE BATTERIA 12\nV\nPERICOLO\nSui veicoli con sistema Start & Stop,\ni requisiti relativi alla batteria sono\ndiversi. Sostituire la batteria con una\navente le stesse caratteristiche.\nLa batteria è situata nel vano motore.\nVedere Manutenzione (pagina 217).\nNota: resettare la funzione ritorno degli\nalzacristalli elettrici.  Vedere Alzacristalli\nelettrici (pagina 71).\nAssicurarsi di smaltire le pile\nvecchie attenendosi alle norme\nper la tutela dell'ambiente.\nPer il riciclaggio delle batterie esauste,\nrivolgersi all'autorità locale.\nCONTROLLO DELLE SPAZZOLE\nTERGICRISTALLO\nPassare la punta delle dita sul bordo della\nspazzola per verificare eventuali\nirregolarità.\nPulire le spazzole del tergicristallo con\nliquido lavavetri o acqua applicata con una\nspugna o panno morbidi.\nSOSTITUZIONE DELLE\nSPAZZOLE TERGICRISTALLO\nSostituzione delle spazzole del\ntergicristallo\nPosizione di servizio\nPortare i tergicristallo in posizione di\nservizio per eseguire la sostituzione delle\nspazzole. Quando si inserisce l'accensione,\ni tergicristalli si riportano in posizione di fine\ncorsa ritorno."
+                  },
+                  {
+                    "id": "focus-pdf234-3",
+                    "testo": "Manutenzione / CONTROLLO DEL LIQUIDO LAVAVETRI\n\nUsare solo liquido conforme alle specifiche\nFord.\nVedere Specifiche tecniche (pagina 265).\nCONTROLLO DEL LIQUIDO\nDELLA FRIZIONE - CAMBIO\nMANUALE\nI sistemi frenante e della frizione hanno in\ncomune lo stesso serbatoio liquido.\nVedere Controllo del liquido dei freni\n(pagina 231).\nCONTROLLO DEL LIQUIDO\nLAVAVETRI\nNota: Il serbatoio alimenta i sistemi\nlavacristallo e lavalunotto.\nQuando si effettua il rabbocco, utilizzare\nuna miscela di liquido lavavetri e acqua per\nevitare congelamenti alle basse\ntemperature e migliorare così la capacità\ndi pulizia.\nPer informazioni circa la diluizione del\nliquido, fare riferimento alle istruzioni del\nprodotto.\nSCARICO DEL PUNTO DI\nRACCOLTA DEL FILTRO\nCARBURANTE\nPERICOLO\nNon smaltire il carburante tra i rifiuti\ndomestici o nel sistema fognario\npubblico. Rivolgersi ad un impianto\ndi smaltimento autorizzato."
+                  },
+                  {
+                    "id": "focus-pdf61-1",
+                    "testo": "Lava/tergicristalli / TERGIPARABREZZA\n\nTERGIPARABREZZA\nNota: Prima di attivare il tergicristallo,\nsbrinare completamente il parabrezza.\nNota: Disattivare sempre il tergicristallo e\nspegnere il motore del veicolo prima\ndell'ingresso nell'autolavaggio.\nNota:  Pulire il parabrezza e le spazzole se\nlasciano strisce o macchie.  Vedere\nChecking the Wiper Blades (pagina 233).\nSe il problema persiste, sostituire le\nspazzole.  Vedere Changing the Wiper\nBlades (pagina 233).\nNota: Non azionare il tergicristallo se il\nparabrezza è asciutto. Ciò potrebbe graffiare\nil vetro, danneggiare le spazzole o bruciare\nil motorino del tergicristallo. Utilizzare\nsempre il sistema lavaparabrezza prima di\ntergere il parabrezza asciutto.\nTergitura ad impulso singolo.A\nTergitura ad intermittenza.B\nTergitura normale.C\nTergitura ad alta velocità.D\nNota: Per l'arresto, portare il comando in\nposizione O contrassegnata sulla leva di\ncomando tergicristallo."
+                  },
+                  {
+                    "id": "focus-pdf64-1",
+                    "testo": "Lava/tergicristalli / SISTEMA LAVAFARI\n\nSISTEMA LAVAFARI\nQuando i fari sono accesi, i lavafari entrano\nin funzione insieme al sistema\nlavaparabrezza.\nNota: I lavafari non entrano in funzione ogni\nvolta che viene azionato il sistema\nlavaparabrezza. Questo per evitare di\nsvuotare rapidamente il serbatoio del liquido\nlavavetri."
+                  },
+                  {
+                    "id": "focus-pdf236-2",
+                    "testo": "Manutenzione\n\n3. Rimontare seguendo l'ordine inverso.\nNota: Assicurarsi che la spazzola si\nposizioni correttamente.\nSostituzione della spazzola del\ntergilunotto\nNota: Non afferrare la spazzola del\ntergicristallo quando si solleva il braccio del\ntergicristallo.\nNota: Assicurarsi che il braccio del\ntergicristallo non scatti indietro contro il\ncristallo quando la spazzola del tergicristallo\nè staccata.\n1. Sollevare il braccio del tergicristallo.\n2. Ruotare leggermente la spazzola del\ntergicristallo."
+                  },
+                  {
+                    "id": "focus-pdf15-1",
+                    "testo": "Guida rapida / VISTA POSTERIORE ESTERNA\n\nVISTA POSTERIORE ESTERNA\nVedere Sostituzione di una lampadina (pagina 235).A\nVedere Sostituzione delle spazzole tergicristallo (pagina 233).B\nVedere Kit di riparazione provvisoria pneumatici (pagina 243).  Vedere\nSostituzione di una ruota (pagina 252).\nC\nVedere Sostituzione di una lampadina (pagina 235).D\nVedere Sostituzione di una ruota (pagina 252).E\nVedere Ruote e pneumatici (pagina 243).F"
+                  },
+                  {
+                    "id": "focus-pdf245-3",
+                    "testo": "Ruote e pneumatici / KIT DI RIPARAZIONE PROVVISORIA PNEUMATICI\n\nUtilizzo del kit\nAVVERTENZE\nL'aria compressa può agire da\nesplosivo o propellente con\nconseguenti possibili gravi infortuni\nanche letali.\nNon lasciare mai il kit incustodito\ndurante l'uso.\nNon tenere il compressore in\nfunzione per più di 10 minuti. Questo\npotrebbe causare la perdita di\ncontrollo del veicolo ed essere causa di\nlesioni personali.\nNota: Utilizzare il kit solo per il veicolo col\nquale è stato fornito."
+                  }
+                ],
+                "citazioni_rifiutate": []
+              },
+              "output": {
+                "risposte": [],
+                "parte_non_documentata": "Nei passaggi forniti non è indicato quanto costa sostituire la pompa lavaparabrezza della Ford Focus."
+              }
+            },
+            {
+              "schema": "Riesame",
+              "input": {
+                "domanda": "Quanto costa sostituire la pompa lavaparabrezza della Ford Focus?",
+                "turni_precedenti": [],
+                "passaggi": [
+                  {
+                    "id": "focus-pdf1-1",
+                    "testo": "Manuale d’uso\n\nFORD FOCUS Manuale dell'utente"
+                  },
+                  {
+                    "id": "focus-pdf12-2",
+                    "testo": "Introduzione / CONSIGLIO SULLA SOSTITUZIONE DEI COMPONENTI\n\nIn alcune situazioni di uso del veicolo,\nquesti dati tecnici associati ad altre\ninformazioni (report di incidenti, danni al\nveicolo, relazioni scritte etc.) possono\nessere riferiti ad una persona specifica,\npossibilmente in presenza di un esperto.\nUlteriori funzioni concordate con il cliente\nin sede di contratto (ad esempio\nl'identificazione della posizione veicolo in\ncasi di emergenza) permettono di\ntrasmettere dal veicolo altre informazioni\nspecifiche.\nCONSIGLIO SULLA\nSOSTITUZIONE DEI\nCOMPONENTI\nIl vostro veicolo è stato costruito secondo\ngli standard più elevati, utilizzando ricambi\ndi qualità. È consigliabile pretendere l'uso\ndi ricambi originali Ford e Motorcraft in\noccasione di tutti gli interventi di\nriparazione o manutenzione programmata.\nÈ possibile identificare con chiarezza\nl'originalità dei ricambi Ford e Motorcraft\nverificando che questi o il loro imballaggio\nrechino il marchio Ford, FoMoCo o\nMotorcraft.\nManutenzione programmata e\nriparazioni meccaniche\nUno dei modi migliori per garantire la\ndurata del proprio veicolo è farlo assistere\ncome previsto dalle nostre\nraccomandazioni, utilizzando ricambi\nconformi alle specifiche dettagliate nel\npresente manuale d'uso. I ricambi originali\nFord e Motorcraft soddisfano o superano\ntali specifiche.\nRiparazioni in caso di incidente\nAuspichiamo che non dobbiate mai vivere\nl'esperienza di un incidente ma gli incidenti\naccadono. I pezzi di ricambio originali Ford\nper riparazioni in caso di incidenti\nsoddisfano i nostri severi requisiti in termini\ndi montaggio, finitura, integrità strutturale,\nprotezione contro la corrosione e\nresistenza alle ammaccature. Durante lo\nsviluppo del veicolo controlliamo che\nquesti componenti forniscano il livello\nvoluto di protezione, come se fossero un\nsistema integro. Uno dei modi migliori per\nessere certi di ricevere tale livello di\nprotezione è impiegare i ricambi originali\nFord per riparazioni in caso di incidenti.\nGaranzia sui ricambi\nI ricambi originali Ford e Motorcraft sono\ngli unici che beneficiano della garanzia\nFord. I danni subiti dal veicolo causati da\nparti non originali Ford difettose\npotrebbero non essere coperti dalla\ngaranzia Ford. Per maggiori informazioni,\nvedere i termini e le condizioni della\ngaranzia Ford.\nAPPARECCHIATURE DI\nTELEFONIA CELLULARE\nL'impiego di apparecchiature di telefonia\nmobile sta divenendo sempre più rilevante\nnella conduzione della propria attività\nlavorativa e personale. Tuttavia, l'uso di\ntali apparecchiature non deve mettere a\nrepentaglio la propria sicurezza, né quella\naltrui. Quando è utilizzata in maniera\ncorretta, la comunicazione mobile è in\ngrado di aumentare la sicurezza e\nl'incolumità personali, specialmente in\ncaso di situazioni di emergenza. Onde\nevitare di annullare tali vantaggi, quando\nsi impiegano le apparecchiature di\ncomunicazione mobile, la sicurezza deve\nrivestire un ruolo di estrema importanza."
+                  },
+                  {
+                    "id": "focus-pdf221-1",
+                    "testo": "Manutenzione\n\nPANORAMICA DEL VANO MOTORE - 1.0L ECOBOOST™\nSerbatoio liquido freni e frizione (guida a destra).  Vedere Controllo del liquido\ndei freni (pagina 231).\nA\nTappo di rifornimento olio motore  Vedere Controllo dell'olio del motore\n(pagina 229).\nB\nSerbatoio liquido freni e frizione (guida a sinistra).  Vedere Controllo del liquido\ndei freni (pagina 231).\nC\nBatteria.  Vedere Sostituzione batteria 12 V  (pagina 233).D\nScatola distribuzione alimentazione.  Vedere Fusibili (pagina 205).E\nGruppo filtro aria.F\nAstina di livello olio motore  Vedere Astina di livello olio motore  (pagina 228).G\nSerbatoio liquido lavavetri tergicristallo.  Vedere Controllo del liquido\nlavavetri (pagina 232).\nH\nSerbatoio liquido di raffreddamento motore.  Vedere Controllo del liquido di\nraffreddamento del motore (pagina 230).\nI"
+                  }
+                ],
+                "citazioni_rifiutate": []
+              },
+              "output": {
+                "risposte": [],
+                "parte_non_documentata": "Nei passaggi forniti non è indicato quanto costa sostituire la pompa lavaparabrezza della Ford Focus."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "caso": "consumi",
+      "turni": [
+        {
+          "domanda": "Quanto consuma la Ford Focus benzina 1.0 EcoBoost?",
+          "esito": "risposta",
+          "testo": "Per la Ford Focus 1.0 EcoBoost, la tabella riporta consumi combinati di 4,6–5,0 L/100 km, urbani di 5,7–6,5 L/100 km ed extraurbani di 3,9–4,2 L/100 km. Gli estratti non specificano che siano valori di prove di laboratorio né descrivono come lo stile di guida possa influire sui consumi.",
+          "fonti": [
+            {
+              "id": "focus-pdf283-2",
+              "pagina": 281,
+              "pagina_pdf": 283
+            },
+            {
+              "id": "focus-pdf230-2",
+              "pagina": 228,
+              "pagina_pdf": 230
+            },
+            {
+              "id": "focus-pdf231-1",
+              "pagina": 229,
+              "pagina_pdf": 231
+            },
+            {
+              "id": "focus-pdf274-1",
+              "pagina": 272,
+              "pagina_pdf": 274
+            },
+            {
+              "id": "focus-pdf278-1",
+              "pagina": 276,
+              "pagina_pdf": 278
+            },
+            {
+              "id": "focus-pdf272-1",
+              "pagina": 270,
+              "pagina_pdf": 272
+            },
+            {
+              "id": "focus-pdf140-2",
+              "pagina": 138,
+              "pagina_pdf": 140
+            },
+            {
+              "id": "focus-pdf263-1",
+              "pagina": 261,
+              "pagina_pdf": 263
+            },
+            {
+              "id": "focus-pdf275-2",
+              "pagina": 273,
+              "pagina_pdf": 275
+            },
+            {
+              "id": "focus-pdf141-2",
+              "pagina": 139,
+              "pagina_pdf": 141
+            },
+            {
+              "id": "focus-pdf185-2",
+              "pagina": 183,
+              "pagina_pdf": 185
+            }
+          ],
+          "secondi": 17.07,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "Quanto consuma la Ford Focus benzina 1.0 EcoBoost?",
+                "turni_precedenti": [],
+                "sintesi": "Il 1.0 EcoBoost consuma, nei valori ufficiali combinati, 4,6–5,0 L/100 km; in città 5,7–6,5 L/100 km e fuori città 3,9–4,2 L/100 km. La tabella indica anche emissioni di CO₂ pari a 105–116 g/km. Sono valori da prove di laboratorio, non necessariamente quelli reali: lo stile di guida e altri fattori possono modificarli.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf283-2",
+                    "riferimento": "p. 281 (PDF p. 283)",
+                    "testo": "Specifiche tecniche / DATI RELATIVI AL CONSUMO DI CARBURANTE\n\nIl motore di questo veicolo è stato\nprogettato per essere utilizzato con olio\nmotore Castrol e Ford, che assicura un\nrisparmio di carburante prolungando al\ntempo stesso la durata del motore.\nRabbocco dell'olio: qualora non sia\npossibile procurarsi un olio conforme alle\nspecifiche definite dal WSS-M2C913-C,\nutilizzare l'olio SAE 5W-30 conforme alle\nspecifiche definite da ACEA A5/B5.\nNota: Non utilizzare più di 1 L tra gli intervalli\ndi manutenzione programmati.\nL'utilizzo di oli diversi da quello prescritto\npuò causare tempi di avviamento del\nmotore più lunghi, ridotte prestazioni del\nmotore, maggiori consumi e livelli di\nemissioni.\nSi raccomanda l'olio motore Castrol.\nDATI RELATIVI AL CONSUMO DI CARBURANTE\nEmissioni di\nCO2CombinatoExtraurbanoUrbano\nVersione\ng/kmMPG(L/100 km)MPG(L/100 km)MPG(L/100 km)\n105-11648-56,557,4-67,236,2-41,31.0L EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)\n127-13739,9-42,850-51,129,4-33,61.5L EcoBoost. (5,9-5,5)(4,7-4,6)(8-7)\n985661,9501.5L Duratorq-TDCi. (3,8)(3,4)(4,3)\n136-14637,3-39,948-51,127-28,31.6L Duratec-16V Ti-VCT. (6,3-5,9)(4,9-4,6)(8,7-8,3)"
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [],
+                "esito": "corretta",
+                "sintesi": "Per la Ford Focus 1.0 EcoBoost, la tabella riporta consumi combinati di 4,6–5,0 L/100 km, urbani di 5,7–6,5 L/100 km ed extraurbani di 3,9–4,2 L/100 km. Gli estratti non specificano che siano valori di prove di laboratorio né descrivono come lo stile di guida possa influire sui consumi."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

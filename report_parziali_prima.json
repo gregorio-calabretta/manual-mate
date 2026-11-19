@@ -1,0 +1,98 @@
+{
+  "data": "2026-11-19T13:19:05.912279+00:00",
+  "casi": [
+    {
+      "caso": "lavavetri",
+      "turni": [
+        {
+          "domanda": "non esce acqua dallo spruzzino della mia ford focus",
+          "esito": "chiarimento",
+          "testo": "Intendi lo spruzzino del parabrezza anteriore o quello del lunotto posteriore?",
+          "fonti": [],
+          "secondi": 4.72,
+          "controlli": []
+        },
+        {
+          "domanda": "parabrezza anteriore",
+          "esito": "risposta",
+          "testo": "Per azionare i lavavetri del parabrezza, tira leggermente la leva verso di te. Non azionarli se il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. Quando fai il rabbocco, usa solo liquido conforme alle specifiche Ford; il manuale indica una miscela di liquido lavavetri e acqua e rimanda alle istruzioni del prodotto per la diluizione. Il serbatoio alimenta sia il lavacristallo sia il lavalunotto.\n\nI passaggi consultati non indicano le cause per cui non esce acqua né le istruzioni per riparare il guasto.",
+          "fonti": [
+            {
+              "id": "focus-pdf63-1",
+              "pagina": 61,
+              "pagina_pdf": 63
+            },
+            {
+              "id": "focus-pdf61-1",
+              "pagina": 59,
+              "pagina_pdf": 61
+            },
+            {
+              "id": "focus-pdf243-1",
+              "pagina": 241,
+              "pagina_pdf": 243
+            },
+            {
+              "id": "focus-pdf234-3",
+              "pagina": 232,
+              "pagina_pdf": 234
+            },
+            {
+              "id": "focus-pdf139-1",
+              "pagina": 137,
+              "pagina_pdf": 139
+            },
+            {
+              "id": "focus-pdf248-1",
+              "pagina": 246,
+              "pagina_pdf": 248
+            },
+            {
+              "id": "focus-pdf62-2",
+              "pagina": 60,
+              "pagina_pdf": 62
+            },
+            {
+              "id": "focus-pdf64-1",
+              "pagina": 62,
+              "pagina_pdf": 64
+            }
+          ],
+          "secondi": 21.09,
+          "controlli": [
+            {
+              "schema": "VerificaSintesi",
+              "input": {
+                "domanda": "parabrezza anteriore",
+                "turni_precedenti": [
+                  "non esce acqua dallo spruzzino della mia ford focus",
+                  "Chiarimento precedente dell'assistente: Intendi lo spruzzino del parabrezza anteriore o quello del lunotto posteriore?"
+                ],
+                "sintesi": "Per spruzzare il parabrezza, tira leggermente verso di te la leva dei lavavetri. Il manuale avverte di non azionarli se il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. (p. 61 (PDF p. 63))\n\nPer il rabbocco, il manuale indica una miscela di liquido lavavetri e acqua; per la diluizione, rimanda alle istruzioni del prodotto. Il serbatoio alimenta sia il lavacristallo sia il lavalunotto. (p. 232 (PDF p. 234))\n\nInformazione non ricavata dai passaggi consultati: le cause per cui non esce acqua e le istruzioni per riparare il guasto.",
+                "estratti": [
+                  {
+                    "id": "focus-pdf63-1",
+                    "riferimento": "p. 61 (PDF p. 63)",
+                    "testo": "Lava/tergicristalli\n\nNota: Pulire il parabrezza e le spazzole non\nappena iniziano a lasciare strisce o sporcizia.\nSe il problema persiste, sostituire le\nspazzole.  Vedere Sostituzione delle\nspazzole tergicristallo (pagina 233).\nSISTEMA LAVAPARABREZZA\nNota: Non azionare i lavavetri quando il\nserbatoio lavavetri è vuoto. Ciò potrebbe\ncausare il surriscaldamento della pompa\ndel lavavetri.\nTirare leggermente la leva verso di sé per\nazionare i lavavetri e spruzzare il\nparabrezza. Quando la leva viene rilasciata,\nil tergicristallo si attiva per un breve periodo\ndi tempo.\nTERGILUNOTTO E\nLAVALUNOTTO\nTergilunotto\nNota: Disattivare il tergilunotto e\nl'accensione prima dell'ingresso\nnell'autolavaggio.\nTergitura ad intermittenza.A\nTergitura a bassa velocità.B\nSpento.C\nPremere il tasto sulla sommità per attivare\nla tergitura intermittente. Premere\nnuovamente il tasto sulla sommità per\nattivare la tergitura lenta. Agire sul fondo\ndel pulsante per disattivare il tergilunotto.\nAttivando i tergicristallo ed inserendo la\nretromarcia (R) si attiva automaticamente\nil tergilunotto a ciclo intermittente.\nLavalunotto\nPer attivare il lavalunotto spostare in\navanti la leva.  Rilasciando la leva, il tergi\ncontinua a funzionare per un breve periodo\ndi tempo."
+                  },
+                  {
+                    "id": "focus-pdf234-3",
+                    "riferimento": "p. 232 (PDF p. 234)",
+                    "testo": "Manutenzione / CONTROLLO DEL LIQUIDO LAVAVETRI\n\nUsare solo liquido conforme alle specifiche\nFord.\nVedere Specifiche tecniche (pagina 265).\nCONTROLLO DEL LIQUIDO\nDELLA FRIZIONE - CAMBIO\nMANUALE\nI sistemi frenante e della frizione hanno in\ncomune lo stesso serbatoio liquido.\nVedere Controllo del liquido dei freni\n(pagina 231).\nCONTROLLO DEL LIQUIDO\nLAVAVETRI\nNota: Il serbatoio alimenta i sistemi\nlavacristallo e lavalunotto.\nQuando si effettua il rabbocco, utilizzare\nuna miscela di liquido lavavetri e acqua per\nevitare congelamenti alle basse\ntemperature e migliorare così la capacità\ndi pulizia.\nPer informazioni circa la diluizione del\nliquido, fare riferimento alle istruzioni del\nprodotto.\nSCARICO DEL PUNTO DI\nRACCOLTA DEL FILTRO\nCARBURANTE\nPERICOLO\nNon smaltire il carburante tra i rifiuti\ndomestici o nel sistema fognario\npubblico. Rivolgersi ad un impianto\ndi smaltimento autorizzato."
+                  }
+                ]
+              },
+              "output": {
+                "omissioni_rilevanti": [
+                  "Per il liquido lavavetri, il manuale prescrive di usare solo un prodotto conforme alle specifiche Ford."
+                ],
+                "esito": "corretta",
+                "sintesi": "Per azionare i lavavetri del parabrezza, tira leggermente la leva verso di te. Non azionarli se il serbatoio è vuoto, perché la pompa potrebbe surriscaldarsi. Quando fai il rabbocco, usa solo liquido conforme alle specifiche Ford; il manuale indica una miscela di liquido lavavetri e acqua e rimanda alle istruzioni del prodotto per la diluizione. Il serbatoio alimenta sia il lavacristallo sia il lavalunotto.\n\nI passaggi consultati non indicano le cause per cui non esce acqua né le istruzioni per riparare il guasto."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
