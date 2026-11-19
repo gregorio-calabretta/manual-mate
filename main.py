@@ -18,9 +18,7 @@ def main() -> int:
     modalita.add_argument("--domanda", help="Esegui una singola richiesta e termina.")
     modalita.add_argument("--verifica-manuali", action="store_true", help="Verifica i PDF localmente, senza API.")
     modalita.add_argument("--indicizza", action="store_true", help="Prepara o aggiorna l'indice Qdrant dei manuali.")
-    modalita.add_argument("--valuta", action="store_true", help="Esegui queries.json e salva il report della valutazione.")
-    modalita.add_argument("--stress", action="store_true", help="Prova scenari difficili e salva un report per il TOP_K usato.")
-    modalita.add_argument("--copertura", action="store_true", help="Prova il campione indipendente di argomenti operativi.")
+    modalita.add_argument("--valuta", action="store_true", help="Valuta le domande di queries.json e salva un report locale.")
     parser.add_argument("--lavoratori", type=int, metavar="N", help="Numero di casi di valutazione da eseguire insieme.")
     parser.add_argument("--osservabilita", action="store_true", help="Attiva trace OTLP e metriche su porta 18000.")
     args = parser.parse_args()
@@ -28,11 +26,10 @@ def main() -> int:
     veicolo_id = args.veicolo.strip().casefold() if args.veicolo else None
     if args.indicizza and veicolo_id is not None and veicolo_id not in CATALOGO:
         parser.error(f"Per indicizzare, scegli un valore valido per --veicolo ({codici}).")
-    valutazione = args.valuta or args.stress or args.copertura
-    if valutazione and veicolo_id is not None:
-        parser.error("La valutazione usa i veicoli definiti nei casi di prova.")
-    if args.lavoratori is not None and (args.lavoratori < 1 or not valutazione):
-        parser.error("--lavoratori richiede una modalità di valutazione e un intero positivo.")
+    if args.valuta and veicolo_id is not None:
+        parser.error("La valutazione usa i veicoli definiti nelle domande di prova.")
+    if args.lavoratori is not None and (args.lavoratori < 1 or not args.valuta):
+        parser.error("--lavoratori richiede --valuta e un intero positivo.")
 
     # La verifica dei PDF si può eseguire prima di configurare OpenAI e avviare Docker.
     if args.verifica_manuali:
@@ -51,7 +48,7 @@ def main() -> int:
     if not chiave:
         parser.error("Imposta OPENAI_API_KEY nella variabile d'ambiente o nel file .env.")
 
-    # Come in S11, prepara il provider OTel prima delle chiamate Datapizza.
+    # Il provider di tracing deve essere pronto prima delle chiamate Datapizza.
     from osservabilita import avvia_osservabilita
 
     provider = None
@@ -72,16 +69,10 @@ def main() -> int:
                 print(f"{veicolo.nome}: {esito}.")
             return 0
 
-        if valutazione:
+        if args.valuta:
             from valutazione import valuta
 
-            if args.copertura:
-                domande, report = "queries_copertura.json", "report_copertura.json"
-            elif args.stress:
-                domande, report = "queries_stress.json", f"report_stress_k{assistente.indice.top_k}.json"
-            else:
-                domande, report = "queries.json", "report_valutazione.json"
-            return 0 if valuta(assistente, ROOT / domande, ROOT / report,
+            return 0 if valuta(assistente, ROOT / "queries.json", ROOT / "report_valutazione.json",
                                lavoratori=args.lavoratori or 1) else 1
 
         from conversazione import Conversazione

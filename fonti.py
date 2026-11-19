@@ -104,7 +104,7 @@ class Fonte:
 class Risposta:
     esito: str
     testo: str
-    # La valutazione usa l'ordine delle fonti recuperate e la citazione finale come misure distinte.
+    # Le fonti recuperate restano distinte da quelle effettivamente citate nella risposta.
     fonti_recuperate: tuple[Fonte, ...] = ()
     fonte_citata: Fonte | None = None
     ricerca_eseguita: bool = False

@@ -149,7 +149,7 @@ def estrai_documenti(
         raise ValueError(f"Strategia di chunking sconosciuta: {strategia}")
     passaggi = leggi_passaggi(cartella, veicolo)
     base = {"veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file}
-    # I tre passaggi già verificati restano disponibili come blocchi completi per gli avvisi dell'olio.
+    # Gli avvisi con estratti curati mantengono blocchi completi e identificativi stabili.
     documenti = [
         (f"{avviso.titolo}\n\n{passaggi[avviso.id]}", {
             **base, "fonte": avviso.id, "pagina": avviso.pagina, "pagina_pdf": avviso.pagina_pdf,

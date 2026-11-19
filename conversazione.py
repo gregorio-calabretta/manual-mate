@@ -134,8 +134,7 @@ class Conversazione:
             return Risposta("veicolo_da_chiarire", testo_risposta)
 
         # La domanda originale riparte appena arriva il modello. I chiarimenti tecnici restano legati all'auto.
-        # Anche una contestazione o un richiamo breve può dipendere dal tema precedente.
-        # Il modello distingue i nuovi argomenti: non deduciamo questa relazione dal prefisso.
+        # Il contesto recente permette al modello di interpretare anche i richiami brevi.
         contesto = self.chiarimenti or dettagli_veicolo or self.turni_documentati
         contesto_consulta = contesto
         if self.ultimo_chiarimento:

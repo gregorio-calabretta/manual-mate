@@ -3,3 +3,10 @@ __pycache__/
 .env
 .streamlit/secrets.toml
 .cache_ingestione/
+
+# Risultati locali della valutazione; il campione queries.json resta versionato.
+/report*.json
+/diagnosi*.json
+
+# Materiale locale della presentazione, separato dalla versione applicativa.
+/presentazione/

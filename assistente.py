@@ -169,8 +169,7 @@ class Assistente:
                     "sintomo": "Che cosa noti di preciso e quando succede?",
                 }
                 domanda = " ".join(domanda.split())
-                # Una domanda con esempi o più frasi resta un chiarimento valido.
-                # Il vecchio controllo scartava questi casi e inventava un tema di sintomi.
+                # Conserva le domande con più frasi o esempi, normalizzando gli spazi.
                 chiarimento = domanda if 8 <= len(domanda) <= 400 and "?" in domanda else domande.get(tipo, domande["sintomo"])
                 return "Richiesta di chiarimento registrata."
 

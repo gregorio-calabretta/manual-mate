@@ -1,142 +1,185 @@
-# Assistente per gli avvisi sul cruscotto
+# Manual Mate
 
-Manual Mate cerca nel testo dei manuali di **Ford Focus (CEW)**, edizione 09/2014 per veicoli prodotti dal 08/09/2014 al 15/02/2015, **Honda Civic Type R**, manuale `3LT40600`, **Audi A3 8V** modello 2019, manuale `8V2012721B` in inglese per il Nord America, e **SEAT Leon 5D / Sportstourer**, manuale `5FA012750BT`, edizione italiana 11/2021. Mostra il passaggio originale e cita il numero stampato, quando disponibile, e la posizione nel PDF.
+Manual Mate è un assistente conversazionale che cerca informazioni nei libretti di uso e manutenzione delle auto. L'utente descrive un problema o fa una domanda; l'assistente individua il manuale, chiede eventuali chiarimenti e risponde indicando le pagine utilizzate. Se i passaggi consultati non bastano, comunica il limite senza inventare il dato.
 
-## Avvio su Windows
+L'interfaccia è realizzata con Streamlit. L'agente e la ricerca documentale usano Datapizza, OpenAI e Qdrant; Phoenix, Prometheus e Grafana permettono di osservare il funzionamento dell'applicazione.
 
-Da PowerShell, dentro `Progetto FNC`, con Python 3.10–3.13:
+## Manuali disponibili
+
+| Identificativo | Veicolo | Edizione | File PDF atteso |
+| --- | --- | --- | --- |
+| `focus` | Ford Focus (CEW) | 09/2014, produzione 08/09/2014–15/02/2015 | `ITITA_CG3630_Focus_og_201409.pdf` |
+| `civic` | Honda Civic Type R | 2023, `3LT40600`, italiano | `23 CIVIC TYPE R JSS (KE KG)-3LT40600_IT_web.pdf` |
+| `audi` | Audi A3 8V | 2019, `8V2012721B`, Nord America, inglese | `audi a3 8v 2019.pdf` |
+| `leon` | SEAT Leon 5D / Sportstourer | 11/2021, `5FA012750BT`, italiano | `SEAT_LEON_11_21_IT.pdf` |
+
+I PDF si forniscono localmente. La corrispondenza tra modello, edizione e file è definita in `catalogo.py`; una risposta del manuale nordamericano, per esempio, non garantisce l'applicabilità a una variante di un altro mercato.
+
+## Installazione
+
+Servono Python 3.10–3.13, Docker Desktop con Docker Compose e una chiave API OpenAI. Dalla cartella del repository, in PowerShell:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
+Copy-Item .env.example .env
+```
+
+La copia di `.env.example` serve alla prima configurazione; se `.env` esiste già, usa quello. Imposta al suo interno:
+
+```dotenv
+OPENAI_API_KEY=la_tua_chiave
+OPENAI_MODEL=gpt-6-luna
+MANUALI_DIR=C:/percorso/manuali
+```
+
+`OPENAI_MODEL` deve indicare un modello disponibile al proprio account e compatibile con tool e output strutturati. Il valore predefinito del progetto è `gpt-6-luna`. Gli embedding usano `text-embedding-3-small`.
+
+Metti nella cartella indicata i PDF con i nomi della tabella. Se `MANUALI_DIR` è vuoto, l'app cerca una cartella chiamata `manuali uso e manutenzione auto` accanto alla cartella del repository. La CLI accetta anche `--manuali "C:\percorso\manuali"`.
+
+La chiave resta nel file locale `.env`, escluso da Git. Le chiamate a OpenAI richiedono una connessione e consumano API: durante l'indicizzazione vengono inviati i testi da convertire in vettori; durante le domande vengono inviati query, contesto conversazionale e passaggi recuperati.
+
+## Prima indicizzazione
+
+Avvia Docker Desktop, poi esegui:
+
+```powershell
+docker compose -f osservabilita/compose.yaml up -d --wait
 .\.venv\Scripts\python.exe -X utf8 main.py --verifica-manuali
-```
-
-I PDF vanno nella cartella `manuali uso e manutenzione auto` accanto a `Progetto FNC`. Per usare un’altra cartella, imposta `MANUALI_DIR` oppure passa `--manuali 'C:\percorso\manuali'`. I nomi dei file attesi sono in `catalogo.py`.
-
-Per avviare l’agente, copia `.env.example` in `.env` e inserisci la tua chiave in `OPENAI_API_KEY`. Puoi anche impostare la variabile d’ambiente direttamente. L’agente usa `gpt-6-luna` per impostazione predefinita. Se hai un `.env` da una versione precedente, aggiorna `OPENAI_MODEL=gpt-6-luna` per usare lo stesso modello. Le richieste al modello e gli embedding usano l’API OpenAI e possono avere un costo. L’API riceve le domande e gli estratti indicizzati dei manuali.
-
-Se hai già la chiave nel file locale `apikey per openai.txt`, puoi caricarla nella sessione PowerShell corrente:
-
-```powershell
-$env:OPENAI_API_KEY = (Get-Content -Raw -LiteralPath 'apikey per openai.txt').Trim()
-```
-
-Avvia Docker Desktop. La prima volta prepara l’indice, poi avvia l’assistente:
-
-```powershell
-docker compose -f osservabilita/compose.yaml up -d --wait qdrant
 .\.venv\Scripts\python.exe -X utf8 main.py --indicizza
-.\.venv\Scripts\python.exe -X utf8 main.py
 ```
 
-Qdrant salva testo e vettori nel volume Docker `qdrant_data`. Puoi chiudere l’app o fermare lo stack con `docker compose -f osservabilita/compose.yaml down` e riavviarlo senza rifare gli embedding dei PDF. Per consultare l’indice apri la [dashboard Qdrant](http://localhost:16333/dashboard).
+`--verifica-manuali` controlla i file e le sezioni di riferimento senza chiamare OpenAI. `--indicizza` estrae i testi, crea i chunk, calcola gli embedding e carica i dati in Qdrant. La prima estrazione con Docling può richiedere tempo e scaricare i modelli necessari; il documento strutturato viene riusato dalla cache locale `.cache_ingestione`.
 
-Rilancia `--indicizza` quando cambia il PDF, il modello di embedding o la configurazione dei chunk. A contenuto invariato vedrai `indice riusato, nessun embedding dei manuali`. Per aggiornare una sola auto usa, per esempio, `--indicizza --veicolo civic`. Qdrant conserva le versioni precedenti nel volume. Il nome stabile `manuali_civic` punta alla versione attiva e cambia solo quando il caricamento di quella nuova è riuscito.
+Qdrant conserva i dati nel volume Docker `qdrant_data`. Le domande successive riusano gli embedding dei documenti: viene calcolato solo il vettore della query. L'indice è versionato in base a testo, metadati, configurazione e modello di embedding; l'alias del manuale viene aggiornato solo dopo aver verificato il caricamento completo.
 
-L’estrazione legge lo strato testuale dei PDF. L’indicizzazione segnala le eventuali pagine senza testo estraibile. Per simboli, tabelle impaginate e illustrazioni consulta la pagina originale riportata nella risposta.
-
-Il catalogo definisce anche `estrattore_pdf` e `strategia_chunk` per ogni libretto. Gli estrattori disponibili sono `pypdf`, `pdfium` e `docling`; le strategie sono `sottosezioni`, `pagina` e `ricorsivo`. La Leon usa Docling e il RecursiveSplitter di Datapizza, con dimensione 1.024 caratteri e overlap 0. Cambiare questi valori richiede una nuova indicizzazione. Docling conserva il documento strutturato nella cartella locale `.cache_ingestione`, esclusa da Git. I riferimenti mantengono la pagina stampata e la posizione nel PDF.
-
-Per ripetere il confronto sperimentale della Leon, con Qdrant già avviato:
+Riesegui l'indicizzazione quando cambiano i PDF, il modello di embedding o il profilo di suddivisione. Puoi aggiornare un solo manuale:
 
 ```powershell
-.\.venv\Scripts\python.exe -B -X utf8 confronta_ingestione.py
+.\.venv\Scripts\python.exe -X utf8 main.py --indicizza --veicolo leon
 ```
 
-Il confronto prepara collezioni distinte e salva `report_confronto_ingestione.json`. La preparazione di un indice è separata dalla sua attivazione nell’app. Il diario `SPERIMENTAZIONE_RAG.md` riporta i risultati e il profilo scelto.
+Se il contenuto non è cambiato, la collezione completa viene riusata senza nuovi embedding dei documenti.
 
-Inizia con una domanda o indica il modello dell’auto. Controlla che l’edizione indicata sia quella del tuo manuale. Usa `:auto` per iniziare una conversazione su un altro veicolo e `:esci` per terminare. Per provare una singola domanda con il manuale già selezionato:
+## Avvio dell'interfaccia
 
-```powershell
-.\.venv\Scripts\python.exe -X utf8 main.py --veicolo civic --domanda 'Pressione olio motore bassa'
-```
-
-## Interfaccia Streamlit
-
-Con la chiave configurata e i manuali già indicizzati in Qdrant, avvia l’interfaccia dalla cartella del progetto:
+Con i manuali indicizzati:
 
 ```powershell
+docker compose -f osservabilita/compose.yaml up -d --wait
 .\.venv\Scripts\python.exe -m streamlit run app_streamlit.py
 ```
 
-Apri [Manual Mate nel browser](http://localhost:8501) e fai subito la domanda. Se scrivi «Dove si trova la scatola dei fusibili?», la chat ti chiede di quale auto si tratta. Rispondi «Ford Focus» e riprende la domanda iniziale. Puoi anche indicare il modello nel primo messaggio. Il nome e l’edizione del libretto in uso sono visibili sopra la chat.
+Apri [Manual Mate](http://localhost:8501). Puoi iniziare con «Cosa sai fare?», indicare il modello nella domanda oppure rispondere al chiarimento sull'auto. Per esempio:
 
-Puoi iniziare con «Cosa sai fare?» e vedere quali libretti puoi consultare. Per cambiare libretto, scrivi il nome del veicolo nella conversazione. I chiarimenti tecnici appartengono all’auto a cui si riferiscono. Quando può riassumere l’informazione, la chat risponde in italiano e rende disponibile l’estratto originale sotto la risposta, anche se il libretto dell’Audi A3 8V è in inglese. La chat indica la pagina della fonte o segnala quando i passaggi recuperati non bastano.
+- «Nella Ford Focus, che cosa fa la modalità automatica del climatizzatore?»
+- «Quanto consuma la Focus 1.0 EcoBoost nel ciclo combinato?»
+- «Dove sono i fusibili nell'abitacolo della Seat Leon?»
+- «E nella Honda Civic Type R?»
 
-Streamlit pubblica le metriche per Prometheus e invia le tracce a Phoenix. Avvia tutti i servizi Docker della sezione **Osservabilità**, poi apri la chat e invia un messaggio. Anche i saluti e i chiarimenti sul modello producono una traccia del turno. Le chiamate agli strumenti compaiono quando l’agente consulta un manuale. Puoi disattivare la pubblicazione nel frontend con `MANUAL_MATE_OSSERVABILITA=false` in `.env`. Streamlit e la CLI con `--osservabilita` usano la stessa porta `18000`, quindi avviali con le metriche una modalità alla volta.
+La chat mostra il libretto in uso, la risposta in italiano, gli estratti originali e i riferimenti alle pagine. Il numero stampato nel manuale e la posizione nel PDF sono distinti. Il pulsante **Nuova conversazione** azzera il contesto.
 
-## Prove per la demo
-
-Le pagine nella tabella sono quelle stampate nei manuali.
-
-| Veicolo | Domanda o messaggio | Esito atteso |
-| --- | --- | --- |
-| `focus` | Mi si è accesa la spia dell’olio | Estratto «Spia olio motore», p. 80 |
-| `civic` | Mi si è accesa la spia dell’olio | Domanda di chiarimento, senza ricerca |
-| `civic` | Pressione olio motore bassa | Estratto sulla pressione, p. 623 |
-| `civic` | Livello olio motore basso | Estratto sul livello, p. 629 |
-| `jazz` | Mi si è accesa la spia dell’olio | Veicolo fuori catalogo, senza chiamate al modello o ricerca |
-
-I test usano i PDF e Qdrant locale con risposte dell’API simulate. Uno dei test riapre un indice su disco e verifica che la ricerca invii al modello di embedding solo la query. Per eseguirli:
+Per chiudere Streamlit usa `Ctrl+C`. Puoi fermare i servizi mantenendo i volumi con:
 
 ```powershell
-.\.venv\Scripts\python.exe -X utf8 -m unittest discover -s tests -v
+docker compose -f osservabilita/compose.yaml stop
 ```
 
-## Valutazione con OpenAI e Qdrant
+## Uso da terminale
 
-`queries.json` è il *gold set*, cioè il file con le domande e gli esiti attesi. Dopo aver avviato Qdrant e indicizzato i manuali, esegui:
+```powershell
+.\.venv\Scripts\python.exe -X utf8 main.py
+.\.venv\Scripts\python.exe -X utf8 main.py --veicolo focus --domanda "Che cosa fa MyKey?"
+.\.venv\Scripts\python.exe -X utf8 main.py --help
+```
+
+Nella conversazione interattiva `:auto` azzera la selezione e `:esci` termina il programma. `--osservabilita` attiva tracce e metriche anche nella CLI.
+
+## Come funziona
+
+1. **Preparazione dei documenti.** L'estrattore legge il testo del PDF conservando provenienza e numerazione. I profili attuali usano pypdf per Focus, Civic e Audi; per la Leon usano Docling, che mantiene anche struttura e tabelle.
+2. **Chunking ed embedding.** Il testo viene suddiviso per pagina e sottosezione; il profilo Leon usa il `RecursiveSplitter` di Datapizza sui paragrafi strutturati. Ogni chunk conserva veicolo, edizione, file e pagina. Gli embedding rappresentano il contenuto per la ricerca semantica in Qdrant.
+3. **Conversazione.** Il programma riconosce modello ed edizione e mantiene un contesto limitato. Per un richiamo a un'altra auto ricostruisce la domanda generale, eliminando i dettagli propri della vettura precedente prima della nuova consultazione.
+4. **Agente.** Un agente Datapizza decide se chiedere un chiarimento, cercare nel manuale, citare una o più fonti oppure segnalare un limite. Per domande composte può formulare fino a tre ricerche distinte.
+5. **Verifica della risposta.** Il codice controlla l'appartenenza delle fonti al manuale e la presenza letterale delle citazioni. Una chiamata strutturata verifica poi la sintesi, le condizioni e i dati necessari. Un riesame limitato può correggere citazioni o recuperare una risposta dalle fonti disponibili. Se la verifica non riesce, il programma comunica il limite.
+
+Questo approccio è una **RAG**, cioè una generazione preceduta dal recupero di documenti. L'agente sceglie gli strumenti; i controlli in Python vincolano le fonti e la costruzione della risposta. Alcune sezioni curate, come gli avvisi dell'olio e specifiche ubicazioni, hanno controlli dedicati sulle evidenze del manuale.
+
+I prompt sono centralizzati in `prompt.py`: istruzioni dell'agente, ricostruzione della domanda al cambio di auto, riesame e verifica della sintesi. Gli schemi Pydantic descrivono gli output strutturati. La verifica non è una garanzia assoluta: una citazione autentica può comunque essere interpretata male, perciò l'estratto originale resta consultabile.
+
+## Configurazione
+
+| Impostazione | Valore predefinito | Dove si configura |
+| --- | --- | --- |
+| Modello conversazionale | `gpt-6-luna` | `OPENAI_MODEL` in `.env` |
+| Modello di embedding | `text-embedding-3-small` | `runtime.py` |
+| Qdrant | `127.0.0.1:16333` | `QDRANT_HOST`, `QDRANT_PORT` in `.env` |
+| Risultati per ricerca | `10` | `RAG_TOP_K` in `.env` |
+| Dimensione di riferimento dei chunk | `1024` caratteri | `CHUNK_MAX_CHAR` in `config.py` |
+| Sovrapposizione | `0` | `CHUNK_OVERLAP` in `config.py` |
+| Query distinte per richiesta | Massimo `3` | `MAX_QUERY_RICERCA` in `config.py` |
+| Contesto conversazionale | Fino a `4` elementi | `MAX_TURNI_CONTESTO` in `config.py` |
+| Osservabilità Streamlit | Attiva | `MANUAL_MATE_OSSERVABILITA` in `.env` |
+
+La dimensione effettiva dei chunk dipende dal profilo e dalla struttura del documento: 1024 caratteri non sono una garanzia di lunghezza identica per ogni tabella o blocco. Cambiare `RAG_TOP_K` riguarda il recupero e non richiede di ricreare gli embedding dei PDF.
+
+## Domande di prova e valutazione
+
+`queries.json` contiene il campione di verifica: **50 scenari, espansi in 75 casi** includendo le formulazioni alternative. Ogni scenario indica domanda, veicolo, esito atteso e, quando applicabile, pagine, evidenze e criterio semantico. Può contenere anche i turni precedenti di una conversazione.
+
+Con chiave configurata, Qdrant avviato e manuali indicizzati:
 
 ```powershell
 .\.venv\Scripts\python.exe -X utf8 main.py --valuta
 ```
 
-Il comando usa l’API OpenAI ed esegue i 75 casi definiti in `queries.json`. Verifica 24 gruppi di domande con formulazioni diverse. Include conversazioni di più turni, per esempio una domanda sui fusibili seguita dal modello dell’auto. I test locali verificano che le evidenze attese compaiano nelle pagine originali dei PDF.
-
-Per i casi con `criterio_risposta`, una chiamata separata al modello valuta il significato della risposta effettivamente mostrata. Tiene conto della domanda e accetta sinonimi come «pila» e «batteria». Per «che pila serve?» deve comparire la sigla corretta. Per «va a batteria?» è sufficiente una conferma chiara. Il programma controlla separatamente la pagina citata e l’esito dei turni. Il giudizio del modello è indicativo e il report salva la motivazione per poterla riesaminare.
-
-Il file `report_valutazione.json` registra il testo visibile, le fonti recuperate, la citazione, il giudizio sul contenuto e i risultati per gruppo di domande. Un gruppo è completo quando ogni formulazione supera la prova. La metrica `hit@1` indica quante volte la fonte attesa è il primo risultato della ricerca inviata a Qdrant. Il comando restituisce codice `1` se almeno un caso fallisce e salva comunque il report della valutazione completata. Puoi aggiungere `--lavoratori 4` per eseguire più casi insieme. Per confrontare la latenza usa lo stesso numero di lavoratori in entrambi i giri.
-
-I parametri di partenza in `config.py` sono `CHUNK_MAX_CHAR=1024`, `CHUNK_OVERLAP=0` e `TOP_K=10`. La suddivisione segue il profilo del libretto nel catalogo. Ogni chunk conserva il riferimento alla propria pagina PDF. Modificare il metodo di chunking o i primi due parametri richiede `--indicizza`. La ricerca generale può includere un passaggio pertinente di una pagina contigua, quando condivide la stessa sottosezione. Può inoltre completare le prime tre pagine distinte con gli altri chunk già in Qdrant. Per le domande composte l’agente può lanciare due ricerche e usare fino a tre fonti nella stessa risposta. Il programma associa ogni frase al suo riferimento dopo avere verificato la citazione letterale.
-
-Per ripetere le prove più difficili con 5 e 8 risultati per ricerca:
+Per eseguire più casi contemporaneamente:
 
 ```powershell
-$env:RAG_TOP_K = '5'
-.\.venv\Scripts\python.exe -X utf8 main.py --stress --lavoratori 3
-$env:RAG_TOP_K = '10'
-.\.venv\Scripts\python.exe -X utf8 main.py --stress --lavoratori 3
-Remove-Item Env:RAG_TOP_K
+.\.venv\Scripts\python.exe -X utf8 main.py --valuta --lavoratori 2
 ```
 
-I risultati di questi comandi finiscono in `report_stress_k5.json` e `report_stress_k10.json`. I due giri usano gli stessi casi in `queries_stress.json` e riusano gli embedding. Un codice di uscita `1` indica che almeno un caso è fallito. I report registrano il modello usato. Nei report storici, il confronto salvato in `report_stress_luna_k5.json` usa lo stesso indice e lo stesso valutatore (`gpt-4o-mini`) del giro `report_stress_k5.json`.
+Il comando stampa i casi superati e il totale e salva `report_valutazione.json` localmente. Il report è escluso da Git. La valutazione controlla veicolo, esiti, pagine citate, evidenze e, per i casi dotati di criterio, il significato della risposta mostrata. Il valutatore usa OpenAI e ammette sinonimi e formulazioni equivalenti. Il suo giudizio va riesaminato quando appare dubbio.
 
-Per alcune richieste verificate, come il verso della pila delle due chiavi Focus e la posizione di entrambe le scatole dei fusibili Civic, la risposta consulta direttamente le pagine corrispondenti nell’indice e controlla che contengano i dettagli attesi. Se sulla Focus manca la versione della chiave, chiede quale sia prima di indicare l’orientamento.
-
-La [mappa di copertura](COPERTURA.md) elenca gli argomenti con almeno una prova e quelli da verificare. `--copertura` esegue il campione indipendente e salva `report_copertura.json`. Quando il primo tentativo non produce una citazione verificabile, l’agente può riesaminare i passaggi già recuperati e correggere una volta le citazioni respinte. Gli output strutturati assenti o invalidi hanno un solo tentativo aggiuntivo con più spazio. Se il libretto sostiene solo una parte della risposta, indica anche quale dato resta indeterminato. I casi che attendono un limite vengono valutati sul contenuto anche quando la risposta include una fonte documentale.
-
-La [sperimentazione del recupero](SPERIMENTAZIONE_RAG.md) raccoglie i confronti dei parametri, il passaggio alle sottosezioni e i casi ancora aperti. Le 72 domande dei due confronti sul chunking sono in [queries_chunking.json](queries_chunking.json). Il test finale ha un campione separato di [60 domande](queries_finale.json) e il relativo [report](report_finale.json).
+Le metriche distinguono la presenza della fonte al primo posto (`hit@1`), la correttezza della citazione e la coerenza della risposta. Il comando termina con codice `0` se tutti i casi passano, `1` se almeno uno fallisce. La valutazione riguarda il campione elencato e non misura la copertura totale dei libretti o un'affidabilità generale garantita.
 
 ## Osservabilità
 
-Avvia Docker Desktop. Completa l’indicizzazione iniziale seguendo la sezione **Avvio su Windows**, quindi esegui:
+| Servizio | Interfaccia | Utilizzo |
+| --- | --- | --- |
+| Phoenix | [localhost:16006](http://localhost:16006) | Tracce dei turni, agente, strumenti, recupero e verifiche |
+| Grafana | [Dashboard Manual Mate](http://localhost:13000/d/manuali-auto) | Richieste per esito, latenza e utilizzo degli strumenti |
+| Prometheus | [Target di raccolta](http://localhost:19090/targets) | Stato della raccolta delle metriche |
+| Qdrant | [Dashboard](http://localhost:16333/dashboard) | Collezioni, alias e punti indicizzati |
 
-```powershell
-docker compose -f osservabilita/compose.yaml up -d
-.\.venv\Scripts\python.exe -X utf8 main.py --osservabilita
-```
+Streamlit pubblica le metriche sulla porta `18000`; Prometheus le raccoglie ogni cinque secondi. Le tracce sono inviate a Phoenix via OpenTelemetry. Per vedere le metriche invia alcuni messaggi e lascia trascorrere più raccolte. Streamlit e la CLI con `--osservabilita` condividono la porta `18000`: avviane una sola con l'osservabilità attiva.
 
-Tieni aperto il terminale dell’assistente durante la demo. [Phoenix](http://localhost:16006) mostra gli span dell’agente, dei tool e del retrieval. [Grafana](http://localhost:13000/d/manuali-auto) mostra richieste per esito, latenza e chiamate agli strumenti. [Prometheus](http://localhost:19090/targets) raccoglie le metriche ogni cinque secondi. Per vedere la latenza media in Grafana, manda più richieste lasciando passare almeno due rilevazioni. Per fermare lo stack:
+## Struttura del codice
 
-```powershell
-docker compose -f osservabilita/compose.yaml down
-```
+| File | Responsabilità |
+| --- | --- |
+| `app_streamlit.py`, `main.py` | Interfaccia web e CLI |
+| `runtime.py`, `config.py` | Configurazione e costruzione dei componenti |
+| `catalogo.py` | Veicoli, edizioni, file e sezioni curate |
+| `estrazione.py`, `corpus.py` | Lettura dei documenti, metadati e suddivisione |
+| `indice.py`, `recupero.py` | Persistenza, ricerca e completamento delle pagine |
+| `conversazione.py`, `intenti.py` | Stato della chat e richiami tra veicoli |
+| `assistente.py`, `prompt.py` | Agente, strumenti, istruzioni e controlli |
+| `fonti.py`, `strutturati.py` | Modelli di risposta, citazioni e output strutturati |
+| `valutazione.py`, `queries.json` | Campione di domande e valutazione dei risultati |
+| `osservabilita.py`, `osservabilita/` | Tracing, metriche e servizi Docker |
 
-## Come funziona
+Il JSON in `osservabilita/grafana/dashboards/` configura la dashboard ed è necessario per il suo caricamento automatico.
 
-- `catalogo.py` descrive le edizioni e mantiene i passaggi già verificati per gli avvisi dell’olio. `corpus.py` estrae il testo dei PDF e crea i chunk a partire dai titoli delle sottosezioni, conservando i riferimenti alla pagina.
-- `indice.py` usa il vector store Qdrant di Datapizza. L’ingestione salva i passaggi e i relativi embedding, mentre la ricerca calcola l’embedding della query e legge testo e metadati dalla collezione attiva del veicolo.
-- `assistente.py` usa `datapizza-ai` 0.1.0 per l’agente. L’agente può chiedere un chiarimento, cercare nei documenti o selezionare una fonte recuperata.
-- Il codice pubblica l’estratto solo da una fonte recuperata per il veicolo e l’edizione selezionati. Per gli avvisi riconosciuti verifica anche l’identificativo della sezione già controllata. Per le altre domande verifica che le parole citate dall’agente compaiano nel passaggio originale.
-- I riferimenti del corso sono S07 per la RAG, S11 per i tool e l’osservabilità e S15 per il controllo di accesso alle fonti e la verifica dei risultati.
+## Limiti
+
+Il sistema usa i testi estratti e non interpreta direttamente tutte le illustrazioni. Tabelle complesse, testo OCR, condizioni di applicabilità e richieste con più parti possono portare a risposte incomplete. Alcune informazioni si trovano in documenti separati o dipendono da dati che deve fornire l'utente. «Non trovato nei passaggi consultati» non dimostra che il dato manchi nell'intero manuale.
+
+Le richieste complesse possono richiedere più chiamate al modello e avere tempi di risposta elevati. La pagina originale permette di verificare contenuto e applicabilità delle istruzioni; l'assistente fornisce informazioni documentali, non una diagnosi certa del veicolo.
+
+## Branch del repository
+
+- **`main`** contiene l'applicazione, le configurazioni dei servizi, questo README e il campione `queries.json` con il relativo comando di valutazione.
+- **[`dev`](https://github.com/gregorio-calabretta/manual-mate/tree/dev)** conserva la versione completa di sviluppo: test automatici, dataset aggiuntivi, report, confronti e documentazione delle sperimentazioni. Per lavorare con quei materiali, usa `git switch dev` con una cartella di lavoro pulita.
+
+I report generati localmente su `main` restano esclusi dal versionamento. Le modifiche sviluppate su `dev` vengono integrate in `main` insieme alle configurazioni e ai dati di verifica necessari.
