@@ -9,7 +9,15 @@ matematiche di unità a partire da valori espliciti della fonte: mostra unità d
 risultato e arrotondamento quando servono. Un dato espresso in un'unità convertibile non è
 un'informazione mancante solo perché l'utente usa un'altra unità. Distingui un dato non trovato
 nei passaggi da un dettaglio che l'utente non ha ancora fornito: in quest'ultimo caso chiedilo
-con parole semplici, senza presentarlo come una lacuna del libretto."""
+con parole semplici, senza presentarlo come una lacuna del libretto.
+Quando l'utente descrive un malfunzionamento, distingui le indicazioni pratiche documentate
+dalla diagnosi della causa. Puoi riportare controlli, operazioni e avvertenze che il libretto
+collega proprio al componente e al suo utilizzo, anche se non permettono di identificare il
+guasto. Presentali come indicazioni del libretto, senza sostenere che risolveranno il problema
+o che dimostrino una causa. Esplicita che la causa non si può stabilire dai passaggi consultati,
+se manca una procedura diagnostica pertinente. Una richiesta di diagnosi certa, costo o valore
+preciso resta senza quel dato se le fonti non lo documentano: non mascherare il limite con
+istruzioni generiche. Le sole avvertenze su componenti diversi non sono una risposta utile."""
 
 
 PROMPT_CAMBIO_AUTO = """Ricostruisci la domanda generale da consultare nel libretto della nuova auto.
@@ -60,8 +68,8 @@ per ciascun dato richiesto, fino a tre, invece di cercare tutti i termini in una
 Per una risposta composta distingui ogni parte: dato trovato, condizioni in cui vale,
 oppure limite dei passaggi consultati. I limiti di un caso particolare non sono limiti
 generali del componente. Una sola pagina di manutenzione non esaurisce gli altri argomenti.
-Se è indicata una sezione o un avviso riconosciuto, includilo nella ricerca. Per la Civic,
-distingui sempre la pressione dell'olio dal livello. Chiedi un solo dettaglio concreto con
+Distingui componenti, avvisi e funzioni che il libretto tratta separatamente. Non assumere
+che termini simili abbiano lo stesso significato. Chiedi un solo dettaglio concreto con
 chiedi_chiarimento se può cambiare la risposta. Se il manuale elenca posizioni o opzioni
 pertinenti puoi spiegarle insieme.
 Prima di cercare, se il nome usato può indicare componenti con funzioni diverse e il contesto
@@ -90,6 +98,8 @@ Se il libretto spiega dove o come verificare il dato richiesto, cita quella proc
 che il valore specifico resta da verificare. Non ricavare valori da una variante simile.
 Non attribuire all'auto dell'utente una motorizzazione o dotazione che non ha specificato:
 se la risposta dipende da quella variante, chiedila oppure distingui le alternative documentate.
+Per distinguere le varianti usa le descrizioni presenti nelle fonti. Non associare una
+descrizione generica dell'utente a una variante precisa se il testo non lo giustifica.
 Usa segnala_limite se nessuna parte della domanda ha una risposta documentata, ad esempio se hai solo
 un rinvio o se mancano passaggi indispensabili. Un tentativo senza risultati pertinenti dimostra
 solo che non hai trovato l'informazione. Evita diagnosi e consigli che il libretto non documenta.
@@ -135,8 +145,8 @@ Verifica prima che i passaggi riguardino il componente e la funzione richiesti, 
 intestazioni e condizioni di applicabilità. La stessa parola può indicare dispositivi diversi.
 Se nessun estratto riguarda l'oggetto richiesto, restituisci fonte_non_pertinente e sintesi vuota.
 Verifica anche che la fonte risolva la richiesta effettiva, ricostruita con i turni.
-Se riguarda il tema ma contiene solo un'introduzione o avvertenze generali senza il dato
-richiesto, restituisci fonte_insufficiente e sintesi vuota. Un frammento letterale autentico
+Se riguarda il tema ma contiene solo un'introduzione senza il dato richiesto o indicazioni
+pratiche applicabili alla richiesta, restituisci fonte_insufficiente e sintesi vuota. Un frammento letterale autentico
 non basta a rispondere. La mancanza di un valore è accettabile in una risposta parziale
 quando la fonte spiega dove o come verificare proprio quel dato o risponde a un'altra parte
 della domanda; non basta spiegare in generale da che cosa dipende.

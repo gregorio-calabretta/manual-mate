@@ -49,7 +49,7 @@ docker compose -f osservabilita/compose.yaml up -d --wait
 .\.venv\Scripts\python.exe -X utf8 main.py --indicizza
 ```
 
-`--verifica-manuali` controlla i file e le sezioni di riferimento senza chiamare OpenAI. `--indicizza` estrae i testi, crea i chunk, calcola gli embedding e carica i dati in Qdrant. La prima estrazione con Docling può richiedere tempo e scaricare i modelli necessari; il documento strutturato viene riusato dalla cache locale `.cache_ingestione`.
+`--verifica-manuali` controlla che i file configurati siano PDF leggibili e non vuoti, senza chiamare OpenAI; non certifica automaticamente che il contenuto corrisponda all’edizione dichiarata. `--indicizza` estrae i testi, crea i chunk, calcola gli embedding e carica i dati in Qdrant. La prima estrazione con Docling può richiedere tempo e scaricare i modelli necessari; il documento strutturato viene riusato dalla cache locale `.cache_ingestione`.
 
 Qdrant conserva i dati nel volume Docker `qdrant_data`. Le domande successive riusano gli embedding dei documenti: viene calcolato solo il vettore della query. L'indice è versionato in base a testo, metadati, configurazione e modello di embedding; l'alias del manuale viene aggiornato solo dopo aver verificato il caricamento completo.
 
@@ -103,7 +103,9 @@ Nella conversazione interattiva `:auto` azzera la selezione e `:esci` termina il
 4. **Agente.** Un agente Datapizza decide se chiedere un chiarimento, cercare nel manuale, citare una o più fonti oppure segnalare un limite. Per domande composte può formulare fino a tre ricerche distinte.
 5. **Verifica della risposta.** Il codice controlla l'appartenenza delle fonti al manuale e la presenza letterale delle citazioni. Una chiamata strutturata verifica poi la sintesi, le condizioni e i dati necessari. Un riesame limitato può correggere citazioni o recuperare una risposta dalle fonti disponibili. Se la verifica non riesce, il programma comunica il limite.
 
-Questo approccio è una **RAG**, cioè una generazione preceduta dal recupero di documenti. L'agente sceglie gli strumenti; i controlli in Python vincolano le fonti e la costruzione della risposta. Alcune sezioni curate, come gli avvisi dell'olio e specifiche ubicazioni, hanno controlli dedicati sulle evidenze del manuale.
+Questo approccio è una **RAG**, cioè una generazione preceduta dal recupero di documenti. L'agente sceglie gli strumenti; i controlli in Python vincolano le fonti e la costruzione della risposta. Tutte le domande documentali seguono lo stesso percorso: non ci sono risposte predefinite, pagine privilegiate o riconoscitori di argomenti legati a singoli modelli.
+
+Il catalogo mantiene metadati e profili di lettura: lingua, nomi dei file, formato delle intestazioni e numerazione delle pagine. Queste impostazioni descrivono come leggere il PDF, senza contenere valori o istruzioni da restituire all’utente. I titoli su più righe vengono ricomposti conservando anche le condizioni intermedie.
 
 I prompt sono centralizzati in `prompt.py`: istruzioni dell'agente, ricostruzione della domanda al cambio di auto, riesame e verifica della sintesi. Gli schemi Pydantic descrivono gli output strutturati. La verifica non è una garanzia assoluta: una citazione autentica può comunque essere interpretata male, perciò l'estratto originale resta consultabile.
 
@@ -160,7 +162,7 @@ Streamlit pubblica le metriche sulla porta `18000`; Prometheus le raccoglie ogni
 | --- | --- |
 | `app_streamlit.py`, `main.py` | Interfaccia web e CLI |
 | `runtime.py`, `config.py` | Configurazione e costruzione dei componenti |
-| `catalogo.py` | Veicoli, edizioni, file e sezioni curate |
+| `catalogo.py` | Veicoli, edizioni, file e profili tipografici dei PDF |
 | `estrazione.py`, `corpus.py` | Lettura dei documenti, metadati e suddivisione |
 | `indice.py`, `recupero.py` | Persistenza, ricerca e completamento delle pagine |
 | `conversazione.py`, `intenti.py` | Stato della chat e richiami tra veicoli |

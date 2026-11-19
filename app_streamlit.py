@@ -53,11 +53,10 @@ def mostra_risposta(risposta: Risposta, veicolo: Veicolo | None) -> None:
             st.write(risposta.testo)
 
         if risposta.fonti_recuperate:
-            titoli = {avviso.id: avviso.titolo for avviso in veicolo.avvisi} if veicolo else {}
             with st.expander("Passaggi recuperati da Qdrant"):
                 for numero, fonte in enumerate(risposta.fonti_recuperate, 1):
                     pagina = f"p. {fonte.pagina}" if fonte.pagina is not None else f"PDF p. {fonte.pagina_pdf}"
-                    st.write(f"{numero}. {titoli.get(fonte.id, 'Passaggio del manuale')} · {pagina}")
+                    st.write(f"{numero}. Passaggio del manuale · {pagina}")
 
 
 def main() -> None:

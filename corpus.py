@@ -2,33 +2,34 @@ import re
 from pathlib import Path
 from textwrap import wrap
 
-from catalogo import AUDI, Veicolo, leggi_passaggi, normalizza
+from catalogo import Veicolo, normalizza
 from config import CHUNK_MAX_CHAR, CHUNK_OVERLAP
 from estrazione import estrai_pagine
 
 
 def leggi_pagina(testo: str, veicolo: Veicolo, posizione: int | None = None) -> tuple[int | None, str, list[str]]:
     righe = [riga.strip() for riga in testo.splitlines() if riga.strip()]
-    if veicolo == AUDI and posizione is not None:
+    layout = veicolo.layout
+    if layout.stile == "numero_tra_colonne" and posizione is not None:
         # L'OCR può inserire il piè di pagina nel mezzo delle due colonne.
-        numero_atteso = posizione - 2
-        pagina = numero_atteso if 4 <= posizione <= 412 and str(numero_atteso) in righe else None
-        corpo = [riga for riga in righe if riga not in {str(pagina), "8V2012721B)"}]
-        if 398 <= posizione <= 412:
+        numero_atteso = posizione - layout.scarto_pagine
+        pagina = numero_atteso if str(numero_atteso) in righe else None
+        corpo = [riga for riga in righe if riga not in {str(pagina), *layout.righe_da_escludere}]
+        if layout.pagine_indice[0] <= posizione <= layout.pagine_indice[1]:
             return pagina, "Indice analitico", corpo
-        if 4 <= posizione <= 7:
+        if layout.pagine_sommario[0] <= posizione <= layout.pagine_sommario[1]:
             return pagina, "Sommario", corpo
-        if 10 <= posizione <= 397 and corpo:
+        if layout.pagine_corpo[0] <= posizione <= layout.pagine_corpo[1] and corpo:
             return pagina, corpo[0], corpo[1:]
         return pagina, "Manuale d’uso", corpo
     for i in range(len(righe) - 1, -1, -1):
         riga = righe[i]
-        if veicolo.id == "focus" and "Vehicles Built From:" in riga:
+        if layout.stile == "maiuscole" and layout.marcatore_footer in riga:
             pagina = int(righe[i - 1]) if i > 0 and righe[i - 1].isdigit() else None
             sezione = righe[i + 1] if i + 1 < len(righe) else "Manuale d’uso"
             fine = i - 1 if pagina is not None else i
             return pagina, sezione, righe[:fine]
-        if veicolo.id == "civic" and riga.startswith("23 CIVIC TYPE R JSS"):
+        if layout.stile == "simboli" and riga.startswith(layout.marcatore_footer):
             numero = re.search(r"\bPage (\d+)\b", riga)
             pagina = int(numero[1]) if numero else None
             corpo = [r for r in righe[:i] if not re.fullmatch(rf"(?:SEGUE\s*)?{pagina}(?:\s*SEGUE)?|SEGUE", r)]
@@ -55,11 +56,11 @@ def titolo_sottosezione(riga: str, successiva: str, precedente: str, veicolo: Ve
         "warning", "warnings", "avvertenze", "avvertenza", "pericolo", "caution", "note", "tips", "attention", "nota",
     }:
         return None
-    if veicolo.id == "focus":
+    if veicolo.layout.stile == "maiuscole":
         lettere = [lettera for lettera in riga if lettera.isalpha()]
         if len(lettere) >= 4 and riga.isupper() and len(riga) <= 105 and not re.search(r"\d|[.?!:]", riga):
             return riga
-    elif veicolo.id == "civic":
+    elif veicolo.layout.stile == "simboli":
         if riga.startswith(("■", "●")):
             return re.sub(r"\s+1[A-Z].*$", "", riga.lstrip("■● ")).strip()
         # Il PDF a due colonne ripete alcuni titoli dopo il numero della nota.
@@ -67,7 +68,7 @@ def titolo_sottosezione(riga: str, successiva: str, precedente: str, veicolo: Ve
             if normalizza(re.sub(r"^\d+", "", successiva)) == titolo:
                 return riga
     else:
-        # Nell'Audi l'OCR perde lo stile del titolo. Una riga breve prima di un nuovo blocco
+        # Quando l'OCR perde lo stile del titolo, una riga breve prima di un nuovo blocco
         # è più indicativa delle maiuscole, usate anche nelle normali frasi.
         if not (1 <= len(riga.split()) <= 7 and 4 <= len(riga) <= 67 and riga[0].isupper()
                 and re.fullmatch(r"[\w /–-]+", riga)):
@@ -77,7 +78,7 @@ def titolo_sottosezione(riga: str, successiva: str, precedente: str, veicolo: Ve
             r"Always|Check|Only|For|Your|This|With|See|At|In|On|Some|It|Once|Make|Do|Note|Tips|"
             r"WARNING|CAUTION|Fig|Applies)\b", riga,
         )
-        if inizio_frase and not re.fullmatch(r"Driving with (?:a trailer|the compact spare tire)", riga, re.I):
+        if inizio_frase and not re.fullmatch(r"\w+ (?:with|without) [\w -]+", riga, re.I):
             return None
         if (successiva and (successiva[0].isupper() or successiva.startswith((">", "@", "»", "■")))
                 and (not precedente or precedente.endswith((".", "?", "!", ")", ":")) or precedente[0].isupper())):
@@ -95,9 +96,9 @@ def sottosezioni(righe: list[str], veicolo: Veicolo, titolo_iniziale: str) -> li
         )
         if nuovo:
             if corpo and (sum(map(len, corpo)) >= 75 or titolo != titolo_iniziale):
-                if veicolo.id == "focus" and len(corpo) <= 2 and all(t.isupper() for t in corpo):
-                    # Nei PDF Ford anche i titoli occupano più righe.
-                    nuovo = f"{titolo} {nuovo}"
+                if veicolo.layout.stile == "maiuscole" and len(corpo) <= 2 and all(t.isupper() for t in corpo):
+                    # Conserva tutte le righe di un titolo, comprese le condizioni intermedie.
+                    nuovo = " ".join([*corpo, nuovo])
                 else:
                     risultati.append((titolo, corpo))
                     corpo = []
@@ -147,16 +148,8 @@ def estrai_documenti(
     strategia = strategia or veicolo.strategia_chunk
     if strategia not in {"sottosezioni", "pagina", "ricorsivo"}:
         raise ValueError(f"Strategia di chunking sconosciuta: {strategia}")
-    passaggi = leggi_passaggi(cartella, veicolo)
     base = {"veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file}
-    # Gli avvisi con estratti curati mantengono blocchi completi e identificativi stabili.
-    documenti = [
-        (f"{avviso.titolo}\n\n{passaggi[avviso.id]}", {
-            **base, "fonte": avviso.id, "pagina": avviso.pagina, "pagina_pdf": avviso.pagina_pdf,
-            "sezione": avviso.titolo, "avviso_curato": True,
-        })
-        for avviso in veicolo.avvisi
-    ]
+    documenti = []
     senza_testo = []
     sezione_precedente = titolo_precedente = None
     pagine = 0

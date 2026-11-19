@@ -111,15 +111,16 @@ class IndiceManuali:
             )))
             client.update_collection_aliases(operazioni)
 
-    def cerca(self, veicolo: Veicolo, collezione: str, query: str, *, solo_avvisi: bool = False) -> list[Chunk]:
+    def cerca(self, veicolo: Veicolo, collezione: str, query: str) -> list[Chunk]:
         with span("ricerca-manuale", "RETRIEVER", veicolo=veicolo.id, collezione=collezione) as traccia:
             # I vettori dei manuali sono già sul volume. Qui si calcola solo quello della domanda.
             vettore = self.embedder.embed(query)
             avviso = models.FieldCondition(key="avviso_curato", match=models.MatchValue(value=True))
             indice = models.FieldCondition(key="indice_analitico", match=models.MatchValue(value=True))
-            filtro = models.Filter(must=[avviso]) if solo_avvisi else models.Filter(must_not=[indice, avviso])
+            # Compatibilità con gli indici esistenti: esclude i vecchi duplicati curati.
+            filtro = models.Filter(must_not=[indice, avviso])
             risultati = self.store.search(collezione, vettore, k=self.top_k, vector_name=VETTORE, query_filter=filtro)
-            if not solo_avvisi and self.top_k >= 4:
+            if self.top_k >= 4:
                 risultati = self._aggiungi_pagina_contigua(collezione, vettore, risultati, filtro)
             traccia.set_attribute("fonti", [hit.metadata["fonte"] for hit in risultati])
             return risultati

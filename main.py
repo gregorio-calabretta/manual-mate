@@ -6,7 +6,7 @@ from runtime import ROOT, carica_configurazione, crea_assistente
 
 
 def main() -> int:
-    from catalogo import CATALOGO, leggi_passaggi
+    from catalogo import CATALOGO, verifica_manuale
 
     carica_configurazione()
     desktop = ROOT.parent / "manuali uso e manutenzione auto"
@@ -35,11 +35,8 @@ def main() -> int:
     if args.verifica_manuali:
         try:
             for veicolo in CATALOGO.values():
-                leggi_passaggi(args.manuali, veicolo)
-                if not veicolo.avvisi:
-                    print(f"OK | {veicolo.nome} | {veicolo.edizione}")
-                for avviso in veicolo.avvisi:
-                    print(f"OK | {veicolo.nome} | {avviso.titolo} | p. {avviso.pagina} (PDF p. {avviso.pagina_pdf})")
+                pagine = verifica_manuale(args.manuali, veicolo)
+                print(f"OK | {veicolo.nome} | {veicolo.edizione} | {pagine} pagine PDF")
         except (OSError, ValueError) as errore:
             parser.exit(1, f"Verifica manuali fallita: {errore}\n")
         return 0
