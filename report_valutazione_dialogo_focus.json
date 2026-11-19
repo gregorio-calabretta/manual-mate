@@ -1,0 +1,296 @@
+{
+  "eseguito_il": "2026-11-19T00:21:14.738529+00:00",
+  "modello_agente": "gpt-6-luna",
+  "modello_valutatore": "gpt-6-luna",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 10,
+  "max_char": 1024,
+  "overlap": 0,
+  "lavoratori": 2,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 3,
+      "totale": 3
+    },
+    "ricerche_avviate": {
+      "corretti": 1,
+      "totale": 1
+    },
+    "hit_at_1": {
+      "corretti": 1,
+      "totale": 1
+    },
+    "citazioni_corrette": {
+      "corretti": 1,
+      "totale": 1
+    },
+    "estratti_con_evidenze": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "risposte_coerenti": {
+      "corretti": 3,
+      "totale": 3
+    },
+    "gruppi_completi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 1,
+      "totale": 1
+    },
+    "astensioni": {
+      "corretti": 0,
+      "totale": 0
+    }
+  },
+  "gruppi": {},
+  "risultati": [
+    {
+      "id": "focus-aiuto-prima-del-modello",
+      "veicolo": null,
+      "domanda": "ciao che domande posso farti?",
+      "esito_atteso": "conversazione",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Spiega che può rispondere con i libretti delle auto e dà esempi di domande. Non chiede prima il modello dell'auto.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "conversazione",
+      "veicolo_usato": null,
+      "turni_eseguiti": [],
+      "risposta_visibile": "Posso aiutarti a orientarti nel libretto della tua auto. Puoi chiedermi cosa significa una spia, dove si trovano i fusibili o come usare un comando. Ti indico anche la pagina da consultare. Ho i libretti di Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Spiega che può aiutare con i libretti e propone esempi di domande, senza chiedere prima il modello dell’auto.",
+      "passato": true,
+      "latenza_ms": 1
+    },
+    {
+      "id": "focus-consumi-chiarimento-parziale",
+      "veicolo": "focus",
+      "domanda": "benzina",
+      "esito_atteso": "chiarimento",
+      "fonte_attesa": null,
+      "pagina_attesa": null,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Tiene conto che l'alimentazione è benzina e chiede quale motore, cilindrata o potenza per individuare i consumi. Non chiede sintomi o quando succede il problema, non richiede di nuovo di scegliere benzina o diesel e non attribuisce consumi a una motorizzazione non precisata.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "ciao che domande posso farti?",
+          "esito_atteso": "conversazione"
+        },
+        {
+          "messaggio": "ad esempio sulla ford focus",
+          "esito_atteso": "veicolo_selezionato"
+        },
+        {
+          "messaggio": "ok allora dimmi quanti km al litro fa la ford focus",
+          "esito_atteso": "chiarimento"
+        }
+      ],
+      "esito": "chiarimento",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [
+        {
+          "messaggio": "ciao che domande posso farti?",
+          "esito_atteso": "conversazione",
+          "esito": "conversazione",
+          "risposta_visibile": "Posso aiutarti a orientarti nel libretto della tua auto. Puoi chiedermi cosa significa una spia, dove si trovano i fusibili o come usare un comando. Ti indico anche la pagina da consultare. Ho i libretti di Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        },
+        {
+          "messaggio": "ad esempio sulla ford focus",
+          "esito_atteso": "veicolo_selezionato",
+          "esito": "veicolo_selezionato",
+          "risposta_visibile": "Userò il libretto di Ford Focus (CEW). Cosa vuoi sapere?",
+          "passato": true
+        },
+        {
+          "messaggio": "ok allora dimmi quanti km al litro fa la ford focus",
+          "esito_atteso": "chiarimento",
+          "esito": "chiarimento",
+          "risposta_visibile": "Quale motore e alimentazione ha la tua Focus (per esempio benzina o diesel, cilindrata o potenza)?",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Grazie, benzina. Qual è la cilindrata o la potenza del motore?",
+      "ricerca_eseguita": false,
+      "fonti_recuperate": [],
+      "fonte_citata": null,
+      "fonti_citate": [],
+      "hit_at_1": null,
+      "citazione_corretta": null,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Tiene conto che l’auto è a benzina e chiede cilindrata o potenza per individuare i consumi.",
+      "passato": true,
+      "latenza_ms": 5374
+    },
+    {
+      "id": "focus-consumi-tabella-dopo-chiarimenti",
+      "veicolo": "focus",
+      "domanda": "1.0 EcoBoost, il consumo combinato",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 281,
+      "pagine_alternative": [],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Risponde sul consumo combinato della Focus 1.0L EcoBoost indicato nella tabella: 4,6–5,0 L/100 km equivalenti a circa 20–21,7 km/l. Non scambia il ciclo combinato con urbano o extraurbano né con un'altra motorizzazione. Non garantisce un consumo effettivo fisso.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "ciao che domande posso farti?",
+          "esito_atteso": "conversazione"
+        },
+        {
+          "messaggio": "ad esempio sulla ford focus",
+          "esito_atteso": "veicolo_selezionato"
+        },
+        {
+          "messaggio": "ok allora dimmi quanti km al litro fa la ford focus",
+          "esito_atteso": "chiarimento"
+        },
+        {
+          "messaggio": "benzina",
+          "esito_atteso": "chiarimento"
+        },
+        {
+          "messaggio": "motorizzazione benzina",
+          "esito_atteso": "chiarimento"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [
+        {
+          "messaggio": "ciao che domande posso farti?",
+          "esito_atteso": "conversazione",
+          "esito": "conversazione",
+          "risposta_visibile": "Posso aiutarti a orientarti nel libretto della tua auto. Puoi chiedermi cosa significa una spia, dove si trovano i fusibili o come usare un comando. Ti indico anche la pagina da consultare. Ho i libretti di Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+          "passato": true
+        },
+        {
+          "messaggio": "ad esempio sulla ford focus",
+          "esito_atteso": "veicolo_selezionato",
+          "esito": "veicolo_selezionato",
+          "risposta_visibile": "Userò il libretto di Ford Focus (CEW). Cosa vuoi sapere?",
+          "passato": true
+        },
+        {
+          "messaggio": "ok allora dimmi quanti km al litro fa la ford focus",
+          "esito_atteso": "chiarimento",
+          "esito": "chiarimento",
+          "risposta_visibile": "Quale motore e alimentazione ha la tua Focus (per esempio benzina o diesel, con cilindrata o potenza)?",
+          "passato": true
+        },
+        {
+          "messaggio": "benzina",
+          "esito_atteso": "chiarimento",
+          "esito": "chiarimento",
+          "risposta_visibile": "Grazie, benzina. Qual è la cilindrata o la potenza del motore (per esempio 1.0 EcoBoost o 1.6)?",
+          "passato": true
+        },
+        {
+          "messaggio": "motorizzazione benzina",
+          "esito_atteso": "chiarimento",
+          "esito": "chiarimento",
+          "risposta_visibile": "Qual è la cilindrata o la potenza del motore benzina (per esempio 1.0 EcoBoost o 1.6)?",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Per la 1.0L EcoBoost, il consumo combinato dichiarato è 4,6–5,0 L/100 km, pari a circa 20–21,7 km/l.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf283-2",
+          "pagina": 281,
+          "pagina_pdf": 283
+        },
+        {
+          "id": "focus-pdf278-1",
+          "pagina": 276,
+          "pagina_pdf": 278
+        },
+        {
+          "id": "focus-pdf230-2",
+          "pagina": 228,
+          "pagina_pdf": 230
+        },
+        {
+          "id": "focus-pdf274-1",
+          "pagina": 272,
+          "pagina_pdf": 274
+        },
+        {
+          "id": "focus-pdf231-1",
+          "pagina": 229,
+          "pagina_pdf": 231
+        },
+        {
+          "id": "focus-pdf272-1",
+          "pagina": 270,
+          "pagina_pdf": 272
+        },
+        {
+          "id": "focus-pdf263-1",
+          "pagina": 261,
+          "pagina_pdf": 263
+        },
+        {
+          "id": "focus-pdf275-2",
+          "pagina": 273,
+          "pagina_pdf": 275
+        },
+        {
+          "id": "focus-pdf140-2",
+          "pagina": 138,
+          "pagina_pdf": 140
+        },
+        {
+          "id": "focus-pdf281-2",
+          "pagina": 279,
+          "pagina_pdf": 281
+        },
+        {
+          "id": "focus-pdf185-2",
+          "pagina": 183,
+          "pagina_pdf": 185
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf283-2",
+        "pagina": 281,
+        "pagina_pdf": 283
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf283-2",
+          "pagina": 281,
+          "pagina_pdf": 283
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica il consumo combinato dichiarato corretto per la 1.0L EcoBoost e la conversione in km/l, senza presentarlo come consumo effettivo garantito.",
+      "passato": true,
+      "latenza_ms": 22709
+    }
+  ]
+}

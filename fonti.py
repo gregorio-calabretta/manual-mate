@@ -19,7 +19,7 @@ class Riesame(BaseModel):
 
 class VerificaSintesi(BaseModel):
     omissioni_rilevanti: list[str]
-    esito: Literal["confermata", "corretta", "non_verificabile", "fonte_non_pertinente"]
+    esito: Literal["confermata", "corretta", "non_verificabile", "fonte_non_pertinente", "fonte_insufficiente"]
     sintesi: str
 
 
@@ -50,8 +50,20 @@ def _citazione_valida(hit: Chunk | None, citazione: str) -> bool:
     corpo = hit.text.partition("\n\n")[2]
     estratti = (_testo_citazione(corpo), _testo_citazione(corpo, conserva_trattino=True))
     for frase in dict.fromkeys((_testo_citazione(citazione), _testo_citazione(citazione, conserva_trattino=True))):
-        if len(frase.split()) < 4 or len(frase) < 18:
+        if len(frase) < 18:
             continue
+        if len(frase.split()) < 4:
+            # Le righe di tabelle possono avere pochi spazi, soprattutto dopo l'OCR.
+            # Accetta solo l'intera riga con etichetta alfabetica e dato numerico:
+            # una cella isolata o un frammento numerico rimangono insufficienti.
+            riga_numerica = (
+                len(frase.split()) >= 2 and re.search(r"\d", frase)
+                and re.search(r"[^\W\d_]", frase)
+                and any(frase == _testo_citazione(riga, conserva_trattino=trattino)
+                        for riga in corpo.splitlines() for trattino in (False, True))
+            )
+            if not riga_numerica:
+                continue
         if _estratto_contiene(frase, estratti):
             return True
         # Ammette un solo spazio omesso dall'OCR fra parole alfabetiche di almeno due lettere.
@@ -67,7 +79,9 @@ def _aggiungi_limite(sintesi: str, parte: str) -> str:
     parte = " ".join(parte.split()).strip(". ")
     if not 0 < len(parte) <= 180:
         return sintesi
-    return f"{sintesi}\n\nDal libretto non posso determinare {parte}.".strip()
+    # Il modello può restituire un nome oppure una frase completa: i due punti
+    # evitano di concatenarla a un verbo. Il limite riguarda i passaggi consultati.
+    return f"{sintesi}\n\nInformazione non ricavata dai passaggi consultati: {parte}.".strip()
 
 
 @dataclass(frozen=True)
@@ -96,6 +110,7 @@ class Risposta:
     ricerca_eseguita: bool = False
     sintesi: str | None = None
     fonti_aggiuntive: tuple[Fonte, ...] = ()
+    domanda_interpretata: str | None = None
 
     @property
     def fonti_citate(self) -> tuple[Fonte, ...]:

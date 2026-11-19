@@ -1,17 +1,19 @@
 import json
 import re
+from dataclasses import replace
 
 from datapizza.agents import Agent
 from datapizza.tools import tool
 from datapizza.type import Chunk
 
 from catalogo import CATALOGO, CIVIC, Veicolo, normalizza, riconosci_avviso
-from config import MAX_TURNI_CONTESTO
+from config import MAX_TURNI_CONTESTO, MAX_QUERY_RICERCA
 from fonti import (
     Fonte, PassaggioVerificabile, Riesame, Risposta, VerificaSintesi,
     _aggiungi_limite, _citazione_valida,
 )
 from indice import IndiceManuali
+from intenti import leggi_cambio_auto, trasferisci_domanda
 from osservabilita import richiesta, span, strumento
 from prompt import CRITERI_COMPLETEZZA, PROMPT, PROMPT_RIESAME, PROMPT_VERIFICA_SINTESI
 from recupero import FontiRichiesta
@@ -29,7 +31,16 @@ class Assistente:
             if veicolo is None:
                 risposta = Risposta("bloccato", "Veicolo o edizione fuori catalogo. Controlla il manuale del tuo veicolo.")
             else:
-                risposta = self._consulta(veicolo, domanda, contesto[-MAX_TURNI_CONTESTO:])
+                cambio = leggi_cambio_auto(contesto)
+                if cambio is not None:
+                    domanda_trasferita = trasferisci_domanda(self.client, cambio, veicolo, domanda)
+                    if domanda_trasferita:
+                        risposta = replace(self._consulta(veicolo, domanda_trasferita, ()),
+                                           domanda_interpretata=domanda_trasferita)
+                    else:
+                        risposta = Risposta("chiarimento", f"Quale informazione vuoi cercare nel libretto di {veicolo.nome}?")
+                else:
+                    risposta = self._consulta(veicolo, domanda, contesto[-MAX_TURNI_CONTESTO:])
             misura["valore"] = risposta.esito
             return risposta
 
@@ -99,14 +110,15 @@ class Assistente:
         sintesi_confermata = None
         ricerca_eseguita = False
         query_eseguite: set[str] = set()
+        citazioni_rifiutate: list[dict[str, str]] = []
         chiarimento = None
         limite = None
         indice_assente = False
 
         # I tool condividono solo le fonti recuperate durante questa richiesta.
         @tool
-        def cerca_manuale(query: str, query_complementare: str = "") -> str:
-            """Cerca nel libretto. Usa query_complementare per la seconda parte di una richiesta composta."""
+        def cerca_manuale(query: str, query_complementare: str = "", altre_query: list[str] | None = None) -> str:
+            """Cerca nel libretto quando il componente è identificato. Se è ambiguo, usa prima chiedi_chiarimento. Per richieste composte usa query_complementare e altre_query, fino a tre ricerche distinte."""
             nonlocal ricerca_eseguita, indice_assente, collezione
             with strumento("cerca_manuale") as traccia:
                 if olio_ambiguo:
@@ -127,10 +139,15 @@ class Assistente:
                     testo_query = f"{titolo_fusibili}\n{testo_query}"
                 query_eseguite.add(normalizza(testo_query))
                 ricerche = [self.indice.cerca(veicolo, collezione, testo_query, solo_avvisi=atteso is not None)]
-                complemento = query_complementare[:500].strip()
-                if atteso is None and complemento and normalizza(complemento) not in query_eseguite:
-                    query_eseguite.add(normalizza(complemento))
-                    ricerche.append(self.indice.cerca(veicolo, collezione, complemento))
+                if atteso is None:
+                    for proposta in (query_complementare, *(altre_query or [])):
+                        complemento = proposta[:500].strip()
+                        if not complemento or normalizza(complemento) in query_eseguite:
+                            continue
+                        if len(query_eseguite) >= MAX_QUERY_RICERCA:
+                            break
+                        query_eseguite.add(normalizza(complemento))
+                        ricerche.append(self.indice.cerca(veicolo, collezione, complemento))
                 ricerca_eseguita = True
                 recupero.aggiungi(collezione, ricerche, completa_prime=0 if atteso else 3)
                 # L'output del tool diventa contesto per la successiva chiamata al modello.
@@ -142,7 +159,7 @@ class Assistente:
 
         @tool(end=True)
         def chiedi_chiarimento(tipo: str = "sintomo", domanda: str = "") -> str:
-            """Fai una sola domanda breve in italiano sul dettaglio mancante. Tipo: spia, versione, condizioni o sintomo."""
+            """Prima della ricerca chiarisci il componente se il nome può indicarne diversi. Fai una sola domanda breve in italiano sul dettaglio mancante. Tipo: spia, versione, condizioni o sintomo."""
             nonlocal chiarimento
             with strumento("chiedi_chiarimento"):
                 domande = {
@@ -151,8 +168,10 @@ class Assistente:
                     "condizioni": "Quando succede il problema? Descrivi cosa stavi facendo e in quali condizioni.",
                     "sintomo": "Che cosa noti di preciso e quando succede?",
                 }
-                domanda = domanda.strip()
-                chiarimento = domanda if re.fullmatch(r"[^?\n]{8,199}\?", domanda) else domande.get(tipo, domande["sintomo"])
+                domanda = " ".join(domanda.split())
+                # Una domanda con esempi o più frasi resta un chiarimento valido.
+                # Il vecchio controllo scartava questi casi e inventava un tema di sintomi.
+                chiarimento = domanda if 8 <= len(domanda) <= 400 and "?" in domanda else domande.get(tipo, domande["sintomo"])
                 return "Richiesta di chiarimento registrata."
 
         @tool(end=True)
@@ -181,6 +200,11 @@ class Assistente:
                     traccia.set_attribute("fonte", fonte_id)
                     return "Fonte verificata."
                 traccia.set_attribute("guardrail", "fonte_non_coerente")
+                if hit is not None:
+                    citazioni_rifiutate.append({
+                        "fonte_id": fonte_id, "citazione": citazione,
+                        "motivo": "Serve un estratto letterale di almeno quattro parole e 18 caratteri, oppure l'intera riga numerica con etichetta di almeno 18 caratteri. Una cella isolata non basta.",
+                    })
                 return "Fonte rifiutata."
 
         @tool(end=True)
@@ -232,7 +256,7 @@ class Assistente:
             riesame = None
             if len(fonti_recuperate) >= 3:
                 with span("riesame-fonti", "CHAIN", veicolo=veicolo.id):
-                    riesame = self._riesamina(domanda, contesto, fonti_recuperate)
+                    riesame = self._riesamina(domanda, contesto, fonti_recuperate, citazioni_rifiutate)
             # Le parole originali possono contenere il dettaglio perso nella query dell'agente.
             query_originale = "\n".join((domanda, *contesto))[:500].strip()
             if riesame is None and collezione is not None and normalizza(query_originale) not in query_eseguite:
@@ -276,9 +300,29 @@ class Assistente:
                 return self._documentata(veicolo, fonti_confermate, fonti, sintesi)
         if atteso is None:
             verifica = self._verifica_sintesi(domanda, contesto, fonti_confermate, sintesi or "")
-            if verifica.esito == "fonte_non_pertinente":
+            if verifica.esito in {"fonte_non_pertinente", "fonte_insufficiente", "non_verificabile"}:
+                # Una citazione autentica non prova che la pagina risponda alla domanda.
+                # Un solo recupero della risposta usa le altre fonti già disponibili.
+                escluse = {hit.metadata["pagina_pdf"] for hit in fonti_confermate}
+                candidate = {
+                    identificativo: hit for identificativo, hit in fonti_recuperate.items()
+                    if verifica.esito == "non_verificabile" or hit.metadata["pagina_pdf"] not in escluse
+                }
+                if candidate:
+                    with span("riesame-risposta", "CHAIN", motivo=verifica.esito) as traccia:
+                        traccia.set_attribute("pagine_scelte", sorted(escluse))
+                        traccia.set_attribute("pagine_candidate", sorted({hit.metadata["pagina_pdf"] for hit in candidate.values()}))
+                        proposta = self._riesamina(domanda, contesto, candidate)
+                        traccia.set_attribute("proposta_recuperata", proposta is not None)
+                        if proposta is not None:
+                            nuove_fonti, nuova_sintesi = proposta
+                            if collezione is not None:
+                                nuove_fonti = recupero.completa_citate(collezione, nuove_fonti)
+                            nuova_verifica = self._verifica_sintesi(domanda, contesto, nuove_fonti, nuova_sintesi)
+                            fonti_confermate, verifica = nuove_fonti, nuova_verifica
+            if verifica.esito not in {"confermata", "corretta"}:
                 return Risposta(
-                    "fonte_assente", "I passaggi trovati non documentano il componente richiesto.",
+                    "fonte_assente", "Non sono riuscito a verificare una risposta alla tua domanda nei passaggi consultati.",
                     fonti_recuperate=fonti, ricerca_eseguita=ricerca_eseguita,
                 )
             sintesi = verifica.sintesi or None
@@ -292,7 +336,7 @@ class Assistente:
                 self.client,
                 input=json.dumps({
                     "domanda": domanda, "turni_precedenti": contesto, "sintesi": sintesi,
-                    "estratti": [{"riferimento": Fonte.da_chunk(hit).riferimento, "testo": hit.text} for hit in fonti],
+                    "estratti": [{"id": hit.metadata["fonte"], "riferimento": Fonte.da_chunk(hit).riferimento, "testo": hit.text} for hit in fonti],
                 }, ensure_ascii=False),
                 modello=VerificaSintesi, prompt=PROMPT_VERIFICA_SINTESI, max_tokens=1500,
             )
@@ -303,20 +347,21 @@ class Assistente:
                 if verifica.esito == "corretta" and 0 < len(verifica.sintesi.strip()) <= 2400:
                     traccia.set_attribute("esito", "corretta")
                     return verifica.model_copy(update={"sintesi": verifica.sintesi.strip()})
-                if verifica.esito == "fonte_non_pertinente":
-                    traccia.set_attribute("esito", "fonte_non_pertinente")
+                if verifica.esito in {"fonte_non_pertinente", "fonte_insufficiente"}:
+                    traccia.set_attribute("esito", verifica.esito)
                     return verifica.model_copy(update={"sintesi": ""})
-            # Il chiamante mostra il testo originale con il riferimento verificato.
+            # L'assenza di verifica non deve trasformarsi in una risposta documentata.
             traccia.set_attribute("esito", "non_verificabile")
             return VerificaSintesi(omissioni_rilevanti=[], esito="non_verificabile", sintesi="")
 
-    def _riesamina(self, domanda: str, contesto: tuple[str, ...], recuperate: dict[str, Chunk]):
-        dati = self._richiedi_riesame(domanda, contesto, recuperate, [])
+    def _riesamina(self, domanda: str, contesto: tuple[str, ...], recuperate: dict[str, Chunk],
+                   citazioni_rifiutate: list[dict[str, str]] | None = None):
+        dati = self._richiedi_riesame(domanda, contesto, recuperate, citazioni_rifiutate or [])
         if not isinstance(dati, Riesame) or not 1 <= len(dati.risposte) <= 3:
             return None
         rifiutate = [
             {"fonte_id": riga.fonte_id, "citazione": riga.citazione,
-             "motivo": "La citazione non compare come sequenza letterale nella fonte indicata."}
+             "motivo": "Serve una sequenza letterale di almeno quattro parole e 18 caratteri, oppure un'intera riga con etichetta e dato numerico di almeno 18 caratteri."}
             for riga in dati.risposte if not _citazione_valida(recuperate.get(riga.fonte_id), riga.citazione)
         ]
         if len(rifiutate) == len(dati.risposte):
@@ -349,7 +394,7 @@ class Assistente:
             input=json.dumps({"domanda": domanda, "turni_precedenti": contesto, "passaggi": [
                 {"id": id_fonte, "testo": hit.text} for id_fonte, hit in recuperate.items()
             ], "citazioni_rifiutate": citazioni_rifiutate}, ensure_ascii=False),
-            modello=Riesame, prompt=PROMPT_RIESAME, max_tokens=1100,
+            modello=Riesame, prompt=PROMPT_RIESAME, max_tokens=1600,
         )
 
     def _risposta_verificata(self, veicolo: Veicolo, pagine: tuple[tuple[int, str, str], ...]) -> Risposta:

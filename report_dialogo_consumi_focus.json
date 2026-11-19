@@ -1,0 +1,46 @@
+[
+  {
+    "domanda": "ciao che domande posso farti?",
+    "esito": "conversazione",
+    "risposta": "Posso aiutarti a orientarti nel libretto della tua auto. Puoi chiedermi cosa significa una spia, dove si trovano i fusibili o come usare un comando. Ti indico anche la pagina da consultare. Ho i libretti di Ford Focus (CEW), Honda Civic Type R, Audi A3 8V, SEAT Leon.",
+    "ricerca_eseguita": false,
+    "pagine": []
+  },
+  {
+    "domanda": "ad esempio sulla ford focus",
+    "esito": "veicolo_selezionato",
+    "risposta": "Userò il libretto di Ford Focus (CEW). Cosa vuoi sapere?",
+    "ricerca_eseguita": false,
+    "pagine": []
+  },
+  {
+    "domanda": "ok allora dimmi quanti km al litro fa la ford focus",
+    "esito": "chiarimento",
+    "risposta": "Quale motore e alimentazione ha la tua Focus (per esempio benzina o diesel, e cilindrata o potenza)?",
+    "ricerca_eseguita": false,
+    "pagine": []
+  },
+  {
+    "domanda": "benzina",
+    "esito": "chiarimento",
+    "risposta": "Grazie, quindi è benzina. Qual è la cilindrata o la potenza del motore (per esempio 1.0, 1.6 o kW/CV)?",
+    "ricerca_eseguita": false,
+    "pagine": []
+  },
+  {
+    "domanda": "motorizzazione benzina",
+    "esito": "chiarimento",
+    "risposta": "La benzina è già chiara: sai la cilindrata (per esempio 1.0 o 1.6) oppure la potenza in kW/CV?",
+    "ricerca_eseguita": false,
+    "pagine": []
+  },
+  {
+    "domanda": "1.0 EcoBoost, il consumo combinato",
+    "esito": "risposta",
+    "risposta": "Per la Ford Focus 1.0L EcoBoost, il consumo combinato riportato è 4,6–5,0 L/100 km (48–56,5 MPG), equivalente a circa 20–21,7 km/l. (p. 281, PDF p. 283)\n\nFonte: Ford Focus (CEW), CG3630itITA, ed. 09/2014 (produzione 08/09/2014–15/02/2015), p. 281 (PDF p. 283).",
+    "ricerca_eseguita": true,
+    "pagine": [
+      281
+    ]
+  }
+]

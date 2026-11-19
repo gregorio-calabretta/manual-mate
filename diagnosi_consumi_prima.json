@@ -1,0 +1,200 @@
+[
+  {
+    "tipo": "agente",
+    "testo": "",
+    "chiamate": [
+      {
+        "nome": "cerca_manuale",
+        "argomenti": {
+          "query": "1.0 EcoBoost consumo di carburante combinato",
+          "query_complementare": "dati tecnici consumo combinato 1.0 EcoBoost l/100 km"
+        }
+      }
+    ]
+  },
+  {
+    "tipo": "agente",
+    "testo": "",
+    "chiamate": [
+      {
+        "nome": "cita_fonte",
+        "argomenti": {
+          "fonte_id": "focus-pdf283-2",
+          "citazione": "105-11648-56,557,4-67,236,2-41,31.0L EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)",
+          "sintesi": "Il consumo combinato dichiarato per la 1.0L EcoBoost è 4,6–5,0 l/100 km, cioè circa 20,0–21,7 km/l. Il valore effettivo può variare in base alle condizioni di guida e ad altri fattori.",
+          "parte_non_documentata": ""
+        }
+      }
+    ]
+  },
+  {
+    "tipo": "Riesame",
+    "input": {
+      "domanda": "1.0 EcoBoost, consumo combinato",
+      "turni_precedenti": [
+        "Quanti km al litro fa?",
+        "Benzina",
+        "Chiarimento precedente dell'assistente: Grazie, quindi è a benzina. Qual è la cilindrata o il nome della versione (per esempio 1.0 EcoBoost o 1.6)?"
+      ],
+      "passaggi": [
+        {
+          "id": "focus-pdf283-2",
+          "testo": "Specifiche tecniche / DATI RELATIVI AL CONSUMO DI CARBURANTE\n\nIl motore di questo veicolo è stato\nprogettato per essere utilizzato con olio\nmotore Castrol e Ford, che assicura un\nrisparmio di carburante prolungando al\ntempo stesso la durata del motore.\nRabbocco dell'olio: qualora non sia\npossibile procurarsi un olio conforme alle\nspecifiche definite dal WSS-M2C913-C,\nutilizzare l'olio SAE 5W-30 conforme alle\nspecifiche definite da ACEA A5/B5.\nNota: Non utilizzare più di 1 L tra gli intervalli\ndi manutenzione programmati.\nL'utilizzo di oli diversi da quello prescritto\npuò causare tempi di avviamento del\nmotore più lunghi, ridotte prestazioni del\nmotore, maggiori consumi e livelli di\nemissioni.\nSi raccomanda l'olio motore Castrol.\nDATI RELATIVI AL CONSUMO DI CARBURANTE\nEmissioni di\nCO2CombinatoExtraurbanoUrbano\nVersione\ng/kmMPG(L/100 km)MPG(L/100 km)MPG(L/100 km)\n105-11648-56,557,4-67,236,2-41,31.0L EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)\n127-13739,9-42,850-51,129,4-33,61.5L EcoBoost. (5,9-5,5)(4,7-4,6)(8-7)\n985661,9501.5L Duratorq-TDCi. (3,8)(3,4)(4,3)\n136-14637,3-39,948-51,127-28,31.6L Duratec-16V Ti-VCT. (6,3-5,9)(4,9-4,6)(8,7-8,3)"
+        },
+        {
+          "id": "focus-pdf278-1",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 2.0L ECOBOOST™\nCapacità\nCapacitàOperazione\n5,4 LSistema di lubrificazione del motore - incluso il filtro olio\n5,1 LSistema di lubrificazione del motore - escluso il filtro olio\n6,45 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n0,85 LTutte\nSpecifiche\nNota: Utilizzare liquidi conformi alle\nspecifiche o prescrizioni indicate. L'utilizzo\ndi liquidi di altro tipo può portare a danni\nnon coperti dalla garanzia.\nMateriali\nSpecificaNome\nWSS-M2C913-COlio motore - 5W-30\nWSS-M97B44-DLiquido radiatore Super Plus Premium\n4U7J-19544-xxxx\nWSS-M6C65-A2Liquido per freni DOT 4 LV High Performance\nBU7J-M6C65-xxxx\nWSS-M2C200-D2Olio cambio - 75W FE\n7U7J-M2C200-BA/CA\nWSS-M2C204-A2Fluido idraulico DP-PS\n5U7J-M2C204-AB\nWSS-M14P19-ADetergente per vetri\n5U7J-19C544-AA, 3U7J-19523-GA,\n2U7J-M8B16-AA/CA/DA"
+        },
+        {
+          "id": "focus-pdf230-2",
+          "testo": "Manutenzione / ASTINA DI LIVELLO OLIO\n\nTappo bocchettone di rifornimento olio motore\n1\n:  Vedere Controllo dell'olio\ndel motore (pagina 229).\nH\nFinestra di controllo serbatoio lavavetri\n*\n:  Vedere Controllo del liquido\nlavavetri (pagina 232).\nI\n*\nI tappi di rifornimento carburante e l'astina di livello per olio motore sono colorati per\nfacilitarne l'identificazione.\nASTINA DI LIVELLO OLIO\nMOTORE - 1.0L ECOBOOST™\nMinimo.A\nMassimo.B\nASTINA DI LIVELLO OLIO\nMOTORE - 1.5L ECOBOOST™\nMinimo.A\nMassimo.B\nASTINA DI LIVELLO OLIO\nMOTORE - 1.6L DURATEC-16V\n(SIGMA)\nMinimo.A\nMassimo.B\nASTINA DI LIVELLO OLIO\nMOTORE - 2.0L DURATEC-HE\n(MI4)\nMinimo.A\nMassimo.B"
+        },
+        {
+          "id": "focus-pdf272-1",
+          "testo": "Specifiche tecniche / NUMERO DI IDENTIFICAZIONE VEICOLO\n\nNUMERO DI IDENTIFICAZIONE\nVEICOLO\nIl numero di identificazione del veicolo è\nstampigliato sul pianale sul lato destro,\naccanto al sedile anteriore. Inoltre è\nriportato sul lato sinistro del cruscotto.\nSPECIFICHE TECNICHE - 1.0L ECOBOOST™\nCapacità\nCapacitàOperazione\n4,1 LSistema di lubrificazione del motore - incluso il filtro olio\n4 LSistema di lubrificazione del motore - escluso il filtro olio\n1,3 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n1 LTutte"
+        },
+        {
+          "id": "focus-pdf274-1",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 1.5L ECOBOOST™\nCapacità\nCapacitàOperazione\n4,1 LSistema di lubrificazione del motore - incluso il filtro olio\n4 LSistema di lubrificazione del motore - escluso il filtro olio\n5,8 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n0,8 LTutte\nSpecifiche\nNota: Utilizzare liquidi conformi alle\nspecifiche o prescrizioni indicate. L'utilizzo\ndi liquidi di altro tipo può portare a danni\nnon coperti dalla garanzia.\nMateriali\nSpecificaNome\nWSS-M2C913-COlio motore - 5W-30\nWSS-M97B44-DLiquido radiatore Super Plus Premium\n4U7J-19544-xxxx\nWSS-M6C65-A2Liquido per freni DOT 4 LV High Performance\nBU7J-M6C65-xxxx\nWSS-M2C200-D2Olio cambio - 75W FE\n7U7J-M2C200-BA/CA\nWSS-M2C204-A2Fluido idraulico DP-PS\n5U7J-M2C204-AB\nWSS-M14P19-ADetergente per vetri\n5U7J-19C544-AA, 3U7J-19523-GA,\n2U7J-M8B16-AA/CA/DA"
+        },
+        {
+          "id": "focus-pdf231-1",
+          "testo": "Manutenzione / ASTINA DI LIVELLO OLIO\n\nASTINA DI LIVELLO OLIO\nMOTORE - 2.0L ECOBOOST™\nMinimo.A\nMassimo.B"
+        },
+        {
+          "id": "focus-pdf263-1",
+          "testo": "Ruote e pneumatici\n\nVelocità costante superiore a 160 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,42,12,1205/55 R 16\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,42,12,2205/55 R 161.5L EcoBoost\n2,82,42,12,1215/55 R 16\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,62,12,3215/55 R 162.0L Duratorq-TDCi- DW\n2,82,42,12,1215/50 R 17\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,62,12,3215/50 R 172.0L Duratorq-TDCi- DW\n2,82,42,12,1235/40 R 18\n1.6L Duratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,62,12,3235/40 R 182.0L Duratorq-TDCi- DW"
+        },
+        {
+          "id": "focus-pdf140-2",
+          "testo": "Carburante e rifornimento / CONSUMO DI CARBURANTE\n\nCONSUMO DI CARBURANTE\nI valori di consumo carburante e CO2 sono\nstati ricavati da prove di laboratorio\neseguite in conformità alla Norma (EC)\n715/2007 oppure CR (EC) 692/2008 ed\nemendamenti successivi.\nEssi vengono forniti per confrontare tra loro\nvarie marche e modelli di veicoli  e non\nrappresentano il consumo di carburante\nrealmente ottenuto dal veicolo.\nIl consumo di carburante effettivo dipende\nda molti fattori, quali ad esempio lo stile\ndi guida, la guida ad alta velocità, la guida\ncon frequenti soste e partenze, l'uso del\nsistema di aria condizionata, gli accessori\nin dotazione, il carico utile e l'eventuale\ntraino di rimorchi.\nLa capacità dichiarata è l'insieme di quella\nindicata e di quella di riserva.  La capacità\nindicata è la differenza tra la quantità di\ncarburante presente nel serbatoio e quella\nindicata dall'indicatore di livello che\nsegnala la riserva.  La riserva è la quantità\ndi carburante ancora presente nel\nserbatoio dopo che l'indicatore di livello\ncarburante ha segnalato la riserva."
+        },
+        {
+          "id": "focus-pdf280-2",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 1.6L DURATORQ-TDCI (DV) DIESEL\nCapacità\nCapacitàOperazione\n3,85 LSistema di lubrificazione del motore - incluso il filtro olio\n3,45 LSistema di lubrificazione del motore - escluso il filtro olio\n7,3 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari"
+        },
+        {
+          "id": "focus-pdf185-2",
+          "testo": "Ausili di guida / MODALITÀ ECO\n\nMODALITÀ ECO\nQuesto sistema consente di guidare con\nmaggior efficienza, tenendo\ncostantemente sotto controllo le\ncaratteristiche del cambio marcia, le\ninformazioni sulle condizioni sul traffico e\nla velocità del veicolo.\nIl valore di queste caratteristiche è\nrappresentato da petali sul display; cinque\npetali rappresentano il valore di maggiore\nefficienza. Maggiore è l'efficienza di guida,\nmigliori saranno le prestazioni e il risparmio\ngenerale di carburante del veicolo.\nNota: Questi valori di efficienza non danno\norigine a un valore del consumo di\ncarburante definito. Potrebbe variare in\nquanto non dipende esclusivamente dalle\nabitudini di guida ma risente anche di molti\naltri fattori tra i quali la percorrenza di brevi\ntratti e gli avviamenti a freddo.\nNota: Anche i viaggi brevi e frequenti, quelli\nin cui il motore non riesce a scaldarsi\ncompletamente, aumentano il consumo di\ncarburante."
+        },
+        {
+          "id": "focus-pdf279-2",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 1.5L DURATORQ TDCI DIESEL\nCapacità\nCapacitàOperazione\n3,85 LSistema di lubrificazione del motore - incluso il filtro olio\n3,45 LSistema di lubrificazione del motore - escluso il filtro olio\n7,3 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n1,6 LTutte\nSpecifiche\nNota: Utilizzare liquidi conformi alle\nspecifiche o prescrizioni indicate. L'utilizzo\ndi liquidi di altro tipo può portare a danni\nnon coperti dalla garanzia.\nMateriali\nSpecificaNome\nWSS-M2C913-COlio motore - 5W-30\nWSS-M97B44-DLiquido radiatore Super Plus Premium"
+        }
+      ],
+      "citazioni_rifiutate": []
+    },
+    "dati": [
+      null
+    ]
+  },
+  {
+    "tipo": "Riesame",
+    "input": {
+      "domanda": "1.0 EcoBoost, consumo combinato",
+      "turni_precedenti": [
+        "Quanti km al litro fa?",
+        "Benzina",
+        "Chiarimento precedente dell'assistente: Grazie, quindi è a benzina. Qual è la cilindrata o il nome della versione (per esempio 1.0 EcoBoost o 1.6)?"
+      ],
+      "passaggi": [
+        {
+          "id": "focus-pdf283-2",
+          "testo": "Specifiche tecniche / DATI RELATIVI AL CONSUMO DI CARBURANTE\n\nIl motore di questo veicolo è stato\nprogettato per essere utilizzato con olio\nmotore Castrol e Ford, che assicura un\nrisparmio di carburante prolungando al\ntempo stesso la durata del motore.\nRabbocco dell'olio: qualora non sia\npossibile procurarsi un olio conforme alle\nspecifiche definite dal WSS-M2C913-C,\nutilizzare l'olio SAE 5W-30 conforme alle\nspecifiche definite da ACEA A5/B5.\nNota: Non utilizzare più di 1 L tra gli intervalli\ndi manutenzione programmati.\nL'utilizzo di oli diversi da quello prescritto\npuò causare tempi di avviamento del\nmotore più lunghi, ridotte prestazioni del\nmotore, maggiori consumi e livelli di\nemissioni.\nSi raccomanda l'olio motore Castrol.\nDATI RELATIVI AL CONSUMO DI CARBURANTE\nEmissioni di\nCO2CombinatoExtraurbanoUrbano\nVersione\ng/kmMPG(L/100 km)MPG(L/100 km)MPG(L/100 km)\n105-11648-56,557,4-67,236,2-41,31.0L EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)\n127-13739,9-42,850-51,129,4-33,61.5L EcoBoost. (5,9-5,5)(4,7-4,6)(8-7)\n985661,9501.5L Duratorq-TDCi. (3,8)(3,4)(4,3)\n136-14637,3-39,948-51,127-28,31.6L Duratec-16V Ti-VCT. (6,3-5,9)(4,9-4,6)(8,7-8,3)"
+        },
+        {
+          "id": "focus-pdf278-1",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 2.0L ECOBOOST™\nCapacità\nCapacitàOperazione\n5,4 LSistema di lubrificazione del motore - incluso il filtro olio\n5,1 LSistema di lubrificazione del motore - escluso il filtro olio\n6,45 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n0,85 LTutte\nSpecifiche\nNota: Utilizzare liquidi conformi alle\nspecifiche o prescrizioni indicate. L'utilizzo\ndi liquidi di altro tipo può portare a danni\nnon coperti dalla garanzia.\nMateriali\nSpecificaNome\nWSS-M2C913-COlio motore - 5W-30\nWSS-M97B44-DLiquido radiatore Super Plus Premium\n4U7J-19544-xxxx\nWSS-M6C65-A2Liquido per freni DOT 4 LV High Performance\nBU7J-M6C65-xxxx\nWSS-M2C200-D2Olio cambio - 75W FE\n7U7J-M2C200-BA/CA\nWSS-M2C204-A2Fluido idraulico DP-PS\n5U7J-M2C204-AB\nWSS-M14P19-ADetergente per vetri\n5U7J-19C544-AA, 3U7J-19523-GA,\n2U7J-M8B16-AA/CA/DA"
+        },
+        {
+          "id": "focus-pdf230-2",
+          "testo": "Manutenzione / ASTINA DI LIVELLO OLIO\n\nTappo bocchettone di rifornimento olio motore\n1\n:  Vedere Controllo dell'olio\ndel motore (pagina 229).\nH\nFinestra di controllo serbatoio lavavetri\n*\n:  Vedere Controllo del liquido\nlavavetri (pagina 232).\nI\n*\nI tappi di rifornimento carburante e l'astina di livello per olio motore sono colorati per\nfacilitarne l'identificazione.\nASTINA DI LIVELLO OLIO\nMOTORE - 1.0L ECOBOOST™\nMinimo.A\nMassimo.B\nASTINA DI LIVELLO OLIO\nMOTORE - 1.5L ECOBOOST™\nMinimo.A\nMassimo.B\nASTINA DI LIVELLO OLIO\nMOTORE - 1.6L DURATEC-16V\n(SIGMA)\nMinimo.A\nMassimo.B\nASTINA DI LIVELLO OLIO\nMOTORE - 2.0L DURATEC-HE\n(MI4)\nMinimo.A\nMassimo.B"
+        },
+        {
+          "id": "focus-pdf272-1",
+          "testo": "Specifiche tecniche / NUMERO DI IDENTIFICAZIONE VEICOLO\n\nNUMERO DI IDENTIFICAZIONE\nVEICOLO\nIl numero di identificazione del veicolo è\nstampigliato sul pianale sul lato destro,\naccanto al sedile anteriore. Inoltre è\nriportato sul lato sinistro del cruscotto.\nSPECIFICHE TECNICHE - 1.0L ECOBOOST™\nCapacità\nCapacitàOperazione\n4,1 LSistema di lubrificazione del motore - incluso il filtro olio\n4 LSistema di lubrificazione del motore - escluso il filtro olio\n1,3 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n1 LTutte"
+        },
+        {
+          "id": "focus-pdf274-1",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 1.5L ECOBOOST™\nCapacità\nCapacitàOperazione\n4,1 LSistema di lubrificazione del motore - incluso il filtro olio\n4 LSistema di lubrificazione del motore - escluso il filtro olio\n5,8 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n0,8 LTutte\nSpecifiche\nNota: Utilizzare liquidi conformi alle\nspecifiche o prescrizioni indicate. L'utilizzo\ndi liquidi di altro tipo può portare a danni\nnon coperti dalla garanzia.\nMateriali\nSpecificaNome\nWSS-M2C913-COlio motore - 5W-30\nWSS-M97B44-DLiquido radiatore Super Plus Premium\n4U7J-19544-xxxx\nWSS-M6C65-A2Liquido per freni DOT 4 LV High Performance\nBU7J-M6C65-xxxx\nWSS-M2C200-D2Olio cambio - 75W FE\n7U7J-M2C200-BA/CA\nWSS-M2C204-A2Fluido idraulico DP-PS\n5U7J-M2C204-AB\nWSS-M14P19-ADetergente per vetri\n5U7J-19C544-AA, 3U7J-19523-GA,\n2U7J-M8B16-AA/CA/DA"
+        },
+        {
+          "id": "focus-pdf231-1",
+          "testo": "Manutenzione / ASTINA DI LIVELLO OLIO\n\nASTINA DI LIVELLO OLIO\nMOTORE - 2.0L ECOBOOST™\nMinimo.A\nMassimo.B"
+        },
+        {
+          "id": "focus-pdf263-1",
+          "testo": "Ruote e pneumatici\n\nVelocità costante superiore a 160 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,42,12,1205/55 R 16\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,42,12,2205/55 R 161.5L EcoBoost\n2,82,42,12,1215/55 R 16\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,62,12,3215/55 R 162.0L Duratorq-TDCi- DW\n2,82,42,12,1215/50 R 17\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,62,12,3215/50 R 172.0L Duratorq-TDCi- DW\n2,82,42,12,1235/40 R 18\n1.6L Duratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,62,12,3235/40 R 182.0L Duratorq-TDCi- DW"
+        },
+        {
+          "id": "focus-pdf140-2",
+          "testo": "Carburante e rifornimento / CONSUMO DI CARBURANTE\n\nCONSUMO DI CARBURANTE\nI valori di consumo carburante e CO2 sono\nstati ricavati da prove di laboratorio\neseguite in conformità alla Norma (EC)\n715/2007 oppure CR (EC) 692/2008 ed\nemendamenti successivi.\nEssi vengono forniti per confrontare tra loro\nvarie marche e modelli di veicoli  e non\nrappresentano il consumo di carburante\nrealmente ottenuto dal veicolo.\nIl consumo di carburante effettivo dipende\nda molti fattori, quali ad esempio lo stile\ndi guida, la guida ad alta velocità, la guida\ncon frequenti soste e partenze, l'uso del\nsistema di aria condizionata, gli accessori\nin dotazione, il carico utile e l'eventuale\ntraino di rimorchi.\nLa capacità dichiarata è l'insieme di quella\nindicata e di quella di riserva.  La capacità\nindicata è la differenza tra la quantità di\ncarburante presente nel serbatoio e quella\nindicata dall'indicatore di livello che\nsegnala la riserva.  La riserva è la quantità\ndi carburante ancora presente nel\nserbatoio dopo che l'indicatore di livello\ncarburante ha segnalato la riserva."
+        },
+        {
+          "id": "focus-pdf280-2",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 1.6L DURATORQ-TDCI (DV) DIESEL\nCapacità\nCapacitàOperazione\n3,85 LSistema di lubrificazione del motore - incluso il filtro olio\n3,45 LSistema di lubrificazione del motore - escluso il filtro olio\n7,3 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari"
+        },
+        {
+          "id": "focus-pdf185-2",
+          "testo": "Ausili di guida / MODALITÀ ECO\n\nMODALITÀ ECO\nQuesto sistema consente di guidare con\nmaggior efficienza, tenendo\ncostantemente sotto controllo le\ncaratteristiche del cambio marcia, le\ninformazioni sulle condizioni sul traffico e\nla velocità del veicolo.\nIl valore di queste caratteristiche è\nrappresentato da petali sul display; cinque\npetali rappresentano il valore di maggiore\nefficienza. Maggiore è l'efficienza di guida,\nmigliori saranno le prestazioni e il risparmio\ngenerale di carburante del veicolo.\nNota: Questi valori di efficienza non danno\norigine a un valore del consumo di\ncarburante definito. Potrebbe variare in\nquanto non dipende esclusivamente dalle\nabitudini di guida ma risente anche di molti\naltri fattori tra i quali la percorrenza di brevi\ntratti e gli avviamenti a freddo.\nNota: Anche i viaggi brevi e frequenti, quelli\nin cui il motore non riesce a scaldarsi\ncompletamente, aumentano il consumo di\ncarburante."
+        },
+        {
+          "id": "focus-pdf279-2",
+          "testo": "Specifiche tecniche\n\nSPECIFICHE TECNICHE - 1.5L DURATORQ TDCI DIESEL\nCapacità\nCapacitàOperazione\n3,85 LSistema di lubrificazione del motore - incluso il filtro olio\n3,45 LSistema di lubrificazione del motore - escluso il filtro olio\n7,3 LSistema di raffreddamento del motore\n55 LSerbatoio carburante\n4,5 LSistema lavacristallo e lavalunotto - incluso lavafari\nCapacità di rabbocco dell'olio motore\nQuantitàVersione motore\n1,6 LTutte\nSpecifiche\nNota: Utilizzare liquidi conformi alle\nspecifiche o prescrizioni indicate. L'utilizzo\ndi liquidi di altro tipo può portare a danni\nnon coperti dalla garanzia.\nMateriali\nSpecificaNome\nWSS-M2C913-COlio motore - 5W-30\nWSS-M97B44-DLiquido radiatore Super Plus Premium"
+        }
+      ],
+      "citazioni_rifiutate": []
+    },
+    "dati": [
+      {
+        "risposte": [
+          {
+            "fonte_id": "focus-pdf283-2",
+            "citazione": "105-11648-56,557,4-67,236,2-41,31.0L EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)",
+            "frase": "Per la 1.0L EcoBoost, il consumo combinato indicato è 5–4,6 L/100 km (48–56,5 MPG)."
+          },
+          {
+            "fonte_id": "focus-pdf140-2",
+            "citazione": "non rappresentano il consumo di carburante realmente ottenuto dal veicolo",
+            "frase": "Sono valori ricavati da prove di laboratorio per confrontare marche e modelli; non rappresentano necessariamente il consumo reale del veicolo."
+          }
+        ],
+        "parte_non_documentata": "Il libretto non indica il consumo in km/l."
+      }
+    ]
+  },
+  {
+    "tipo": "VerificaSintesi",
+    "input": {
+      "domanda": "1.0 EcoBoost, consumo combinato",
+      "turni_precedenti": [
+        "Quanti km al litro fa?",
+        "Benzina",
+        "Chiarimento precedente dell'assistente: Grazie, quindi è a benzina. Qual è la cilindrata o il nome della versione (per esempio 1.0 EcoBoost o 1.6)?"
+      ],
+      "sintesi": "Sono valori ricavati da prove di laboratorio per confrontare marche e modelli; non rappresentano necessariamente il consumo reale del veicolo. (p. 138 (PDF p. 140))\n\nInformazione non ricavata dai passaggi consultati: Il libretto non indica il consumo in km/l.\n\nAlcuni dettagli non sono stati verificati nel libretto.",
+      "estratti": [
+        {
+          "riferimento": "p. 138 (PDF p. 140)",
+          "testo": "Carburante e rifornimento / CONSUMO DI CARBURANTE\n\n3. Mantenere la pistola erogatrice in\nposizione B durante il rifornimento.\nMantenere la pistola in posizione A\npotrebbe influire sul flusso del\ncarburante e arrestare la pistola\nerogatrice prima del riempimento del\nserbatoio carburante.\n4. Azionare la pistola entro l'area indicata.\n5. Sollevare leggermente la pistola\nerogatrice per rimuoverla.\nCONSUMO DI CARBURANTE\nI valori di consumo carburante e CO2 sono\nstati ricavati da prove di laboratorio\neseguite in conformità alla Norma (EC)\n715/2007 oppure CR (EC) 692/2008 ed\nemendamenti successivi.\nEssi vengono forniti per confrontare tra loro\nvarie marche e modelli di veicoli  e non\nrappresentano il consumo di carburante\nrealmente ottenuto dal veicolo.\nIl consumo di carburante effettivo dipende\nda molti fattori, quali ad esempio lo stile\ndi guida, la guida ad alta velocità, la guida\ncon frequenti soste e partenze, l'uso del\nsistema di aria condizionata, gli accessori\nin dotazione, il carico utile e l'eventuale\ntraino di rimorchi.\nLa capacità dichiarata è l'insieme di quella\nindicata e di quella di riserva.  La capacità\nindicata è la differenza tra la quantità di\ncarburante presente nel serbatoio e quella\nindicata dall'indicatore di livello che\nsegnala la riserva.  La riserva è la quantità\ndi carburante ancora presente nel\nserbatoio dopo che l'indicatore di livello\ncarburante ha segnalato la riserva.\nNota:  La quantità di carburante in riserva\nvaria ed è opportuno non farvi affidamento\nnel caso in cui si decidesse di prolungare la\nmarcia in riserva.  In fase di rifornimento del\nveicolo dopo che l'indicatore di livello\ncarburante ha segnalato lo stato di riserva,\npotrebbe non essere possibile rifornire il\nserbatoio con una quantità di carburante\npari alla sua capacità ufficialmente\nriportata, a causa della riserva residua\nancora presente nel serbatoio stesso.\nRiempimento del serbatoio\nPer ottenere risultati coerenti durante il\nrifornimento di carburante:\n• Spegnere l'accensione.\n• Interrompere il rifornimento dopo non\npiù di due scatti automatici."
+        }
+      ]
+    },
+    "dati": [
+      {
+        "omissioni_rilevanti": [
+          "Gli estratti non riportano il valore del consumo combinato specifico della 1.0 EcoBoost né un valore in km/l.",
+          "La sintesi omette le norme citate per le prove di laboratorio: (EC) 715/2007 oppure CR (EC) 692/2008, con i successivi emendamenti.",
+          "L'affermazione che il libretto non indichi il consumo in km/l è assoluta e non è dimostrata dai soli passaggi consultati."
+        ],
+        "esito": "corretta",
+        "sintesi": "Gli estratti consultati non riportano il valore del consumo combinato specifico della 1.0 EcoBoost né un valore in km/l. Indicano in generale che i valori di consumo carburante e CO₂ derivano da prove di laboratorio svolte in conformità alla Norma (EC) 715/2007 oppure CR (EC) 692/2008 e ai successivi emendamenti. Questi valori servono a confrontare marche e modelli e non rappresentano necessariamente il consumo effettivo del veicolo; da questi passaggi non si può quindi ricavare quanti km/l faccia la 1.0 EcoBoost."
+      }
+    ]
+  },
+  {
+    "tipo": "risposta_finale",
+    "esito": "risposta",
+    "testo": "Gli estratti consultati non riportano il valore del consumo combinato specifico della 1.0 EcoBoost né un valore in km/l. Indicano in generale che i valori di consumo carburante e CO₂ derivano da prove di laboratorio svolte in conformità alla Norma (EC) 715/2007 oppure CR (EC) 692/2008 e ai successivi emendamenti. Questi valori servono a confrontare marche e modelli e non rappresentano necessariamente il consumo effettivo del veicolo; da questi passaggi non si può quindi ricavare quanti km/l faccia la 1.0 EcoBoost.\n\nFonte: Ford Focus (CEW), CG3630itITA, ed. 09/2014 (produzione 08/09/2014–15/02/2015), p. 138 (PDF p. 140)."
+  }
+]

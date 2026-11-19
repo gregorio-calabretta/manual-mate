@@ -1,0 +1,204 @@
+[
+  {
+    "tipo": "agente",
+    "chiamate": [
+      {
+        "nome": "cerca_manuale",
+        "argomenti": {
+          "query": "limite di velocità pneumatici",
+          "query_complementare": "indice di carico pneumatici carico massimo",
+          "altre_query": [
+            "usura pneumatici profondità battistrada limite"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "tipo": "agente",
+    "chiamate": [
+      {
+        "nome": "cerca_manuale",
+        "argomenti": {
+          "query": "limite velocità pneumatici velocità massima battistrada indicatore usura profondità minima",
+          "query_complementare": "indice di carico pneumatici carico massimo ammesso pneumatico",
+          "altre_query": [
+            "ruotino di scorta limite velocità carico massimo"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "tipo": "agente",
+    "chiamate": [
+      {
+        "nome": "cita_fonti",
+        "argomenti": {
+          "fonti_id": [
+            "focus-pdf245-2",
+            "focus-pdf261-2",
+            "focus-pdf249-3"
+          ],
+          "citazioni": [
+            "Non superare la velocità massima di 50 mi/h (80 km/h).",
+            "Fino a 80 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore",
+            "Esaminare periodicamente i pneumatici per verificare l'eventuale presenza di tagli, oggetti estranei e usura non uniforme del battistrada."
+          ],
+          "frasi": [
+            "Il limite di 80 km/h riportato qui riguarda l’uso del kit di riparazione provvisoria: il kit consente inoltre di proseguire per un massimo di 200 km. Non è un limite generale per pneumatici integri.",
+            "Il limite di 80 km/h riguarda il ruotino di scorta indicato nella tabella. La tabella distingue inoltre carico normale e massimo per le pressioni, ma non riporta in questo passaggio il carico massimo in kg dello pneumatico.",
+            "Il manuale raccomanda di controllare periodicamente tagli, corpi estranei e usura irregolare del battistrada; non indica in questo passaggio una profondità minima ammessa."
+          ],
+          "parte_non_documentata": "il limite di velocità generale degli pneumatici montati, il carico massimo in kg ammesso per ciascuno pneumatico e la soglia minima di usura del battistrada"
+        }
+      }
+    ]
+  },
+  {
+    "tipo": "VerificaSintesi",
+    "input": {
+      "domanda": "Quali sono i limiti d'uso degli pneumatici: velocità, carico e usura?",
+      "turni_precedenti": [],
+      "sintesi": "Il limite di 80 km/h riportato qui riguarda l’uso del kit di riparazione provvisoria: il kit consente inoltre di proseguire per un massimo di 200 km. Non è un limite generale per pneumatici integri. (p. 243 (PDF p. 245))\n\nIl limite di 80 km/h riguarda il ruotino di scorta indicato nella tabella. La tabella distingue inoltre carico normale e massimo per le pressioni, ma non riporta in questo passaggio il carico massimo in kg dello pneumatico. (p. 259 (PDF p. 261))\n\nIl manuale raccomanda di controllare periodicamente tagli, corpi estranei e usura irregolare del battistrada; non indica in questo passaggio una profondità minima ammessa. (p. 247 (PDF p. 249))\n\nInformazione non ricavata dai passaggi consultati: il limite di velocità generale degli pneumatici montati, il carico massimo in kg ammesso per ciascuno pneumatico e la soglia minima di usura del battistrada.",
+      "estratti": [
+        {
+          "id": "focus-pdf245-2",
+          "riferimento": "p. 243 (PDF p. 245)",
+          "testo": "Ruote e pneumatici / KIT DI RIPARAZIONE PROVVISORIA PNEUMATICI\n\nKIT DI RIPARAZIONE\nPROVVISORIA PNEUMATICI\nIl veicolo potrebbe non essere dotato di\nruota di scorta. In questo caso, sarà fornito\nun kit di riparazione provvisoria pneumatici\nutilizzabile per riparare un solo pneumatico\nbucato.\nIl kit è posizionato nel vano bagagli\nposteriore sul lato sinistro.\nNote generali\nAVVERTENZE\nA seconda del tipo e dell'entità del\ndanno, alcuni pneumatici possono\nessere riparati solo parzialmente o\nnon essere assolutamente riparabili. La\nperdita di pressione dei pneumatici può\ninfluenzare la gestione del veicolo, con\npossibile perdita del controllo dello stesso.\nNon utilizzare il kit su un pneumatico\nprecedentemente danneggiato. ad\nesempio dopo avere guidato con il\npneumatico sgonfio. Ciò potrebbe causare\nla perdita di controllo del veicolo e lesioni\npersonali gravi, talvolta anche letali.\nNon utilizzare il kit su pneumatici run\nflat. Questo potrebbe causare la\nperdita di controllo del veicolo.\nNon cercare di riparare il punto\ndanneggiato sul fianco del\npneumatico. Ciò potrebbe causare\nscoppi con conseguente perdita di\ncontrollo del veicolo e lesioni personali\ngravi, talvolta anche letali.\nIl kit consente di riparare la maggior parte\ndelle forature di diametro fino a ¼ inch (sei\nmillimetri). Serve quindi a ripristinare\ntemporaneamente la mobilità.\nQuando si usa il kit, attenersi alle seguenti\nregole:\n• Guidare con cautela ed evitare sterzate\no manovre brusche, in particolare se il\nveicolo è molto carico o se si sta\ntrainando un rimorchio.\n• Il kit permette una riparazione\nprovvisoria di emergenza, consentendo\nla prosecuzione del viaggio fino al più\nvicino meccanico o gommista, in ogni\ncaso per un massimo di 200 km\n(125 miglia).\n• Non superare la velocità massima di\n50 mi/h (80 km/h).\n• Tenere il kit fuori dalla portata dei\nbambini.\n• Utilizzare il kit solo se la temperatura\naria ambiente è compresa tra -40 °F\n(-40 °C) e +158 °F (+70 °C).\nUtilizzo del kit\nAVVERTENZE\nL'aria compressa può agire da\nesplosivo o propellente con\nconseguenti possibili gravi infortuni\nanche letali.\nNon lasciare mai il kit incustodito\ndurante l'uso.\nNon tenere il compressore in\nfunzione per più di 10 minuti. Questo\npotrebbe causare la perdita di\ncontrollo del veicolo ed essere causa di\nlesioni personali.\nNota: Utilizzare il kit solo per il veicolo col\nquale è stato fornito."
+        },
+        {
+          "id": "focus-pdf261-2",
+          "riferimento": "p. 259 (PDF p. 261)",
+          "testo": "Ruote e pneumatici / PRESSIONI PNEUMATICO\n\n7. Installare il copriruota utilizzando il\npalmo della mano.\nPERICOLO\nFar controllare il serraggio dei dadi\nruota e la pressione degli pneumatici\nil prima possibile.\nPRESSIONI PNEUMATICO\nControllare tutte le pressioni pneumatici\nquando i pneumatici sono freddi, almeno\nuna volta ogni due settimane.\nNota: Su alcuni veicoli occorre rimuovere il\nruotino di scorta dal vano per controllare la\npressione dello pneumatico.\nMontare le catene da neve solo sugli\npneumatici specificati.  Vedere Utilizzo\ndelle catene da neve (pagina 248).\nFino a 80 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n4,2\nT125/80 R16Ruotino di\nscorta. T125/90 R16\nFino a 120 km/h (75 mph)\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n3205/55 R16\nRuotino di\nscorta diverso\ndalle altre ruote\nmontate."
+        },
+        {
+          "id": "focus-pdf249-3",
+          "riferimento": "p. 247 (PDF p. 249)",
+          "testo": "Ruote e pneumatici / MANUTENZIONE DEI PNEUMATICI\n\n5. Ricontrollare la pressione del\npneumatico con il manometro K. Se la\npressione del pneumatico è troppo\nalta, sgonfiarlo mediante la valvola\nlimitatrice di pressione F fino a\nraggiungere il valore prescritto.\n6. Dopo aver gonfiato il pneumatico alla\npressione prescritta, portare\nl'interruttore D del compressore in\nposizione 0, quindi scollegare la spina\nE dalla presa, svitare il tubo flessibile\nH, fissare il cappuccio della valvola e\nriposizionare il cappuccio di protezione\nG.\n7. Lasciare la bomboletta di sigillante A\nnel portabottiglie I e riporre il kit nella\nposizione originale.\n8. Recarsi dal gommista più vicino per\nsostituire il pneumatico danneggiato.\nPrima di rimuovere il pneumatico dal\ncerchione, informare il gommista che\nil pneumatico contiene sigillante. Dopo\naver usato la bomboletta di sigillante\nA e il tubo flessibile H, sostituirli non\nappena possibile.\nNota: Ricordare che questo kit consente\nsolo una mobilità temporanea. Le norme in\nvigore in materia di riparazione dopo\nl'utilizzo del kit possono variare da paese a\npaese. Consultare un gommista in merito.\nLe bombolette di sigillante vuote possono\nessere smaltite insieme ai normali rifiuti.\nRestituire eventuali rimanenze di sigillante\nal concessionario autorizzato o smaltirle\nin conformità con le normative locali sullo\nsmaltimento dei rifiuti.\nMANUTENZIONE DEI\nPNEUMATICI\nPer garantire che i pneumatici anteriori e\nposteriori del veicolo si usurino in modo\nuniforme e durino più a lungo, si\nraccomanda di invertire i pneumatici\nanteriori con quelli posteriori e viceversa a\nintervalli regolari tra i 5000 e i 10000\nchilometri (3000 e 6000 miglia).\nPERICOLO\nEvitare di sfregare le pareti laterali\ndei pneumatici durante le manovre\ndi parcheggio.\nQuando si rende necessario salire su un\nmarciapiede, farlo lentamente,\navvicinandosi mantenendo le ruote\nortogonali al cordolo.\nEsaminare periodicamente i pneumatici\nper verificare l'eventuale presenza di tagli,\noggetti estranei e usura non uniforme del\nbattistrada. Un'usura irregolare potrebbe\nsignificare che l'allineamento delle ruote\nnon rientra nelle specifiche.\nControllare la pressione dei pneumatici\n(incluso quello di scorta) a freddo, ogni\ndue settimane."
+        }
+      ],
+      "altre_fonti_recuperate": [
+        {
+          "id": "focus-pdf264-1",
+          "testo": "Ruote e pneumatici / PRESSIONI PNEUMATICO - ST\n\nPRESSIONI PNEUMATICO - ST\nControllare tutte le pressioni pneumatici\nquando i pneumatici sono freddi, almeno\nuna volta ogni due settimane.\nNota: Su alcuni veicoli occorre rimuovere il\nruotino di scorta dal vano per controllare la\npressione dello pneumatico.\nMontare le catene da neve solo sugli\npneumatici specificati.  Vedere Utilizzo\ndelle catene da neve (pagina 248).\nPERICOLO\nQuando sul veicolo è montato il\nruotino di scorta, non disattivare il\ncontrollo di stabilità.\nFino a 80 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n4,2\nT125/80 R16Ruotino di\nscorta. T125/90 R16\nFino a 120 km/h (75 mph)\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n3205/55 R16\nRuotino di\nscorta diverso\ndalle altre ruote\nmontate."
+        },
+        {
+          "id": "focus-pdf265-1",
+          "testo": "Ruote e pneumatici\n\nFino a 220 km/h (137 mph)\nCarico massimoCarico normale\nDimensioni pneuma-\ntico PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,42,42,4215/55 R 16*\n2,82,42,42,4215/50 R 17*\n2,42,42,42,4235/40 R 18\n3,43,42,62,8235/35 R 19\n1\nCatene da neve fino a 12 mm per ruote in acciaio.\n2\nCatene da neve fino a 10 mm.\nVelocità costante superiore a 220 km/h (137 mph)\nCarico massimoCarico normale\nDimensioni pneuma-\ntico PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,72,42,6215/55 R 16\n2,82,82,42,6215/50 R 17\n2,52,52,42,4235/40 R 18\n3,43,42,62,8235/35 R 19"
+        },
+        {
+          "id": "focus-pdf250-1",
+          "testo": "Ruote e pneumatici / UTILIZZO DI PNEUMATICI INVERNALI\n\nUTILIZZO DI PNEUMATICI\nINVERNALI\nSe si montano pneumatici invernali, è\nnecessario gonfiarli alle medesime\npressioni pneumatici riportate nella tabella\npressioni pneumatici."
+        },
+        {
+          "id": "focus-pdf251-1",
+          "testo": "Ruote e pneumatici\n\nI pneumatici vanno gonfiati alla corretta\npressione.\nVedere Ruote e pneumatici (pagina 243).\nI valori di pressione dei pneumatici sono\nanche indicati sulla targhetta dei dati di\npressione dei pneumatici (posta sul bordo\ndella porta lato guida o sul montante\ncentrale).\nIl veicolo è dotato di sistema di\nmonitoraggio pressione pneumatici in\nfunzione di assistenza al guidatore.\nQuando uno o più pneumatici sono\nparzialmente sgonfi, si accende una spia.\nSe la spia pressione pneumatici\ninsufficiente si illumina, arrestare il veicolo\nnon appena ciò sia possibile senza mettere\na repentaglio la sicurezza, controllare i\npneumatici e gonfiarli alla pressione\nprescritta.\nL'uso del veicolo con i pneumatici\nparzialmente sgonfi può:\n• Provocare il surriscaldamento dei\npneumatici.\n• Favorire le anomalie dei pneumatici.\n• Ridurre l'economicità di consumo del\ncarburante.\n• Ridurre la durata utile dei pneumatici.\n• Influire negativamente sulla\nmanovrabilità del veicolo e la capacità\ndi arresto."
+        },
+        {
+          "id": "focus-pdf246-2",
+          "testo": "Ruote e pneumatici\n\nGonfiaggio del pneumatico\nAVVERTENZE\nPrima di procedere al gonfiaggio,\ncontrollare la parete laterale del\npneumatico. In presenza di\nincrinature, protuberanze o altri danni\nsimili, non tentare di gonfiare il\npneumatico. Questo può essere causa di\nlesioni personali.\nNon sostare direttamente accanto\nal pneumatico quando il\ncompressore è in funzione. Questo\npuò essere causa di lesioni personali in\ncaso di scoppio della gomma.\nAVVERTENZE\nOsservare la parete laterale del\npneumatico. Se sono visibili\nincrinature o protuberanze,\ndisinserire il compressore e scaricare l'aria\nattraverso la valvola limitatrice di\npressione F. Non continuare a guidare con\nil pneumatico in questione. Questo\npotrebbe causare la perdita di controllo\ndel veicolo.\nIl sigillante contiene lattice di gomma\nnaturale. Evitare il contatto con la\ncute e gli indumenti. Sciacquare\nimmediatamente la parte colpita se ciò\ndovesse accadere e consultare subito un\nmedico."
+        },
+        {
+          "id": "focus-pdf172-1",
+          "testo": "Ausili di guida / LIMITATORE DI VELOCITÀ - VELOCITÀ DI CROCIERA\n\nLIMITATORE DI VELOCITÀ -\nVEICOLI CON: CONTROLLO\nVELOCITÀ DI CROCIERA"
+        }
+      ]
+    },
+    "dati": [
+      {
+        "omissioni_rilevanti": [
+          "La tabella recuperata indica pressioni diverse in base alla misura dello pneumatico, al carico normale o massimo e alla velocità: fino a 220 km/h e per velocità costante superiore a 220 km/h. Per esempio, per 215/55 R16 e 215/50 R17 riporta, rispettivamente, pressioni massime anteriori/posteriori di 2,4/2,8 bar fino a 220 km/h e 2,7/2,8 bar oltre 220 km/h; distingue inoltre i valori per le altre misure elencate."
+        ],
+        "esito": "risposta_incompleta",
+        "sintesi": ""
+      }
+    ]
+  },
+  {
+    "tipo": "Riesame",
+    "input": {
+      "domanda": "Quali sono i limiti d'uso degli pneumatici: velocità, carico e usura?",
+      "turni_precedenti": [],
+      "passaggi": [
+        {
+          "id": "focus-pdf261-2",
+          "testo": "Ruote e pneumatici / PRESSIONI PNEUMATICO\n\n7. Installare il copriruota utilizzando il\npalmo della mano.\nPERICOLO\nFar controllare il serraggio dei dadi\nruota e la pressione degli pneumatici\nil prima possibile.\nPRESSIONI PNEUMATICO\nControllare tutte le pressioni pneumatici\nquando i pneumatici sono freddi, almeno\nuna volta ogni due settimane.\nNota: Su alcuni veicoli occorre rimuovere il\nruotino di scorta dal vano per controllare la\npressione dello pneumatico.\nMontare le catene da neve solo sugli\npneumatici specificati.  Vedere Utilizzo\ndelle catene da neve (pagina 248).\nFino a 80 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n4,2\nT125/80 R16Ruotino di\nscorta. T125/90 R16\nFino a 120 km/h (75 mph)\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n3205/55 R16\nRuotino di\nscorta diverso\ndalle altre ruote\nmontate."
+        },
+        {
+          "id": "focus-pdf249-3",
+          "testo": "Ruote e pneumatici / MANUTENZIONE DEI PNEUMATICI\n\n5. Ricontrollare la pressione del\npneumatico con il manometro K. Se la\npressione del pneumatico è troppo\nalta, sgonfiarlo mediante la valvola\nlimitatrice di pressione F fino a\nraggiungere il valore prescritto.\n6. Dopo aver gonfiato il pneumatico alla\npressione prescritta, portare\nl'interruttore D del compressore in\nposizione 0, quindi scollegare la spina\nE dalla presa, svitare il tubo flessibile\nH, fissare il cappuccio della valvola e\nriposizionare il cappuccio di protezione\nG.\n7. Lasciare la bomboletta di sigillante A\nnel portabottiglie I e riporre il kit nella\nposizione originale.\n8. Recarsi dal gommista più vicino per\nsostituire il pneumatico danneggiato.\nPrima di rimuovere il pneumatico dal\ncerchione, informare il gommista che\nil pneumatico contiene sigillante. Dopo\naver usato la bomboletta di sigillante\nA e il tubo flessibile H, sostituirli non\nappena possibile.\nNota: Ricordare che questo kit consente\nsolo una mobilità temporanea. Le norme in\nvigore in materia di riparazione dopo\nl'utilizzo del kit possono variare da paese a\npaese. Consultare un gommista in merito.\nLe bombolette di sigillante vuote possono\nessere smaltite insieme ai normali rifiuti.\nRestituire eventuali rimanenze di sigillante\nal concessionario autorizzato o smaltirle\nin conformità con le normative locali sullo\nsmaltimento dei rifiuti.\nMANUTENZIONE DEI\nPNEUMATICI\nPer garantire che i pneumatici anteriori e\nposteriori del veicolo si usurino in modo\nuniforme e durino più a lungo, si\nraccomanda di invertire i pneumatici\nanteriori con quelli posteriori e viceversa a\nintervalli regolari tra i 5000 e i 10000\nchilometri (3000 e 6000 miglia).\nPERICOLO\nEvitare di sfregare le pareti laterali\ndei pneumatici durante le manovre\ndi parcheggio.\nQuando si rende necessario salire su un\nmarciapiede, farlo lentamente,\navvicinandosi mantenendo le ruote\nortogonali al cordolo.\nEsaminare periodicamente i pneumatici\nper verificare l'eventuale presenza di tagli,\noggetti estranei e usura non uniforme del\nbattistrada. Un'usura irregolare potrebbe\nsignificare che l'allineamento delle ruote\nnon rientra nelle specifiche.\nControllare la pressione dei pneumatici\n(incluso quello di scorta) a freddo, ogni\ndue settimane."
+        },
+        {
+          "id": "focus-pdf264-1",
+          "testo": "Ruote e pneumatici / PRESSIONI PNEUMATICO - ST\n\nPRESSIONI PNEUMATICO - ST\nControllare tutte le pressioni pneumatici\nquando i pneumatici sono freddi, almeno\nuna volta ogni due settimane.\nNota: Su alcuni veicoli occorre rimuovere il\nruotino di scorta dal vano per controllare la\npressione dello pneumatico.\nMontare le catene da neve solo sugli\npneumatici specificati.  Vedere Utilizzo\ndelle catene da neve (pagina 248).\nPERICOLO\nQuando sul veicolo è montato il\nruotino di scorta, non disattivare il\ncontrollo di stabilità.\nFino a 80 km/h\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n4,2\nT125/80 R16Ruotino di\nscorta. T125/90 R16\nFino a 120 km/h (75 mph)\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbar\n3205/55 R16\nRuotino di\nscorta diverso\ndalle altre ruote\nmontate."
+        },
+        {
+          "id": "focus-pdf265-1",
+          "testo": "Ruote e pneumatici\n\nFino a 220 km/h (137 mph)\nCarico massimoCarico normale\nDimensioni pneuma-\ntico PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,42,42,4215/55 R 16*\n2,82,42,42,4215/50 R 17*\n2,42,42,42,4235/40 R 18\n3,43,42,62,8235/35 R 19\n1\nCatene da neve fino a 12 mm per ruote in acciaio.\n2\nCatene da neve fino a 10 mm.\nVelocità costante superiore a 220 km/h (137 mph)\nCarico massimoCarico normale\nDimensioni pneuma-\ntico PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,72,42,6215/55 R 16\n2,82,82,42,6215/50 R 17\n2,52,52,42,4235/40 R 18\n3,43,42,62,8235/35 R 19"
+        },
+        {
+          "id": "focus-pdf250-1",
+          "testo": "Ruote e pneumatici / UTILIZZO DI PNEUMATICI INVERNALI\n\nUTILIZZO DI PNEUMATICI\nINVERNALI\nSe si montano pneumatici invernali, è\nnecessario gonfiarli alle medesime\npressioni pneumatici riportate nella tabella\npressioni pneumatici."
+        },
+        {
+          "id": "focus-pdf251-1",
+          "testo": "Ruote e pneumatici\n\nI pneumatici vanno gonfiati alla corretta\npressione.\nVedere Ruote e pneumatici (pagina 243).\nI valori di pressione dei pneumatici sono\nanche indicati sulla targhetta dei dati di\npressione dei pneumatici (posta sul bordo\ndella porta lato guida o sul montante\ncentrale).\nIl veicolo è dotato di sistema di\nmonitoraggio pressione pneumatici in\nfunzione di assistenza al guidatore.\nQuando uno o più pneumatici sono\nparzialmente sgonfi, si accende una spia.\nSe la spia pressione pneumatici\ninsufficiente si illumina, arrestare il veicolo\nnon appena ciò sia possibile senza mettere\na repentaglio la sicurezza, controllare i\npneumatici e gonfiarli alla pressione\nprescritta.\nL'uso del veicolo con i pneumatici\nparzialmente sgonfi può:\n• Provocare il surriscaldamento dei\npneumatici.\n• Favorire le anomalie dei pneumatici.\n• Ridurre l'economicità di consumo del\ncarburante.\n• Ridurre la durata utile dei pneumatici.\n• Influire negativamente sulla\nmanovrabilità del veicolo e la capacità\ndi arresto."
+        },
+        {
+          "id": "focus-pdf246-2",
+          "testo": "Ruote e pneumatici\n\nGonfiaggio del pneumatico\nAVVERTENZE\nPrima di procedere al gonfiaggio,\ncontrollare la parete laterale del\npneumatico. In presenza di\nincrinature, protuberanze o altri danni\nsimili, non tentare di gonfiare il\npneumatico. Questo può essere causa di\nlesioni personali.\nNon sostare direttamente accanto\nal pneumatico quando il\ncompressore è in funzione. Questo\npuò essere causa di lesioni personali in\ncaso di scoppio della gomma.\nAVVERTENZE\nOsservare la parete laterale del\npneumatico. Se sono visibili\nincrinature o protuberanze,\ndisinserire il compressore e scaricare l'aria\nattraverso la valvola limitatrice di\npressione F. Non continuare a guidare con\nil pneumatico in questione. Questo\npotrebbe causare la perdita di controllo\ndel veicolo.\nIl sigillante contiene lattice di gomma\nnaturale. Evitare il contatto con la\ncute e gli indumenti. Sciacquare\nimmediatamente la parte colpita se ciò\ndovesse accadere e consultare subito un\nmedico."
+        },
+        {
+          "id": "focus-pdf172-1",
+          "testo": "Ausili di guida / LIMITATORE DI VELOCITÀ - VELOCITÀ DI CROCIERA\n\nLIMITATORE DI VELOCITÀ -\nVEICOLI CON: CONTROLLO\nVELOCITÀ DI CROCIERA"
+        },
+        {
+          "id": "focus-pdf246-3",
+          "testo": "Ruote e pneumatici\n\nSe la pressione di gonfiaggio non\nraggiunge 1,8 bar (26 psi) entro 10\nminuti, è probabile che il pneumatico\nabbia subito danni eccessivi, tali da\nrenderne impossibile la riparazione\ntemporanea. In questo caso, non\ncontinuare a guidare con tale pneumatico.\nQuesto potrebbe causare la perdita di\ncontrollo del veicolo.\nAvvitare la bomboletta sul relativo\nsupporto forerebbe la tenuta della\nbomboletta. Non svitare la\nbomboletta dal relativo supporto, in\nquanto il sigillante potrebbe fuoriuscire\ncon conseguenti possibili gravi lesioni\npersonali."
+        },
+        {
+          "id": "focus-pdf245-2",
+          "testo": "Ruote e pneumatici / KIT DI RIPARAZIONE PROVVISORIA PNEUMATICI\n\nKIT DI RIPARAZIONE\nPROVVISORIA PNEUMATICI\nIl veicolo potrebbe non essere dotato di\nruota di scorta. In questo caso, sarà fornito\nun kit di riparazione provvisoria pneumatici\nutilizzabile per riparare un solo pneumatico\nbucato.\nIl kit è posizionato nel vano bagagli\nposteriore sul lato sinistro.\nNote generali\nAVVERTENZE\nA seconda del tipo e dell'entità del\ndanno, alcuni pneumatici possono\nessere riparati solo parzialmente o\nnon essere assolutamente riparabili. La\nperdita di pressione dei pneumatici può\ninfluenzare la gestione del veicolo, con\npossibile perdita del controllo dello stesso.\nNon utilizzare il kit su un pneumatico\nprecedentemente danneggiato. ad\nesempio dopo avere guidato con il\npneumatico sgonfio. Ciò potrebbe causare\nla perdita di controllo del veicolo e lesioni\npersonali gravi, talvolta anche letali.\nNon utilizzare il kit su pneumatici run\nflat. Questo potrebbe causare la\nperdita di controllo del veicolo.\nNon cercare di riparare il punto\ndanneggiato sul fianco del\npneumatico. Ciò potrebbe causare\nscoppi con conseguente perdita di\ncontrollo del veicolo e lesioni personali\ngravi, talvolta anche letali.\nIl kit consente di riparare la maggior parte\ndelle forature di diametro fino a ¼ inch (sei\nmillimetri). Serve quindi a ripristinare\ntemporaneamente la mobilità.\nQuando si usa il kit, attenersi alle seguenti\nregole:\n• Guidare con cautela ed evitare sterzate\no manovre brusche, in particolare se il\nveicolo è molto carico o se si sta\ntrainando un rimorchio.\n• Il kit permette una riparazione\nprovvisoria di emergenza, consentendo\nla prosecuzione del viaggio fino al più\nvicino meccanico o gommista, in ogni\ncaso per un massimo di 200 km\n(125 miglia).\n• Non superare la velocità massima di\n50 mi/h (80 km/h).\n• Tenere il kit fuori dalla portata dei\nbambini.\n• Utilizzare il kit solo se la temperatura\naria ambiente è compresa tra -40 °F\n(-40 °C) e +158 °F (+70 °C).\nUtilizzo del kit\nAVVERTENZE\nL'aria compressa può agire da\nesplosivo o propellente con\nconseguenti possibili gravi infortuni\nanche letali.\nNon lasciare mai il kit incustodito\ndurante l'uso.\nNon tenere il compressore in\nfunzione per più di 10 minuti. Questo\npotrebbe causare la perdita di\ncontrollo del veicolo ed essere causa di\nlesioni personali.\nNota: Utilizzare il kit solo per il veicolo col\nquale è stato fornito."
+        },
+        {
+          "id": "focus-pdf254-1",
+          "testo": "Ruote e pneumatici\n\n4. Eseguire la procedura di resettaggio\ndel sistema di monitoraggio pressione\npneumatici.\nProcedura di resettaggio del\nsistema di monitoraggio pressione\npneumatici\nPanoramica\nLa procedura di reset del sistema va\neseguita dopo ogni sostituzione o la\nregolazione delle pressioni dei pneumatici.\nPer preservare la capacità di carico del\nveicolo, la pressione di gonfiaggio dei\npneumatici anteriori deve essere diversa\nda quella dei pneumatici posteriori.\nIl sistema accende la spia in presenza di\npressioni diverse per i pneumatici anteriori\ne posteriori.\nÈ necessario ruotare periodicamente i\npneumatici per assicurare uniformità di\nprestazioni e massima durata utile dei\npneumatici. Il sistema deve sapere quando\nsi ruotano i pneumatici per stabilire quale\ncoppia si trova sull'assale anteriore e quale\nsull'assale posteriore. Con questa\ninformazione, il sistema è in grado di\nrilevare e segnalare correttamente\nl'insufficiente pressione dei pneumatici."
+        },
+        {
+          "id": "focus-pdf250-2",
+          "testo": "Ruote e pneumatici / UTILIZZO DI PNEUMATICI INVERNALI - ST\n\nUTILIZZO DI PNEUMATICI\nINVERNALI - ST\nGli pneumatici di normale dotazione sui\nveicoli ST sono del tipo ad alte prestazioni\nper la guida estiva su fondo asciutto e\nbagnato. Non sono idonee all'impiego\ninvernale su fondo ghiacciato o su neve e\nnon devono essere impiegate con catene\nda neve. Ford sconsiglia l'impiego di\npneumatici di primo montaggio (OEM) con\ntemperature di 5°C o inferiori (a seconda\ndello stato di usura e condizioni ambientali\noppure su fondo ghiacciato o innevato. Per\nqueste condizioni d'uso occorre prevedere\nl'impiego di pneumatici invernali o\nquattro-stagioni.\nNota: Per essere sicuri dell'efficiente\nfunzionamento dell'impianto di\nmonitoraggio, tutte le ruote montate devono\nessere dotate di sensore pressione di\ngonfiaggio pneumatico."
+        },
+        {
+          "id": "focus-pdf250-4",
+          "testo": "Ruote e pneumatici / SISTEMA DI MONITORAGGIO PRESSIONE PNEUMATICI\n\nSISTEMA DI MONITORAGGIO\nPRESSIONE PNEUMATICI\nPERICOLO\nIl sistema di monitoraggio della\npressione dei pneumatici non\nsostituisce il controllo manuale della\npressione. Si consiglia di controllare\nperiodicamente la pressione dei\npneumatici utilizzando un manometro. \u0000Se\nnon si mantiene la pressione prescritta,\npuò aumentare il rischio di anomalie dei\npneumatici, perdita di controllo,\nribaltamento del veicolo e lesioni personali.\nControllare la pressione dei pneumatici\n(compresa quella della ruota di scorta, ove\napplicabile) ogni due settimane quando i\npneumatici sono freddi."
+        },
+        {
+          "id": "focus-pdf248-3",
+          "testo": "Ruote e pneumatici\n\nControllo della pressione dei\npneumatici\nPERICOLO\nPrima di mettersi alla guida,\ncontrollare che il pneumatico sia\nstato gonfiato alla pressione\nconsigliata.  Vedere Pressioni\npneumatico (pagina 259).  Controllare la\npressione fino alla sostituzione del\npneumatico riparato.\n1. Arrestare il veicolo dopo aver percorso\ncirca tre km (due miglia). Controllare\ne, se necessario, regolare la pressione\ndel pneumatico danneggiato.\n2. Collegare il kit e controllare la\npressione del pneumatico con il\nmanometro K.\n3. Se la pressione del pneumatico\nriparato con il sigillante è pari o\nsuperiore a 1,3 bar (19 psi), regolarla al\nvalore specificato.  Vedere Pressioni\npneumatico (pagina 259).\n4. Gonfiare il pneumatico attenendosi\nnuovamente alla procedura di\ngonfiaggio."
+        },
+        {
+          "id": "focus-pdf194-1",
+          "testo": "Traino / TRAINO DI UN RIMORCHIO\n\nTRAINO DI UN RIMORCHIO\nAVVERTENZE\nNon superare i 62 mi/h (100 km/h).\nLa pressione dei pneumatici\nposteriori deve essere aumentata di\n0,2 bar oltre le specifiche. Non\nsuperare la pressione max. indicata sul\nfianco del pneumatico. Potrebbero\nderivarne gravi lesioni personali.  Vedere\nRuote e pneumatici (pagina 243).\nNon superare il peso lordo massimo\ndel rimorchio indicato sulla targhetta\ndi identificazione del veicolo.\nPotrebbero derivarne perdita di controllo\ndel veicolo e lesioni personali gravi anche\nmortali.  Vedere Targhetta di\nidentificazione veicolo (pagina 268).\nNon superare il peso verticale\nrimorchio massimo consentito sulla\nsfera di traino come riportato nella\ntabella specifiche del veicolo. Potrebbero\nderivarne perdita di controllo del veicolo e\nlesioni personali gravi anche mortali.\nVedere Specifiche tecniche (pagina 265).\nIl sistema frenante antibloccaggio\nnon controlla i freni del rimorchio.\nDurante il traino di un rimorchio:"
+        },
+        {
+          "id": "focus-pdf262-1",
+          "testo": "Ruote e pneumatici\n\nFino a 160 km/h (100 mph)\nCarico massimoCarico normale\nDimensioni\npneumaticoVersione PosterioreanteriorePosterioreanteriore\nbarbarbarbar\n2,82,42,12,1205/55 R 16*Tutte\n2,82,42,12,1215/55 R 16*\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,42,12,3215/55 R 16*2.0L Duratorq-TDCi- DW\n2,82,42,12,1215/50 R 17*\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,42,12,3215/50 R 17*2.0L Duratorq-TDCi- DW\n2,82,42,12,1235/40 R 18\n1.0L EcoBoost, 1.6L\nDuratec-16V Ti-\nVCT, 1.5L EcoBoost,\n2.0L Duratec-HE -\nMI4, 1.5L Duratorq-\nTDCi, 1.6L Duratorq-\nTDCi\n2,82,42,12,3235/40 R 182.0L Duratorq-TDCi- DW\n1\nCatene da neve fino a 12 mm.\n2\nCatene da neve fino a 10 mm per ruote in acciaio. Catene da neve fino a 7 mm per ruote\nin acciaio.\n3\nCatene da neve fino a 7 mm."
+        },
+        {
+          "id": "focus-pdf252-2",
+          "testo": "Ruote e pneumatici\n\nQuando è montato il pneumatico di\nscorta temporaneo\nSe bisogna sostituire una ruota stradale e\nil pneumatico con la ruota di scorta\ntemporanea, il sistema continua a\nindividuare un difetto. In questo modo il\nsistema segnala la necessità di riparare la\nruota e il pneumatico danneggiato e\nmontare nuovamente il complessivo ruota\ne pneumatico riparato sul veicolo. Per\nripristinare il corretto funzionamento del\nsistema, occorre fare rimontare sul veicolo\nla ruota e il pneumatico da strada riparati.\nSe si ritiene che il sistema non funzioni\ncorrettamente\nLa funzione principale del sistema è\nsegnalare l'insufficiente pressione dei\npneumatici. Può anche indicare che il\nsistema non è più in grado di funzionare\ncorrettamente. Per le informazioni in\nmerito al sistema, consultare la seguente\ntabella:\nDurante il gonfiaggio dei pneumatici\nDurante il gonfiaggio dei pneumatici, è\npossibile che il sistema non risponda\nimmediatamente all'aria aggiunta."
+        }
+      ],
+      "citazioni_rifiutate": []
+    },
+    "dati": [
+      null
+    ]
+  },
+  {
+    "tipo": "risposta_finale",
+    "esito": "fonte_assente",
+    "risposta": "Non sono riuscito a verificare una risposta alla tua domanda nei passaggi consultati."
+  }
+]

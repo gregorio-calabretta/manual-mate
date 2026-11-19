@@ -1,0 +1,416 @@
+{
+  "eseguito_il": "2026-11-19T09:10:50.193157+00:00",
+  "modello_agente": "gpt-6-luna",
+  "modello_valutatore": "gpt-6-luna",
+  "modello_embedding": "text-embedding-3-small",
+  "top_k": 10,
+  "max_char": 1024,
+  "overlap": 0,
+  "lavoratori": 2,
+  "metriche": {
+    "casi_passati": {
+      "corretti": 2,
+      "totale": 3
+    },
+    "ricerche_avviate": {
+      "corretti": 3,
+      "totale": 3
+    },
+    "hit_at_1": {
+      "corretti": 2,
+      "totale": 3
+    },
+    "citazioni_corrette": {
+      "corretti": 3,
+      "totale": 3
+    },
+    "estratti_con_evidenze": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "risposte_coerenti": {
+      "corretti": 2,
+      "totale": 3
+    },
+    "gruppi_completi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "chiarimenti_e_blocchi": {
+      "corretti": 0,
+      "totale": 0
+    },
+    "astensioni": {
+      "corretti": 0,
+      "totale": 0
+    }
+  },
+  "gruppi": {},
+  "risultati": [
+    {
+      "id": "pneumatici-tre-parti-diretta",
+      "veicolo": "focus",
+      "domanda": "Quali sono i limiti d'uso degli pneumatici: velocità, carico e usura?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [
+        243,
+        248,
+        253,
+        259
+      ],
+      "pagine_richieste": [
+        247
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Tratta separatamente velocità, carico e usura. Per la velocità distingue almeno un limite condizionale documentato (per esempio 80 km/h con kit provvisorio o ruotino, oppure 50 km/h con catene) da un limite generale degli pneumatici ordinari. Per il carico non inventa una capacità in kg e non confonde pressioni in bar con capacità di carico. Per l'usura riporta i controlli documentati o l'inversione tra 5.000 e 10.000 km, senza inventare una soglia di profondità non trovata. Non elenca al posto di questi dati tutte le pressioni delle gomme.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per il ruotino T125/80 R16 o T125/90 R16 il limite indicato è 80 km/h; per il ruotino diverso dalle altre ruote montate, abbinato al 205/55 R16, è 120 km/h (75 mph). Questi limiti riguardano i ruotini descritti, non stabiliscono una velocità massima generale per tutti gli pneumatici. (p. 259 (PDF p. 261))\n\nLa tabella distingue le pressioni da usare a carico normale e a carico massimo, in funzione della dimensione dello pneumatico e della velocità (fino a 220 km/h e, per velocità costante, oltre 220 km/h). Il passaggio non indica un valore di carico massimo in kg applicabile agli pneumatici. (p. 263 (PDF p. 265))\n\nControllare periodicamente tagli, oggetti estranei e usura non uniforme del battistrada. Il testo non specifica un limite minimo di usura o una profondità minima del battistrada; raccomanda inoltre di invertire gli pneumatici anteriori e posteriori a intervalli regolari tra 5.000 e 10.000 km. (p. 247 (PDF p. 249))\n\nInformazione non ricavata dai passaggi consultati: I passaggi non forniscono un limite generale di velocità per tutti gli pneumatici, un carico massimo in kg né una soglia numerica di usura del battistrada.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf261-2",
+          "pagina": 259,
+          "pagina_pdf": 261
+        },
+        {
+          "id": "focus-pdf245-2",
+          "pagina": 243,
+          "pagina_pdf": 245
+        },
+        {
+          "id": "focus-pdf250-1",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        },
+        {
+          "id": "focus-pdf251-1",
+          "pagina": 249,
+          "pagina_pdf": 251
+        },
+        {
+          "id": "focus-pdf246-3",
+          "pagina": 244,
+          "pagina_pdf": 246
+        },
+        {
+          "id": "focus-pdf264-1",
+          "pagina": 262,
+          "pagina_pdf": 264
+        },
+        {
+          "id": "focus-pdf265-1",
+          "pagina": 263,
+          "pagina_pdf": 265
+        },
+        {
+          "id": "focus-pdf246-2",
+          "pagina": 244,
+          "pagina_pdf": 246
+        },
+        {
+          "id": "focus-pdf172-1",
+          "pagina": 170,
+          "pagina_pdf": 172
+        },
+        {
+          "id": "focus-pdf194-1",
+          "pagina": 192,
+          "pagina_pdf": 194
+        },
+        {
+          "id": "focus-pdf262-1",
+          "pagina": 260,
+          "pagina_pdf": 262
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf261-2",
+        "pagina": 259,
+        "pagina_pdf": 261
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf261-2",
+          "pagina": 259,
+          "pagina_pdf": 261
+        },
+        {
+          "id": "focus-pdf265-1",
+          "pagina": 263,
+          "pagina_pdf": 265
+        },
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Distingue i limiti condizionali dei ruotini dalla velocità generale, non attribuisce al carico capacità in kg e riporta i controlli e l’inversione degli pneumatici senza inventare soglie d’usura.",
+      "passato": true,
+      "latenza_ms": 73213
+    },
+    {
+      "id": "pneumatici-tre-parti-variante",
+      "veicolo": "focus",
+      "domanda": "Per le gomme della Ford Focus vorrei sapere i vincoli di velocità e carico e cosa controllare per l'usura.",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 247,
+      "pagine_alternative": [
+        243,
+        248,
+        253,
+        259
+      ],
+      "pagine_richieste": [
+        247
+      ],
+      "evidenze_attese": [],
+      "criterio_risposta": "Tratta separatamente velocità, carico e usura. Per la velocità distingue almeno un limite condizionale documentato (per esempio 80 km/h con kit provvisorio o ruotino, oppure 50 km/h con catene) da un limite generale degli pneumatici ordinari. Per il carico non inventa una capacità in kg e non confonde pressioni in bar con capacità di carico. Per l'usura riporta i controlli documentati o l'inversione tra 5.000 e 10.000 km, senza inventare una soglia di profondità non trovata. Non elenca al posto di questi dati tutte le pressioni delle gomme.",
+      "gruppo": null,
+      "turni": [],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [],
+      "risposta_visibile": "Per controllare l’usura, esamina periodicamente il battistrada: verifica che non sia consumato in modo irregolare; controlla anche che non ci siano tagli o oggetti estranei. Il manuale precisa che l’usura irregolare potrebbe indicare un allineamento delle ruote fuori specifica.\n\nInformazione non ricavata dai passaggi consultati: il valore minimo dell’indice di carico e il simbolo/limite minimo di velocità richiesti per gli pneumatici della tua specifica versione.",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf261-2",
+          "pagina": 259,
+          "pagina_pdf": 261
+        },
+        {
+          "id": "focus-pdf252-1",
+          "pagina": 250,
+          "pagina_pdf": 252
+        },
+        {
+          "id": "focus-pdf251-1",
+          "pagina": 249,
+          "pagina_pdf": 251
+        },
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        },
+        {
+          "id": "focus-pdf250-1",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf254-1",
+          "pagina": 252,
+          "pagina_pdf": 254
+        },
+        {
+          "id": "focus-pdf264-1",
+          "pagina": 262,
+          "pagina_pdf": 264
+        },
+        {
+          "id": "focus-pdf262-1",
+          "pagina": 260,
+          "pagina_pdf": 262
+        },
+        {
+          "id": "focus-pdf96-2",
+          "pagina": 94,
+          "pagina_pdf": 96
+        },
+        {
+          "id": "focus-pdf265-1",
+          "pagina": 263,
+          "pagina_pdf": 265
+        },
+        {
+          "id": "focus-pdf250-4",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf253-2",
+          "pagina": 251,
+          "pagina_pdf": 253
+        },
+        {
+          "id": "focus-pdf219-3",
+          "pagina": 217,
+          "pagina_pdf": 219
+        },
+        {
+          "id": "focus-pdf248-3",
+          "pagina": 246,
+          "pagina_pdf": 248
+        },
+        {
+          "id": "focus-pdf257-1",
+          "pagina": 255,
+          "pagina_pdf": 257
+        },
+        {
+          "id": "focus-pdf246-2",
+          "pagina": 244,
+          "pagina_pdf": 246
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf249-3",
+        "pagina": 247,
+        "pagina_pdf": 249
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        }
+      ],
+      "hit_at_1": true,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": false,
+      "motivo_giudizio": "Riporta controlli d’usura documentati e non inventa dati di carico, ma non distingue un limite condizionale di velocità da quello degli pneumatici ordinari.",
+      "passato": false,
+      "latenza_ms": 27418
+    },
+    {
+      "id": "pneumatici-richiamo-velocita",
+      "veicolo": "focus",
+      "domanda": "Mi spieghi solo la parte sulla velocità?",
+      "esito_atteso": "risposta",
+      "fonte_attesa": null,
+      "pagina_attesa": 243,
+      "pagine_alternative": [
+        248,
+        253,
+        259
+      ],
+      "pagine_richieste": [],
+      "evidenze_attese": [],
+      "criterio_risposta": "Spiega almeno un limite di velocità documentato legato a una condizione specifica degli pneumatici, senza trattarlo come velocità massima generale dell'auto o pneumatici ordinari. Mantiene il tema pneumatici della Focus. Non sostituisce la risposta con le pressioni per alte velocità o con la loro tabella numerica.",
+      "gruppo": null,
+      "turni": [
+        {
+          "messaggio": "Nella Ford Focus quali sono i limiti d'uso degli pneumatici: velocità, carico e usura?",
+          "esito_atteso": "risposta"
+        }
+      ],
+      "esito": "risposta",
+      "veicolo_usato": "focus",
+      "turni_eseguiti": [
+        {
+          "messaggio": "Nella Ford Focus quali sono i limiti d'uso degli pneumatici: velocità, carico e usura?",
+          "esito_atteso": "risposta",
+          "esito": "risposta",
+          "risposta_visibile": "I limiti di velocità riportati riguardano il ruotino di scorta: fino a 80 km/h per le misure T125/80 R16 e T125/90 R16, e fino a 120 km/h (75 mph) per il ruotino 205/55 R16, diverso dalle altre ruote montate. (p. 259 (PDF p. 261))\n\nPer lo pneumatico 205/55 R 16 indicato per tutte le versioni, la tabella riporta pressioni fino a 160 km/h: a carico massimo, 2,8 bar posteriori e 2,4 anteriori; a carico normale, 2,1 bar posteriori e anteriori. Sono pressioni associate alle condizioni di carico, non un limite di massa. (p. 260 (PDF p. 262))\n\nPer l’usura, il manuale raccomanda di controllare periodicamente tagli, corpi estranei e usura irregolare del battistrada; non indica una soglia numerica di usura. (p. 247 (PDF p. 249))\n\nInformazione non ricavata dai passaggi consultati: I passaggi non specificano un limite generale di velocità per gli pneumatici normali, un carico massimo in kg né una soglia numerica minima di battistrada.\n\nFonte: Ford Focus (CEW), CG3630itITA, ed. 09/2014 (produzione 08/09/2014–15/02/2015), p. 259 (PDF p. 261), p. 260 (PDF p. 262), p. 247 (PDF p. 249).",
+          "passato": true
+        }
+      ],
+      "risposta_visibile": "Per gli pneumatici della tabella, la pressione è indicata per la fascia fino a 220 km/h (137 mph). (p. 263 (PDF p. 265))\n\nSe si viaggia a velocità costante superiore a 220 km/h (137 mph), va consultata la tabella separata delle pressioni prevista per questa condizione. (p. 263 (PDF p. 265))\n\nIl ruotino T125/80 R16 o T125/90 R16 è indicato fino a 80 km/h; il ruotino di scorta diverso dalle altre ruote montate è indicato fino a 120 km/h (75 mph). (p. 259 (PDF p. 261))",
+      "ricerca_eseguita": true,
+      "fonti_recuperate": [
+        {
+          "id": "focus-pdf265-1",
+          "pagina": 263,
+          "pagina_pdf": 265
+        },
+        {
+          "id": "focus-pdf261-2",
+          "pagina": 259,
+          "pagina_pdf": 261
+        },
+        {
+          "id": "focus-pdf262-1",
+          "pagina": 260,
+          "pagina_pdf": 262
+        },
+        {
+          "id": "focus-pdf251-1",
+          "pagina": 249,
+          "pagina_pdf": 251
+        },
+        {
+          "id": "focus-pdf250-1",
+          "pagina": 248,
+          "pagina_pdf": 250
+        },
+        {
+          "id": "focus-pdf264-1",
+          "pagina": 262,
+          "pagina_pdf": 264
+        },
+        {
+          "id": "focus-pdf249-3",
+          "pagina": 247,
+          "pagina_pdf": 249
+        },
+        {
+          "id": "focus-pdf248-3",
+          "pagina": 246,
+          "pagina_pdf": 248
+        },
+        {
+          "id": "focus-pdf194-1",
+          "pagina": 192,
+          "pagina_pdf": 194
+        },
+        {
+          "id": "focus-pdf246-2",
+          "pagina": 244,
+          "pagina_pdf": 246
+        }
+      ],
+      "fonte_citata": {
+        "id": "focus-pdf265-1",
+        "pagina": 263,
+        "pagina_pdf": 265
+      },
+      "fonti_citate": [
+        {
+          "id": "focus-pdf265-1",
+          "pagina": 263,
+          "pagina_pdf": 265
+        },
+        {
+          "id": "focus-pdf261-2",
+          "pagina": 259,
+          "pagina_pdf": 261
+        }
+      ],
+      "hit_at_1": false,
+      "citazione_corretta": true,
+      "evidenze_mancanti": [],
+      "risposta_coerente": true,
+      "motivo_giudizio": "Indica limiti di velocità specifici per il ruotino di scorta (80 km/h) e per una ruota di scorta diversa dalle altre montate (120 km/h), senza presentarli come limiti generali dell’auto.",
+      "passato": true,
+      "latenza_ms": 203246
+    }
+  ],
+  "note_revisione_manuale": {
+    "configurazione": "Tre ricerche, verifica delle sole fonti citate; confronto sperimentale delle altre fonti rimosso.",
+    "limiti": [
+      "La variante resta parziale: manca la parte velocita.",
+      "La risposta diretta cita una tabella pressioni come contesto: non stabilisce una capacita di carico in kg.",
+      "Il caso con richiamo include due turni nella latenza totale; non misura solo il messaggio finale."
+    ],
+    "stato": "Completezza e latenza sulle domande composte non sono dichiarate risolte."
+  }
+}

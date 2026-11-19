@@ -5,6 +5,7 @@ from dataclasses import dataclass
 from assistente import Risposta
 from catalogo import CATALOGO, anni_del_modello, normalizza
 from config import MAX_TURNI_CONTESTO
+from intenti import contesto_cambio_auto
 from osservabilita import richiesta
 
 
@@ -24,6 +25,8 @@ DOMANDE_SULL_ASSISTENTE = (
     r"(?:(?:mi dici|vorrei sapere|vorrei capire) )?(?:chi sei|come funzioni|come funziona(?: (?:l app|questa chat|manual mate))?"
     r"|(?:che )?cosa (?:sai|puoi) fare(?: per me)?|(?:come|in che modo) puoi aiutarmi|come mi puoi aiutare"
     r"|(?:come|in che modo) mi aiuti|come posso usarti|puoi aiutarmi|mi puoi aiutare|mi aiuti|mi dai una mano"
+    r"|(?:che|quali) (?:domande|informazioni) (?:posso (?:farti|chiederti)|ti posso (?:fare|chiedere))"
+    r"|(?:mi (?:fai|dai) )?(?:degli |alcuni )?esempi di domande(?: che posso farti)?"
     r"|(?:che|quali) (?:libretti|manuali|auto|modelli) (?:hai|conosci|supporti|puoi consultare|sono disponibili)(?: in catalogo)?)"
 )
 
@@ -34,6 +37,7 @@ class Conversazione:
     domanda_in_attesa: str | None = None
     chiarimenti: tuple[str, ...] = ()
     turni_documentati: tuple[str, ...] = ()
+    ultimo_chiarimento: str | None = None
 
     def rispondi(self, messaggio: str, consulta: Callable[[str, str, tuple[str, ...]], Risposta]) -> Risposta:
         with richiesta() as misura:
@@ -55,17 +59,20 @@ class Conversazione:
             self.domanda_in_attesa = None
             self.chiarimenti = ()
             self.turni_documentati = ()
+            self.ultimo_chiarimento = None
 
         corrispondenze = [codice for codice, pattern in NOMI_AUTO.items() if re.search(rf"\b{pattern}\b", testo)]
         if len(corrispondenze) > 1:
             self.veicolo_id = None
             self.chiarimenti = ()
             self.turni_documentati = ()
+            self.ultimo_chiarimento = None
             self.domanda_in_attesa = messaggio
             return Risposta("veicolo_da_chiarire", "Quale manuale vuoi consultare per questa domanda?")
 
         domanda = messaggio
         dettagli_veicolo = ()
+        trasferimento = False
         if corrispondenze:
             codice = corrispondenze[0]
             anni = anni_del_modello(testo, CATALOGO[codice])
@@ -76,17 +83,21 @@ class Conversazione:
                 self.veicolo_id = None
                 self.chiarimenti = ()
                 self.turni_documentati = ()
+                self.ultimo_chiarimento = None
                 veicolo = CATALOGO[codice]
                 return Risposta("veicolo_da_chiarire", f"Il libretto disponibile è per {veicolo.nome}, {veicolo.edizione}. Per il modello o l’anno che hai scritto serve il suo libretto. Quale auto vuoi consultare?")
             attende_modello = self.veicolo_id is None and self.domanda_in_attesa is not None
+            auto_precedente = self.veicolo_id
+            domande_precedenti = self.chiarimenti or self.turni_documentati
             if codice != self.veicolo_id:
                 if self.veicolo_id is not None:
                     self.domanda_in_attesa = None
                 self.chiarimenti = ()
                 self.turni_documentati = ()
+                self.ultimo_chiarimento = None
             self.veicolo_id = codice
             selezione_auto = re.fullmatch(
-                rf"(?:(?:si|e|ho|guido|intendo|per|sulla|sull|un|una|la|mia|invece) )*{NOMI_AUTO[codice]}"
+                rf"(?:(?:si|e|ho|guido|intendo|per|su|sul|sulla|sull|nel|nella|nell|un|una|la|mia|invece|anche|ad esempio|per esempio) )*{NOMI_AUTO[codice]}"
                 r"(?: (?:del |anno )?(?:19|20)\d{2})?(?: grazie)?",
                 testo,
             )
@@ -94,9 +105,16 @@ class Conversazione:
                 r"\b(?:che|come|dove|quand[oi]|quant[oaie]|qual[ei]|cosa|perche|vorrei|mi (?:dici|spieghi|serve))\b", testo,
             )
             if selezione_auto or aggiunge_dettagli:
-                if self.domanda_in_attesa is None:
+                trasferimento = bool(
+                    selezione_auto and auto_precedente and codice != auto_precedente
+                    and domande_precedenti and re.search(r"\b(?:invece|anche|e|per|su|sul|sulla|sull|nel|nella|nell)\b", testo)
+                )
+                if trasferimento:
+                    dettagli_veicolo = (contesto_cambio_auto(auto_precedente, domande_precedenti),)
+                elif self.domanda_in_attesa is None:
                     return Risposta("veicolo_selezionato", f"Userò il libretto di {CATALOGO[codice].nome}. Cosa vuoi sapere?")
-                domanda = self.domanda_in_attesa
+                else:
+                    domanda = self.domanda_in_attesa
                 if aggiunge_dettagli:
                     dettagli_veicolo = (messaggio,)
         elif re.match(r"^(?:e |invece |e invece )sull[ae] (?!mia\b|stessa\b)|^guido un[ao] |^ho cambiato auto\b", testo):
@@ -104,6 +122,7 @@ class Conversazione:
             self.veicolo_id = None
             self.chiarimenti = ()
             self.turni_documentati = ()
+            self.ultimo_chiarimento = None
 
         if self.veicolo_id is None:
             gia_in_attesa = self.domanda_in_attesa is not None
@@ -115,10 +134,22 @@ class Conversazione:
             return Risposta("veicolo_da_chiarire", testo_risposta)
 
         # La domanda originale riparte appena arriva il modello. I chiarimenti tecnici restano legati all'auto.
-        contesto = self.chiarimenti or dettagli_veicolo
-        if not contesto and re.match(r"^(?:e\b|quell[ao]\b|in quel caso\b|perche\b)", testo):
-            contesto = self.turni_documentati
-        risposta = consulta(self.veicolo_id, domanda, contesto)
+        # Anche una contestazione o un richiamo breve può dipendere dal tema precedente.
+        # Il modello distingue i nuovi argomenti: non deduciamo questa relazione dal prefisso.
+        contesto = self.chiarimenti or dettagli_veicolo or self.turni_documentati
+        contesto_consulta = contesto
+        if self.ultimo_chiarimento:
+            # Conserva tema e dettagli recenti, riservando uno spazio alla domanda
+            # dell'assistente cui l'utente sta rispondendo (es. «benzina»).
+            recenti = contesto[:1] + contesto[1:][-(MAX_TURNI_CONTESTO - 2):]
+            contesto_consulta = (*recenti, f"Chiarimento precedente dell'assistente: {self.ultimo_chiarimento}")
+        risposta = consulta(self.veicolo_id, domanda, contesto_consulta)
+        if trasferimento:
+            # Dal prossimo turno resta solo la domanda ricostruita per la nuova auto.
+            contesto = ()
+            dettagli_veicolo = ()
+            domanda = risposta.domanda_interpretata or messaggio
+        self.ultimo_chiarimento = risposta.testo if risposta.esito == "chiarimento" else None
         self.domanda_in_attesa = domanda if risposta.esito in {"errore", "indice_assente"} else None
         if risposta.esito in {"chiarimento", "fonte_assente", "errore", "indice_assente"}:
             # Conserva il primo turno del tema e gli ultimi dettagli distinti anche dopo una ricerca a vuoto.
@@ -130,5 +161,5 @@ class Conversazione:
         else:
             self.chiarimenti = ()
         if risposta.esito == "risposta":
-            self.turni_documentati = (*contesto, domanda)[-2:]
+            self.turni_documentati = (*contesto, domanda)[-MAX_TURNI_CONTESTO:]
         return risposta

@@ -76,6 +76,14 @@ class AssistenteTest(unittest.TestCase):
                     "content": [{"type": "output_text", "text": json.dumps(self.verifica_simulata), "annotations": []}],
                 }],
             })
+        if body.get("text", {}).get("format", {}).get("name") == "Riesame":
+            return httpx.Response(200, json={
+                "id": "resp_riesame", "object": "response", "created_at": 0, "model": body["model"],
+                "status": "completed", "output": [{
+                    "type": "message", "id": "msg_riesame", "role": "assistant", "status": "completed",
+                    "content": [{"type": "output_text", "text": json.dumps({"risposte": [], "parte_non_documentata": ""}), "annotations": []}],
+                }],
+            })
         nome, argomenti = next(self.azioni)
         chiamata = f"call_{len(self.chiamate)}"
         return httpx.Response(200, json={
@@ -111,6 +119,14 @@ class AssistenteTest(unittest.TestCase):
         self.assertEqual(risposta.esito, "chiarimento")
         self.assertEqual(self.chiamate, ["/v1/responses"])
 
+    def test_chiarimento_con_piu_frasi_ed_esempi_non_diventa_una_domanda_sui_sintomi(self):
+        domanda = "Quale motore hai?\nChe cilindrata o potenza? Per esempio 1.0 EcoBoost."
+        self.azioni = iter((("chiedi_chiarimento", {"tipo": "versione", "domanda": domanda}),))
+        risposta = self.assistente.rispondi("focus", "benzina", contesto=("Quanti km al litro fa la Focus?",))
+        self.assertEqual(risposta.esito, "chiarimento")
+        self.assertEqual(risposta.testo, " ".join(domanda.split()))
+        self.assertFalse(risposta.ricerca_eseguita)
+
     def test_chiarimento_risolto_con_una_risposta_breve(self):
         self.indice.indicizza(self.cartella, CATALOGO["civic"])
         prima_domanda = "Mi si è accesa la spia dell’olio"
@@ -142,7 +158,7 @@ class AssistenteTest(unittest.TestCase):
         with patch.object(self.assistente.client, "structured_response", return_value=Mock(structured_data=[risultato])):
             fonti, sintesi = self.assistente._riesamina("C'è il Bluetooth? E quanto costa ripararlo?", (), {"a": hit})
             self.assertEqual(fonti, (hit,))
-            self.assertIn("Dal libretto non posso determinare il prezzo", sintesi)
+            self.assertIn("Informazione non ricavata dai passaggi consultati: il prezzo", sintesi)
             risultato.risposte[0].citazione = "La funzione connessione Bluetooth è guasta."
             self.assertIsNone(self.assistente._riesamina("C'è il Bluetooth?", (), {"a": hit}))
 
@@ -247,6 +263,54 @@ class AssistenteTest(unittest.TestCase):
             with self.subTest(citazione=citazione):
                 self.assertFalse(_citazione_valida(hit, citazione))
 
+    def test_riga_numerica_completa_con_etichetta_e_diversa_da_una_cella_isolata(self):
+        riga = "105-11648-56,557,4-67,236,2-41,31.0L EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)"
+        hit = Chunk(id="a", text="Consumi\n\nDATI RELATIVI AL CONSUMO DI CARBURANTE\n" + riga)
+        self.assertLess(len(riga.split()), 4)
+        self.assertTrue(_citazione_valida(hit, riga))
+        for citazione in ("5-4,6", "EcoBoost. (5-4,6)(4,2-3,9)(6,5-5,7)",
+                          riga.replace("5-4,6", "5-3,6"), riga.replace("1.0L", "1.5L")):
+            with self.subTest(citazione=citazione):
+                self.assertFalse(_citazione_valida(hit, citazione))
+        solo_numeri = "105-11648-56,557 4-67,236,2-41,31.0"
+        self.assertFalse(_citazione_valida(Chunk(id="b", text="Consumi\n\n" + solo_numeri), solo_numeri))
+
+    def test_fonte_introduttiva_insufficiente_viene_sostituita_dalla_tabella(self):
+        veicolo = CATALOGO["focus"]
+        introduzione = "I valori sono ottenuti con prove di laboratorio."
+        riga = "Motore-X: consumo-combinato 4,6–5,0-L/100-km"
+        documenti = [("Consumi\n\n" + testo, {
+            "veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file,
+            "fonte": fonte, "pagina": pagina, "pagina_pdf": pagina + 2,
+            "sezione": "Consumi", "avviso_curato": False,
+        }) for fonte, pagina, testo in (("introduzione", 138, introduzione), ("tabella", 281, riga))]
+        with patch("indice.estrai_documenti", return_value=(documenti, 2, [])):
+            self.indice.indicizza(self.cartella, veicolo)
+        riesame = Riesame(risposte=[PassaggioVerificabile(fonte_id="tabella", citazione=riga,
+                           frase="Il consumo combinato è 4,6–5,0 L/100 km, circa 20–21,7 km/l.")], parte_non_documentata="")
+        for esito_finale in ("confermata", "fonte_insufficiente"):
+            with self.subTest(esito_finale=esito_finale):
+                self.azioni = iter((("cerca_manuale", {"query": "consumi"}),
+                                    ("cita_fonte", {"fonte_id": "introduzione", "citazione": introduzione,
+                                                     "sintesi": "Sono dati di laboratorio."})))
+                with patch.object(self.assistente.client, "structured_response", side_effect=[
+                    Mock(structured_data=[VerificaSintesi(esito="fonte_insufficiente", omissioni_rilevanti=[], sintesi="")]),
+                    Mock(structured_data=[riesame]),
+                    Mock(structured_data=[VerificaSintesi(esito=esito_finale, omissioni_rilevanti=[], sintesi="")]),
+                ]) as client:
+                    risposta = self.assistente.rispondi("focus", "Quanti km/l fa il Motore-X nel ciclo combinato?")
+                self.assertEqual(client.call_count, 3)
+                candidate = json.loads(client.call_args_list[1].kwargs["input"])["passaggi"]
+                self.assertEqual([r["id"] for r in candidate], ["tabella"])
+                if esito_finale == "confermata":
+                    self.assertEqual(risposta.esito, "risposta")
+                    self.assertEqual(risposta.fonte_citata.pagina, 281)
+                    self.assertIn("20–21,7 km/l", risposta.testo_cli)
+                else:
+                    self.assertEqual(risposta.esito, "fonte_assente")
+                    self.assertIsNone(risposta.fonte_citata)
+                    self.assertNotIn(introduzione, risposta.testo_cli)
+
     def test_riesame_conserva_la_citazione_valida_quando_un_altra_fallisce(self):
         hit = Chunk(id="a", text="Presa\n\nLa potenza massima della presa è di 120 W.",
                     metadata={"fonte": "a", "pagina": 62, "pagina_pdf": 64})
@@ -313,10 +377,14 @@ class AssistenteTest(unittest.TestCase):
                 ))
                 risposta = self.assistente.rispondi("audi", "Posso usare il ruotino per sempre?")
                 self.assertEqual(risposta.sintesi, nuova or None)
-                self.assertEqual(risposta.fonte_citata.pagina, 377)
-                self.assertIn(originale, risposta.testo)
+                if esito == "corretta":
+                    self.assertEqual(risposta.fonte_citata.pagina, 377)
+                    self.assertIn(originale, risposta.testo)
+                else:
+                    self.assertEqual(risposta.esito, "fonte_assente")
+                    self.assertIsNone(risposta.fonte_citata)
                 self.assertNotIn("Sostituisci sempre", risposta.testo_cli)
-                self.assertIn(originale, str(self.verifiche[-1]))
+                self.assertTrue(any(originale in str(verifica) for verifica in self.verifiche))
 
     def test_fonte_su_un_altro_dispositivo_non_diventa_una_risposta_documentata(self):
         veicolo = CATALOGO["leon"]
@@ -398,6 +466,29 @@ class AssistenteTest(unittest.TestCase):
                     self.assertIn("Metti il positivo verso l'alto. (p. 35", risposta.testo_cli)
                 else:
                     self.assertEqual(risposta.fonti_citate, ())
+
+    def test_tre_parti_eseguono_query_distinte_e_citano_le_tre_fonti(self):
+        veicolo = CATALOGO["focus"]
+        testi = ("Per il caso A la velocità massima è 80 km/h.",
+                 "Il carico massimo del componente è 20 kg.",
+                 "Controllare regolarmente i segni di usura del componente.")
+        documenti = [("Componente\n\n" + testo, {
+            "veicolo": veicolo.id, "edizione": veicolo.edizione, "source_file": veicolo.file,
+            "fonte": f"parte-{i}", "pagina": 10 + i, "pagina_pdf": 12 + i,
+            "sezione": "Componente", "avviso_curato": False,
+        }) for i, testo in enumerate(testi)]
+        with patch("indice.estrai_documenti", return_value=(documenti, 3, [])):
+            self.indice.indicizza(self.cartella, veicolo)
+        self.azioni = iter((("cerca_manuale", {"query": "velocita", "query_complementare": "carico",
+                                              "altre_query": ["carico", "usura", "oltre il limite"]}),
+                            ("cita_fonti", {"fonti_id": [f"parte-{i}" for i in range(3)],
+                                            "citazioni": list(testi), "frasi": list(testi)})))
+        prima = len(self.input_embedding)
+        risposta = self.assistente.rispondi("focus", "Quali sono i limiti di velocit\u00e0, carico e usura?")
+        self.assertEqual(self.input_embedding[prima:], [["velocita"], ["carico"], ["usura"]])
+        self.assertEqual(len(risposta.fonti_citate), 3)
+        for t in testi:
+            self.assertIn(t, risposta.testo_cli)
 
     def test_ubicazione_fusibili_usa_la_sezione_verificata(self):
         focus = CATALOGO["focus"]

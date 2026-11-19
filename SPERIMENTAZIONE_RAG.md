@@ -437,6 +437,327 @@ Il risultato di sviluppo non raggiunge ancora il 90% di completezza su questo ca
 
 La verifica conclusiva supera 56 test automatici. Il controllo delle dipendenze non rileva incompatibilità. Dall’ingresso ordinario della CLI, «La Honda Civic Type R usa una pila CR 2032?» riconosce il veicolo e risponde CR2032 citando p. 575, confermando anche fuori dai mock la correzione del falso anno. L’alias Leon è stato confrontato con la collezione `docling_ricorsivo` del report e risulta coerente.
 
+## Richiami conversazionali e limiti delle risposte — 18–19 novembre 2026
+
+La conversazione incollata dall'utente ha evidenziato due difetti riproducibili: dopo una risposta
+parziale «sicuro che non dice dove si trova?» perdeva il tema, e il limite poteva diventare
+«Dal libretto non posso determinare Non sono indicate le misure…». Inoltre una richiesta
+generica sui filtri poteva essere interpretata direttamente come filtro abitacolo.
+
+### Modifiche generali
+
+- `conversazione.py` passa il contesto recente della stessa auto senza riconoscere i seguiti
+  tramite prefissi. Dopo una risposta documentata conserva fino a quattro messaggi utente.
+  I chiarimenti irrisolti mantengono il primo tema e gli ultimi dettagli, come prima.
+  Il cambio di veicolo e il cambio esplicito di argomento svuotano il contesto. Il prompt
+  distingue un richiamo da una nuova domanda autonoma. La memoria rimane limitata e non
+  comprende il testo delle risposte dell'assistente.
+- `fonti.py` presenta il dato mancante dopo «Informazione non ricavata dai passaggi consultati:».
+  Il campo può contenere un nome o una frase completa senza concatenazioni grammaticalmente
+  errate. Il limite è riferito alle evidenze consultate; un recupero fallito non prova
+  l'assenza dell'informazione nell'intero manuale.
+- Il prompt e le descrizioni dei tool chiedono di chiarire un componente ambiguo prima
+  della ricerca, evitando nuove domande se il contesto lo identifica già. Non si deve
+  attribuire all'utente una motorizzazione o dotazione non dichiarata. Queste istruzioni
+  sono generali: nessuna nuova regola Python per filtri, spazzole o singoli modelli.
+- Indici, parser, chunking ed embedding dei manuali restano quelli attivi. Le prove
+  consumano chiamate conversazionali, valutazioni e vettori delle query, senza reindicizzare.
+
+### Prove e criteri
+
+La raccolta `queries_conversazione.json` comprende 16 scenari sui quattro libretti:
+quattro richiami a una domanda precedente, quattro cambi di tema senza azzerare la chat,
+quattro componenti ambigui e quattro richieste precise per controllare che il chiarimento
+non venga chiesto inutilmente. Usa il percorso `Conversazione` e il valutatore semantico
+del progetto. Il controllo automatico dei chiarimenti richiede anche assenza di ricerca.
+
+La prima esecuzione dei primi 12 scenari ha superato 6/12 controlli automatici
+(`report_conversazione_prima_verifica.json`). Tutti i richiami sono riusciti. Tutti i quattro
+componenti ambigui hanno ricevuto un chiarimento pertinente, ma dopo una ricerca: il testo
+era corretto, il requisito di evitare la ricerca no. La Civic citava correttamente p. 133
+per i formati dell'orologio, mentre il test accettava solo p. 158. La Leon indicava la
+posizione richiesta, ma il criterio pretendeva anche l'apertura della copertura.
+
+Nella seconda verifica, 7/12 controlli superati (`report_conversazione_seconda_verifica.json`),
+è emerso un errore effettivo: sulla Focus l'agente ha scelto il filtro motore e lo schema
+1.5L EcoBoost senza conoscere la motorizzazione. Tre altri chiarimenti sono arrivati ancora
+dopo la ricerca. Un'altra risposta Civic citava p. 296 per «Formato ora», anch'essa corretta.
+Le pagine 133 e 296 sono state verificate direttamente nel PDF e aggiunte alle alternative
+ammissibili. Per la Leon la domanda del nuovo tema ora chiede esplicitamente anche come
+aprire la copertura, così il requisito del criterio corrisponde alla domanda.
+
+I report iniziali sono conservati con le rispettive domande e criteri. Le successive modifiche
+ai criteri rendono improprio interpretare la differenza tra i punteggi come un confronto A/B.
+Le istruzioni sulla disambiguazione sono state rese più esplicite anche nelle descrizioni
+degli strumenti prima della verifica conclusiva.
+
+La verifica conclusiva (`report_conversazione.json`) supera **15/16** controlli automatici.
+Tutte le 12 risposte documentali citano pagine ammissibili e tutti i quattro componenti
+ambigui ricevono un chiarimento prima della ricerca. Le quattro richieste precise ricevono
+una risposta senza chiarimenti superflui. Il caso residuo è il richiamo sui fusibili Leon:
+la risposta mantiene il tema e indica correttamente la posizione sotto la plancia e il
+coperchio lato conducente, ma il criterio richiede anche di dire di abbassare la copertura.
+La domanda iniziale di quel caso chiede solo la posizione: il punteggio automatico resta
+conservato e il motivo è esplicitato, senza trasformarlo in un errore di memoria.
+
+La suite locale supera **60 test**, inclusa la verifica tramite `AppTest` Streamlit del
+richiamo «sicuro che non dice dove si trova?». I nuovi controlli verificano anche la memoria
+limitata a quattro messaggi, il reset al cambio di auto o argomento e la presentazione
+di un dato mancante espresso come nome o frase completa. Il campione conversazionale è
+stato usato durante lo sviluppo e non misura l'accuratezza generale né la copertura dei manuali.
+
+Per ripetere questi 16 scenari con gli indici già presenti:
+
+```powershell
+@'
+import os
+from pathlib import Path
+from runtime import carica_configurazione, crea_assistente
+from valutazione import valuta
+carica_configurazione()
+valuta(crea_assistente(os.environ["OPENAI_API_KEY"]), Path("queries_conversazione.json"), Path("report_conversazione.json"), lavoratori=2)
+'@ | .\.venv\Scripts\python.exe -B -X utf8 -
+```
+
+`report_dialoghi_reali.json` conserva inoltre due conversazioni di nove messaggi complessivi:
+Audi sui filtri e Focus sulle misure delle spazzole, con contestazione e successiva domanda
+sulla pila della chiave. I richiami restano sul componente precedente senza chiedere di
+ripeterne il nome; la domanda sulla chiave cambia correttamente tema. Sui filtri Audi il
+verificatore rifiuta i passaggi recuperati come non pertinenti e comunica il limite:
+questa prova non dimostra che la posizione sia assente dal libretto.
+
+## Dialogo Focus su aiuto e consumi — 19 novembre 2026
+
+Un nuovo dialogo reale dell'utente ha mostrato tre problemi non coperti dal campione precedente:
+«ciao che domande posso farti?» richiedeva il veicolo; una risposta parziale «benzina»
+portava a una domanda generica sui sintomi; infine veniva citata l'introduzione ai consumi
+a p. 138 senza usare la tabella numerica a p. 281 (PDF p. 283).
+
+Il controllo Python del tool `chiedi_chiarimento` accettava solo un'unica frase con un punto
+interrogativo finale, entro 199 caratteri. Un chiarimento con più domande, un esempio dopo
+il punto interrogativo o un a capo poteva essere sostituito dalla domanda predefinita sui
+sintomi. Ora vengono normalizzati gli spazi e accettate domande entro 400 caratteri che
+contengano un punto interrogativo. Restano i limiti di lunghezza e il ripiego per un campo vuoto.
+
+La memoria prima conservava i messaggi dell'utente, senza la domanda dell'assistente che
+aveva richiesto il dettaglio. `ultimo_chiarimento` conserva ora questa sola domanda e la
+invia al turno successivo con etichetta esplicita. Il contesto complessivo resta limitato
+a quattro elementi: primo tema, dettagli recenti e domanda dell'assistente. Il cambio
+di auto o argomento la cancella. Non vengono conservate tutte le risposte complete.
+Il prompt chiede di riconoscere i dettagli acquisiti e chiedere quelli ancora mancanti.
+
+Le richieste di esempi di domande sono riconosciute dalla gestione conversazionale locale
+senza interrogare il manuale o chiedere prima un veicolo. «Ad esempio sulla Ford Focus»
+può selezionare il veicolo senza trasformare quella frase in una domanda tecnica.
+
+Tre query sull'indice attivo confermano che la tabella è già disponibile: con «dati relativi
+al consumo di carburante benzina» p. 281 è il secondo risultato, con «consumo combinato
+1.0L EcoBoost» è il primo. Una query colloquiale sui «chilometri al litro» privilegia invece
+la procedura di misurazione a p. 139. La correzione è nella formulazione tecnica della
+ricerca e nell'uso delle tabelle, senza nuovi embedding o cambi di chunking.
+
+La tabella originale è stata controllata visivamente. Per il motore 1.0L EcoBoost riporta
+5–4,6 L/100 km nel ciclo combinato, cioè circa 20–21,7 km/l. «Benzina» da solo non seleziona
+una riga: serve almeno identificare la motorizzazione oppure distinguere le alternative.
+I dati tabellari non garantiscono il consumo effettivo di un singolo veicolo.
+
+`report_dialogo_consumi_focus.json` conserva la riproduzione di sei messaggi, dalla richiesta
+di aiuto al dato numerico. «Benzina» e «motorizzazione benzina» ricevono un chiarimento
+pertinente su cilindrata o potenza; «1.0 EcoBoost, il consumo combinato» riceve l'intervallo
+corretto con fonte p. 281. `queries_dialogo_focus.json` rende ripetibili i controlli semantici
+su aiuto, chiarimento parziale e tabella: la verifica supera 3/3 scenari e conserva i risultati
+in `report_valutazione_dialogo_focus.json`. La suite locale supera 64 test, incluso l'ingresso
+Streamlit e la conservazione del testo delle domande con esempi. Il test Streamlit sul
+seguito dell'olio Civic è stato aggiornato per verificare anche la nuova domanda etichettata
+nel contesto. Queste prove restano campioni di sviluppo, senza una stima generale di affidabilità.
+
+## Cinque conversazioni consecutive — 19 novembre 2026
+
+Su richiesta dell'utente sono state eseguite le cinque prove proposte, per 13 messaggi:
+aiuto e consumi Focus, cambio di tema verso la chiave, dimensioni delle spazzole con richiamo,
+passaggio alla Leon con apertura del coperchio dei fusibili e una nuova chat Audi sui filtri.
+Le prime quattro condividono lo stato della stessa conversazione; la quinta riparte senza
+veicolo selezionato. Le prove chiamano `Conversazione.rispondi` e `Assistente.rispondi`,
+lo stesso percorso usato da Streamlit, senza azionare l'interfaccia grafica. Il report
+`report_cinque_conversazioni.json` conserva testi completi, contesto effettivamente passato,
+fonti recuperate e citate, tempi e valutazione manuale distinta dagli esiti applicativi.
+
+| Prova | Valutazione manuale | Osservazione |
+| --- | --- | --- |
+| Aiuto e consumi Focus | Fallita | Aiuto e chiarimenti corretti, ma dopo «1.0 EcoBoost, consumo combinato» mostra l'introduzione di p. 138 senza dare il dato richiesto. |
+| Pila della chiave | Parziale | Mantiene la Focus e cambia argomento, ma chiede quale tipo di chiave senza fornire il codice della pila. |
+| Misure delle spazzole | Superata | Mantiene il tema nel richiamo e comunica il limite dei passaggi consultati senza inventare dimensioni. |
+| Fusibili Leon | Superata | Indica la posizione a p. 66 e poi spiega di abbassare la copertura, collegando correttamente la seconda domanda. |
+| Filtro Audi | Superata | Chiarisce il componente e mantiene il filtro antipolline; distingue il mancato recupero da un'assenza accertata nel manuale. |
+
+Il fallimento sui consumi è particolarmente significativo: **p. 281, che contiene la tabella,
+è il primo risultato recuperato da Qdrant**, mentre la fonte finale è p. 138 (nono risultato).
+Il contesto contiene la domanda sui km/l, «Benzina» e il chiarimento sulla cilindrata;
+il messaggio corrente specifica il motore e il ciclo combinato. La risposta ha `sintesi=null`
+e mostra il testo originale di p. 138, che non risolve la domanda. Il recupero della pagina
+giusta è quindi riuscito in questa prova; occorre investigare la scelta della fonte e il
+percorso che consente di mostrare un estratto come risposta senza verificare che fornisca
+il dato richiesto. Il report pubblico non basta a identificare quale passaggio interno abbia
+causato quella scelta.
+
+Questo giro dimostra che il successo precedente del dialogo Focus non era stabile rispetto
+alla formulazione e alle esecuzioni. Non viene modificato il codice applicativo in questo giro:
+il problema importante viene segnalato all'utente prima di ulteriori correzioni, come richiesto.
+I risultati precedenti restano documentati, ma non dimostrano che il caso consumi sia risolto
+in generale. Le risposte prudenti su spazzole e filtro non dimostrano a loro volta che i dati
+siano assenti dall'intero libretto. Non si ricava da queste cinque prove una percentuale
+generale di affidabilità.
+
+## Diagnosi e correzione delle citazioni tabellari — 19 novembre 2026
+
+`diagnosi_consumi_prima.json` registra tool e risposte strutturate di una riproduzione
+precedente alla correzione, senza ragionamenti interni o credenziali. La sequenza chiarisce
+il difetto: l'agente seleziona la tabella Focus a p. 281, ma la citazione può essere la sola
+cella «5-4,6» oppure l'intera riga estratta dal PDF. Anche la riga intera ha soltanto tre
+parole separate da spazi, perciò il controllo minimo di quattro parole la rifiuta.
+Il riesame propone la stessa riga insieme all'introduzione di p. 138: viene conservata
+solo quest'ultima, che ha una citazione in prosa valida. La verifica successiva vede quindi
+soltanto p. 138 e non può più verificare il valore numerico. Il problema nasce dopo un
+recupero corretto e non richiede nuovi embedding.
+
+### Correzioni
+
+- La citazione in prosa mantiene almeno quattro parole e 18 caratteri. Si aggiunge
+  l'alternativa di un'intera riga di almeno 18 caratteri con lettere, numeri e almeno due
+  parole, copiata integralmente dal corpo della fonte. Una cella isolata, una sottostringa
+  della riga o un valore modificato sono rifiutati. La verifica della sintesi controlla
+  comunque l'associazione tra valore, colonna e versione: la presenza letterale da sola
+  non dimostra questa associazione.
+- Le citazioni rifiutate dall'agente sono passate al primo riesame con il motivo, così
+  il modello può riparare l'estratto della stessa fonte prima di scegliere testo generico.
+  I prompt spiegano la possibilità di citare una riga completa e di convertire unità
+  mediante calcoli a partire da dati espliciti, senza inventare informazioni mancanti.
+- `VerificaSintesi` distingue ora `fonte_insufficiente`: la pagina riguarda il tema ma
+  non risolve la domanda. Un'introduzione generale sui fattori che influenzano un valore
+  non equivale al valore richiesto. Sono ancora possibili risposte parziali utili, per
+  esempio una procedura che indica dove leggere un dato specifico.
+- In caso di fonte insufficiente, non pertinente o risposta non verificabile, un solo
+  riesame usa le fonti già disponibili e verifica nuovamente la proposta. Le pagine
+  insufficienti o non pertinenti sono escluse da questo tentativo. Se manca una verifica
+  valida anche dopo il tentativo, viene comunicato il limite anziché presentare un
+  estratto non risolutivo come risposta. Un risultato strutturato assente o malformato
+  non attiva più automaticamente la presentazione del testo originale come risposta valida.
+- Lo span Phoenix `riesame-risposta` registra motivo, pagine scelte, pagine candidate
+  ed esistenza di una proposta di recupero. Non viene aggiunto un altro agente operativo.
+
+### Verifiche
+
+La suite locale supera **66 test**. I nuovi casi accettano la riga OCR reale della tabella,
+rifiutano celle, righe troncate e valori alterati; simulano la scelta dell'introduzione
+e verificano il recupero della tabella. Se anche la seconda fonte è giudicata insufficiente,
+il test controlla che il processo si fermi e non mostri la prima fonte come risposta.
+Il test precedente che prevedeva testo originale dopo una verifica fallita è stato
+aggiornato alla nuova politica: la chat comunica il mancato completamento della verifica.
+
+`queries_correzione_tabelle.json` comprende **10 scenari**, tutti superati nella verifica
+`report_correzione_tabelle.json`: tre formulazioni del dialogo Focus, due ripetizioni
+della stessa domanda diretta, consumi dei motori 1.5 EcoBoost e 1.6 Duratec, compatibilità
+carburante Civic, kick-down Audi e tabella catene Leon. Le risposte Focus distinguono
+le righe corrette; per la 1.0 EcoBoost riportano 4,6–5,0 L/100 km, circa 20–21,7 km/l.
+È stato controllato anche il testo effettivamente mostrato, oltre al giudizio automatico.
+Questi risultati sono misure su un campione di sviluppo, non una stima di affidabilità generale.
+
+`report_cinque_conversazioni_dopo.json` ripete gli stessi 13 messaggi del giro precedente
+e conserva anche i tool e le verifiche. Il report iniziale rimane disponibile per confronto.
+La valutazione manuale del giro successivo è di quattro prove superate e una parziale:
+il consumo Focus ora cita la riga completa di p. 281 e fornisce il valore corretto; Leon,
+spazzole e filtro Audi mantengono i comportamenti attesi. Sulla pila della chiave resta
+una richiesta aggiuntiva del tipo di chiave. Nel richiamo sulle misure delle spazzole la
+ricerca mantiene il tema, ma il messaggio conclusivo del limite è più generico del precedente.
+Questi due aspetti conversazionali non sono dichiarati risolti dalla correzione tabellare.
+
+## Cambio di auto, domande composte e codici tecnici — 19 novembre 2026
+
+La nuova conversazione dell'utente segnala la perdita del tema in «invece nella Ford Focus?»
+dopo una domanda sull'intervallo dell'olio Leon e una spiegazione dei codici QI. Inoltre la
+richiesta sui limiti di velocità, carico e usura degli pneumatici riceveva una risposta quasi
+solo sull'usura. Le informazioni mancanti non sono automaticamente errori: vanno distinte
+da un recupero incompleto e dai rinvii ad altri libretti, come Warranty & Maintenance Audi.
+
+### Modifiche mantenute
+
+- `Conversazione` riconosce richiami a un altro modello, per esempio «e nella Civic?».
+  `intenti.py` ricostruisce con `DomandaTrasferita` la sola domanda generale usando i
+  messaggi dell'utente. Non riceve risposte o valori dell'assistente della vecchia auto.
+  La consultazione successiva riceve la domanda ricostruita e contesto vuoto, sempre
+  limitata al nuovo veicolo. Motorizzazione, alimentazione, allestimento, anno, misure e
+  codici precedenti non devono essere trasferiti. Un risultato vuoto o che nomina un
+  altro modello viene rifiutato e porta a un chiarimento.
+- `Risposta.domanda_interpretata` permette di conservare la nuova domanda generale per
+  i turni successivi, evitando di accumulare cronologie di altri veicoli. Il cambio di
+  auto con una nuova domanda esplicita o senza richiamo mantiene il comportamento
+  ordinario. In Phoenix il passaggio compare come `ricostruzione-domanda-cambio-auto`.
+  È una chiamata strutturata sul linguaggio, non un altro agente operativo.
+- `cerca_manuale` accetta `altre_query` oltre alla query principale e complementare:
+  fino a tre ricerche distinte, limitate da `MAX_QUERY_RICERCA`. Duplicati e query oltre
+  il limite sono ignorati; ogni ricerca resta vincolata al manuale corrente e i risultati
+  sono interlacciati. Non vengono creati nuovi embedding dei manuali.
+- Le istruzioni comuni alle sintesi chiedono di spiegare la funzione dei codici prima
+  di elencare valori, senza inventare l'espansione delle sigle. La verifica distingue
+  la grandezza richiesta da una grandezza diversa che usa la prima come condizione:
+  le pressioni per diverse velocità non provano un limite massimo di velocità.
+- Il riesame dispone inizialmente di 1.600 token di output, con la consueta unica
+  ripetizione a limite raddoppiato, per lasciare spazio a risposte strutturate in più parti.
+
+### Esperimento scartato
+
+È stato provato un confronto automatico anche con fino a sei pagine non citate per rilevare
+parti mancanti. Ha prodotto false omissioni: la risposta corretta sui limiti condizionali
+degli pneumatici veniva giudicata incompleta perché non riportava tutte le pressioni delle
+gomme della tabella, una grandezza diversa da quella richiesta. Il riesame poteva quindi
+eliminare una risposta parziale utile. `diagnosi_pneumatici_composta.json` conserva la traccia.
+
+Il campione `report_pneumatici_composte.json`, relativo a questo tentativo, supera soltanto
+1/3 controlli. Le due domande composte terminano senza una risposta verificata; i tempi
+registrati vanno da circa 91 a 235 secondi. Il confronto aggiuntivo e l'esito sperimentale
+`risposta_incompleta` sono stati rimossi dal codice finale, mantenendo le ricerche distinte
+e i controlli sulle fonti citate. Il test sintetico di quel confronto non viene presentato
+come prova di un miglioramento: è stato sostituito dal controllo del funzionamento effettivo
+delle tre query, dei duplicati e delle tre fonti citate.
+
+### Verifiche
+
+La suite finale supera **71 test**, compresi i nuovi casi in `tests/test_intenti.py` e il
+controllo delle tre ricerche. `report_cambio_auto_multidomande_prima.json` conserva il primo
+giro reale, prima della rimozione del confronto aggiuntivo. Il cambio olio viene ripreso
+correttamente da Leon a Focus e poi Audi; i fusibili interni vengono ripresi da Leon a Civic,
+che cita p. 632. La domanda sulla velocità massima passa da Leon a Focus senza il precedente
+motore 2.0 TSI. Questo giro mostra però ancora i problemi della verifica composta sperimentale:
+il primo messaggio sui pneumatici viene scartato e il richiamo sceglie una tabella pressioni.
+
+`queries_pneumatici_composte.json` conserva tre criteri fissati prima della verifica finale:
+le parti velocità, carico e usura devono essere distinte, i limiti speciali non devono diventare
+limiti generali e i bar non devono essere confusi con una capacità di carico in kg.
+Il test richiede anche che la velocità non venga sostituita da una tabella di pressioni.
+Il report della configurazione semplificata è `report_pneumatici_composte_finale.json`.
+Questa verifica supera **2/3** controlli automatici: la domanda diretta distingue i limiti
+condizionali dei ruotini, il limite dei dati sul carico e i controlli sull'usura; il richiamo
+alla velocità cita i limiti dei ruotini. Una variante rimane parziale e risponde solo
+sull'usura. I tempi registrati sono circa 73 e 27 secondi per le domande singole e 203
+secondi complessivi per il caso che esegue una domanda composta e il successivo richiamo.
+Non sono tempi del solo ultimo messaggio: la valutazione misura tutti i turni di un caso.
+
+Il cambio di auto è quindi verificato sui dialoghi provati, mentre completezza e latenza
+delle richieste composte restano problemi aperti. Non vengono aggiunte ulteriori regole
+specifiche per gli pneumatici o avviati altri giri per ottenere un punteggio migliore:
+il limite viene segnalato all'utente prima di proseguire, come richiesto per difficoltà importanti.
+
+## Rifinitura dei dettagli mancanti dell'utente — 19 novembre 2026
+
+Dopo un ulteriore dialogo riuscito dell'utente, resta una piccola ambiguità di formulazione:
+«Informazione non ricavata dai passaggi consultati: non è indicata la motorizzazione della
+tua auto» confonde un dettaglio della conversazione con un dato mancante nei documenti.
+Le istruzioni comuni a risposta, riesame e verifica distinguono ora questi casi. Il campo
+`parte_non_documentata` riguarda i dati richiesti non ricavati dalle fonti; per scegliere
+tra versioni già documentate, il dettaglio dell'utente va chiesto nella sintesi con una
+domanda naturale. L'appendice dei prompt nel manuale è aggiornata alla stessa formulazione.
+È una rifinitura delle istruzioni, senza nuovi percorsi applicativi o test specifici sui prompt.
+
 ## Ripetere i controlli
 
 ```powershell

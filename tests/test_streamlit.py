@@ -25,6 +25,7 @@ class StreamlitTest(unittest.TestCase):
         ):
             app = AppTest.from_file(str(APP), default_timeout=10).run()
             app.chat_input[0].set_value("Ciao, cosa sai fare?").run()
+            app.chat_input[0].set_value("ciao che domande posso farti?").run()
             self.assertTrue(any("Posso aiutarti" in elemento.value for elemento in app.markdown))
             self.assertFalse(any("Di quale auto" in elemento.value for elemento in app.markdown))
 
@@ -38,7 +39,7 @@ class StreamlitTest(unittest.TestCase):
             self.assertTrue(any("i fusibili sono" in elemento.value.lower() for elemento in app.text))
             self.assertTrue(any(elemento.label == "Estratto originale del manuale" for elemento in app.expander))
 
-            seguito = "E nel vano motore?"
+            seguito = "Sicuro che non dice dove si trova?"
             app.chat_input[0].set_value(seguito).run()
             assistente.rispondi.assert_called_with("audi", seguito, contesto=(domanda,))
             self.assertFalse(app.exception)
@@ -156,7 +157,10 @@ class StreamlitTest(unittest.TestCase):
             self.assertFalse(app.exception)
             self.assertEqual(len(app.chat_message), 4)
             assistente.rispondi.assert_called_with(
-                "civic", "Quella della pressione", contesto=("Spia dell'olio sulla Honda Civic Type R",),
+                "civic", "Quella della pressione", contesto=(
+                    "Spia dell'olio sulla Honda Civic Type R",
+                    "Chiarimento precedente dell'assistente: Pressione o livello?",
+                ),
             )
 
     def test_una_ricerca_a_vuoto_non_interrompe_il_chiarimento(self):
